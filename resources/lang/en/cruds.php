@@ -347,6 +347,27 @@ return [
             'name'              => 'Name',
         ],
     ],
+
+    'facility'           => [
+        'title'          => 'Facility',
+        'title_singular' => 'Facility',
+        'fields'         => [
+            'id'                       => 'ID',
+            'id_helper'                => '',
+            'name_helper'              => '',
+            'title'              => 'Title',
+            'button_text'      => 'Button Text',
+            'heading'       => 'Heading',
+            'Blog_title'         => 'Title',
+            'sub-heading'         => 'Sub Heading',
+            'description'         => 'Description',
+            'icon'         => 'Icon',
+            'sub_heading'         => 'Sub Heading',
+            'sub_title'         => 'Sub Title',
+            'category'         => 'Category',
+            'name'              => 'Name',
+        ],
+    ],
     'insurance'           => [
         'title'          => 'Insurance',
         'title_singular' => 'Insurance',

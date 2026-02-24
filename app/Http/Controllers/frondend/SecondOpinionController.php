@@ -9,12 +9,14 @@ use App\Models\OpinionContent;
 use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\DoctorDepartment;
+use App\Models\Facility;
 
 class SecondOpinionController extends Controller
 {
     //
     public function index(Request $request)
     {
+        $facility = Facility::with('content')->first();
         $banner = OpinionBanner::first();
         $contents = OpinionContent::all();
         $departments = Department::all();
@@ -28,7 +30,7 @@ class SecondOpinionController extends Controller
         //     $doctors = Doctor::all();
         // }
 
-        return view('frondend.second_opinion.index', compact('banner', 'contents', 'departments', 'doctors'));
+        return view('frondend.second_opinion.index', compact('banner', 'contents', 'departments', 'doctors','facility'));
     }
 
     public function getDoctors($departmentId)

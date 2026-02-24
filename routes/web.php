@@ -36,6 +36,7 @@ use App\Http\Controllers\Admin\IcuController;
 use App\Http\Controllers\frondend\IcuController as FrondendIcuController;
 use App\Http\Controllers\Admin\SecondOpinionController;
 use App\Http\Controllers\frondend\SecondOpinionController as FrondendSecondOpinionController;
+use App\Http\Controllers\Admin\FacilityController;
 
 Route::redirect('/', '/login');
 
@@ -177,6 +178,13 @@ Route::group([
     Route::get('second-opinion/edit/{id}', [SecondOpinionController::class, 'edit'])->name('second-opinion.edit');
     Route::post('second-opinion/update/{id}', [SecondOpinionController::class, 'update'])->name('second-opinion.update');
     Route::post('second-opinion/content/update/{id}', [SecondOpinionController::class, 'contentUpdate'])->name('second-opinion.content.update');
+
+    Route::get('facility/index', [FacilityController::class, 'index'])->name('facility.index');
+    Route::get('facility/create', [FacilityController::class, 'create'])->name('facility.create');
+    Route::post('facility/store', [FacilityController::class, 'store'])->name('facility.store');
+    Route::get('facility/edit/{id}', [FacilityController::class, 'edit'])->name('facility.edit');
+    Route::post('facility/update/{id}', [FacilityController::class, 'update'])->name('facility.update');
+    Route::delete('facility/destroy/{id}', [FacilityController::class, 'update'])->name('facility.destroy');
 });
 
 

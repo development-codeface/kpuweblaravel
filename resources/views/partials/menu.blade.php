@@ -58,7 +58,7 @@
             <li class="nav-item">
                 <a href="{{ route('admin.pages.index') }}"
                     class="nav-link {{ request()->routeIs('admin.pages.*') ? 'active' : '' }}">
-                <i class="fi fi-br-layout-fluid nav-icon"></i>
+                    <i class="fi fi-br-layout-fluid nav-icon"></i>
                     {{ trans('cruds.cms.title') }}
                 </a>
             </li>
@@ -74,6 +74,13 @@
                     class="nav-link {{ request()->routeIs('admin.doctor.*') ? 'active' : '' }}">
                     <i class="fi fi-br-stethoscope nav-icon"></i>
                     {{ trans('cruds.doctor.title') }}
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('admin.facility.index') }}"
+                    class="nav-link {{ request()->routeIs('admin.facility.*') ? 'active' : '' }}">
+                  <i class="fi fi-br-hospital nav-icon"></i>
+                    {{ trans('cruds.facility.title') }}
                 </a>
             </li>
         </ul>

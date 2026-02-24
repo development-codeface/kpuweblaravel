@@ -156,22 +156,20 @@
                                                 {{-- LEFT SIDE (second, fourth, sixth...) --}}
                                                 <ul>
                                                     @foreach ($plans_content as $key => $item)
-
-                                                            <li>
-                                                                <i class="tji-list"></i>
-                                                                {{ $item->basic_plan }}
-                                                            </li>
-
+                                                        <li>
+                                                            <i class="tji-list"></i>
+                                                            {{ $item->basic_plan }}
+                                                        </li>
                                                     @endforeach
                                                 </ul>
 
                                                 {{-- RIGHT SIDE (first, third, fifth...) --}}
                                                 <ul>
                                                     @foreach ($plans_content as $key => $item)
-                                                            <li>
-                                                                <i class="tji-list"></i>
-                                                                {{ $item->standard_plan }}
-                                                            </li>
+                                                        <li>
+                                                            <i class="tji-list"></i>
+                                                            {{ $item->standard_plan }}
+                                                        </li>
                                                     @endforeach
                                                 </ul>
 
@@ -226,28 +224,31 @@
                                                     </div>
                                                 </h2>
                                                 <div class="col-12">
-                                                    @foreach($plans as $plan)
-                                                    <div class="service-wrapper">
-                                                        <div class="service-item style-3 wow fadeInUp" data-wow-delay=".3s"
-                                                            style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
-                                                            <div class="service-content-wrap pharmacy-service">
-                                                                <div class="service-title">
+                                                    @foreach ($plans as $plan)
+                                                        <div class="service-wrapper">
+                                                            <div class="service-item style-3 wow fadeInUp"
+                                                                data-wow-delay=".3s"
+                                                                style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
+                                                                <div class="service-content-wrap pharmacy-service">
+                                                                    <div class="service-title">
 
-                                                                    <h4 class="title"><a href="service-details.html">{{ $plan->title }}
-                                                                          </a></h4>
-                                                                    <p class="desc"><i class="tji-service-1"></i>
-                                                                          {{ $plan->sub_title }} </p>
-                                                                </div>
-                                                                <div class="service-content">
-                                                                    <div class="service-icon pharmacy-time">
-                                                                        <p>
-                                                                             {{ $plan->from_time }}  -  {{ $plan->to_time }}
-                                                                        </p>
+                                                                        <h4 class="title"><a
+                                                                                href="service-details.html">{{ $plan->title }}
+                                                                            </a></h4>
+                                                                        <p class="desc"><i class="tji-service-1"></i>
+                                                                            {{ $plan->sub_title }} </p>
+                                                                    </div>
+                                                                    <div class="service-content">
+                                                                        <div class="service-icon pharmacy-time">
+                                                                            <p>
+                                                                                {{ $plan->from_time }} -
+                                                                                {{ $plan->to_time }}
+                                                                            </p>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
                                                     @endforeach
                                                 </div>
                                             </div>
@@ -282,124 +283,12 @@
                     <div class="sec-heading-wrap">
                         <span class="sub-title wow fadeInUp" data-wow-delay=".3s"
                             style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;"><i
-                                class="tji-box"></i>Proud Projects</span>
+                                class="tji-box"></i>{{ $facility->title }}</span>
                         <div class="heading-wrap-content">
                             <div class="sec-heading style-3">
-                                <h2 class="sec-title title-anim" style="">
-                                    <div style="display: block; text-align: start; position: relative;">
-                                        <div style="position:relative;display:inline-block;">
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                B</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                r</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                e</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                a</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                k</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                i</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                n</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                g</div>
-                                        </div>
-                                        <div style="position:relative;display:inline-block;">
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                B</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                o</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                u</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                n</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                d</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                a</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                r</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                i</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                e</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                s</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                ,</div>
-                                        </div>
-                                    </div>
-                                    <div style="display: block; text-align: start; position: relative;">
-                                        <div style="position:relative;display:inline-block;">
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                B</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                u</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                i</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                l</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                d</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                i</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                n</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                g</div>
-                                        </div>
-                                        <div style="position:relative;display:inline-block;">
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                D</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                r</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                e</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                a</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                m</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                s</div>
-                                            <div
-                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0%);">
-                                                .</div>
-                                        </div>
-                                    </div>
+                                <h2 class="sec-title title-anim">
+                                    <span>{{ explode(',', $facility->sub_title)[0] ?? '' }}</span><br>
+                                    <span>{{ explode(',', $facility->sub_title)[1] ?? '' }}</span>
                                 </h2>
                             </div>
                             <div class="slider-navigation d-none d-md-inline-flex wow fadeInUp" data-wow-delay=".5s"
@@ -429,232 +318,34 @@
                 <div class="col-12">
                     <div class="project-wrapper wow fadeInUp" data-wow-delay=".4s"
                         style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                        <div
-                            class="swiper project-slider-2 swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
-                            <div class="swiper-wrapper" id="swiper-wrapper-d77240a8f1c12811" aria-live="polite"
-                                style="transform: translate3d(-1236px, 0px, 0px); transition-duration: 0ms;">
-                                <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next"
-                                    data-swiper-slide-index="1" role="group" aria-label="2 / 4"
-                                    style="width: 392px; margin-right: 20px;">
-                                    <div class="project-item">
-                                        <div class="project-img">
-                                            <img src="assets/images/project/project-7.webp" alt="">
+                        <div class="swiper project-slider-2">
+                            <div class="swiper-wrapper">
+                                @foreach ($facility->content as $value)
+                                    <div class="swiper-slide">
+                                        <div class="project-item">
+                                            <div class="project-img">
+                                                <img src="{{ asset('images/facility/' . $value->image) }}" alt="">
 
-                                            <div class="project-content">
-                                                <span class="categories"><a
-                                                        href="portfolio-details-2.html">Business</a></span>
-                                                <div class="project-text">
-                                                    <h4 class="title"><a href="portfolio-details-2.html">Rebranding
-                                                            Strategy for a Growing</a>
-                                                    </h4>
-                                                    <a class="project-btn" href="portfolio-details-2.html">
-                                                        <i class="tji-arrow-right-big"></i>
-                                                    </a>
+                                                <div class="project-content">
+                                                    <span class="categories">
+                                                        <a href="#">{{ $value->button_text }}</a>
+                                                    </span>
+                                                    <div class="project-text">
+                                                        <h4 class="title">
+                                                            <a href="#">{{ $value->heading }}</a>
+                                                        </h4>
+                                                        <a class="project-btn" href="#">
+                                                            <i class="tji-arrow-right-big"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="2"
-                                    role="group" aria-label="3 / 4" style="width: 392px; margin-right: 20px;">
-                                    <div class="project-item">
-                                        <div class="project-img">
-                                            <img src="assets/images/project/project-8.webp" alt="">
-
-                                            <div class="project-content">
-                                                <span class="categories"><a
-                                                        href="portfolio-details-2.html">Business</a></span>
-                                                <div class="project-text">
-                                                    <h4 class="title"><a href="portfolio-details-2.html">Interactive
-                                                            Learning Platform</a></h4>
-                                                    <a class="project-btn" href="portfolio-details-2.html">
-                                                        <i class="tji-arrow-right-big"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="swiper-slide swiper-slide-duplicate swiper-slide-prev"
-                                    data-swiper-slide-index="3" role="group" aria-label="4 / 4"
-                                    style="width: 392px; margin-right: 20px;">
-                                    <div class="project-item">
-                                        <div class="project-img">
-                                            <img src="assets/images/project/project-9.webp" alt="">
-
-                                            <div class="project-content">
-                                                <span class="categories"><a
-                                                        href="portfolio-details-2.html">Business</a></span>
-                                                <div class="project-text">
-                                                    <h4 class="title"><a href="portfolio-details-2.html">Environmental
-                                                            Impact Dashboard</a></h4>
-                                                    <a class="project-btn" href="portfolio-details-2.html">
-                                                        <i class="tji-arrow-right-big"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group"
-                                    aria-label="1 / 4" style="width: 392px; margin-right: 20px;">
-                                    <div class="project-item">
-                                        <div class="project-img">
-                                            <img src="assets/images/project/project-6.webp" alt="">
-
-                                            <div class="project-content">
-                                                <span class="categories"><a
-                                                        href="portfolio-details-2.html">Business</a></span>
-                                                <div class="project-text">
-                                                    <h4 class="title"><a href="portfolio-details-2.html">Event
-                                                            Management Platform</a></h4>
-                                                    <a class="project-btn" href="portfolio-details-2.html">
-                                                        <i class="tji-arrow-right-big"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="1" role="group"
-                                    aria-label="2 / 4" style="width: 392px; margin-right: 20px;">
-                                    <div class="project-item">
-                                        <div class="project-img">
-                                            <img src="assets/images/project/project-7.webp" alt="">
-
-                                            <div class="project-content">
-                                                <span class="categories"><a
-                                                        href="portfolio-details-2.html">Business</a></span>
-                                                <div class="project-text">
-                                                    <h4 class="title"><a href="portfolio-details-2.html">Rebranding
-                                                            Strategy for a Growing</a>
-                                                    </h4>
-                                                    <a class="project-btn" href="portfolio-details-2.html">
-                                                        <i class="tji-arrow-right-big"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide" data-swiper-slide-index="2" role="group" aria-label="3 / 4"
-                                    style="width: 392px; margin-right: 20px;">
-                                    <div class="project-item">
-                                        <div class="project-img">
-                                            <img src="assets/images/project/project-8.webp" alt="">
-
-                                            <div class="project-content">
-                                                <span class="categories"><a
-                                                        href="portfolio-details-2.html">Business</a></span>
-                                                <div class="project-text">
-                                                    <h4 class="title"><a href="portfolio-details-2.html">Interactive
-                                                            Learning Platform</a></h4>
-                                                    <a class="project-btn" href="portfolio-details-2.html">
-                                                        <i class="tji-arrow-right-big"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="3"
-                                    role="group" aria-label="4 / 4" style="width: 392px; margin-right: 20px;">
-                                    <div class="project-item">
-                                        <div class="project-img">
-                                            <img src="assets/images/project/project-9.webp" alt="">
-
-                                            <div class="project-content">
-                                                <span class="categories"><a
-                                                        href="portfolio-details-2.html">Business</a></span>
-                                                <div class="project-text">
-                                                    <h4 class="title"><a href="portfolio-details-2.html">Environmental
-                                                            Impact Dashboard</a></h4>
-                                                    <a class="project-btn" href="portfolio-details-2.html">
-                                                        <i class="tji-arrow-right-big"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active"
-                                    data-swiper-slide-index="0" role="group" aria-label="1 / 4"
-                                    style="width: 392px; margin-right: 20px;">
-                                    <div class="project-item">
-                                        <div class="project-img">
-                                            <img src="assets/images/project/project-6.webp" alt="">
-
-                                            <div class="project-content">
-                                                <span class="categories"><a
-                                                        href="portfolio-details-2.html">Business</a></span>
-                                                <div class="project-text">
-                                                    <h4 class="title"><a href="portfolio-details-2.html">Event
-                                                            Management Platform</a></h4>
-                                                    <a class="project-btn" href="portfolio-details-2.html">
-                                                        <i class="tji-arrow-right-big"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next"
-                                    data-swiper-slide-index="1" role="group" aria-label="2 / 4"
-                                    style="width: 392px; margin-right: 20px;">
-                                    <div class="project-item">
-                                        <div class="project-img">
-                                            <img src="assets/images/project/project-7.webp" alt="">
-
-                                            <div class="project-content">
-                                                <span class="categories"><a
-                                                        href="portfolio-details-2.html">Business</a></span>
-                                                <div class="project-text">
-                                                    <h4 class="title"><a href="portfolio-details-2.html">Rebranding
-                                                            Strategy for a Growing</a>
-                                                    </h4>
-                                                    <a class="project-btn" href="portfolio-details-2.html">
-                                                        <i class="tji-arrow-right-big"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="2"
-                                    role="group" aria-label="3 / 4" style="width: 392px; margin-right: 20px;">
-                                    <div class="project-item">
-                                        <div class="project-img">
-                                            <img src="assets/images/project/project-8.webp" alt="">
-
-                                            <div class="project-content">
-                                                <span class="categories"><a
-                                                        href="portfolio-details-2.html">Business</a></span>
-                                                <div class="project-text">
-                                                    <h4 class="title"><a href="portfolio-details-2.html">Interactive
-                                                            Learning Platform</a></h4>
-                                                    <a class="project-btn" href="portfolio-details-2.html">
-                                                        <i class="tji-arrow-right-big"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
-                            <div
-                                class="swiper-pagination-area swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
-                                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0"
-                                    role="button" aria-label="Go to slide 1" aria-current="true"></span><span
-                                    class="swiper-pagination-bullet" tabindex="0" role="button"
-                                    aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet"
-                                    tabindex="0" role="button" aria-label="Go to slide 3"></span><span
-                                    class="swiper-pagination-bullet" tabindex="0" role="button"
-                                    aria-label="Go to slide 4"></span>
-                            </div>
-                            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                             <div class="swiper-pagination-area"></div>
                         </div>
                     </div>
                 </div>

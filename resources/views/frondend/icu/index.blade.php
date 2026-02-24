@@ -1,21 +1,19 @@
 @extends('frondend.app')
 @section('content')
     <div class="top-space-15"></div>
-    <section class="tj-page-header section-gap-x hospital-icu" data-bg-image="./assets/images/hero/banner.jpg">
+    <section class="tj-page-header section-gap-x hospital-icu" data-bg-image="{{ $banner->image }}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="h5-banner-content">
                         <div class="btn-area wow fadeInUp" data-wow-delay=".8s">
                             <a class="tj-primary-btn tag-port">
-                                <span class="btn-text">About KPU Hospital</span>
+                                <span class="btn-text">{{ $banner->button_text }}</span>
                             </a>
                         </div>
-                        <h1 class="banner-title">Intensive Care Units</h1>
+                        <h1 class="banner-title">{{ $banner->title }}</h1>
                         <p class="desc">
-                            Our team is always available to address your concerns,
-                            providing quick and effective solution to keep your
-                            business.
+                            {{ $banner->description }}
                         </p>
                     </div>
                 </div>
@@ -227,77 +225,30 @@
                 <div class="col-12">
                     <div class="sec-heading style-2 style-6 text-center">
                         <h2 class="sec-title title-anim">
-                            Empowering Business with Expertise.
+                            {{ $feature_data->title }}
                         </h2>
                         <p class="desc">
-                            Our team is always available to address your concerns,
-                            providing quick and effective solution to keep your
-                            business.
+                            {{ $feature_data->sub_title }}
                         </p>
                     </div>
                 </div>
             </div>
             <div class="row row-gap-4 rightSwipeWrap">
-                <div class="col-xl-3 col-md-6">
-                    <div class="choose-box h6-choose-box right-swipe">
-                        <div class="choose-content">
-                            <div class="choose-icon">
-                                <i class="tji-innovative"></i>
+                @foreach ($feature_data->featureContents as $value)
+                    <div class="col-xl-3 col-md-6">
+                        <div class="choose-box h6-choose-box right-swipe">
+                            <div class="choose-content">
+                                <div class="choose-icon">
+                                    <i class="{{ $value->icon }}"></i>
+                                </div>
+                                <h4 class="title">{{ $value->name }}</h4>
+                                <p class="desc">
+                                    {{ $value->description }}
+                                </p>
                             </div>
-                            <h4 class="title">Innovative Solutions</h4>
-                            <p class="desc">
-                                We stay ahead of the curve, leveraging cutting-edge
-                                technologies and strategies to keep you competitive in a
-                                marketplace.
-                            </p>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="choose-box h6-choose-box right-swipe">
-                        <div class="choose-content">
-                            <div class="choose-icon">
-                                <i class="tji-award"></i>
-                            </div>
-                            <h4 class="title">Award-Winning Expertise</h4>
-                            <p class="desc">
-                                Recognized by industry leaders, our award-winning team
-                                has a proven record of delivering excellence across
-                                projects.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="choose-box h6-choose-box right-swipe">
-                        <div class="choose-content">
-                            <div class="choose-icon">
-                                <i class="tji-support"></i>
-                            </div>
-                            <h4 class="title">Dedicated Support</h4>
-                            <p class="desc">
-                                Our team is always available to address your concerns,
-                                providing quick and effective solution to keep your
-                                business.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="choose-box h6-choose-box right-swipe">
-                        <div class="choose-content">
-                            <div class="choose-icon">
-                                <i class="tji-support"></i>
-                            </div>
-                            <h4 class="title">Dedicated Support</h4>
-                            <p class="desc">
-                                Our team is always available to address your concerns,
-                                providing quick and effective solution to keep your
-                                business.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -309,12 +260,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="sec-heading-wrap">
-                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i class="tji-box"></i>Proud
-                            Projects</span>
+                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
+                                class="tji-box"></i>{{ $facility->title }}
+                        </span>
                         <div class="heading-wrap-content">
                             <div class="sec-heading style-3">
                                 <h2 class="sec-title title-anim">
-                                    Breaking Boundaries, Building Dreams.
+                                    {{ $facility->sub_title }}
                                 </h2>
                             </div>
                             <div class="slider-navigation d-none d-md-inline-flex wow fadeInUp" data-wow-delay=".5s">
@@ -342,89 +294,31 @@
                     <div class="project-wrapper wow fadeInUp" data-wow-delay=".4s">
                         <div class="swiper project-slider-2">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="project-item">
-                                        <div class="project-img">
-                                            <img src="assets/images/project/project-6.webp" alt="" />
+                                @foreach ($facility->content as $value)
+                                    <div class="swiper-slide">
+                                        <div class="project-item">
 
-                                            <div class="project-content">
-                                                <span class="categories"><a
-                                                        href="portfolio-details-2.html">Business</a></span>
-                                                <div class="project-text">
-                                                    <h4 class="title">
-                                                        <a href="portfolio-details-2.html">Event Management Platform</a>
-                                                    </h4>
-                                                    <a class="project-btn" href="portfolio-details-2.html">
-                                                        <i class="tji-arrow-right-big"></i>
-                                                    </a>
+                                            <div class="project-img">
+                                                <img src="{{ asset('images/facility/' . $value->image) }}"
+                                                    alt="">
+
+                                                <div class="project-content">
+                                                    <span class="categories"><a
+                                                            href="portfolio-details-2.html">{{ $value->button_text }}</a></span>
+                                                    <div class="project-text">
+                                                        <h4 class="title"><a
+                                                                href="portfolio-details-2.html">{{ $value->heading }}</a>
+                                                        </h4>
+                                                        <a class="project-btn" href="portfolio-details-2.html">
+                                                            <i class="tji-arrow-right-big"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="project-item">
-                                        <div class="project-img">
-                                            <img src="assets/images/project/project-7.webp" alt="" />
 
-                                            <div class="project-content">
-                                                <span class="categories"><a
-                                                        href="portfolio-details-2.html">Business</a></span>
-                                                <div class="project-text">
-                                                    <h4 class="title">
-                                                        <a href="portfolio-details-2.html">Rebranding Strategy for a
-                                                            Growing</a>
-                                                    </h4>
-                                                    <a class="project-btn" href="portfolio-details-2.html">
-                                                        <i class="tji-arrow-right-big"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="project-item">
-                                        <div class="project-img">
-                                            <img src="assets/images/project/project-8.webp" alt="" />
-
-                                            <div class="project-content">
-                                                <span class="categories"><a
-                                                        href="portfolio-details-2.html">Business</a></span>
-                                                <div class="project-text">
-                                                    <h4 class="title">
-                                                        <a href="portfolio-details-2.html">Interactive Learning
-                                                            Platform</a>
-                                                    </h4>
-                                                    <a class="project-btn" href="portfolio-details-2.html">
-                                                        <i class="tji-arrow-right-big"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="project-item">
-                                        <div class="project-img">
-                                            <img src="assets/images/project/project-9.webp" alt="" />
-
-                                            <div class="project-content">
-                                                <span class="categories"><a
-                                                        href="portfolio-details-2.html">Business</a></span>
-                                                <div class="project-text">
-                                                    <h4 class="title">
-                                                        <a href="portfolio-details-2.html">Environmental Impact
-                                                            Dashboard</a>
-                                                    </h4>
-                                                    <a class="project-btn" href="portfolio-details-2.html">
-                                                        <i class="tji-arrow-right-big"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                             <div class="swiper-pagination-area"></div>
                         </div>

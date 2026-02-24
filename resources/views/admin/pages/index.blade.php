@@ -72,9 +72,9 @@
                                             <i class="fi fi-br-plus"></i>
                                         </a>
 
-                                        <a class="btn btn-xs btn-info" href="{{ route('admin.' . $page->slug . '.edit', $page->id) }}">
+                                        {{-- <a class="btn btn-xs btn-info" href="{{ route('admin.' . $page->slug . '.edit', $page->id) }}">
                                             <i class="fi fi-br-pencil"></i>
-                                        </a>
+                                        </a> --}}
 
                                         {{-- @endcan --}}
                                     </div>
