@@ -39,8 +39,15 @@ use App\Http\Controllers\frondend\SecondOpinionController as FrondendSecondOpini
 use App\Http\Controllers\Admin\FacilityController;
 use App\Http\Controllers\Admin\SpacialityController;
 use App\Http\Controllers\frondend\SpacialityController as FrondendSpacialityController;
+use App\Http\Controllers\frondend\RehabController as FrondendRehabController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\RehabController;
+use App\Http\Controllers\Admin\OtController;
+use App\Http\Controllers\frondend\OtController as FrondendOtController;
+use App\Http\Controllers\Admin\TestingController;
+use App\Http\Controllers\frondend\TestingController as FrondendTestingController;
+use App\Http\Controllers\Admin\MedicalTurism;
+use App\Http\Controllers\frondend\MedicalTurism as TurismController;
 
 Route::redirect('/', '/login');
 
@@ -199,6 +206,16 @@ Route::group([
 
     Route::get('rehabilitation/create/{id}', [RehabController::class, 'create'])->name('rehabilitation.create');
     Route::post('rehabilitation/banner/store', [RehabController::class, 'store'])->name('rehabilitation.banner.store');
+
+    Route::get('hospital-ot/create/{id}', [OtController::class, 'create'])->name('hospital-ot.create');
+    Route::post('hospital-ot/banner/store', [OtController::class, 'store'])->name('hospital-ot.banner.store');
+    Route::post('hospital-ot/content/store', [OtController::class, 'contentStore'])->name('hospital-ot.content.store');
+
+    Route::get('hospital-testing/create/{id}', [TestingController::class, 'create'])->name('hospital-testing.create');
+    Route::post('hospital-testing/banner/store', [TestingController::class, 'store'])->name('hospital-testing.banner.store');
+
+    Route::get('medical-turism/create/{id}', [MedicalTurism::class, 'create'])->name('medical-turism.create');
+    Route::post('medical-turism/banner/store', [MedicalTurism::class, 'store'])->name('medical-turism.banner.store');
 });
 
 
@@ -236,3 +253,7 @@ Route::get('/get-doctor-details/{id}', [FrondendSecondOpinionController::class, 
 // Route::get('/get-doctors-list', [FrondendSecondOpinionController::class, 'dotors']);
 
 Route::get('/spaciality', [FrondendSpacialityController::class, 'index'])->name('spaciality.index');
+Route::get('/rehab', [FrondendRehabController::class, 'index'])->name('rehab.index');
+Route::get('/hospital-ot', [FrondendOtController::class, 'index'])->name('hospital-ot.index');
+Route::get('/hospital-testing', [FrondendTestingController::class, 'index'])->name('hospital-testing.index');
+Route::get('/medical-turism', [TurismController::class, 'index'])->name('medical-turism.index');

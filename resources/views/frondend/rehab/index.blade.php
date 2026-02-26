@@ -1,17 +1,9 @@
 @extends('frondend.app')
 @section('content')
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        .service-section {
-            scroll-margin-top: 120px;
-            /* adjust based on navbar height */
-        }
-    </style>
     <div class="top-space-15"></div>
-    <section class="tj-page-header section-gap-x hospital-icu" data-bg-image="{{ $banner->image }}">
+
+
+    <section class="tj-page-header section-gap-x hospital-icu" data-bg-image="{{ asset($banner->image) }}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -30,43 +22,6 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-12">
-                <div class="countup-wrap">
-                    <div class="countup-item">
-                        <div class="inline-content">
-                            <span class="odometer countup-number" data-count="93"></span>
-                            <!-- <span class="count-plus">%</span> -->
-                        </div>
-                        <span class="count-text">Projects Completed.</span>
-                        <span class="count-separator" data-bg-image="assets/images/shape/separator.svg"></span>
-                    </div>
-                    <div class="countup-item">
-                        <div class="inline-content">
-                            <span class="odometer countup-number" data-count="20"></span>
-                            <span class="count-plus">M</span>
-                        </div>
-                        <span class="count-text">Reach Worldwide</span>
-                        <span class="count-separator" data-bg-image="assets/images/shape/separator.svg"></span>
-                    </div>
-                    <div class="countup-item">
-                        <div class="inline-content">
-                            <span class="odometer countup-number" data-count="8.5"></span>
-                            <span class="count-plus">X</span>
-                        </div>
-                        <span class="count-text">Faster Growth</span>
-                        <span class="count-separator" data-bg-image="assets/images/shape/separator.svg"></span>
-                    </div>
-                    <div class="countup-item">
-                        <div class="inline-content">
-                            <span class="odometer countup-number" data-count="100"></span>
-                            <span class="count-plus">+</span>
-                        </div>
-                        <span class="count-text">Awards Archived</span>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- <div class="page-header-overlay" data-bg-image="assets/images/shape/pheader-overlay.webp"></div> -->
     </section>
 
@@ -95,9 +50,11 @@
                         @foreach ($menu as $menuItems)
                             @foreach ($menuItems->contents as $item)
                                 <div id="menu-{{ $item->menus_id }}" class="service-section">
+                                    <br>
                                     <h2 class="title title-anim">
                                         {{ $item->title }}
                                     </h2>
+
                                     <div class="blog-images wow fadeInUp" data-wow-delay=".1s">
                                         <img src="assets/images/service/service-details.webp" alt="Images" />
                                     </div>
@@ -115,43 +72,37 @@
             </div>
         </div>
     </section>
-    <!-- end: Blog Section -->
 
-    <!-- start: Choose Section -->
-    <section id="choose" class="tj-choose-section h6-choose section-gap core-about">
+    <!-- start: About Section -->
+    <section class="tj-about-section h6-about section-gap section-gap-x">
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <div class="sec-heading style-2 style-6 text-center">
-                        <h2 class="sec-title title-anim">
-                            {{ $feature_data->title }}
-                        </h2>
-                        <p class="desc">
-                            {{ $feature_data->sub_title }}
-                        </p>
+                <div class="col-xl-6 col-lg-6">
+                    <div class="about-content-area h6-about-content style-1 wow fadeInLeft" data-wow-delay=".2s">
+                        <div class="sec-heading style-2 style-6">
+                            <span class="sub-title wow fadeInUp" data-wow-delay=".3s">Our Commitment</span>
+                            <h2 class="sec-title title-anim">{{ $content->title }}</h2>
+                            <p class="desc wow fadeInUp" data-wow-delay=".8s">
+                                {{ $content->description }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6">
+                    <div class="about-img-area h6-about-img wow fadeInLeft" data-wow-delay=".2s">
+                        <div class="about-img overflow-hidden wow fadeInRight" data-wow-delay=".8s">
+                            <img data-speed=".8" src="{{  $content->image  }}" alt="" />
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row row-gap-4 rightSwipeWrap">
-                @foreach ($feature_data->featureContents as $value)
-                    <div class="col-xl-3 col-md-6">
-                        <div class="choose-box h6-choose-box right-swipe">
-                            <div class="choose-content">
-                                <div class="choose-icon">
-                                    <i class="{{ $value->icon }}"></i>
-                                </div>
-                                <h4 class="title">{{ $value->name }}</h4>
-                                <p class="desc">
-                                    {{ $value->description }}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
+        </div>
+
+        <div class="bg-shape-3">
+            <img src="assets/images/shape/shape-blur.svg" alt="" />
         </div>
     </section>
-    <!-- end: Choose Section -->
+    <!-- end: About Section -->
 
     <!-- start: Project Section -->
     <section class="tj-project-section-3 section-gap section-gap-x">
@@ -198,8 +149,7 @@
                                         <div class="project-item">
 
                                             <div class="project-img">
-                                                <img src="{{ asset('images/facility/' . $value->image) }}"
-                                                    alt="">
+                                                <img src="{{ asset('images/facility/' . $value->image) }}" alt="">
 
                                                 <div class="project-content">
                                                     <span class="categories"><a

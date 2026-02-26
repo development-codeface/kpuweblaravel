@@ -56,13 +56,13 @@
                       <div class="footer-widget widget-nav-menu wow fadeInUp" data-wow-delay=".5s">
                           <h5 class="title">Resources</h5>
                           <ul>
-                              <li><a href="hospital-icu.html">Icu</a></li>
+                              <li><a href="{{ route('icu.index') }}">Icu</a></li>
                               <li>
                                   <a href="hospital-international.html">Hospital International</a>
                               </li>
-                              <li><a href="hospital-ot.html">Ot</a></li>
+                              <li><a href="{{ route('hospital-ot.index') }}">Ot</a></li>
                               <li>
-                                  <a href="hospital-testing.html">Hospital Testing </a>
+                                  <a href="{{ route('hospital-testing.index') }}">Hospital Testing </a>
                               </li>
                               <li><a href="{{ route('insurance.index') }}">Insurance</a></li>
                               <li><a href="medical-turism.html">Medical Tourism</a></li>
@@ -74,10 +74,10 @@
                           <h5 class="title">Resources</h5>
                           <ul>
                               <li><a href="{{ route('pharmacy.index') }}">Pharmacy</a></li>
-                              <li><a href="#">Rehabilitation</a></li>
+                              <li><a href="{{ route('rehab.index') }}">Rehabilitation</a></li>
                               <li><a href="{{ route('career.index') }}">Careers</a></li>
                               <li><a href="{{ route('second_opinion.index') }}">Second Opinion</a></li>
-                              <li><a href="">Speciality</a></li>
+                              <li><a href="{{ route('spaciality.index') }}">Speciality</a></li>
                           </ul>
                       </div>
                   </div>

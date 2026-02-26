@@ -34,7 +34,7 @@
     <div class="card">
         <div class="card-header">
             <p><i class="fi fi-br-edit mr_15_icc"></i>
-                {{ trans('global.create') }} {{ trans('cruds.icu.title_singular') }} </p>
+                {{ trans('global.create') }} Rehabilitation </p>
         </div>
 
         <div class="card-body">
@@ -169,11 +169,6 @@
     </div>
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
     <script>
-        ClassicEditor
-            .create(document.querySelector('#editor'))
-            .catch(error => {
-                console.error(error);
-            });
 
         function previewImage(input) {
             if (input.files && input.files[0]) {
@@ -182,23 +177,6 @@
                 reader.onload = function(e) {
                     const img = document.getElementById('imagePreview');
                     const triangle = document.getElementById('trianglePlaceholder');
-
-                    img.src = e.target.result;
-                    img.style.display = 'block';
-                    triangle.style.display = 'none';
-                };
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        function previewcontentImage(input) {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-
-                reader.onload = function(e) {
-                    const img = document.getElementById('image-Preview');
-                    const triangle = document.getElementById('triangle-Placeholder');
 
                     img.src = e.target.result;
                     img.style.display = 'block';

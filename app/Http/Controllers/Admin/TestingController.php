@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\RehabBanner;
+use App\Models\TestingBanner;
 use Illuminate\Http\Request;
 
-class RehabController extends Controller
+class TestingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,8 +22,8 @@ class RehabController extends Controller
     public function create($id)
     {
         $data['id'] = $id;
-        $data['banner'] = RehabBanner::where('pages_id', $id)->first();
-        return view('admin.rehab.create', $data);
+        $data['banner'] = TestingBanner::where('pages_id', $id)->first();
+        return view('admin.testing.create', $data);
     }
 
     /**
@@ -43,10 +43,10 @@ class RehabController extends Controller
 
         // Check if updating
         if ($request->banner_id) {
-            $banner = RehabBanner::findOrFail($request->banner_id);
+            $banner = TestingBanner::findOrFail($request->banner_id);
             $banner->image = $banner->image;
         } else {
-            $banner = new RehabBanner();
+            $banner = new TestingBanner();
         }
 
         // Handle Image Upload
@@ -54,7 +54,7 @@ class RehabController extends Controller
 
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('images/rehab/banner');
+            $destinationPath = public_path('images/testing/banner');
 
             if (!file_exists($destinationPath)) {
                 mkdir($destinationPath, 0755, true);
@@ -62,7 +62,7 @@ class RehabController extends Controller
 
             $image->move($destinationPath, $imageName);
 
-            $banner->image = 'images/rehab/banner' . $imageName;
+            $banner->image = 'images/testing/banner/' . $imageName;
         }
 
         // Common Fields
@@ -73,7 +73,7 @@ class RehabController extends Controller
         $banner->save();
 
         return redirect()->route('admin.pages.index')
-            ->with('success', 'rehabilitation saved successfully.');
+            ->with('success', 'Hospital testing saved successfully.');
     }
 
     /**
