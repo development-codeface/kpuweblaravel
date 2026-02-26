@@ -4,15 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class IcuFeature extends Model
+class RehabBanner extends Model
 {
-    //
 
-    protected $table = 'icu_features';
+    public $table = 'rehab_banners';
 
     protected $fillable = [
-        'icu_contents_id',
         'title',
+        'pages_id',
+        'button_text',
         'description',
+        'image'
     ];
 }

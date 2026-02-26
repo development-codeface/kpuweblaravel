@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/odometer-theme-default.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/meanmenu.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
+      <link rel="stylesheet" href="{{ asset('assets/css/shop.css')  }}">
 </head>
 
 <body>

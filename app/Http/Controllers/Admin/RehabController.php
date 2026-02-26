@@ -3,15 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\RehabBanner;
 use Illuminate\Http\Request;
-use App\Models\Icu;
-use App\Models\Menu;
-use App\Models\IcuContent;
-use App\Models\IcuSubContent;
-use App\Models\IcuFeature;
-use Illuminate\Support\Facades\DB;
 
-class IcuController extends Controller
+class RehabController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,10 +21,9 @@ class IcuController extends Controller
      */
     public function create($id)
     {
-        //
-        $banner = Icu::where('pages_id', $id)->first();
-        $menu = Menu::where('pages_id', $id)->get();
-        return view('admin.icu.create', compact('id', 'menu', 'banner'));
+        $data['id'] = $id;
+        $data['banner'] = RehabBanner::where('pages_id', $id)->first();
+        return view('admin.rehab.create', $data);
     }
 
     /**
@@ -37,10 +31,11 @@ class IcuController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
-            'title' => 'required|string|max:255',
-            'button_text' => 'required|string|max:255',
-            'description' => 'required',
+            'title'              => 'required|string|max:255',
+            'button_text'        => 'required|string|max:255',
+            'description' => 'required|string',
             'image'              => $request->banner_id
                 ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048'
                 : 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
@@ -48,34 +43,37 @@ class IcuController extends Controller
 
         // Check if updating
         if ($request->banner_id) {
-            $banner = Icu::findOrFail($request->banner_id);
+            $banner = RehabBanner::findOrFail($request->banner_id);
             $banner->image = $banner->image;
         } else {
-            $banner = new Icu();
+            $banner = new RehabBanner();
         }
 
+        // Handle Image Upload
         if ($request->hasFile('image')) {
 
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-
-            $destinationPath = public_path('images/icu/banner');
+            $destinationPath = public_path('images/rehab/banner');
 
             if (!file_exists($destinationPath)) {
                 mkdir($destinationPath, 0755, true);
             }
 
             $image->move($destinationPath, $imageName);
-            $banner->image = 'images/icu/banner/' . $imageName;
+
+            $banner->image = 'images/rehab/banner/' . $imageName;
         }
 
+        // Common Fields
         $banner->pages_id    = $request->pages_id;
         $banner->title       = $request->title;
         $banner->button_text = $request->button_text;
         $banner->description = $request->description;
         $banner->save();
 
-        return redirect()->route('admin.pages.index')->with('success', 'Career saved successfully.');
+        return redirect()->route('admin.pages.index')
+            ->with('success', 'rehabilitation saved successfully.');
     }
 
     /**

@@ -37,6 +37,10 @@ use App\Http\Controllers\frondend\IcuController as FrondendIcuController;
 use App\Http\Controllers\Admin\SecondOpinionController;
 use App\Http\Controllers\frondend\SecondOpinionController as FrondendSecondOpinionController;
 use App\Http\Controllers\Admin\FacilityController;
+use App\Http\Controllers\Admin\SpacialityController;
+use App\Http\Controllers\frondend\SpacialityController as FrondendSpacialityController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\RehabController;
 
 Route::redirect('/', '/login');
 
@@ -168,8 +172,6 @@ Route::group([
     // ICU
     Route::get('/icu/create/{id}', [IcuController::class, 'create'])->name('icu.create');
     Route::post('/icu/store', [IcuController::class, 'store'])->name('icu.store');
-    Route::post('/icu/menu/store', [IcuController::class, 'MenuStore'])->name('icu.menu.store');
-    Route::post('/icu/content/store', [IcuController::class, 'contentStore'])->name('icu.content.store');
     Route::get('/icu/edit/{id}', [IcuController::class, 'edit'])->name('icu.edit');
 
     Route::get('second-opinion/create/{id}', [SecondOpinionController::class, 'create'])->name('second-opinion.create');
@@ -185,6 +187,18 @@ Route::group([
     Route::get('facility/edit/{id}', [FacilityController::class, 'edit'])->name('facility.edit');
     Route::post('facility/update/{id}', [FacilityController::class, 'update'])->name('facility.update');
     Route::delete('facility/destroy/{id}', [FacilityController::class, 'update'])->name('facility.destroy');
+
+    Route::get('spaciality/create/{id}', [SpacialityController::class, 'create'])->name('spaciality.create');
+    Route::post('spaciality/store', [SpacialityController::class, 'store'])->name('spaciality.store');
+    Route::post('spaciality/content/store', [SpacialityController::class, 'contentStore'])->name('spaciality.content.store');
+    Route::post('spaciality/blog/store', [SpacialityController::class, 'blogStore'])->name('spaciality.blog.store');
+
+    Route::get('service/create/{id}', [ServiceController::class, 'create'])->name('service.create');
+    Route::post('service/menu/store', [ServiceController::class, 'menuStore'])->name('service.menu.store');
+    Route::post('service/content/store', [ServiceController::class, 'store'])->name('service.content.store');
+
+    Route::get('rehabilitation/create/{id}', [RehabController::class, 'create'])->name('rehabilitation.create');
+    Route::post('rehabilitation/banner/store', [RehabController::class, 'store'])->name('rehabilitation.banner.store');
 });
 
 
@@ -220,3 +234,5 @@ Route::get('/second-opinion', [FrondendSecondOpinionController::class, 'index'])
 Route::get('get-doctors/{department}', [FrondendSecondOpinionController::class, 'getDoctors']);
 Route::get('/get-doctor-details/{id}', [FrondendSecondOpinionController::class, 'getDoctorDetails']);
 // Route::get('/get-doctors-list', [FrondendSecondOpinionController::class, 'dotors']);
+
+Route::get('/spaciality', [FrondendSpacialityController::class, 'index'])->name('spaciality.index');

@@ -368,6 +368,28 @@ return [
             'name'              => 'Name',
         ],
     ],
+
+    'spaciality'           => [
+        'title'          => 'Spaciality',
+        'title_singular' => 'Spaciality',
+        'fields'         => [
+            'id'                       => 'ID',
+            'id_helper'                => '',
+            'name_helper'              => '',
+            'title'              => 'Title',
+            'button_text'      => 'Button Text',
+            'heading'       => 'Heading',
+            'Blog_title'         => 'Title',
+            'sub-heading'         => 'Sub Heading',
+            'description'         => 'Description',
+            'icon'         => 'Icon',
+            'sub_heading'         => 'Sub Heading',
+            'sub_title'         => 'Sub Title',
+            'category'         => 'Category',
+            'name'              => 'Name',
+            'text'            => 'Text'
+        ],
+    ],
     'insurance'           => [
         'title'          => 'Insurance',
         'title_singular' => 'Insurance',

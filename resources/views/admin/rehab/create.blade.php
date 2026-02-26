@@ -47,7 +47,7 @@
 
                         <a class="list-group-item list-group-item-action active" data-bs-toggle="tab" href="#bannerSection"
                             role="tab">
-                            icu 1
+                            Rehab 1
                         </a>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                                 <div class="col-md-12">
                                     <h1 class="mb-3">Banner Section</h1>
                                     <hr>
-                                    <form method="POST" action="{{ route('admin.icu.store') }}"
+                                    <form method="POST" action="{{ route('admin.rehabilitation.banner.store') }}"
                                         enctype="multipart/form-data">
                                         <input type="hidden" name="pages_id" value="{{ $id }}">
                                         <input type="hidden" name="banner_id" value="{{ $banner->id ?? '' }}">

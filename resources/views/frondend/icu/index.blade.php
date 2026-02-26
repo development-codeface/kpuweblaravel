@@ -1,5 +1,15 @@
 @extends('frondend.app')
 @section('content')
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .service-section {
+            scroll-margin-top: 120px;
+            /* adjust based on navbar height */
+        }
+    </style>
     <div class="top-space-15"></div>
     <section class="tj-page-header section-gap-x hospital-icu" data-bg-image="{{ $banner->image }}">
         <div class="container">
@@ -69,148 +79,38 @@
                         <div class="tj-sidebar-widget service-categories wow fadeInUp" data-wow-delay=".1s">
                             <h4 class="widget-title">More services</h4>
                             <ul>
-                                <li>
-                                    <a class="active" href="">Customer Experience<span class="icon"></span></a>
-                                </li>
-                                <li>
-                                    <a href="service-details.html">Training Programs<span class="icon"></span></a>
-                                </li>
-                                <li>
-                                    <a href="service-details.html">Business Strategy<span class="icon"></span></a>
-                                </li>
-                                <li>
-                                    <a href="service-details.html">Training Program<span class="icon"></span></a>
-                                </li>
-                                <li>
-                                    <a href="service-details.html">ESG Consulting<span class="icon"></span></a>
-                                </li>
-                                <li>
-                                    <a href="service-details.html">Development Hub<span class="icon"></span></a>
-                                </li>
+                                @foreach ($menu as $menuItem)
+                                    <li>
+                                        <a href="#menu-{{ $menuItem->id }}" class="scroll-link">
+                                            {{ $menuItem->name }}
+                                        </a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-8">
                     <div class="post-details-wrapper">
-                        <div class="blog-images wow fadeInUp" data-wow-delay=".1s">
-                            <img src="assets/images/service/service-details.webp" alt="Images" />
-                        </div>
-                        <h2 class="title title-anim">
-                            Transforming Customer: Tailored Solutions for Experiences.
-                        </h2>
-                        <div class="blog-text">
-                            <p class="wow fadeInUp" data-wow-delay=".3s">
-                                Recognize that exceptional customer experiences are at
-                                the heart of every successful business. Our Customer
-                                Experience Solutions are crafted to help you transform
-                                every interaction your customers have with your brand
-                                into a meaningful and positive experience. We believe
-                                that understanding the customer journey and providing
-                                personalized, seamless experiences can significantly
-                                enhance customer loyalty, satisfaction, and lifetime
-                                value.Our approach to customer experience is
-                                comprehensive and data-driven.
-                            </p>
-                            <p class="wow fadeInUp" data-wow-delay=".3s">
-                                Our approach to customer experience is comprehensive and
-                                data-driven. We begin by assessing your current customer
-                                touchpoints, identifying areas for improvement, and
-                                using insights to develop strategies that meet your
-                                customers’ evolving needs. From optimizing digital
-                                platforms.
-                            </p>
-                            <ul class="wow fadeInUp" data-wow-delay=".3s">
-                                <li>
-                                    <span><i class="tji-check"></i></span>Personalization
-                                    at Scale
-                                </li>
-                                <li>
-                                    <span><i class="tji-check"></i></span>Improved
-                                    Customer Retention
-                                </li>
-                                <li>
-                                    <span><i class="tji-check"></i></span>Data-Driven
-                                    Insights
-                                </li>
-                                <li>
-                                    <span><i class="tji-check"></i></span>Omni-channel
-                                    Integration
-                                </li>
-                                <li>
-                                    <span><i class="tji-check"></i></span>Customer
-                                    Retention
-                                </li>
-                                <li>
-                                    <span><i class="tji-check"></i></span>Support
-                                    Optimization
-                                </li>
-                                <li>
-                                    <span><i class="tji-check"></i></span>Proactive
-                                    Engagement
-                                </li>
-                            </ul>
+                        @foreach ($menu as $menuItems)
+                            @foreach ($menuItems->contents as $item)
+                                <div id="menu-{{ $item->menus_id }}" class="service-section">
+                                    <div class="blog-images wow fadeInUp" data-wow-delay=".1s">
+                                        <img src="assets/images/service/service-details.webp" alt="Images" />
+                                    </div>
 
-                            <h3 class="wow fadeInUp" data-wow-delay=".3s">
-                                Our Range of Customer Services
-                            </h3>
-                            <p class="wow fadeInUp" data-wow-delay=".3s">
-                                At Bexon, we don't just focus on solving customer
-                                problems—we focus on creating experiences that delight
-                                and build lasting relationships. Whether it's through
-                                improving customer service operations, leveraging
-                                technology, or designing more engaging digital
-                                experiences, our team is here to help you exceed your
-                                customers' expectations every time. We help you
-                                understand your customers deeply, optimize their
-                                experience.
-                            </p>
-                            <div class="details-content-box">
-                                <div class="service-details-item wow fadeInUp" data-wow-delay=".2s">
-                                    <span class="number">01.</span>
-                                    <h6 class="title">
-                                        Increased Customer <br />Satisfaction
-                                    </h6>
-                                    <div class="desc">
-                                        <p>
-                                            By prov consistent, personalized experience,
-                                            customers are more likely to feel valued a
-                                            satisfied, which directly.
+                                    <h2 class="title title-anim">
+                                        {{ $item->title }}
+                                    </h2>
+                                    <div class="blog-text">
+                                        <p class="wow fadeInUp" data-wow-delay=".3s">
+                                            {{ $item->description }}
                                         </p>
+
                                     </div>
                                 </div>
-                                <div class="service-details-item wow fadeInUp" data-wow-delay=".4s">
-                                    <div class="service-number">
-                                        <span class="number">02.</span>
-                                        <h6 class="title">
-                                            Improved Operational <br />Efficiency
-                                        </h6>
-                                        <div class="desc">
-                                            <p>
-                                                With our tools and strategies, your customer
-                                                support teams can handle inquiries faster, while
-                                                automated systems.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="service-details-item wow fadeInUp" data-wow-delay=".6s">
-                                    <div class="service-number">
-                                        <span class="number">03.</span>
-                                        <h6 class="title">
-                                            Insights for Continuous Improvement
-                                        </h6>
-                                        <div class="desc">
-                                            <p>
-                                                Our data-driven approach provides team with
-                                                valuable insights into customer behavior,
-                                                enabling to continual.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            @endforeach
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -327,4 +227,18 @@
             </div>
         </div>
     </section>
+    <script>
+        document.querySelectorAll('.scroll-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const target = document.querySelector(this.getAttribute('href'));
+
+                window.scrollTo({
+                    top: target.offsetTop - 120,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 @endsection
