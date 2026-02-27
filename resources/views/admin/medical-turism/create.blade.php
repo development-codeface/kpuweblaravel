@@ -56,7 +56,7 @@
                         </a>
                         <a class="list-group-item list-group-item-action" data-bs-toggle="tab" href="#blogSection"
                             role="tab">
-                            Medical Blog
+                            Medical Trip
                         </a>
                     </div>
                 </div>
@@ -171,14 +171,13 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="contentSection" role="tabpanel">
-
-                            <form method="POST" action="{{ route('admin.spaciality.content.store') }}"
+                            <h1 class="mb-3">content Section</h1>
+                            <hr>
+                            <form method="POST" action="{{ route('admin.medical-turism.content.store') }}"
                                 enctype="multipart/form-data">
                                 @csrf
-
                                 <input type="hidden" name="pages_id" value="{{ $id }}">
                                 <input type="hidden" name="content_id" value="{{ $content->id ?? '' }}">
-
                                 <!-- Title -->
                                 <div class="row">
                                     <div class="col-md-12">
@@ -197,7 +196,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <!-- Sub Title -->
                                 <div class="row">
                                     <div class="col-md-12">
@@ -216,60 +214,37 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Image Upload -->
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="required">Image</label>
-
-                                            <div class="image-box text-center p-3 border" style="cursor:pointer;"
-                                                onclick="document.getElementById('imageInput').click();">
-
-                                                @if (isset($content) && $content->image)
-                                                    <img src="{{ asset($content->image) }}" id="imagePreview"
-                                                        style="max-width:100%;">
-                                                @else
-                                                    <div id="placeholder">
-                                                        <i class="fas fa-image fa-3x text-muted"></i>
-                                                        <p class="text-muted">Click to upload image</p>
-                                                    </div>
-                                                    <img id="imagePreview" style="display:none; max-width:100%;">
-                                                @endif
-                                            </div>
-
-                                            <input type="file" name="images" id="imageInput"
-                                                class="d-none {{ $errors->has('images') ? 'is-invalid' : '' }}"
-                                                accept="image/*" onchange="previewImage(this)">
-
-                                            @if ($errors->has('images'))
-                                                <div class="invalid-feedback d-block">
-                                                    {{ $errors->first('images') }}
-                                                </div>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <!-- Dynamic Content Rows -->
                                 <div id="content-wrapper">
-
                                     @php
                                         $oldHeadings = old('heading');
                                         $oldDescriptions = old('description');
                                         $oldIds = old('sub_content_id');
+                                        $oldIcon = old('icon');
                                         $dbContents =
                                             isset($content) && $content->subContents
                                                 ? $content->subContents
                                                 : collect();
                                     @endphp
-
                                     @if (is_array($oldHeadings))
                                         @foreach ($oldHeadings as $index => $value)
                                             <div class="feature-row border p-3 mb-3 position-relative">
 
                                                 <input type="hidden" name="sub_content_id[]"
                                                     value="{{ $oldIds[$index] ?? '' }}">
+
+                                                <div class="form-group">
+                                                    <label class="required">Icon</label>
+                                                    <input type="text" name="icon[]"
+                                                        value="{{ old('icon.' . $index) }}"
+                                                        class="form-control {{ $errors->has('icon.' . $index) ? 'is-invalid' : '' }}">
+
+                                                    @if ($errors->has('icon.' . $index))
+                                                        <div class="invalid-feedback">
+                                                            {{ $errors->first('icon.' . $index) }}
+                                                        </div>
+                                                    @endif
+                                                </div>
 
                                                 <div class="form-group">
                                                     <label class="required">Heading</label>
@@ -283,7 +258,6 @@
                                                         </div>
                                                     @endif
                                                 </div>
-
                                                 <div class="form-group mt-2">
                                                     <label class="required">Description</label>
                                                     <textarea name="description[]" rows="3"
@@ -295,7 +269,6 @@
                                                         </div>
                                                     @endif
                                                 </div>
-
                                             </div>
                                         @endforeach
                                     @elseif(isset($content) && $dbContents->count())
@@ -304,6 +277,11 @@
                                                 <input type="hidden" name="sub_content_id[]"
                                                     value="{{ $sub->id }}">
 
+                                                <div class="form-group">
+                                                    <label class="required">Icon</label>
+                                                    <input type="text" name="icon[]" value="{{ $sub->icon }}"
+                                                        class="form-control">
+                                                </div>
                                                 <div class="form-group">
                                                     <label class="required">Heading</label>
                                                     <input type="text" name="heading[]" value="{{ $sub->heading }}"
@@ -320,6 +298,10 @@
                                         <div class="feature-row border p-3 mb-3">
                                             <input type="hidden" name="sub_content_id[]" value="">
 
+                                            <div class="form-group">
+                                                <label class="required">Icon</label>
+                                                <input type="text" name="icon[]" class="form-control">
+                                            </div>
                                             <div class="form-group">
                                                 <label class="required">Heading</label>
                                                 <input type="text" name="heading[]" class="form-control">
@@ -350,138 +332,129 @@
 
                         </div>
                         <div class="tab-pane fade" id="blogSection" role="tabpanel">
-
-                            <form method="POST" action="{{ route('admin.spaciality.blog.store') }}">
+                            <h1 class="mb-3">content Section</h1>
+                            <hr>
+                            <form method="POST" action="{{ route('admin.medical-turism.medical.store') }}">
                                 @csrf
-
+                                <input name="medical_id" value="" type="text">
                                 <input type="hidden" name="pages_id" value="{{ $id }}">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="required">Title</label>
+                                            <input type="text" name="title"
+                                                class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"
+                                                value="{{ old('title', $content->title ?? '') }}"
+                                                placeholder="Enter title">
 
+                                            @if ($errors->has('title'))
+                                                <div class="invalid-feedback">
+                                                    {{ $errors->first('title') }}
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Sub Title -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="required">Sub Title</label>
+                                            <input type="text" name="sub_title"
+                                                class="form-control {{ $errors->has('sub_title') ? 'is-invalid' : '' }}"
+                                                value="{{ old('sub_title', $content->sub_title ?? '') }}"
+                                                placeholder="Enter sub title">
+
+                                            @if ($errors->has('sub_title'))
+                                                <div class="invalid-feedback">
+                                                    {{ $errors->first('sub_title') }}
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
                                 <div id="blog-wrapper">
 
                                     @php
-                                        $oldIcons = old('icon');
-                                        $oldTitles = old('blog_title');
-                                        $oldDescriptions = old('blog_description');
-                                        $oldIds = old('blog_id');
-                                        $dbBlogs = isset($blog) ? $blog : collect();
+                                        $medicalData = old('medical', isset($medical) ? $medical->toArray() : [[]]);
                                     @endphp
 
 
-                                    {{-- 1️⃣ Validation Error Case --}}
-                                    @if (is_array($oldTitles))
-                                        @foreach ($oldTitles as $index => $value)
-                                            <div class="blog-row border p-3 mb-3 position-relative">
 
-                                                <input type="hidden" name="blog_id[]"
-                                                    value="{{ $oldIds[$index] ?? '' }}">
-
-                                                <!-- Icon -->
-                                                <div class="form-group">
-                                                    <label class="required">Icon</label>
-                                                    <input type="text" name="icon[]"
-                                                        value="{{ old('icon.' . $index) }}"
-                                                        placeholder="Enter icon class (example: fa fa-user)"
-                                                        class="form-control {{ $errors->has('icon.' . $index) ? 'is-invalid' : '' }}">
-
-                                                    @if ($errors->has('icon.' . $index))
-                                                        <div class="invalid-feedback">
-                                                            {{ $errors->first('icon.' . $index) }}
-                                                        </div>
-                                                    @endif
-                                                </div>
-
-                                                <!-- Title -->
-                                                <div class="form-group mt-2">
-                                                    <label class="required">Title</label>
-                                                    <input type="text" name="blog_title[]"
-                                                        value="{{ old('blog_title.' . $index) }}"
-                                                        class="form-control {{ $errors->has('blog_title.' . $index) ? 'is-invalid' : '' }}">
-
-                                                    @if ($errors->has('blog_title.' . $index))
-                                                        <div class="invalid-feedback">
-                                                            {{ $errors->first('blog_title.' . $index) }}
-                                                        </div>
-                                                    @endif
-                                                </div>
-
-                                                <!-- Description -->
-                                                <div class="form-group mt-2">
-                                                    <label class="required">Description</label>
-                                                    <textarea name="blog_description[]" rows="3"
-                                                        class="form-control {{ $errors->has('blog_description.' . $index) ? 'is-invalid' : '' }}">{{ old('blog_description.' . $index) }}</textarea>
-
-                                                    @if ($errors->has('blog_description.' . $index))
-                                                        <div class="invalid-feedback">
-                                                            {{ $errors->first('blog_description.' . $index) }}
-                                                        </div>
-                                                    @endif
-                                                </div>
-
-                                            </div>
-                                        @endforeach
-
-
-                                        {{-- 2️⃣ Edit Mode --}}
-                                    @elseif(isset($blog) && $dbBlogs->count())
-                                        @foreach ($dbBlogs as $item)
-                                            <div class="blog-row border p-3 mb-3">
-
-                                                <input type="hidden" name="blog_id[]" value="{{ $item->id }}">
-
-                                                <!-- Icon -->
-                                                <div class="form-group">
-                                                    <label class="required">Icon</label>
-                                                    <input type="text" name="icon[]" value="{{ $item->icon }}"
-                                                        placeholder="Enter icon class" class="form-control">
-                                                </div>
-
-                                                <!-- Title -->
-                                                <div class="form-group mt-2">
-                                                    <label class="required">Title</label>
-                                                    <input type="text" name="blog_title[]"
-                                                        value="{{ $item->title }}" class="form-control">
-                                                </div>
-
-                                                <!-- Description -->
-                                                <div class="form-group mt-2">
-                                                    <label class="required">Description</label>
-                                                    <textarea name="blog_description[]" rows="3" class="form-control">{{ $item->description }}</textarea>
-                                                </div>
-
-                                            </div>
-                                        @endforeach
-
-
-                                        {{-- 3️⃣ First Create --}}
-                                    @else
+                                    @foreach ($medicalData as $index => $item)
                                         <div class="blog-row border p-3 mb-3">
 
-                                            <input type="hidden" name="blog_id[]" value="">
+                                            <input type="text" name="medical[{{ $index }}][content_id]"
+                                                value="{{ $item['id'] ?? '' }}">
 
-                                            <div class="form-group">
-                                                <label class="required">Icon</label>
-                                                <input type="text" name="icon[]" placeholder="Enter icon class"
-                                                    class="form-control">
+                                            <!-- Title -->
+                                            <div class="form-group mt-2">
+                                                <label>Heading</label>
+                                                <input type="text" name="medical[{{ $index }}][heading]"
+                                                    value="{{ old("medical.$index.heading", $item['heading'] ?? '') }}"
+                                                    class="form-control @error("medical.$index.heading") is-invalid @enderror">
+
+                                                @error("medical.$index.heading")
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
                                             </div>
 
+                                            <!-- Description -->
                                             <div class="form-group mt-2">
-                                                <label class="required">Title</label>
-                                                <input type="text" name="blog_title[]" class="form-control">
+                                                <label>Description</label>
+                                                <textarea name="medical[{{ $index }}][description]"
+                                                    class="form-control @error("medical.$index.description") is-invalid @enderror">{{ old("medical.$index.description", $item['description'] ?? '') }}</textarea>
+
+                                                @error("medical.$index.description")
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
                                             </div>
 
-                                            <div class="form-group mt-2">
-                                                <label class="required">Description</label>
-                                                <textarea name="blog_description[]" rows="3" class="form-control"></textarea>
+                                            <!-- Texts -->
+                                            <div class="form-group mt-3">
+                                                <label>Texts</label>
+
+                                                <div class="extra-text-wrapper">
+
+                                                    @php
+                                                        $texts = old(
+                                                            "medical.$index.texts",
+                                                            $item['texts'] ?? [['id' => '', 'text' => '']],
+                                                        );
+                                                    @endphp
+
+                                                    @foreach ($texts as $tIndex => $textItem)
+                                                        <div class="input-group mb-2">
+
+                                                            <input type="hidden"
+                                                                name="medical[{{ $index }}][texts][{{ $tIndex }}][sub_content_id]"
+                                                                value="{{ $textItem['id'] ?? '' }}">
+
+                                                            <input type="text"
+                                                                name="medical[{{ $index }}][texts][{{ $tIndex }}][text]"
+                                                                value="{{ $textItem['text'] ?? '' }}"
+                                                                class="form-control">
+
+                                                            <button type="button"
+                                                                class="btn btn-danger remove-text">X</button>
+
+                                                        </div>
+                                                    @endforeach
+
+                                                </div>
+
+                                                <button type="button" class="btn btn-info btn-sm add-extra-text mt-2">
+                                                    + Add Text
+                                                </button>
                                             </div>
 
                                         </div>
-                                    @endif
+                                    @endforeach
+
 
                                 </div>
-
-
                                 <!-- Add Row Button -->
-                                <button type="button" id="addBlogRow" class="btn btn-primary mb-3">
+                                <button type="button" id="add-BlogRow" class="btn btn-primary mb-3">
                                     + Add Row
                                 </button>
 
@@ -576,38 +549,116 @@
         });
 
 
-        document.getElementById('addBlogRow').addEventListener('click', function() {
+        //     document.getElementById('addBlogRow').addEventListener('click', function() {
 
-            let wrapper = document.getElementById('blog-wrapper');
+        //         let wrapper = document.getElementById('blog-wrapper');
 
-            let html = `
-    <div class="feature-row border p-3 mb-3">
-        <div class="form-group">
-                           <label class="required">Icon</label>
-                <input type="text" name="icon[]" class="form-control" placeholder="Enter icon class">
-        </div>
-        <div class="form-group mt-2">
-              <label class="required">Title</label>
-                <input type="text" name="blog_title[]" class="form-control">
-        </div>
-        <div class="form-group mt-2">
-                          <label class="required">Description</label>
-                <textarea name="blog_description[]" rows="3" class="form-control"></textarea>
-        </div>
-        <button type="button"
-                class="btn btn-danger btn-sm remove-row">
-            Remove
-        </button>
-    </div>
-    `;
-            wrapper.insertAdjacentHTML('beforeend', html);
-        });
+        //         let html = `
+    // <div class="feature-row border p-3 mb-3">
+    //     <div class="form-group">
+    //                        <label class="required">Icon</label>
+    //             <input type="text" name="icon[]" class="form-control" placeholder="Enter icon class">
+    //     </div>
+    //     <div class="form-group mt-2">
+    //           <label class="required">Title</label>
+    //             <input type="text" name="blog_title[]" class="form-control">
+    //     </div>
+    //     <div class="form-group mt-2">
+    //                       <label class="required">Description</label>
+    //             <textarea name="blog_description[]" rows="3" class="form-control"></textarea>
+    //     </div>
+    //     <button type="button"
+    //             class="btn btn-danger btn-sm remove-row">
+    //         Remove
+    //     </button>
+    // </div>
+    // `;
+        //         wrapper.insertAdjacentHTML('beforeend', html);
+        //     });
 
 
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('remove-row')) {
                 e.target.closest('.feature-row').remove();
             }
+        });
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+
+            let blogIndex = document.querySelectorAll('.blog-row').length;
+
+            document.getElementById("add-BlogRow").addEventListener("click", function() {
+
+                let wrapper = document.getElementById("blog-wrapper");
+
+                let row = `
+        <div class="blog-row border p-3 mb-3">
+            <input type="hidden" name="medical[${blogIndex}][content_id]" value="">
+
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" name="medical[${blogIndex}][title]" class="form-control">
+            </div>
+
+            <div class="form-group mt-2">
+                <label>Description</label>
+                <textarea name="medical[${blogIndex}][description]" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group mt-3">
+                <div class="extra-text-wrapper">
+                     <input type="hidden" name="medical[${blogIndex}][texts][0][sub_content_id]" value="">
+                    <div class="input-group mb-2">
+                        <label>Text</label>
+                        <input type="text" name="medical[${blogIndex}][texts][0][text]" class="form-control">
+                        <button type="button" class="btn btn-danger remove-text">X</button>
+                    </div>
+                </div>
+                <button type="button"
+                        class="btn btn-info btn-sm add-extra-text mt-2">
+                    + Add Text
+                </button>
+            </div>
+        </div>`;
+
+                wrapper.insertAdjacentHTML("beforeend", row);
+                blogIndex++;
+            });
+
+            // Add text
+            document.addEventListener("click", function(e) {
+                if (e.target.classList.contains("add-extra-text")) {
+                    let wrapper = e.target.closest(".blog-row")
+                        .querySelector(".extra-text-wrapper");
+
+                    let name = e.target.closest(".blog-row")
+                        .querySelector("input").name;
+
+                    let index = name.match(/medical\[(\d+)\]/)[1];
+
+                    let textIndex = wrapper.querySelectorAll(".input-group").length;
+
+                    wrapper.insertAdjacentHTML("beforeend", `
+                <div class="input-group mb-2">
+                      <input type="text"
+                name="medical[${index}][texts][${textIndex}][sub_content_id]"
+                value="">
+                    <label>Text</label>
+                    <input type="text"
+                        name="medical[${index}][texts][${textIndex}][text]"
+                        class="form-control">
+                    <button type="button"
+                        class="btn btn-danger remove-text">X</button>
+                </div>
+            `);
+                }
+
+                if (e.target.classList.contains("remove-text")) {
+                    e.target.closest(".input-group").remove();
+                }
+            });
+
         });
     </script>
 @endsection

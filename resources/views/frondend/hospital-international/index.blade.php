@@ -72,27 +72,102 @@
     </section>
     <!-- end: Blog Section -->
 
-    <div class="container medical-tour">
-        <div class="header">
-            <h1>{{ $content->title }}</h1>
-            <p>
-                {{ $content->sub_title }}
-            </p>
+    <!-- start: About Section -->
+    <section class="tj-about-section h6-about section-gap section-gap-x">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6">
+                    <div class="about-content-area h6-about-content style-1 wow fadeInLeft" data-wow-delay=".2s">
+                        <div class="sec-heading style-2 style-6">
+                            <span class="sub-title wow fadeInUp" data-wow-delay=".3s">Our Commitment</span>
+                            <h2 class="sec-title title-anim">{{ $content->title }}</h2>
+                            <p class="desc wow fadeInUp" data-wow-delay=".8s">
+                                {{ $content->description }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6">
+                    <div class="about-img-area h6-about-img wow fadeInLeft" data-wow-delay=".2s">
+                        <div class="about-img overflow-hidden wow fadeInRight" data-wow-delay=".8s">
+                            <img data-speed=".8" src="{{ $content->image }}" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="benefits-grid">
-            <!-- World-Class Care -->
-            @foreach ($content->subContents as $values)
-                <div class="benefit-card">
-                    <div class="icon-wrapper">
-                        <i class="{{ $values->icon }}"></i>
+        <div class="bg-shape-3">
+            <img src="assets/images/shape/shape-blur.svg" alt="" />
+        </div>
+    </section>
+    <!-- end: About Section -->
+
+    <div class="container inquiry-section">
+        <div class="left-section">
+            <h1>How We Can Help</h1>
+            <p class="subtitle">
+                Our international patient services team provides end-to-end
+                support for your medical journey.
+            </p>
+
+            <ul class="services-list">
+                <li>Medical opinion and treatment cost estimate</li>
+                <li>Visa invitation letter for medical visa</li>
+                <li>Airport pickup and drop services</li>
+                <li>Accommodation arrangements</li>
+                <li>Language interpreter assistance</li>
+                <li>Insurance and billing support</li>
+                <li>Follow-up coordination</li>
+                <li>Medical records management</li>
+            </ul>
+        </div>
+
+        <div class="inquiry-form">
+            <h2 class="form-title">Send Us an Inquiry</h2>
+            <form>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullname">Full Name</label>
+                        <input type="text" id="fullname" placeholder="Your name" />
                     </div>
-                    <h3>{{ $values->heading }}</h3>
-                    <p>
-                        {{ $values->description }}
-                    </p>
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input type="text" id="country" placeholder="Your country" />
+                    </div>
                 </div>
-            @endforeach
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Your email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone (with country code)</label>
+                        <input type="tel" id="phone" placeholder="+1 234 567 8900" />
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="condition">Medical Condition / Treatment Required</label>
+                    <input type="text" id="condition" placeholder="e.g., Cardiac surgery, Cancer treatment" />
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="additional">Additional Information</label>
+                    <textarea id="additional" placeholder="Please provide any additional details about your medical condition..."></textarea>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Upload Medical Reports (Optional)</label>
+                    <label class="file-upload">
+                        <input type="file" multiple accept=".pdf,.jpg,.jpeg,.png" />
+                        <span class="file-label">Choose files - No file chosen</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Inquiry</button>
+            </form>
         </div>
     </div>
 
@@ -145,7 +220,6 @@
             </div>
         </div>
     </div>
-
     <!-- start: Project Section -->
     <section class="tj-project-section-3 section-gap section-gap-x">
         <div class="container">

@@ -48,6 +48,8 @@ use App\Http\Controllers\Admin\TestingController;
 use App\Http\Controllers\frondend\TestingController as FrondendTestingController;
 use App\Http\Controllers\Admin\MedicalTurism;
 use App\Http\Controllers\frondend\MedicalTurism as TurismController;
+use App\Http\Controllers\Admin\InternationalController;
+use App\Http\Controllers\frondend\InternationalController as FrondendInternationalController;
 
 Route::redirect('/', '/login');
 
@@ -216,6 +218,11 @@ Route::group([
 
     Route::get('medical-turism/create/{id}', [MedicalTurism::class, 'create'])->name('medical-turism.create');
     Route::post('medical-turism/banner/store', [MedicalTurism::class, 'store'])->name('medical-turism.banner.store');
+    Route::post('medical-turism/content/store', [MedicalTurism::class, 'contentStore'])->name('medical-turism.content.store');
+    Route::post('medical-turism/medical/store', [MedicalTurism::class, 'medicalStore'])->name('medical-turism.medical.store');
+
+    Route::get('hospital-international/create/{id}', [InternationalController::class, 'create'])->name('hospital-international.create');
+    Route::post('hospital-international/banner/store', [InternationalController::class, 'store'])->name('hospital-international.banner.store');
 });
 
 
@@ -257,3 +264,4 @@ Route::get('/rehab', [FrondendRehabController::class, 'index'])->name('rehab.ind
 Route::get('/hospital-ot', [FrondendOtController::class, 'index'])->name('hospital-ot.index');
 Route::get('/hospital-testing', [FrondendTestingController::class, 'index'])->name('hospital-testing.index');
 Route::get('/medical-turism', [TurismController::class, 'index'])->name('medical-turism.index');
+Route::get('/hospital-international', [FrondendInternationalController::class, 'index'])->name('hospital-international.index');

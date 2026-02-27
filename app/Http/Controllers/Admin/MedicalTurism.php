@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\TurismBanner;
+use App\Models\TurismContent;
+use App\Models\TurismSubContent;
+use App\Models\MedicalTrip;
+use App\Models\MedicalTripContent;
+use App\Models\MedicalTripSubContent;
 
 class MedicalTurism extends Controller
 {
@@ -23,6 +28,7 @@ class MedicalTurism extends Controller
     {
         $data['id'] = $id;
         $data['banner'] = TurismBanner::where('pages_id', $id)->first();
+        $data['content'] = TurismContent::where('pages_id', $id)->with('subContents')->first();
         return view('admin.medical-turism.create', $data);
     }
 
@@ -76,6 +82,115 @@ class MedicalTurism extends Controller
             ->with('success', 'Hospital turism saved successfully.');
     }
 
+    public function contentStore(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'sub_title' => 'required|string|max:255',
+            'icon.*' => 'required|string|max:255',
+            'heading.*' => 'required|string|max:255',
+            'description.*' => 'required|string',
+        ]);
+
+        $content = TurismContent::updateOrCreate(
+            ['id' => $request->content_id], // if exists → update
+            [
+                'pages_id' => $request->pages_id,
+                'title' => $request->title,
+                'sub_title' => $request->sub_title,
+            ]
+        );
+
+        foreach ($request->heading as $index => $heading) {
+
+            $subId = $request->sub_content_id[$index] ?? null;
+
+            $sub = TurismSubContent::updateOrCreate(
+                ['id' => $subId], // if id exists → update
+                [
+                    'turism_contents_id' => $content->id,
+                    'icon' => $request->icon[$index],
+                    'heading' => $heading,
+                    'description' => $request->description[$index],
+                ]
+            );
+
+            $submittedIds[] = $sub->id;
+        }
+
+        return redirect()->route('admin.pages.index')
+            ->with('success', 'Hospital turism saved successfully.');
+    }
+
+    public function Medicalstore(Request $request)
+    {
+        // dd($request->all());
+        $request->validate([
+            'title' => 'required',
+            'sub_title' => 'required',
+            'medical.*.heading' => 'required',
+            'medical.*.description' => 'required',
+            'medical.*.texts.*.text' => 'required',
+        ]);
+
+        // Save main page content
+        $main = MedicalTrip::updateOrCreate(
+            ['id' => $request->medical_id],
+            [
+                'pages_id' => $request->pages_id,
+                'title' => $request->title,
+                'sub_title' => $request->sub_title,
+            ]
+        );
+
+        $existingMedicalIds = [];
+
+        foreach ($request->medical as $medicalItem) {
+
+            // Insert or Update Medical Row
+            $medical = MedicalTripContent::updateOrCreate(
+                ['id' => $medicalItem['content_id'] ?? null],
+                [
+                    'medical_trips_id' => $main->id,
+                    'heading' => $medicalItem['heading'],
+                    'description' => $medicalItem['description'],
+                ]
+            );
+
+            $existingMedicalIds[] = $medical->id;
+
+            $existingTextIds = [];
+
+            if (isset($medicalItem['texts'])) {
+
+                foreach ($medicalItem['texts'] as $textItem) {
+
+                    $text = MedicalTripSubContent::updateOrCreate(
+                        ['id' => $textItem['sub_content_id'] ?? null],
+                        [
+                            'medical_trip_contents_id' => $medical->id,
+                            'text' => $textItem['text'],
+                        ]
+                    );
+
+                    $existingTextIds[] = $text->id;
+                }
+
+                // Delete removed texts
+                // MedicalText::where('medical_id', $medical->id)
+                //     ->whereNotIn('id', $existingTextIds)
+                //     ->delete();
+            }
+        }
+
+        // Delete removed medical rows
+        // Medical::where('medical_main_id', $main->id)
+        //     ->whereNotIn('id', $existingMedicalIds)
+        //     ->delete();
+
+          return redirect()->route('admin.pages.index')
+            ->with('success', 'Hospital Medical  saved successfully.');
+    }
     /**
      * Display the specified resource.
      */

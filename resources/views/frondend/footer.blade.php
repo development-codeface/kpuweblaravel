@@ -58,14 +58,14 @@
                           <ul>
                               <li><a href="{{ route('icu.index') }}">Icu</a></li>
                               <li>
-                                  <a href="hospital-international.html">Hospital International</a>
+                                  <a href="{{ route('hospital-international.index') }}">Hospital International</a>
                               </li>
                               <li><a href="{{ route('hospital-ot.index') }}">Ot</a></li>
                               <li>
                                   <a href="{{ route('hospital-testing.index') }}">Hospital Testing </a>
                               </li>
                               <li><a href="{{ route('insurance.index') }}">Insurance</a></li>
-                              <li><a href="medical-turism.html">Medical Tourism</a></li>
+                              <li><a href="{{ route('medical-turism.index') }}">Medical Tourism</a></li>
                           </ul>
                       </div>
                   </div>
