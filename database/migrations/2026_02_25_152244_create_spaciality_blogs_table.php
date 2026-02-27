@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('icu_features', function (Blueprint $table) {
+        Schema::create('spaciality_blogs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('icu_contents_id')->nullable();
+            $table->unsignedBigInteger('pages_id');
+            $table->string('icon')->nullable();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('icu_features');
+        Schema::dropIfExists('spaciality_blogs');
     }
 };

@@ -4,18 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class IcuContent extends Model
+class SpacialityBanner extends Model
 {
-    //
-
-    protected $table = 'icu_contents';
+    public $table = 'spaciality_banners';
 
     protected $fillable = [
-        'menus_id',
+        'pages_id',
         'title',
+        'button_text',
         'description',
+        'text',
         'image',
-        'sub_title',
-        'sub_description',
     ];
 }

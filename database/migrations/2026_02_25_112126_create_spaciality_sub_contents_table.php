@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('icu_sub_contents', function (Blueprint $table) {
+        Schema::create('spaciality_sub_contents', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('icu_contents_id')->nullable();
-            $table->string('text')->nullable();
+            $table->unsignedBigInteger('spaciality_contents_id');
+            $table->string('heading')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('icu_sub_contents');
+        Schema::dropIfExists('spaciality_sub_contents');
     }
 };

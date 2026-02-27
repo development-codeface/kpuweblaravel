@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('icu_contents', function (Blueprint $table) {
+        Schema::create('testing_banners', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('menus_id')->nullable();
+            $table->unsignedBigInteger('pages_id');
             $table->string('title')->nullable();
-            $table->longText('description')->nullable();
+            $table->string('button_text')->nullable();
+            $table->text('description')->nullable();
             $table->string('image')->nullable();
-            $table->string('sub_title')->nullable();
-            $table->text('sub_description')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('icu_contents');
+        Schema::dropIfExists('testing_banners');
     }
 };

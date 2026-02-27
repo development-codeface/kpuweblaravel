@@ -4,15 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class IcuFeature extends Model
+class FeatureSubService extends Model
 {
-    //
-
-    protected $table = 'icu_features';
+    public $table = 'feature_sub_services';
 
     protected $fillable = [
-        'icu_contents_id',
-        'title',
+        'feature_services_id',
+        'heading',
         'description',
     ];
 }
