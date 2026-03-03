@@ -30,6 +30,16 @@
             object-fit: cover;
             border-radius: 6px;
         }
+
+        #aboutMenu {
+            position: sticky;
+            top: 20px;
+            /* distance from top */
+        }
+
+        .col-md-3 {
+            align-self: flex-start;
+        }
     </style>
     <div class="card">
         <div class="card-header">
@@ -336,7 +346,7 @@
                             <hr>
                             <form method="POST" action="{{ route('admin.medical-turism.medical.store') }}">
                                 @csrf
-                                <input name="medical_id" value="{{ $medical->id  ?? '' }}" type="hidden">
+                                <input name="medical_id" value="{{ $medical->id ?? '' }}" type="hidden">
                                 <input type="hidden" name="pages_id" value="{{ $id }}">
                                 <div class="row">
                                     <div class="col-md-12">

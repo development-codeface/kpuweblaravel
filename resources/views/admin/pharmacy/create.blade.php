@@ -30,6 +30,16 @@
             object-fit: cover;
             border-radius: 6px;
         }
+
+        #aboutMenu {
+            position: sticky;
+            top: 20px;
+            /* distance from top */
+        }
+
+        .col-md-3 {
+            align-self: flex-start;
+        }
     </style>
     <div class="card">
         <div class="card-header">
@@ -400,7 +410,7 @@
 
                                                     @foreach ($textRows as $index => $row)
                                                         <div class="feature-row border p-3 mb-3">
-                                                            <input type="text" name="plan_content_id[]"
+                                                            <input type="hidden" name="plan_content_id[]"
                                                                 value="{{ $row['id'] }}">
                                                             <div class="row">
                                                                 <div class="col-md-12">

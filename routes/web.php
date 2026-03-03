@@ -100,7 +100,7 @@ Route::group([
 
     //about
     Route::get('/about/create/{id}', [AboutController::class, 'create'])->name('about.create');
-    Route::post('/about/banner-store', [AboutController::class, 'bannerStore'])->name('about.banner.store');
+    Route::post('/about/banner-store', [AboutController::class,'bannerStore'])->name('about.banner.store');
     Route::post('/about/blog-store', [AboutController::class, 'blogStore'])->name('about.blog.store');
     Route::post('/about/content-store', [AboutController::class, 'contentStore'])->name('about.content.store');
     Route::post('/about/feature-store', [AboutController::class, 'featureStore'])->name('about.feature.store');
@@ -109,8 +109,6 @@ Route::group([
     Route::post('/about/section-store', [AboutController::class, 'sectionStore'])->name('about.section.store');
 
     Route::get('/about/edit/{id}', [AboutController::class, 'edit'])->name('about.edit');
-    Route::post('about/banner/update/{id}', [AboutController::class, 'bannerUpdate'])->name('about.banner.update');
-    Route::post('about/blog/update/{id}', [AboutController::class, 'blogUpdate'])->name('about.blog.update');
     Route::post('about/content/update/{id}', [AboutController::class, 'contentUpdate'])->name('about.content.update');
     Route::post('about/feature/update/{id}', [AboutController::class, 'featureUpdate'])->name('about.feature.update');
     Route::post('about/sub_content/update/{id}', [AboutController::class, 'subContentUpdate'])->name('about.sub_content.update');
@@ -148,10 +146,6 @@ Route::group([
     Route::post('/health-packages/store', [HealthPackagesController::class, 'store'])->name('health_packages.store');
     Route::post('/health-packages/content/store', [HealthPackagesController::class, 'ContentStore'])->name('health_packages.content.store');
     Route::post('/health-packages/blog/store', [HealthPackagesController::class, 'blogStore'])->name('health_packages.blog.store');
-    Route::get('/health-packages/edit/{id}', [HealthPackagesController::class, 'edit'])->name('health-packages.edit');
-    Route::post('/health-packages/update/{id}', [HealthPackagesController::class, 'update'])->name('health_packages.update');
-    Route::post('/health-packages/content/update/{id}', [HealthPackagesController::class, 'ContentUpdate'])->name('health_packages.content.update');
-
 
     // Insurance
     Route::get('/insurance/create/{id}', [InsuranceController::class, 'create'])->name('insurance.create');

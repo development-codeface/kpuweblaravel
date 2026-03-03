@@ -30,6 +30,17 @@
             object-fit: cover;
             border-radius: 6px;
         }
+
+
+        #aboutMenu {
+            position: sticky;
+            top: 20px;
+            /* distance from top */
+        }
+
+        .col-md-3 {
+            align-self: flex-start;
+        }
     </style>
     <div class="card">
         <div class="card-header">
@@ -180,7 +191,7 @@
                                             <form method="POST" action="{{ route('admin.ambulance.content.store') }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
-                                                <input type="text" name="content_id"
+                                                <input type="hidden" name="content_id"
                                                     value="{{ $contents->id ?? '' }}">
                                                 <input type="hidden" name="pages_id" value="{{ $id }}">
                                                 <div class="row">

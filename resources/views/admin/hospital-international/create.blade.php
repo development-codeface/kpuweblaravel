@@ -30,6 +30,16 @@
             object-fit: cover;
             border-radius: 6px;
         }
+
+        #aboutMenu {
+            position: sticky;
+            top: 20px;
+            /* distance from top */
+        }
+
+        .col-md-3 {
+            align-self: flex-start;
+        }
     </style>
     <div class="card">
         <div class="card-header">
@@ -47,7 +57,7 @@
 
                         <a class="list-group-item list-group-item-action active" data-bs-toggle="tab" href="#bannerSection"
                             role="tab">
-                             banner
+                            banner
                         </a>
                     </div>
                 </div>
@@ -240,6 +250,5 @@
                 row.querySelector('.image-input').click();
             }
         });
-
     </script>
 @endsection

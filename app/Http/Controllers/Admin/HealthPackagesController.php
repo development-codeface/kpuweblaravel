@@ -24,8 +24,12 @@ class HealthPackagesController extends Controller
      */
     public function create($id)
     {
-        $category = DB::table('category')->select('id', 'name')->get();
-        return view('admin.health_package.create', compact('id', 'category'));
+        $data['id'] = $id;
+        $data["banner"]  = HealthPakageBanner::where('pages_id', $id)->first();
+        $data["content"] = HealthPackagecontent::where('pages_id', $id)->first();
+        $data['blog']    = HealthPackageBlog::where('pages_id', $id)->get();
+        $data["category"] = DB::table('category')->select('id', 'name')->get();
+        return view('admin.health_package.create', $data);
     }
 
     /**
@@ -37,10 +41,17 @@ class HealthPackagesController extends Controller
             'title' => 'required|string|max:255',
             'button_text' => 'required|string|max:255',
             'description' => 'required',
-            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'image'              => $request->banner_id
+                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048'
+                : 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
-        $imagePath = null;
+        if ($request->banner_id) {
+            $banner = HealthPakageBanner::findOrFail($request->banner_id);
+            $banner->image = $banner->image;
+        } else {
+            $banner = new HealthPakageBanner();
+        }
 
         if ($request->hasFile('image')) {
 
@@ -55,18 +66,16 @@ class HealthPackagesController extends Controller
 
             $image->move($destinationPath, $imageName);
 
-            $imagePath = 'images/health_package/banner/' . $imageName;
+            $banner->image = 'images/health_package/banner/' . $imageName;
         }
 
-        HealthPakageBanner::create([
-            'pages_id'   => $request->pages_id,
-            'title'      => $request->title,
-            'button_text' => $request->button_text,
-            'description' => $request->description,
-            'image'      => $imagePath,
-        ]);
+        $banner->pages_id    = $request->pages_id;
+        $banner->title       = $request->title;
+        $banner->description      = $request->description;
+        $banner->button_text = $request->button_text;
+        $banner->save();
 
-        return redirect()->route('admin.pages.index')->with('success', 'Career banner created successfully.');
+        return redirect()->route('admin.pages.index')->with('success', 'Package banner created successfully.');
     }
 
     public function ContentStore(Request $request)
@@ -76,19 +85,30 @@ class HealthPackagesController extends Controller
             'sub_title' => 'required|string|max:255',
         ]);
 
-        HealthPackagecontent::create([
-            'pages_id'   => $request->pages_id,
-            'title'      => $request->title,
-            'sub_title' => $request->sub_title,
-        ]);
+        if ($request->content_id) {
+            $content = HealthPackagecontent::find($request->content_id);
 
-        return redirect()->route('admin.pages.index')->with('success', 'Career content created successfully.');
+            $content->update([
+                'title'      => $request->title,
+                'sub_title' => $request->sub_title,
+            ]);
+        } else {
+
+            HealthPackagecontent::create([
+                'pages_id'   => $request->pages_id,
+                'title'      => $request->title,
+                'sub_title' => $request->sub_title,
+            ]);
+        }
+
+        return redirect()->route('admin.pages.index')->with('success', 'Package content created successfully.');
     }
 
     public function blogStore(Request $request)
     {
+        // dd($request->all());
         $request->validate([
-            'category'        => 'required',
+            'category_id.*'        => 'required',
             'blog_title.*'         => 'required|string|max:255',
             'sub_title.*'     => 'required|string|max:255',
             'name.*'          => 'required|string|max:255',
@@ -96,14 +116,30 @@ class HealthPackagesController extends Controller
             'image.*'         => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
+        $savedIds = [];
+
         foreach ($request->blog_title as $key => $value) {
 
-            $imagePath = null;
+            $blogId = $request->blog_id[$key] ?? null;
 
+            if ($blogId) {
+                $blog = HealthPackageBlog::find($blogId);
+            } else {
+                $blog = new HealthPackageBlog();
+                $blog->pages_id = $request->pages_id;
+            }
+
+            $imagePath = $blog->image ?? null;
+
+            // IMAGE UPLOAD
             if ($request->hasFile('image') && isset($request->file('image')[$key])) {
 
-                $image = $request->file('image')[$key];
+                // delete old image
+                if ($blog->image && file_exists(public_path($blog->image))) {
+                    unlink(public_path($blog->image));
+                }
 
+                $image = $request->file('image')[$key];
                 $imageName = time() . '_' . $key . '.' . $image->getClientOriginalExtension();
 
                 $destinationPath = public_path('images/health_package/blog');
@@ -113,107 +149,27 @@ class HealthPackagesController extends Controller
                 }
 
                 $image->move($destinationPath, $imageName);
-
                 $imagePath = 'images/health_package/blog/' . $imageName;
             }
 
-            HealthPackageBlog::create([
-                'pages_id'     => $request->pages_id,
-                'category_id'  => $request->category,
-                'title'        => $request->blog_title[$key],
-                'sub_title'    => $request->sub_titles[$key],
-                'name'         => $request->name[$key],
-                'designation'  => $request->designation[$key],
-                'image'        => $imagePath,
-            ]);
+            $blog->category_id = $request->category_id[$key];
+            $blog->title       = $request->blog_title[$key];
+            $blog->sub_title   = $request->sub_titles[$key];
+            $blog->name        = $request->name[$key];
+            $blog->designation = $request->designation[$key];
+            $blog->image       = $imagePath;
+            $blog->save();
+
+            $savedIds[] = $blog->id;
         }
+
+        // DELETE REMOVED ROWS
+        // HealthPackageBlog::where('pages_id', $request->pages_id)
+        //     ->whereNotIn('id', $savedIds)
+        //     ->delete();
 
 
         return redirect()->route('admin.pages.index')->with('success', 'Career content created successfully.');
-    }
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $data['id'] = $id;
-        $data['edit_banner'] = HealthPakageBanner::where('pages_id', $id)->first();
-        $data['edit_content'] = HealthPackagecontent::where('pages_id', $id)->first();
-        return view('admin.health_package.edit', $data);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'title'        => 'required|string|max:255',
-            'button_text'  => 'required|string|max:255',
-            'description'  => 'required',
-            'image'        => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-        ]);
-
-        $banner = HealthPakageBanner::findOrFail($request->banner_id);
-
-        $imagePath = $banner->image;
-
-        if ($request->hasFile('image')) {
-
-            // delete old image
-            if (!empty($banner->image) && file_exists(public_path($banner->image))) {
-                unlink(public_path($banner->image));
-            }
-
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-
-            $destinationPath = public_path('images/health_package/banner');
-
-            if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0755, true);
-            }
-
-            $image->move($destinationPath, $imageName);
-
-            $imagePath = 'images/health_package/banner/' . $imageName;
-        }
-
-        $banner->update([
-            'title'       => $request->title,
-            'button_text' => $request->button_text,
-            'description' => $request->description,
-            'image'       => $imagePath,
-        ]);
-
-        return redirect()->route('admin.pages.index')
-            ->with('success', 'Health package banner updated successfully.');
-    }
-
-    public function ContentUpdate(Request $request, $id)
-    {
-        $request->validate([
-            'title'     => 'required|string|max:255',
-            'sub_title' => 'required|string|max:255',
-        ]);
-
-        $content = HealthPackagecontent::findOrFail($request->content_id);
-
-        $content->update([
-            'title'     => $request->title,
-            'sub_title' => $request->sub_title,
-        ]);
-
-        return redirect()->route('admin.pages.index')
-            ->with('success', 'Health package content updated successfully.');
     }
 
     /**

@@ -30,6 +30,16 @@
             object-fit: cover;
             border-radius: 6px;
         }
+
+        #aboutMenu {
+            position: sticky;
+            top: 20px;
+            /* distance from top */
+        }
+
+        .col-md-3 {
+            align-self: flex-start;
+        }
     </style>
     <div class="card">
         <div class="card-header">
@@ -179,7 +189,7 @@
                                             <form method="POST" action="{{ route('admin.blood_bank.content.store') }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
-                                                <input type="text" name="content_id"
+                                                <input type="hidden" name="content_id"
                                                     value="{{ $edit_content->id ?? '' }}">
                                                 <input type="hidden" name="pages_id" value="{{ $id }}">
                                                 <div class="row">
@@ -256,7 +266,7 @@
                                                     @endphp
                                                     @foreach ($rows as $index => $row)
                                                         <div class="feature-row border p-3 mb-3">
-                                                            <input type="text" name="sub_content_id[]"
+                                                            <input type="hidden" name="sub_content_id[]"
                                                                 value="{{ $row['id'] }}">
                                                             <div class="row">
                                                                 <div class="col-md-12">
@@ -329,7 +339,7 @@
                                             @endphp
                                             @foreach ($groups as $index => $group)
                                                 <div class="feature-row border p-3 mb-3">
-                                                    <input type="text" name="blood_group_id[]"
+                                                    <input type="hidden" name="blood_group_id[]"
                                                         value="{{ $group->id ?? '' }}">
                                                     <div class="row">
                                                         <div class="col-md-12">

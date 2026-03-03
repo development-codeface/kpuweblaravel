@@ -44,7 +44,7 @@
                                  <li class="has current-menu-ancestor">
                                      <a href="index.html">Home</a>
                                  </li>
-                                 <li><a href="about.html">About</a></li>
+                                 <li><a href="{{ route('about.index') }}">About</a></li>
                                  <li class="has-dropdown">
                                      <a href="spaciality.html">Services</a>
                                      <ul class="sub-menu">

@@ -30,6 +30,17 @@
             object-fit: cover;
             border-radius: 6px;
         }
+
+
+        #aboutMenu {
+            position: sticky;
+            top: 20px;
+            /* distance from top */
+        }
+
+        .col-md-3 {
+            align-self: flex-start;
+        }
     </style>
     <div class="card">
         <div class="card-header">
@@ -272,7 +283,7 @@
                                                                             {{ trans('cruds.insurance.fields.description') }}
                                                                         </label>
                                                                         <textarea class="form-control {{ $errors->has('content_descriptions.' . $index) ? 'is-invalid' : '' }}"
-                                                                            name="content_descriptions[]" rows="2">{{ old('content_descriptions.'.$index, $row->description ?? '') }}</textarea>
+                                                                            name="content_descriptions[]" rows="2">{{ old('content_descriptions.' . $index, $row->description ?? '') }}</textarea>
 
                                                                         @if ($errors->has('content_descriptions.' . $index))
                                                                             <div class="invalid-feedback">
