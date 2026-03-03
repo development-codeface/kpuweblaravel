@@ -72,6 +72,7 @@
                                     <hr>
                                     <form method="POST" action="{{ route('admin.pharmacy.banner.store') }}"
                                         enctype="multipart/form-data">
+                                        <input type="hidden" name="banner_id" value="{{ $edit_banner->id }}">
                                         <input type="hidden" name="pages_id" value="{{ $id }}">
                                         @csrf
 
@@ -84,7 +85,8 @@
                                                     <input
                                                         class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"
                                                         type="text" name="title" placeholder="Enter title"
-                                                        id="title" value="{{ old('title', '') }}">
+                                                        id="title"
+                                                        value="{{ old('title', $edit_banner->title ?? '') }}">
                                                     @if ($errors->has('title'))
                                                         <div class="invalid-feedback">
                                                             {{ $errors->first('title') }}
@@ -101,7 +103,8 @@
                                                     <input
                                                         class="form-control {{ $errors->has('button_text') ? 'is-invalid' : '' }}"
                                                         type="text" name="button_text" id="button_text"
-                                                        value="{{ old('button_text') }}" placeholder="Enter button text">
+                                                        value="{{ old('button_text', $edit_banner->button_text ?? '') }}"
+                                                        placeholder="Enter button text">
                                                     @if ($errors->has('button_text'))
                                                         <div class="invalid-feedback">
                                                             {{ $errors->first('button_text') }}
@@ -119,9 +122,14 @@
 
                                                     <div class="image-box"
                                                         onclick="document.getElementById('image').click();">
-                                                        <div class="triangle-placeholder" id="trianglePlaceholder">
-                                                        </div>
-                                                        <img id="imagePreview" style="display:none;">
+                                                        @if (isset($edit_banner) && $edit_banner->image)
+                                                            <img src="{{ asset($edit_banner->image) }}" id="imagePreview"
+                                                                style="width:100%; display:block;">
+                                                        @else
+                                                            <div class="triangle-placeholder" id="trianglePlaceholder">
+                                                            </div>
+                                                            <img id="imagePreview" style="display:none;">
+                                                        @endif
                                                     </div>
 
                                                     <input type="file" name="image" id="image" accept="image/*"
@@ -148,9 +156,6 @@
                             <!-- KEEP YOUR EXISTING BANNER INPUTS HERE -->
                             <!-- DO NOT CHANGE ANYTHING INSIDE -->
                         </div>
-
-
-
                         <div class="tab-pane fade" id="featureSection" role="tabpanel">
 
                             <div class="row mt-4">
@@ -163,6 +168,7 @@
                                             <form method="POST" action="{{ route('admin.pharmacy.content.store') }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
+                                                <input type="hidden" name="content_id" value="{{ $edit_content->id }}">
                                                 <input type="hidden" name="pages_id" value="{{ $id }}">
                                                 <div class="row">
                                                     <!-- LEFT -->
@@ -173,7 +179,8 @@
                                                             <input
                                                                 class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"
                                                                 type="text" name="title" placeholder="Enter title"
-                                                                id="title" value="{{ old('title') }}">
+                                                                id="title"
+                                                                value="{{ old('title', $edit_content->title ?? '') }}">
                                                             @if ($errors->has('title'))
                                                                 <div class="invalid-feedback">
                                                                     {{ $errors->first('title') }}
@@ -190,7 +197,7 @@
                                                             <input
                                                                 class="form-control {{ $errors->has('sub_title') ? 'is-invalid' : '' }}"
                                                                 type="text" name="sub_title" id="sub_title"
-                                                                value="{{ old('sub_title') }}"
+                                                                value="{{ old('sub_title', $edit_content->sub_title ?? '') }}"
                                                                 placeholder="Enter Sub title">
                                                             @if ($errors->has('sub_title'))
                                                                 <div class="invalid-feedback">
@@ -204,11 +211,11 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label class="required"
-                                                                for="sub_title">{{ trans('cruds.Pharmacy.fields.button_text') }}</label>
+                                                                for="button_text">{{ trans('cruds.Pharmacy.fields.button_text') }}</label>
                                                             <input
                                                                 class="form-control {{ $errors->has('button_text') ? 'is-invalid' : '' }}"
                                                                 type="text" name="button_text" id="button_text"
-                                                                value="{{ old('button_text') }}"
+                                                                value="{{ old('button_text', $edit_content->button_text ?? '') }}"
                                                                 placeholder="Enter button text">
                                                             @if ($errors->has('button_text'))
                                                                 <div class="invalid-feedback">
@@ -229,7 +236,7 @@
                                                             </label>
 
                                                             <textarea class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" name="description"
-                                                                id="editor" rows="6">{{ old('description') }}</textarea>
+                                                                id="editor" rows="6">{{ old('description', $edit_content->description ?? '') }}</textarea>
 
                                                             @if ($errors->has('description'))
                                                                 <div class="invalid-feedback">
@@ -243,28 +250,53 @@
                                                 </div>
                                                 <div id="feature-wrapper">
                                                     @php
-                                                        $icons = is_array(old('icon')) ? old('icon') : [''];
-                                                        $names = is_array(old('heading')) ? old('heading') : [''];
-                                                        $descs = is_array(old('sub_description'))
-                                                            ? old('sub_description')
-                                                            : [''];
+                                                        if (old('icon')) {
+                                                            $rows = collect(old('icon'))->map(function ($icon, $i) {
+                                                                return [
+                                                                    'id' => old('sub_id')[$i] ?? '',
+                                                                    'icon' => $icon,
+                                                                    'heading' => old('heading')[$i] ?? '',
+                                                                    'description' => old('sub_description')[$i] ?? '',
+                                                                ];
+                                                            });
+                                                        } elseif (
+                                                            isset($edit_sub_content) &&
+                                                            $edit_sub_content->count()
+                                                        ) {
+                                                            $rows = $edit_sub_content->map(function ($row) {
+                                                                return [
+                                                                    'id' => $row->id,
+                                                                    'icon' => $row->icon,
+                                                                    'heading' => $row->heading,
+                                                                    'description' => $row->description,
+                                                                ];
+                                                            });
+                                                        } else {
+                                                            $rows = collect([
+                                                                [
+                                                                    'id' => '',
+                                                                    'icon' => '',
+                                                                    'heading' => '',
+                                                                    'description' => '',
+                                                                ],
+                                                            ]);
+                                                        }
                                                     @endphp
-                                                    @foreach ($icons as $index => $icon)
+                                                    @foreach ($rows as $index => $row)
                                                         <div class="feature-row border p-3 mb-3">
-
+                                                            <input type="hidden" name="sub_id[]"
+                                                                value="{{ $row['id'] }}">
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label class="required">Icon</label>
                                                                         <input type="text" name="icon[]"
-                                                                            value="{{ $icon }}"
+                                                                            value="{{ $row['icon'] }}"
                                                                             class="form-control {{ $errors->has('icon.' . $index) ? 'is-invalid' : '' }}">
-
-                                                                        @if ($errors->has('icon.' . $index))
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $errors->first('icon.' . $index) }}
+                                                                        @error('icon.' . $index)
+                                                                            <div class="invalid-feedback">{{ $message }}
                                                                             </div>
-                                                                        @endif
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
 
@@ -272,14 +304,12 @@
                                                                     <div class="form-group">
                                                                         <label class="required">Heading</label>
                                                                         <input type="text" name="heading[]"
-                                                                            value="{{ $names[$index] ?? '' }}"
+                                                                            value="{{ $row['heading'] }}"
                                                                             class="form-control {{ $errors->has('heading.' . $index) ? 'is-invalid' : '' }}">
-
-                                                                        @if ($errors->has('heading.' . $index))
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $errors->first('heading.' . $index) }}
+                                                                        @error('heading.' . $index)
+                                                                            <div class="invalid-feedback">{{ $message }}
                                                                             </div>
-                                                                        @endif
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -287,14 +317,12 @@
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
                                                                         <label>Sub description</label>
-                                                                        <textarea name="sub_description[]"
-                                                                            class="form-control {{ $errors->has('sub_description.' . $index) ? 'is-invalid' : '' }}" rows="2">{{ $descs[$index] ?? '' }}</textarea>
-
-                                                                        @if ($errors->has('sub_description.' . $index))
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $errors->first('sub_description.' . $index) }}
+                                                                        <textarea name="sub_description[]" rows="2"
+                                                                            class="form-control {{ $errors->has('sub_description.' . $index) ? 'is-invalid' : '' }}">{{ $row['description'] }}</textarea>
+                                                                        @error('sub_description.' . $index)
+                                                                            <div class="invalid-feedback">{{ $message }}
                                                                             </div>
-                                                                        @endif
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -321,9 +349,6 @@
 
                             <!-- Add future service inputs here -->
                         </div>
-
-
-
                         <div class="tab-pane fade" id="mid_content_Section" role="tabpanel">
 
                             <div class="row mt-4">
@@ -340,29 +365,54 @@
                                                 <div id="content-wrappers">
 
                                                     @php
-                                                        $basic_plan = is_array(old('basic_plan'))
-                                                            ? old('basic_plan')
-                                                            : [''];
-                                                        $standard_plan = is_array(old('standard_plan'))                                                            ? old('standard_plan')
-                                                            : [''];
+                                                        if (old('basic_plan')) {
+                                                            $textRows = collect(old('basic_plan'))->map(function (
+                                                                $value,
+                                                                $i,
+                                                            ) {
+                                                                return [
+                                                                    'id' => old('plan_content_id')[$i] ?? '',
+                                                                    'basic_plan' => $value,
+                                                                    'standard_plan' => old('standard_plan')[$i] ?? '',
+                                                                ];
+                                                            });
+                                                        } elseif (
+                                                            isset($edit_plans_content) &&
+                                                            $edit_plans_content->count()
+                                                        ) {
+                                                            $textRows = $edit_plans_content->map(function ($row) {
+                                                                return [
+                                                                    'id' => $row->id,
+                                                                    'basic_plan' => $row->basic_plan,
+                                                                    'standard_plan' => $row->standard_plan,
+                                                                ];
+                                                            });
+                                                        } else {
+                                                            $textRows = collect([
+                                                                [
+                                                                    'id' => '',
+                                                                    'basic_plan' => '',
+                                                                    'standard_plan' => '',
+                                                                ],
+                                                            ]);
+                                                        }
                                                     @endphp
 
-                                                    @foreach ($basic_plan as $index => $txt)
+                                                    @foreach ($textRows as $index => $row)
                                                         <div class="feature-row border p-3 mb-3">
-
+                                                            <input type="text" name="plan_content_id[]"
+                                                                value="{{ $row['id'] }}">
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
                                                                         <label class="required">Basic Plan</label>
                                                                         <input type="text" name="basic_plan[]"
-                                                                            value="{{ $txt }}"
+                                                                            value="{{ $row['basic_plan'] }}"
                                                                             class="form-control {{ $errors->has('basic_plan.' . $index) ? 'is-invalid' : '' }}">
-
-                                                                        @if ($errors->has('basic_plan.' . $index))
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $errors->first('basic_plan.' . $index) }}
+                                                                        @error('basic_plan.' . $index)
+                                                                            <div class="invalid-feedback">{{ $message }}
                                                                             </div>
-                                                                        @endif
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -371,14 +421,12 @@
                                                                     <div class="form-group">
                                                                         <label class="required">Standard Plan</label>
                                                                         <input type="text" name="standard_plan[]"
-                                                                            value="{{ $standard_plan[$index] ?? '' }}"
+                                                                            value="{{ $row['standard_plan'] }}"
                                                                             class="form-control {{ $errors->has('standard_plan.' . $index) ? 'is-invalid' : '' }}">
-
-                                                                        @if ($errors->has('standard_plan.' . $index))
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $errors->first('standard_plan.' . $index) }}
+                                                                        @error('standard_plan.' . $index)
+                                                                            <div class="invalid-feedback">{{ $message }}
                                                                             </div>
-                                                                        @endif
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -394,76 +442,94 @@
                                                 <div id="feature-wrappers">
 
                                                     @php
-                                                        $title = is_array(old('title')) ? old('title') : [''];
-                                                        $sub_title = is_array(old('sub_title'))
-                                                            ? old('sub_title')
-                                                            : [''];
-                                                        $from_time = is_array(old('from_time'))
-                                                            ? old('from_time')
-                                                            : [''];
-                                                        $to_time = is_array(old('to_time')) ? old('to_time') : [''];
-
+                                                        if (old('title')) {
+                                                            $planRows = collect(old('title'))->map(function (
+                                                                $value,
+                                                                $i,
+                                                            ) {
+                                                                return [
+                                                                    'id' => old('plan_id')[$i] ?? '',
+                                                                    'plan_title' => $value,
+                                                                    'plan_sub_title' => old('plan_sub_title')[$i] ?? '',
+                                                                    'from_time' => old('from_time')[$i] ?? '',
+                                                                    'to_time' => old('to_time')[$i] ?? '',
+                                                                ];
+                                                            });
+                                                        } elseif (isset($edit_plans) && $edit_plans->count()) {
+                                                            $planRows = $edit_plans->map(function ($row) {
+                                                                return [
+                                                                    'id' => $row->id,
+                                                                    'plan_title' => $row->title,
+                                                                    'plan_sub_title' => $row->sub_title,
+                                                                    'from_time' => $row->from_time,
+                                                                    'to_time' => $row->to_time,
+                                                                ];
+                                                            });
+                                                        } else {
+                                                            $planRows = collect([
+                                                                [
+                                                                    'id' => '',
+                                                                    'plan_title' => '',
+                                                                    'plan_sub_title' => '',
+                                                                    'from_time' => '',
+                                                                    'to_time' => '',
+                                                                ],
+                                                            ]);
+                                                        }
                                                     @endphp
 
-                                                    @foreach ($title as $index => $titles)
+                                                    @foreach ($planRows as $index => $row)
                                                         <div class="feature-row border p-3 mb-3">
-
+                                                            <input type="hidden" name="plan_id[]"
+                                                                value="{{ $row['id'] }}">
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label class="required">title</label>
-                                                                        <input type="text" name="title[]"
-                                                                            value="{{ $title[$index] ?? '' }}"
-                                                                            class="form-control {{ $errors->has('title.' . $index) ? 'is-invalid' : '' }}">
-
-                                                                        @if ($errors->has('title.' . $index))
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $errors->first('title.' . $index) }}
+                                                                        <input type="text" name="plan_title[]"
+                                                                            value="{{ $row['plan_title'] }}"
+                                                                            class="form-control {{ $errors->has('plan_title.' . $index) ? 'is-invalid' : '' }}">
+                                                                        @error('plan_title.' . $index)
+                                                                            <div class="invalid-feedback">{{ $message }}
                                                                             </div>
-                                                                        @endif
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label class="required">Sub Title</label>
-                                                                        <input type="text" name="sub_title[]"
-                                                                            value="{{ $title[$index] ?? '' }}"
-                                                                            class="form-control {{ $errors->has('sub_title.' . $index) ? 'is-invalid' : '' }}">
-
-                                                                        @if ($errors->has('sub_title.' . $index))
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $errors->first('sub_title.' . $index) }}
+                                                                        <input type="text" name="plan_sub_title[]"
+                                                                            value="{{ $row['plan_sub_title'] }}"
+                                                                            class="form-control {{ $errors->has('plan_sub_title.' . $index) ? 'is-invalid' : '' }}">
+                                                                        @error('plan_sub_title.' . $index)
+                                                                            <div class="invalid-feedback">{{ $message }}
                                                                             </div>
-                                                                        @endif
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label class="required">From Time</label>
                                                                         <input type="text" name="from_time[]"
-                                                                            value="{{ $title[$index] ?? '' }}"
+                                                                            value="{{ $row['from_time'] }}"
                                                                             class="form-control {{ $errors->has('from_time.' . $index) ? 'is-invalid' : '' }}">
-
-                                                                        @if ($errors->has('from_time.' . $index))
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $errors->first('from_time.' . $index) }}
+                                                                        @error('from_time.' . $index)
+                                                                            <div class="invalid-feedback">{{ $message }}
                                                                             </div>
-                                                                        @endif
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label class="required">To Time</label>
                                                                         <input type="text" name="to_time[]"
-                                                                            value="{{ $title[$index] ?? '' }}"
+                                                                            value="{{ $row['to_time'] }}"
                                                                             class="form-control {{ $errors->has('to_time.' . $index) ? 'is-invalid' : '' }}">
-
-                                                                        @if ($errors->has('to_time.' . $index))
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $errors->first('to_time.' . $index) }}
+                                                                        @error('to_time.' . $index)
+                                                                            <div class="invalid-feedback">{{ $message }}
                                                                             </div>
-                                                                        @endif
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
                                                             </div>

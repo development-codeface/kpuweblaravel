@@ -71,6 +71,7 @@
                                     <hr>
                                     <form method="POST" action="{{ route('admin.insurance.store') }}"
                                         enctype="multipart/form-data">
+                                        <input type="hidden" name="banner_id" value="{{ $edit_banner->id }}">
                                         <input type="hidden" name="pages_id" value="{{ $id }}">
                                         @csrf
 
@@ -83,7 +84,8 @@
                                                     <input
                                                         class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"
                                                         type="text" name="title" placeholder="Enter title"
-                                                        id="title" value="{{ old('title', '') }}">
+                                                        id="title"
+                                                        value="{{ old('title', $edit_banner->title ?? '') }}">
                                                     @if ($errors->has('title'))
                                                         <div class="invalid-feedback">
                                                             {{ $errors->first('title') }}
@@ -100,7 +102,8 @@
                                                     <input
                                                         class="form-control {{ $errors->has('button_text') ? 'is-invalid' : '' }}"
                                                         type="text" name="button_text" id="button_text"
-                                                        value="{{ old('button_text') }}" placeholder="Enter button text">
+                                                        value="{{ old('button_text', $edit_banner->button_text ?? '') }}"
+                                                        placeholder="Enter button text">
                                                     @if ($errors->has('button_text'))
                                                         <div class="invalid-feedback">
                                                             {{ $errors->first('button_text') }}
@@ -120,7 +123,7 @@
                                                     </label>
 
                                                     <textarea class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" name="description"
-                                                        id="description" rows="6">{{ old('description') }}</textarea>
+                                                        id="description" rows="4">{{ old('description', $edit_banner->description ?? '') }}</textarea>
 
                                                     @if ($errors->has('description'))
                                                         <div class="invalid-feedback">
@@ -137,9 +140,15 @@
                                                     <label class="required">Image</label>
                                                     <div class="image-box"
                                                         onclick="document.getElementById('image').click();">
-                                                        <div class="triangle-placeholder" id="trianglePlaceholder">
-                                                        </div>
-                                                        <img id="imagePreview" style="display:none;">
+
+                                                        @if (isset($edit_banner) && $edit_banner->image)
+                                                            <img src="{{ asset($edit_banner->image) }}" id="imagePreview"
+                                                                style="width:100%; display:block;">
+                                                        @else
+                                                            <div class="triangle-placeholder" id="trianglePlaceholder">
+                                                            </div>
+                                                            <img id="imagePreview" style="display:none;">
+                                                        @endif
                                                     </div>
                                                     <input type="file" name="image" id="image" accept="image/*"
                                                         class="d-none {{ $errors->has('image') ? 'is-invalid' : '' }}"
@@ -172,6 +181,8 @@
                                             <form method="POST" action="{{ route('admin.insurance.content.store') }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
+                                                <input type="hidden" name="content_id"
+                                                    value="{{ $edit_content->id ?? '' }}">
                                                 <input type="hidden" name="pages_id" value="{{ $id }}">
                                                 <div class="row">
                                                     <!-- LEFT -->
@@ -182,7 +193,8 @@
                                                             <input
                                                                 class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"
                                                                 type="text" name="title" placeholder="Enter title"
-                                                                id="title" value="{{ old('title') }}">
+                                                                id="title"
+                                                                value="{{ old('title', $edit_content->title ?? '') }}">
                                                             @if ($errors->has('title'))
                                                                 <div class="invalid-feedback">
                                                                     {{ $errors->first('title') }}
@@ -199,7 +211,7 @@
                                                             <input
                                                                 class="form-control {{ $errors->has('sub_title') ? 'is-invalid' : '' }}"
                                                                 type="text" name="sub_title" id="sub_title"
-                                                                value="{{ old('sub_title') }}"
+                                                                value="{{ old('sub_title', $edit_content->sub_title ?? '') }}"
                                                                 placeholder="Enter Sub title">
                                                             @if ($errors->has('sub_title'))
                                                                 <div class="invalid-feedback">
@@ -213,21 +225,34 @@
                                                 </div>
                                                 <div id="feature-wrapper">
                                                     @php
-                                                        $icons = is_array(old('icon')) ? old('icon') : [''];
-                                                        $descs = is_array(old('content_descriptions'))
-                                                            ? old('content_descriptions')
-                                                            : [''];
+                                                        if (old('icon')) {
+                                                            $rows = collect(old('icon'))->map(function ($item, $index) {
+                                                                return (object) [
+                                                                    'icon' => old('icon')[$index],
+                                                                    'description' => old('content_descriptions')[
+                                                                        $index
+                                                                    ],
+                                                                    'id' => old('sub_content_id')[$index] ?? null,
+                                                                ];
+                                                            });
+                                                        } else {
+                                                            $rows =
+                                                                isset($edit_content) &&
+                                                                $edit_content->subContents->count()
+                                                                    ? $edit_content->subContents
+                                                                    : collect([null]);
+                                                        }
                                                     @endphp
-                                                    @foreach ($icons as $index => $icon)
-
+                                                    @foreach ($rows as $index => $row)
                                                         <div class="feature-row border p-3 mb-3">
-
+                                                            <input type="hidden" name="sub_content_id[]"
+                                                                value="{{ $row->id ?? '' }}">
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
                                                                         <label class="required">Icon</label>
                                                                         <input type="text" name="icon[]"
-                                                                            value="{{ $icons[$index] ?? '' }}"
+                                                                            value="{{ old('icon.' . $index, $row->icon ?? '') }}"
                                                                             class="form-control {{ $errors->has('icon.' . $index) ? 'is-invalid' : '' }}">
 
                                                                         @if ($errors->has('icon.' . $index))
@@ -247,7 +272,7 @@
                                                                             {{ trans('cruds.insurance.fields.description') }}
                                                                         </label>
                                                                         <textarea class="form-control {{ $errors->has('content_descriptions.' . $index) ? 'is-invalid' : '' }}"
-                                                                            name="content_descriptions[]" rows="2">{{ $descs[$index] ?? '' }}</textarea>
+                                                                            name="content_descriptions[]" rows="2">{{ old('content_descriptions.'.$index, $row->description ?? '') }}</textarea>
 
                                                                         @if ($errors->has('content_descriptions.' . $index))
                                                                             <div class="invalid-feedback">

@@ -47,12 +47,12 @@
 
                         <a class="list-group-item list-group-item-action active" data-bs-toggle="tab" href="#bannerSection"
                             role="tab">
-                            About 1
+                            Career 1
                         </a>
 
                         <a class="list-group-item list-group-item-action" data-bs-toggle="tab" href="#content_Section"
                             role="tab">
-                            About 2
+                            Career 2
                         </a>
                     </div>
                 </div>
@@ -70,6 +70,7 @@
                                         <div class="section-item border p-3 mb-3">
                                             <form method="POST" action="{{ route('admin.career.banner.store') }}"
                                                 enctype="multipart/form-data">
+                                                <input type="hidden" name="banner_id" value="{{ $banner_edit->id }}">
                                                 <input type="hidden" name="pages_id" value="{{ $id }}">
                                                 @csrf
 
@@ -82,7 +83,8 @@
                                                             <input
                                                                 class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"
                                                                 type="text" name="title" placeholder="Enter title"
-                                                                id="title" value="{{ old('title', '') }}">
+                                                                id="title"
+                                                                value="{{ old('title', $banner_edit->title ?? '') }}">
                                                             @if ($errors->has('title'))
                                                                 <div class="invalid-feedback">
                                                                     {{ $errors->first('title') }}
@@ -99,7 +101,7 @@
                                                             <input
                                                                 class="form-control {{ $errors->has('button_text') ? 'is-invalid' : '' }}"
                                                                 type="text" name="button_text" id="button_text"
-                                                                value="{{ old('button_text') }}"
+                                                                value="{{ old('button_text', $banner_edit->button_text ?? '') }}"
                                                                 placeholder="Enter button text">
                                                             @if ($errors->has('button_text'))
                                                                 <div class="invalid-feedback">
@@ -119,7 +121,7 @@
                                                                 </label>
 
                                                                 <textarea class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" name="description"
-                                                                    id="description" rows="5" placeholder="Enter description">{{ old('description') }}</textarea>
+                                                                    id="description" rows="5" placeholder="Enter description">{{ old('description', $banner_edit->description ?? '') }}</textarea>
 
                                                                 @if ($errors->has('description'))
                                                                     <div class="invalid-feedback">
@@ -141,10 +143,16 @@
 
                                                                 <div class="image-box"
                                                                     onclick="document.getElementById('image').click();">
-                                                                    <div class="triangle-placeholder"
-                                                                        id="trianglePlaceholder">
-                                                                    </div>
-                                                                    <img id="imagePreview" style="display:none;">
+                                                                    @if (isset($banner_edit) && $banner_edit->image)
+                                                                        <img src="{{ asset($banner_edit->image) }}"
+                                                                            id="imagePreview"
+                                                                            style="width:100%; display:block;">
+                                                                    @else
+                                                                        <div class="triangle-placeholder"
+                                                                            id="trianglePlaceholder">
+                                                                        </div>
+                                                                        <img id="imagePreview" style="display:none;">
+                                                                    @endif
                                                                 </div>
 
                                                                 <input type="file" name="image" id="image"
@@ -185,44 +193,87 @@
                                             <form method="POST" action="{{ route('admin.career.content.store') }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
+
                                                 <input type="hidden" name="pages_id" value="{{ $id }}">
 
                                                 <div id="feature-wrappers">
 
                                                     @php
-                                                        $titles = is_array(old('mid_title')) ? old('mid_title') : [''];
+                                                        if (old('mid_title')) {
+                                                            $rows = collect(old('mid_title'))->map(function (
+                                                                $value,
+                                                                $index,
+                                                            ) {
+                                                                return [
+                                                                    'id' => old('content_id')[$index] ?? '',
+                                                                    'icon' => old('icon')[$index] ?? '',
+                                                                    'mid_title' => $value,
+                                                                    'job_type' => old('job_type')[$index] ?? '',
+                                                                    'work_mode' => old('work_mode')[$index] ?? '',
+                                                                    'location' => old('location')[$index] ?? '',
+                                                                    'salary_min' => old('salary_min')[$index] ?? '',
+                                                                    'salary_max' => old('salary_max')[$index] ?? '',
+                                                                    'salary_type' => old('salary_type')[$index] ?? '',
+                                                                ];
+                                                            });
+                                                        } elseif (isset($content_edit) && $content_edit->count()) {
+                                                            $rows = $content_edit->map(function ($row) {
+                                                                return [
+                                                                    'id' => $row->id,
+                                                                    'icon' => $row->icon,
+                                                                    'mid_title' => $row->title,
+                                                                    'job_type' => $row->job_type,
+                                                                    'work_mode' => $row->work_mode,
+                                                                    'location' => $row->location,
+                                                                    'salary_min' => $row->salary_min,
+                                                                    'salary_max' => $row->salary_max,
+                                                                    'salary_type' => $row->salary_type,
+                                                                ];
+                                                            });
+                                                        } else {
+                                                            $rows = collect([
+                                                                [
+                                                                    'id' => '',
+                                                                    'icon' => '',
+                                                                    'mid_title' => '',
+                                                                    'job_type' => '',
+                                                                    'work_mode' => '',
+                                                                    'location' => '',
+                                                                    'salary_min' => '',
+                                                                    'salary_max' => '',
+                                                                    'salary_type' => '',
+                                                                ],
+                                                            ]);
+                                                        }
                                                     @endphp
 
-                                                    @foreach ($titles as $index => $value)
+                                                    @foreach ($rows as $index => $row)
                                                         <div class="feature-row border p-3 mb-3">
-
+                                                            <input type="hidden" name="content_id[]"
+                                                                value="{{ $row['id'] }}">
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label class="required">Icon</label>
                                                                         <input type="text" name="icon[]"
-                                                                            value="{{ old('icon.' . $index) }}"
+                                                                            value="{{ $row['icon'] }}"
                                                                             class="form-control {{ $errors->has('icon.' . $index) ? 'is-invalid' : '' }}">
-
-                                                                        @if ($errors->has('icon.' . $index))
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $errors->first('icon.' . $index) }}
+                                                                        @error('icon.' . $index)
+                                                                            <div class="invalid-feedback">{{ $message }}
                                                                             </div>
-                                                                        @endif
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label class="required">Title</label>
                                                                         <input type="text" name="mid_title[]"
-                                                                            value="{{ old('title.' . $index) }}"
+                                                                            value="{{ $row['mid_title'] }}"
                                                                             class="form-control {{ $errors->has('mid_title.' . $index) ? 'is-invalid' : '' }}">
-
-                                                                        @if ($errors->has('mid_title.' . $index))
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $errors->first('mid_title.' . $index) }}
+                                                                        @error('mid_title.' . $index)
+                                                                            <div class="invalid-feedback">{{ $message }}
                                                                             </div>
-                                                                        @endif
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
 
@@ -230,14 +281,12 @@
                                                                     <div class="form-group">
                                                                         <label class="required">Job Type</label>
                                                                         <input type="text" name="job_type[]"
-                                                                            value="{{ old('job_type.' . $index) }}"
+                                                                            value="{{ $row['job_type'] }}"
                                                                             class="form-control {{ $errors->has('job_type.' . $index) ? 'is-invalid' : '' }}">
-
-                                                                        @if ($errors->has('job_type.' . $index))
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $errors->first('job_type.' . $index) }}
+                                                                        @error('job_type.' . $index)
+                                                                            <div class="invalid-feedback">{{ $message }}
                                                                             </div>
-                                                                        @endif
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -247,8 +296,12 @@
                                                                     <div class="form-group">
                                                                         <label>Work Mode</label>
                                                                         <input type="text" name="work_mode[]"
-                                                                            value="{{ old('work_mode.' . $index) }}"
-                                                                            class="form-control">
+                                                                            value="{{ $row['work_mode'] }}"
+                                                                            class="form-control {{ $errors->has('work_mode.' . $index) ? 'is-invalid' : '' }}">
+                                                                        @error('work_mode.' . $index)
+                                                                            <div class="invalid-feedback">{{ $message }}
+                                                                            </div>
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
 
@@ -256,8 +309,12 @@
                                                                     <div class="form-group">
                                                                         <label>Location</label>
                                                                         <input type="text" name="location[]"
-                                                                            value="{{ old('location.' . $index) }}"
-                                                                            class="form-control">
+                                                                            value="{{ $row['location'] }}"
+                                                                            class="form-control {{ $errors->has('location.' . $index) ? 'is-invalid' : '' }}">
+                                                                        @error('location.' . $index)
+                                                                            <div class="invalid-feedback">{{ $message }}
+                                                                            </div>
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -267,8 +324,13 @@
                                                                     <div class="form-group">
                                                                         <label>Salary Min</label>
                                                                         <input type="text" name="salary_min[]"
-                                                                            value="{{ old('salary_min.' . $index) }}"
-                                                                            class="form-control">
+                                                                            value="{{ $row['salary_min'] }}"
+                                                                            class="form-control {{ $errors->has('salary_min.' . $index) ? 'is-invalid' : '' }}">
+                                                                        @error('salary_min.' . $index)
+                                                                            <div class="invalid-feedback">{{ $message }}
+                                                                            </div>
+                                                                        @enderror
+
                                                                     </div>
                                                                 </div>
 
@@ -276,8 +338,12 @@
                                                                     <div class="form-group">
                                                                         <label>Salary Max</label>
                                                                         <input type="text" name="salary_max[]"
-                                                                            value="{{ old('salary_max.' . $index) }}"
-                                                                            class="form-control">
+                                                                            value="{{ $row['salary_max'] }}"
+                                                                            class="form-control {{ $errors->has('salary_max.' . $index) ? 'is-invalid' : '' }}">
+                                                                        @error('salary_max.' . $index)
+                                                                            <div class="invalid-feedback">{{ $message }}
+                                                                            </div>
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
 
@@ -285,8 +351,12 @@
                                                                     <div class="form-group">
                                                                         <label>Salary Type</label>
                                                                         <input type="text" name="salary_type[]"
-                                                                            value="{{ old('salary_type.' . $index) }}"
-                                                                            class="form-control">
+                                                                            value="{{ $row['salary_type'] }}"
+                                                                            class="form-control {{ $errors->has('salary_type.' . $index) ? 'is-invalid' : '' }}">
+                                                                        @error('salary_type.' . $index)
+                                                                            <div class="invalid-feedback">{{ $message }}
+                                                                            </div>
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -364,7 +434,7 @@
 
             let html = `
     <div class="feature-row border p-3 mb-3">
-
+  <input type="hidden" name="content_id[]" value="">
         <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
@@ -405,13 +475,19 @@
 
         <div class="row mt-2">
             <div class="col-md-4">
+                  <div class="form-group">
                 <input type="text" name="salary_min[]" placeholder="Salary Min" class="form-control">
+                </div>
             </div>
             <div class="col-md-4">
+                   <div class="form-group">
                 <input type="text" name="salary_max[]" placeholder="Salary Max" class="form-control">
+                </div>
             </div>
             <div class="col-md-4">
+                   <div class="form-group">
                 <input type="text" name="salary_type[]" placeholder="week / month / year" class="form-control">
+                </div>
             </div>
         </div>
 

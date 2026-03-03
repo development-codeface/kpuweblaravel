@@ -66,6 +66,7 @@
                                     <hr>
                                     <form method="POST" action="{{ route('admin.directors.store') }}"
                                         enctype="multipart/form-data">
+                                        <input type="hidden" name="banner_id" value="{{ $edit_banner->id }}">
                                         <input type="hidden" name="pages_id" value="{{ $id }}">
                                         @csrf
 
@@ -78,7 +79,8 @@
                                                     <input
                                                         class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"
                                                         type="text" name="title" placeholder="Enter title"
-                                                        id="title" value="{{ old('title', '') }}">
+                                                        id="title"
+                                                        value="{{ old('title', $edit_banner->title ?? '') }}">
                                                     @if ($errors->has('title'))
                                                         <div class="invalid-feedback">
                                                             {{ $errors->first('title') }}
@@ -95,7 +97,8 @@
                                                     <input
                                                         class="form-control {{ $errors->has('button_text') ? 'is-invalid' : '' }}"
                                                         type="text" name="button_text" id="button_text"
-                                                        value="{{ old('button_text') }}" placeholder="Enter button text">
+                                                        value="{{ old('button_text', $edit_banner->button_text ?? '') }}"
+                                                        placeholder="Enter button text">
                                                     @if ($errors->has('button_text'))
                                                         <div class="invalid-feedback">
                                                             {{ $errors->first('button_text') }}
@@ -112,9 +115,14 @@
                                                     <label class="required">Image</label>
                                                     <div class="image-box"
                                                         onclick="document.getElementById('image').click();">
-                                                        <div class="triangle-placeholder" id="trianglePlaceholder">
-                                                        </div>
-                                                        <img id="imagePreview" style="display:none;">
+                                                        @if (isset($edit_banner) && $edit_banner->image)
+                                                            <img src="{{ asset($edit_banner->image) }}" id="imagePreview"
+                                                                style="width:100%; display:block;">
+                                                        @else
+                                                            <div class="triangle-placeholder" id="trianglePlaceholder">
+                                                            </div>
+                                                            <img id="imagePreview" style="display:none;">
+                                                        @endif
                                                     </div>
                                                     <input type="file" name="image" id="image" accept="image/*"
                                                         class="d-none {{ $errors->has('image') ? 'is-invalid' : '' }}"
@@ -147,6 +155,8 @@
                                             <form method="POST" action="{{ route('admin.directors.blog.store') }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
+                                                <input type="hidden" name="content_id"
+                                                    value="{{ $edit_content->id ?? '' }}">
                                                 <input type="hidden" name="pages_id" value="{{ $id }}">
                                                 <div class="row">
                                                     <!-- LEFT -->
@@ -157,7 +167,8 @@
                                                             <input
                                                                 class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"
                                                                 type="text" name="title" placeholder="Enter title"
-                                                                id="title" value="{{ old('title') }}">
+                                                                id="title"
+                                                                value="{{ old('title', $edit_content->title ?? '') }}">
                                                             @if ($errors->has('title'))
                                                                 <div class="invalid-feedback">
                                                                     {{ $errors->first('title') }}
@@ -176,7 +187,7 @@
                                                                 </label>
 
                                                                 <textarea class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" name="description"
-                                                                    rows="6">{{ old('description') }}</textarea>
+                                                                    rows="4">{{ old('description', $edit_content->description ?? '') }}</textarea>
 
                                                                 @if ($errors->has('description'))
                                                                     <div class="invalid-feedback">
@@ -189,20 +200,28 @@
                                                 </div>
                                                 <div id="feature-wrapper">
                                                     @php
-                                                        $heading = is_array(old('heading')) ? old('heading') : [''];
-                                                        $text = is_array(old('text')) ? old('text') : [''];
-                                                        $designations = is_array(old('designation'))
-                                                            ? old('designation')
-                                                            : [''];
+                                                        $blogs = old('heading')
+                                                            ? collect(old('heading'))->map(function ($item, $index) {
+                                                                return (object) [
+                                                                    'heading' => old('heading')[$index],
+                                                                    'designation' => old('designation')[$index],
+                                                                    'text' => old('text')[$index],
+                                                                    'image' => null,
+                                                                    'id' => old('blog_id')[$index] ?? null,
+                                                                ];
+                                                            })
+                                                            : $edit_content->directorBlog ?? collect([null]);
                                                     @endphp
-                                                    @foreach ($heading as $index => $value)
+                                                    @foreach ($blogs as $index => $blog)
                                                         <div class="feature-row border p-3 mb-3">
+                                                            <input type="hidden" name="blog_id[]"
+                                                                value="{{ $blog->id ?? '' }}">
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
                                                                         <label class="required">Heading</label>
                                                                         <input type="text" name="heading[]"
-                                                                            value="{{ $heading[$index] ?? '' }}"
+                                                                            value="{{ old('heading.' . $index, $blog->heading ?? '') }}"
                                                                             class="form-control {{ $errors->has('heading.' . $index) ? 'is-invalid' : '' }}">
 
                                                                         @if ($errors->has('heading.' . $index))
@@ -218,7 +237,7 @@
                                                                     <div class="form-group">
                                                                         <label class="required">Designation</label>
                                                                         <input type="text" name="designation[]"
-                                                                            value="{{ $designations[$index] ?? '' }}"
+                                                                            value="{{ old('designation.' . $index, $blog->designation ?? '') }}"
                                                                             class="form-control {{ $errors->has('designation.' . $index) ? 'is-invalid' : '' }}">
                                                                         @if ($errors->has('designation.' . $index))
                                                                             <div class="invalid-feedback">
@@ -233,9 +252,8 @@
                                                                     <div class="form-group">
                                                                         <label class="required">Text</label>
                                                                         <input type="text" name="text[]"
-                                                                            value="{{ $text[$index] ?? '' }}"
+                                                                            value="{{ old('text.' . $index, $blog->text ?? '') }}"
                                                                             class="form-control {{ $errors->has('text.' . $index) ? 'is-invalid' : '' }}">
-
                                                                         @if ($errors->has('text.' . $index))
                                                                             <div class="invalid-feedback">
                                                                                 {{ $errors->first('text.' . $index) }}
@@ -251,9 +269,17 @@
 
                                                                         <div class="image-box image-trigger"
                                                                             style="cursor:pointer;">
-                                                                            <div class="triangle-placeholder"></div>
-                                                                            <img class="image-preview"
-                                                                                style="display:none; width:200px;">
+
+                                                                            @if (isset($blog) && $blog->image)
+                                                                                <img src="{{ asset($blog->image) }}"
+                                                                                    class="image-preview"
+                                                                                    style="width:200px; display:block;">
+                                                                            @else
+                                                                                <div class="triangle-placeholder"></div>
+                                                                                <img class="image-preview"
+                                                                                    style="display:none; width:200px;">
+                                                                            @endif
+
                                                                         </div>
 
                                                                         <input type="file" name="blog_image[]"

@@ -336,7 +336,7 @@
                             <hr>
                             <form method="POST" action="{{ route('admin.medical-turism.medical.store') }}">
                                 @csrf
-                                <input name="medical_id" value="" type="text">
+                                <input name="medical_id" value="{{ $medical->id  ?? '' }}" type="hidden">
                                 <input type="hidden" name="pages_id" value="{{ $id }}">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -344,7 +344,7 @@
                                             <label class="required">Title</label>
                                             <input type="text" name="title"
                                                 class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"
-                                                value="{{ old('title', $content->title ?? '') }}"
+                                                value="{{ old('title', $medical->title ?? '') }}"
                                                 placeholder="Enter title">
 
                                             @if ($errors->has('title'))
@@ -362,7 +362,7 @@
                                             <label class="required">Sub Title</label>
                                             <input type="text" name="sub_title"
                                                 class="form-control {{ $errors->has('sub_title') ? 'is-invalid' : '' }}"
-                                                value="{{ old('sub_title', $content->sub_title ?? '') }}"
+                                                value="{{ old('sub_title', $medical->sub_title ?? '') }}"
                                                 placeholder="Enter sub title">
 
                                             @if ($errors->has('sub_title'))
@@ -376,15 +376,15 @@
                                 <div id="blog-wrapper">
 
                                     @php
-                                        $medicalData = old('medical', isset($medical) ? $medical->toArray() : [[]]);
+                                        $medicalData = old(
+                                            'medical',
+                                            isset($medical) ? $medical->contents->toArray() : [[]],
+                                        );
                                     @endphp
-
-
-
                                     @foreach ($medicalData as $index => $item)
                                         <div class="blog-row border p-3 mb-3">
 
-                                            <input type="text" name="medical[{{ $index }}][content_id]"
+                                            <input type="hidden" name="medical[{{ $index }}][content_id]"
                                                 value="{{ $item['id'] ?? '' }}">
 
                                             <!-- Title -->
@@ -419,7 +419,7 @@
                                                     @php
                                                         $texts = old(
                                                             "medical.$index.texts",
-                                                            $item['texts'] ?? [['id' => '', 'text' => '']],
+                                                            $item['subcontents'] ?? [['id' => '', 'text' => '']],
                                                         );
                                                     @endphp
 
@@ -435,8 +435,8 @@
                                                                 value="{{ $textItem['text'] ?? '' }}"
                                                                 class="form-control">
 
-                                                            <button type="button"
-                                                                class="btn btn-danger remove-text">X</button>
+                                                            {{-- <button type="button"
+                                                                class="btn btn-danger remove-text">X</button> --}}
 
                                                         </div>
                                                     @endforeach
@@ -641,7 +641,7 @@
 
                     wrapper.insertAdjacentHTML("beforeend", `
                 <div class="input-group mb-2">
-                      <input type="text"
+                      <input type="hidden"
                 name="medical[${index}][texts][${textIndex}][sub_content_id]"
                 value="">
                     <label>Text</label>
