@@ -22,13 +22,13 @@
                                              </p>
                                              <div class="header-info">
                                                  <div class="info-item">
-                                                     <a href="#">Send Opinion</a>
+                                                     <a href="/second-opinion">Send Opinion</a>
                                                  </div>
                                                  <div class="info-item">
-                                                     <a href="#">Find a Doctor</a>
+                                                     <a href="/doctors">Find a Doctor</a>
                                                  </div>
                                                  <div class="info-item">
-                                                     <a href="#">Careers</a>
+                                                     <a href="/career">Careers</a>
                                                  </div>
                                                  <div class="info-item">
                                                      <a href="#">Blogs</a>
@@ -42,14 +42,15 @@
                          <nav id="mobile-menu" class="mainmenu">
                              <ul>
                                  <li class="has current-menu-ancestor">
-                                     <a href="index.html">Home</a>
+                                     <a href="/home">Home</a>
                                  </li>
                                  <li><a href="{{ route('about.index') }}">About</a></li>
+                                 <li><a href="/about">About</a></li>
                                  <li class="has-dropdown">
-                                     <a href="spaciality.html">Services</a>
+                                     <a href="/spaciality">Services</a>
                                      <ul class="sub-menu">
-                                         <li><a href="directors.html">directors</a></li>
-                                         <li><a href="leadership.html">leadership</a></li>
+                                         <li><a href="/directors">directors</a></li>
+                                         <li><a href="/leadership">leadership</a></li>
                                      </ul>
                                  </li>
                                  <li><a href="our-vision.html">Our Vision</a></li>

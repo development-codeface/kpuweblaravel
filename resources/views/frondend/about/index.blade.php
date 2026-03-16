@@ -43,11 +43,10 @@
             </div>
             <div class="row row-gap-4 rightSwipeWrap">
                 <div class="col-lg-4">
-                    <div class="choose-box h9-choose-box h9-choose-bg right-swipe"
-                        data-bg-image="assets/images/choose/h9-choose-bg.webp">
+                    <div class=" about-us h9-choose-box ">
                         <div class="choose-content">
-                            <h4 class="title">{{ $blog->sub_heading }}</h4>
-                            <p class="desc">{{ $blog->description }}</p>
+                            <h4 class="titleBtn">{{ $blog->sub_heading }}</h4>
+                            <h4 class="descAbout">{{ $blog->description }}</h4>
                             <a class="text-btn" href="contact.html">
                                 <span class="btn-text"><span>Contact Us</span></span>
                                 <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
@@ -56,11 +55,14 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
-                    <div class="h5-strategy-item h5-strategy-item-3 wow fadeInUp" data-wow-delay=".5s"
-                        style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
-                        <!-- <h4 class="h5-strategy-title">Rebranding Strategy for a Growing</h4>
-                                          <p class="h5-strategy-desc">Our team are always available to addressed our concerns, providing quick
-                                            solution.</p> -->
+                    <div class="h5-strategy-item h5-strategy-item-3 wow fadeInUp" data-wow-delay=".5s">
+                         <p class="desc">{{ $blog->icon_description }}</p>
+<div class="locations">
+<a class="text-btn" href="contact.html">
+                                <span class="btn-text"><span>Contact Us</span></span>
+                                <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
+                            </a>
+</div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
@@ -151,12 +153,12 @@
     <!-- start: Choose Section -->
     @foreach ($about_feature as $feature)
         <section id="choose" class="tj-choose-section h6-choose section-gap core-about">
-            <div class="container">
+            <div class="container about-us-choose">
 
                 {{-- Section Heading --}}
                 <div class="row">
                     <div class="col-12">
-                        <div class="sec-heading style-2 style-6 text-center">
+                        <div class="sec-heading about-feature style-2 style-6 text-center">
 
                             <h2 class="sec-title title-anim">
                                 {{ $feature->title }}
@@ -279,7 +281,7 @@
                     <div class="col-12 col-lg-8">
 
                         {{-- Scroll Numbers --}}
-                        <div class="h9-service-scroll-progress tj-scroll-progress tj-sticky-panel-2">
+                        <div class="h9-service-scroll-progress about-us tj-scroll-progress tj-sticky-panel-2">
 
                             @foreach ($mid_content->aboutMidSubContent as $index => $item)
                                 <div class="tj-scroll-progress-item {{ $index == 0 ? 'active' : '' }}">
@@ -355,9 +357,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="service-wrapper">
-                        @foreach ($section->subSection as $sectionData)
-                            <div class="service-item style-3 wow fadeInUp" data-wow-delay=".3s">
-
+                        <div class="service-item style-3 about-us wow fadeInUp" data-wow-delay=".3s">
+                            @foreach ($section->subSection as $sectionData)
                                 <div class="service-content-wrap">
                                     <div class="service-title">
                                         <div class="service-icon">

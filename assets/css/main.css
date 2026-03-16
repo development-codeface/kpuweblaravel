@@ -1081,7 +1081,7 @@ START: Theme Header CSS
 
 @media (min-width:1800px) {
   .header-top {
-    
+
     width: 80%;
   }
 }
@@ -1092,7 +1092,7 @@ START: Theme Header CSS
   border-end-start-radius: 12px;
   border-end-end-radius: 12px;
   padding: 0 12px;
- 
+
 }
 .header-top-content {
   display: -webkit-box;
@@ -1324,7 +1324,7 @@ nav#mobile-menu {
   font-size: 16px;
   color: var(--tj-color-heading-primary);
   display: block;
-  
+
   font-weight: var(--tj-fw-medium);
   line-height: 1;
 }
@@ -7543,6 +7543,7 @@ START: Heading CSS
 .sec-heading .sec-title {
   margin-bottom: 30px;
       color: #124e68;
+    text-align: center;
     font-weight: 500;
 }
 .sec-heading  p.desc {
@@ -8664,7 +8665,8 @@ START: Choose CSS
 .choose-box {
   height: 100%;
   padding: 50px 28px 45px;
-  background-color: #d0e2f6;
+  background: #1a7eb0;
+  background: linear-gradient(90deg, rgba(26, 126, 176, 1) 0%, rgba(100, 185, 204, 1) 35%, rgba(240, 240, 240, 1) 100%);
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
   /* border-radius: 10px; */
@@ -8691,7 +8693,7 @@ START: Choose CSS
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-               
+
     justify-content: start;
   height: 100%;
 }
@@ -8726,7 +8728,7 @@ START: Choose CSS
 .choose-box .title {
   font-weight: var(--tj-fw-sbold);
   margin-bottom: 20px;
-      
+
 }
 
 .choose-box.h6-choose-box.right-swipe .title{
@@ -9728,7 +9730,7 @@ START: About CSS
 @media (min-width: 991px) {
  .col-xl-6.col-lg-6.order-lg-1.order-2.who-about-imge {
     width: 40%;
-   
+
 }
 .col-xl-6.col-lg-6.order-lg-2.order-1.about-content {
     width: 60%;
@@ -12348,10 +12350,10 @@ section.tj-blog-section.section-gap  .blog-content .blog-meta {
           top: -21px;
     z-index: 9;
     left: 0;
-}    
+}
 section.tj-blog-section.section-gap  .blog-content  {
    position: relative;
-}    
+}
 @media only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px) {
   .blog-item.style-2 .blog-content .title {
     font-size: 22px;
@@ -17332,9 +17334,9 @@ START: Choose CSS
 .tj-choose-section {
   overflow: hidden;
 }
-.tj-choose-section .sec-heading {
+/* .tj-choose-section .sec-heading {
   max-width: 100%;
-}
+} */
 .tj-choose-section .countup-item.style-2 {
   background-repeat: no-repeat;
   background-size: cover;
@@ -19299,8 +19301,9 @@ START: Hero CSS
 }
 .h5-banner-content .banner-title {
   max-width: 715px;
-  color: #015b75;
-  font-size: 85px;
+      font-weight: 600;
+    color: #015b75;
+    font-size: 82px;
   line-height: 1;
   margin-bottom: 30px;
 }
@@ -29019,7 +29022,7 @@ color: #015b75;
    border-top-right-radius: 30px;
 }
 .book-content:first-child{
-    
+
    border-top-left-radius: 30px;
 }
 
@@ -29780,7 +29783,7 @@ section.tj-page-header.section-gap-x.spacialiy-banner.doctors-bnn {
     padding-top: 100px;
     padding-bottom: 100px;
 }
-        
+
         .medical-tour.container {
             max-width: 1200px;
             margin: 0 auto;

@@ -20,7 +20,7 @@
             </div>
 
             <div class="booking-container">
-                <button class="book-content active">
+                <button class="book-content ">
                     <i class="tji-arrow-right-long"></i>
                     <h4 class="title">Book Appointment</h4>
                 </button>
@@ -43,7 +43,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="sec-heading style-3 text-left">
-                                <h2 class="sec-title title-anim">
+                                <h2 class="sec-title ">
                                     {{ $feature->title }}
                                 </h2>
                                 <p class="desc">
@@ -115,13 +115,15 @@
                         <div class="row h7-about-counter-wrapper 2-sectio-grid">
                             <div class="grid-div">
                                 <div class="col-12 col-md-6">
-                                    <div class="countup-item style-2 wow fadeInUp" data-wow-delay=".3s"></div>
+                                    <div class="countup-item img-sec style-2 wow fadeInUp" data-wow-delay=".3s">
+                                        <img src="{{ asset('images/doctor.jpg') }}" alt="">
+                                        <h4 class="count-text">Find quality care nearby and access it when you</h4>
+                                    </div>
                                 </div>
 
                                 <div class="col-12 col-md-6">
                                     <div class="customers-box style-2 wow fadeInUp" data-wow-delay=".5s">
-                                        <div class="customers-bg" data-bg-image="assets/images/about/h7-about-item-bg.webp">
-                                        </div>
+                                        {{-- <div class="customers-bg" data-bg-image="assets/images/about/h7-about-item-bg.webp"></div> --}}
 
                                         <h6 class="customers-text wow fadeInLeft" data-wow-delay=".6s">
                                             Enabling startups to raise $25M+ in venture funding.
@@ -301,8 +303,8 @@
                             </div>
                             <div class="blog-content">
                                 <div class="sec-heading style-3 text-left">
-                                    <h2 class="sec-title title-anim">
-                                        Empowering Business with Expertise.
+                                    <h2 class="sec-title ">
+                                        second-Opinion
                                     </h2>
                                     <p class="desc">
                                         We stay ahead of the leveraging cutting-edge
@@ -319,7 +321,7 @@
                     <div class="col-lg-6 service-side-12">
                         <div class="col-12">
                             <div class="sec-heading style-3 text-left">
-                                <h2 class="sec-title title-anim">
+                                <h2 class="sec-title ">
                                     Empowering Business with Expertise.
                                 </h2>
                                 <p class="desc">
@@ -442,7 +444,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="sec-heading">
-                            <h2 class="sec-title title-anim"><span>Blogs</span></h2>
+                            <h2 class="sec-title "><span>Blogs</span></h2>
                         </div>
                     </div>
                 </div>
