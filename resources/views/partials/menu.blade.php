@@ -48,6 +48,20 @@
                     </a>
                 </li>
             @endcan
+                <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                   <i class="fi fi-br-paint-brush nav-icon"></i>
+                    Apperance
+                </a>
+                <ul class="nav-dropdown-items" style="margin-left:28px;">
+                    <li class="nav-item">
+                        <a href=""
+                            class="nav-link ">
+                            Menus
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="nav-item">
                 <a href="{{ route('admin.banners.index') }}"
                     class="nav-link {{ request()->routeIs('admin.banners.*') ? 'active' : '' }}">
@@ -79,10 +93,10 @@
             <li class="nav-item">
                 <a href="{{ route('admin.facility.index') }}"
                     class="nav-link {{ request()->routeIs('admin.facility.*') ? 'active' : '' }}">
-                  <i class="fi fi-br-hospital nav-icon"></i>
+                    <i class="fi fi-br-hospital nav-icon"></i>
                     {{ trans('cruds.facility.title') }}
                 </a>
             </li>
-        </ul>
-    </nav>
+    </ul>
+</nav>
 </div>

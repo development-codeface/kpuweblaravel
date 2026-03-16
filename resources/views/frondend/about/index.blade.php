@@ -56,13 +56,13 @@
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="h5-strategy-item h5-strategy-item-3 wow fadeInUp" data-wow-delay=".5s">
-                         <p class="desc">{{ $blog->icon_description }}</p>
-<div class="locations">
-<a class="text-btn" href="contact.html">
+                        <p class="desc">{{ $blog->icon_description }}</p>
+                        <div class="locations">
+                            <a class="text-btn" href="contact.html">
                                 <span class="btn-text"><span>Contact Us</span></span>
                                 <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
                             </a>
-</div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
@@ -94,9 +94,6 @@
 
                     </div>
                 </div>
-
-
-
                 <div class="col-xl-6 col-lg-6 order-lg-2 order-1 about-content">
                     <div class="about-content-area">
                         <div class="sec-heading style-3">
@@ -104,8 +101,6 @@
                             <h2 class="sec-title title-anim">{{ $content->heading }}</h2>
                         </div>
                     </div>
-
-
                     @if ($content)
                         @php
                             // Split by closing </p>
@@ -137,16 +132,9 @@
 
                         </div>
                     @endif
-
-
-
-
                 </div>
-
-
             </div>
         </div>
-
     </section>
     <!-- end: About Section -->
 
@@ -371,10 +359,10 @@
                                         <p class="desc">{{ $sectionData->description }}</p>
                                     </div>
                                 </div>
-
                                 <!-- <div class="service-reveal-bg" data-bg-image="assets/images/service/service-2.webp"></div> -->
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
+
                     </div>
 
                 </div>
