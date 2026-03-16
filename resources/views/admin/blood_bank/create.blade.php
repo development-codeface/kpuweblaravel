@@ -55,18 +55,18 @@
                 <div class="col-md-3">
                     <div class="list-group" id="aboutMenu" role="tablist">
 
-                        <a class="list-group-item list-group-item-action active" data-bs-toggle="tab" href="#bannerSection"
-                            role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab', 'bannerSection') == 'bannerSection' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#bannerSection" role="tab">
                             Blood bank 1
                         </a>
 
-                        <a class="list-group-item list-group-item-action" data-bs-toggle="tab" href="#contentSection"
-                            role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'contentSection' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#contentSection" role="tab">
                             Blood bank 2
                         </a>
 
-                        <a class="list-group-item list-group-item-action" data-bs-toggle="tab" href="#mid_content_Section"
-                            role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'mid_content_Section' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#mid_content_Section" role="tab">
                             Blood bank 3
                         </a>
                     </div>
@@ -74,13 +74,15 @@
                 <div class="col-md-9">
                     <div class="tab-content">
                         <!-- ================= Banner Section ================= -->
-                        <div class="tab-pane fade show active" id="bannerSection" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab', 'bannerSection') == 'bannerSection' ? 'show active' : '' }}"
+                            id="bannerSection" role="tabpanel">
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <h1 class="mb-3">Banner Section</h1>
                                     <hr>
                                     <form method="POST" action="{{ route('admin.blood_bank.store') }}"
                                         enctype="multipart/form-data">
+                                        <input type="hidden" name="active_tab" value="bannerSection">
                                         <input type="hidden" name="banner_id" value="{{ $edit_bannner->id ?? '' }}">
                                         <input type="hidden" name="pages_id" value="{{ $id }}">
                                         @csrf
@@ -179,7 +181,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="contentSection" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab') == 'contentSection' ? 'show active' : '' }}"
+                            id="contentSection" role="tabpanel">
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <h1 class="mb-3">content</h1>
@@ -189,6 +192,7 @@
                                             <form method="POST" action="{{ route('admin.blood_bank.content.store') }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
+                                                <input type="hidden" name="active_tab" value="contentSection">
                                                 <input type="hidden" name="content_id"
                                                     value="{{ $edit_content->id ?? '' }}">
                                                 <input type="hidden" name="pages_id" value="{{ $id }}">
@@ -317,15 +321,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade show" id="mid_content_Section" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab') == 'mid_content_Section' ? 'show active' : '' }}"
+                            id="mid_content_Section" role="tabpanel">
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <h1 class="mb-3">Blood Group</h1>
                                     <hr>
                                     <form method="POST" action="{{ route('admin.blood_bank.blood_group.store') }}"
                                         enctype="multipart/form-data">
-                                        <input type="hidden" name="pages_id" value="{{ $id }}">
                                         @csrf
+                                        <input type="hidden" name="active_tab" value="mid_content_Section">
+                                        <input type="hidden" name="pages_id" value="{{ $id }}">
                                         <div id="feature-wrappers">
                                             @php
                                                 $oldGroups = old('blood_group');

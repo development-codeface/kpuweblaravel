@@ -56,13 +56,11 @@
                 <div class="col-md-3">
                     <div class="list-group" id="aboutMenu" role="tablist">
 
-                        <a class="list-group-item list-group-item-action active" data-bs-toggle="tab" href="#bannerSection"
-                            role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab','bannerSection') == 'bannerSection' ? 'active' : '' }}" data-bs-toggle="tab" href="#bannerSection" >
                             Career 1
                         </a>
 
-                        <a class="list-group-item list-group-item-action" data-bs-toggle="tab" href="#content_Section"
-                            role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'content_Section' ? 'active' : '' }}" data-bs-toggle="tab" href="#content_Section">
                             Career 2
                         </a>
                     </div>
@@ -71,7 +69,7 @@
                     <div class="tab-content">
 
                         <!-- ================= Banner Section ================= -->
-                        <div class="tab-pane fade show active" id="bannerSection" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab','bannerSection') == 'bannerSection' ? 'show active' : '' }}" id="bannerSection" role="tabpanel">
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <h1 class="mb-3">Banner Section</h1>
@@ -81,6 +79,7 @@
                                         <div class="section-item border p-3 mb-3">
                                             <form method="POST" action="{{ route('admin.career.banner.store') }}"
                                                 enctype="multipart/form-data">
+                                                <input type="hidden" name="active_tab" value="bannerSection">
                                                 <input type="hidden" name="banner_id" value="{{ $banner_edit->id }}">
                                                 <input type="hidden" name="pages_id" value="{{ $id }}">
                                                 @csrf
@@ -192,7 +191,7 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane fade" id="content_Section" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab') == 'content_Section' ? 'show active' : '' }}" id="content_Section" role="tabpanel">
 
                             <div class="row mt-4">
                                 <div class="col-md-12">
@@ -204,7 +203,7 @@
                                             <form method="POST" action="{{ route('admin.career.content.store') }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
-
+                                                <input type="hidden" name="active_tab" value="content_Section">
                                                 <input type="hidden" name="pages_id" value="{{ $id }}">
 
                                                 <div id="feature-wrappers">

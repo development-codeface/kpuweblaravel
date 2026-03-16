@@ -55,37 +55,37 @@
                 <div class="col-md-3">
                     <div class="list-group position-sticky" id="aboutMenu" role="tablist">
 
-                        <a class="list-group-item list-group-item-action active" data-bs-toggle="tab" href="#bannerSection"
-                            role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab', 'bannerSection') == 'bannerSection' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#bannerSection" role="tab">
                             About 1
                         </a>
 
-                        <a class="list-group-item list-group-item-action" data-bs-toggle="tab" href="#blogSection"
-                            role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'blogSection' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#blogSection" role="tab">
                             About 2
                         </a>
 
-                        <a class="list-group-item list-group-item-action" data-bs-toggle="tab" href="#contentSection"
-                            role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'contentSection' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#contentSection" role="tab">
                             About 3
                         </a>
 
-                        <a class="list-group-item list-group-item-action" data-bs-toggle="tab" href="#featureSection"
-                            role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'featureSection' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#featureSection" role="tab">
                             About 4
                         </a>
 
-                        <a class="list-group-item list-group-item-action" data-bs-toggle="tab" href="#sub_content_Section"
-                            role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'sub_content_Section' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#sub_content_Section" role="tab">
                             About 5
                         </a>
 
-                        <a class="list-group-item list-group-item-action" data-bs-toggle="tab" href="#mid_content_Section"
-                            role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'mid_content_Section' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#mid_content_Section" role="tab">
                             About 6
                         </a>
-                        <a class="list-group-item list-group-item-action" data-bs-toggle="tab" href="#sections"
-                            role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'sections' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#sections" role="tab">
                             About 7
                         </a>
                         {{-- <a class="list-group-item list-group-item-action" data-bs-toggle="tab" href="#blog_sections"
@@ -98,13 +98,15 @@
                     <div class="tab-content">
 
                         <!-- ================= Banner Section ================= -->
-                        <div class="tab-pane fade show active" id="bannerSection" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab', 'bannerSection') == 'bannerSection' ? 'show active' : '' }}"
+                            id="bannerSection" role="tabpanel">
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <h1 class="mb-3">Banner Section</h1>
                                     <hr>
                                     <form method="POST" action="{{ route('admin.about.banner.store') }}"
                                         enctype="multipart/form-data">
+                                        <input type="hidden" name="active_tab" value="bannerSection">
                                         <input type="hidden" name="banner_id" value="{{ $edit_banner->id }}">
                                         <input type="hidden" name="about_id" value="{{ $id }}">
                                         @csrf
@@ -163,7 +165,8 @@
 
 
                         <!-- ================= Blogs Section ================= -->
-                        <div class="tab-pane fade" id="blogSection" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab') == 'blogSection' ? 'show active' : '' }}"
+                            id="blogSection" role="tabpanel">
 
                             <div class="row mt-4">
                                 <div class="col-md-12">
@@ -175,6 +178,7 @@
                                             <form method="POST" action="{{ route('admin.about.blog.store') }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
+                                                <input type="hidden" name="active_tab" value="blogSection">
                                                 <input type="hidden" name="blog_id" value="{{ $edit_blog->id }}">
                                                 <input type="hidden" name="about_id" value="{{ $id }}">
                                                 <div class="row">
@@ -377,7 +381,8 @@
 
                         <!-- KEEP YOUR EXISTING BLOG SECTION CODE HERE -->
                         <!-- Your #section-wrapper and inputs remain SAME -->
-                        <div class="tab-pane fade" id="contentSection" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab') == 'contentSection' ? 'show active' : '' }}"
+                            id="contentSection" role="tabpanel">
 
                             <div class="row mt-4">
                                 <div class="col-md-12">
@@ -389,6 +394,7 @@
                                             <form method="POST" action="{{ route('admin.about.content.store') }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
+                                                <input type="hidden" name="active_tab" value="contentSection">
                                                 <input type="hidden" name="content_id" value="{{ $edit_content->id }}">
                                                 <input type="hidden" name="about_id" value="{{ $id }}">
                                                 <div class="row">
@@ -480,7 +486,8 @@
                             <!-- Add future service inputs here -->
                         </div>
 
-                        <div class="tab-pane fade" id="featureSection" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab') == 'featureSection' ? 'show active' : '' }}"
+                            id="featureSection" role="tabpanel">
 
                             <div class="row mt-4">
                                 <div class="col-md-12">
@@ -492,6 +499,7 @@
                                             <form method="POST" action="{{ route('admin.about.feature.store') }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
+                                                <input type="hidden" name="active_tab" value="featureSection">
                                                 <input type="hidden" name="feature_id"
                                                     value="{{ $about_feature->id ?? '' }}">
                                                 <input type="hidden" name="about_id" value="{{ $id }}">
@@ -639,18 +647,18 @@
                             <!-- Add future service inputs here -->
                         </div>
 
-                        <div class="tab-pane fade" id="sub_content_Section" role="tabpanel">
-
+                        <div class="tab-pane fade {{ old('active_tab') == 'sub_content_Section' ? 'show active' : '' }}"
+                            id="sub_content_Section" role="tabpanel">
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <h1 class="mb-3">Sub Content</h1>
                                     <hr>
                                     <div id="section-wrapper">
-
                                         <div class="section-item border p-3 mb-3">
                                             <form method="POST" action="{{ route('admin.about.sub_content.store') }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
+                                                <input type="hidden" name="active_tab" value="sub_content_Section">
                                                 <input type="hidden" name="sub_content_id"
                                                     value="{{ $sub_content->id }}">
                                                 <input type="hidden" name="about_id" value="{{ $id }}">
@@ -730,7 +738,8 @@
                             <!-- Add future service inputs here -->
                         </div>
 
-                        <div class="tab-pane fade" id="mid_content_Section" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab') == 'mid_content_Section' ? 'show active' : '' }}"
+                            id="mid_content_Section" role="tabpanel">
 
                             <div class="row mt-4">
                                 <div class="col-md-12">
@@ -889,7 +898,8 @@
                             <!-- Add future service inputs here -->
                         </div>
 
-                        <div class="tab-pane fade" id="sections" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab') == 'sections' ? 'show active' : '' }}"
+                            id="sections" role="tabpanel">
 
                             <div class="row mt-4">
                                 <div class="col-md-12">
@@ -901,6 +911,7 @@
                                             <form method="POST" action="{{ route('admin.about.section.store') }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
+                                                <input type="hidden" name="active_tab" value="sections">
                                                 <input type="hidden" name="section_id"
                                                     value="{{ $section->id ?? '' }}">
                                                 <input type="hidden" name="about_id" value="{{ $id }}">

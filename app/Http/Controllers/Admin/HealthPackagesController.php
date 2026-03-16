@@ -81,7 +81,7 @@ class HealthPackagesController extends Controller
     public function ContentStore(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
+            'content_title' => 'required|string|max:255',
             'sub_title' => 'required|string|max:255',
         ]);
 
@@ -89,14 +89,14 @@ class HealthPackagesController extends Controller
             $content = HealthPackagecontent::find($request->content_id);
 
             $content->update([
-                'title'      => $request->title,
+                'title'      => $request->content_title,
                 'sub_title' => $request->sub_title,
             ]);
         } else {
 
             HealthPackagecontent::create([
                 'pages_id'   => $request->pages_id,
-                'title'      => $request->title,
+                'title'      => $request->content_title,
                 'sub_title' => $request->sub_title,
             ]);
         }
@@ -110,7 +110,7 @@ class HealthPackagesController extends Controller
         $request->validate([
             'category_id.*'        => 'required',
             'blog_title.*'         => 'required|string|max:255',
-            'sub_title.*'     => 'required|string|max:255',
+            'sub_titles.*'     => 'required|string|max:255',
             'name.*'          => 'required|string|max:255',
             'designation.*'   => 'required|string|max:255',
             'image.*'         => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',

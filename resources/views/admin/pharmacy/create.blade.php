@@ -55,18 +55,18 @@
                 <div class="col-md-3">
                     <div class="list-group" id="aboutMenu" role="tablist">
 
-                        <a class="list-group-item list-group-item-action active" data-bs-toggle="tab" href="#bannerSection"
-                            role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab', 'bannerSection') == 'bannerSection' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#bannerSection" role="tab">
                             Pharmacy 1
                         </a>
 
-                        <a class="list-group-item list-group-item-action" data-bs-toggle="tab" href="#featureSection"
-                            role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'featureSection' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#featureSection" role="tab">
                             Pharmacy 2
                         </a>
 
-                        <a class="list-group-item list-group-item-action" data-bs-toggle="tab" href="#mid_content_Section"
-                            role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'mid_content_Section' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#mid_content_Section" role="tab">
                             Pharmacy 3
                         </a>
                     </div>
@@ -75,13 +75,15 @@
                     <div class="tab-content">
 
                         <!-- ================= Banner Section ================= -->
-                        <div class="tab-pane fade show active" id="bannerSection" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab', 'bannerSection') == 'bannerSection' ? 'show active' : '' }}"
+                            id="bannerSection" role="tabpanel">
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <h1 class="mb-3">Banner Section</h1>
                                     <hr>
                                     <form method="POST" action="{{ route('admin.pharmacy.banner.store') }}"
                                         enctype="multipart/form-data">
+                                        <input type="hidden" name="active_tab" value="bannerSection">
                                         <input type="hidden" name="banner_id" value="{{ $edit_banner->id }}">
                                         <input type="hidden" name="pages_id" value="{{ $id }}">
                                         @csrf
@@ -166,8 +168,8 @@
                             <!-- KEEP YOUR EXISTING BANNER INPUTS HERE -->
                             <!-- DO NOT CHANGE ANYTHING INSIDE -->
                         </div>
-                        <div class="tab-pane fade" id="featureSection" role="tabpanel">
-
+                        <div class="tab-pane fade {{ old('active_tab') == 'featureSection' ? 'show active' : '' }}"
+                            id="featureSection" role="tabpanel">
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <h1 class="mb-3">content</h1>
@@ -178,6 +180,7 @@
                                             <form method="POST" action="{{ route('admin.pharmacy.content.store') }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
+                                                <input type="hidden" name="active_tab" value="featureSection">
                                                 <input type="hidden" name="content_id" value="{{ $edit_content->id }}">
                                                 <input type="hidden" name="pages_id" value="{{ $id }}">
                                                 <div class="row">
@@ -359,8 +362,8 @@
 
                             <!-- Add future service inputs here -->
                         </div>
-                        <div class="tab-pane fade" id="mid_content_Section" role="tabpanel">
-
+                        <div class="tab-pane fade {{ old('active_tab') == 'mid_content_Section' ? 'show active' : '' }}"
+                            id="mid_content_Section" role="tabpanel">
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <h1 class="mb-3">Mid Content</h1>
@@ -371,6 +374,7 @@
                                             <form method="POST" action="{{ route('admin.pharmacy.plans.store') }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
+                                                <input type="hidden" name="active_tab" value="mid_content_Section">
                                                 <input type="hidden" name="pages_id" value="{{ $id }}">
                                                 <div id="content-wrappers">
 
