@@ -51,8 +51,8 @@ START: Theme Default CSS
   /**
      @Font-Family Declaration
    */
-  --tj-ff-body: 'Gantari', sans-serif;
-  --tj-ff-heading: 'Gantari';
+  --tj-ff-body: 'google-flex';
+  --tj-ff-heading: 'google-flex';
   --tj-ff-fontawesome: "Font Awesome 6 Pro";
   /**
      @Font-weight Declaration
@@ -121,7 +121,7 @@ START: Theme Default CSS
 }
 
 body {
-  font-family: var(--tj-ff-body);
+  font-family: 'google-flex';
   font-size: var(--tj-fs-body);
   font-weight: normal;
   color: var(--tj-color-text-body);
@@ -139,7 +139,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--tj-ff-heading);
+  font-family: 'google-flex';
   color: var(--tj-color-heading-primary);
   margin-top: 0px;
   font-weight: var(--tj-fw-medium);
@@ -719,7 +719,7 @@ img {
           justify-content: center;
   gap: 10px;
   position: relative;
-  background-color: #78d8ee;
+  background-color: #1eb5ff;
   font-size: 16px;
   font-weight: var(--tj-fw-sbold);
   padding: 14px 30px;
@@ -840,6 +840,7 @@ img {
   display: -ms-flexbox;
   display: flex;
   line-height: 1;
+      color: #016e8c;
   text-shadow: 0 30px 0;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
@@ -849,6 +850,8 @@ img {
   -webkit-transition: 0.4s ease-in-out;
   transition: 0.4s ease-in-out;
 }
+
+
 .text-btn .btn-icon {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -1081,7 +1084,7 @@ START: Theme Header CSS
 
 @media (min-width:1800px) {
   .header-top {
-    
+
     width: 80%;
   }
 }
@@ -1092,7 +1095,7 @@ START: Theme Header CSS
   border-end-start-radius: 12px;
   border-end-end-radius: 12px;
   padding: 0 12px;
- 
+
 }
 .header-top-content {
   display: -webkit-box;
@@ -1307,9 +1310,9 @@ nav#mobile-menu {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-column-gap: 30px;
-     -moz-column-gap: 30px;
-          column-gap: 30px;
+  -webkit-column-gap: 18px;
+     -moz-column-gap: 18px;
+          column-gap: 18px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
@@ -1324,7 +1327,7 @@ nav#mobile-menu {
   font-size: 16px;
   color: var(--tj-color-heading-primary);
   display: block;
-  
+
   font-weight: var(--tj-fw-medium);
   line-height: 1;
 }
@@ -7534,7 +7537,7 @@ START: Heading CSS
 ----------------------------------------*/
 .sec-heading {
   width: 100%;
-  margin-bottom: 52px;
+  margin-bottom: 12px;
 }
 .sec-heading-centered {
   max-width: 550px;
@@ -7542,9 +7545,17 @@ START: Heading CSS
 }
 .sec-heading .sec-title {
   margin-bottom: 30px;
+  letter-spacing: .2px;
       color: #124e68;
     font-weight: 500;
 }
+/* section.tj-blog-section.section-gap .sec-heading .sec-title {
+  margin-bottom: 30px;
+      color: #124e68;
+    text-align: center;
+    font-weight: 500;
+} */
+
 .sec-heading  p.desc {
       margin-bottom: 40px;
       color: #124e68;
@@ -8653,10 +8664,12 @@ START: Choose CSS
 
 .col-lg-6.service-side-12 {
     padding: 30px;
+        border-radius: 16px;
     background-color: #ebf8ff;
 }
 
 .testimonial-item {
+        border-radius: 16px;
     background: #d7e2fd;
     padding: 30px;
 }
@@ -8664,7 +8677,8 @@ START: Choose CSS
 .choose-box {
   height: 100%;
   padding: 50px 28px 45px;
-  background-color: #d0e2f6;
+  background: #0da2d9;
+  background: linear-gradient(0deg, rgb(188 215 242) 0%, rgb(227 240 247) 47%, rgb(240 244 255) 100%);
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
   /* border-radius: 10px; */
@@ -8681,6 +8695,7 @@ START: Choose CSS
   text-align: center;
 }
 .choose-box.h6-choose-box.right-swipe {
+    border-radius: 15px;
   background-color: transparent;
 }
 .choose-box .choose-content {
@@ -8691,8 +8706,7 @@ START: Choose CSS
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-               
-    justify-content: start;
+    justify-content: end;
   height: 100%;
 }
 .choose-box .choose-icon {
@@ -8724,9 +8738,10 @@ START: Choose CSS
   }
 }
 .choose-box .title {
+    color: #026685;
   font-weight: var(--tj-fw-sbold);
-  margin-bottom: 20px;
-      
+  margin-bottom: 10px;
+
 }
 
 .choose-box.h6-choose-box.right-swipe .title{
@@ -8739,6 +8754,8 @@ START: Choose CSS
   }
 }
 .choose-box .desc {
+   font-weight: 500;
+    color: #026685;
   margin-bottom: 0;
 }
 .choose-box .text-btn {
@@ -8749,6 +8766,7 @@ START: Choose CSS
           justify-content: flex-start;
 }
 .choose-box:hover {
+background: linear-gradient(0deg, rgb(47 113 178) 0%, rgb(115 206 255) 47%, rgb(147 185 253) 100%);
   background-color: #0093bd;
 }
 .choose-box:hover .choose-icon {
@@ -9639,6 +9657,7 @@ START: About CSS
   background-color: #4493b0;
   border-radius: 10px;
   padding: 28px 30px;
+  position:relative;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: start;
@@ -9728,7 +9747,7 @@ START: About CSS
 @media (min-width: 991px) {
  .col-xl-6.col-lg-6.order-lg-1.order-2.who-about-imge {
     width: 40%;
-   
+
 }
 .col-xl-6.col-lg-6.order-lg-2.order-1.about-content {
     width: 60%;
@@ -9793,10 +9812,15 @@ section.tj-service-section.service-3.section-gap.stragetic-pillers .service-item
 }
 section.tj-service-section.service-3.section-gap.stragetic-pillers .service-item.style-3 .service-content-wrap {
   flex-wrap: nowrap;
+  padding: 25px 50px;
+  border-radius: 17px;
+  width: 48%;
+  background-color: white;
   justify-content: flex-start;
 }
 section.tj-service-section.service-3.section-gap.stragetic-pillers .service-item.style-3 .service-content-wrap .service-title {
   width: max-content;
+      align-items: self-start;
   margin-right: 30px;
 }
 
@@ -10174,9 +10198,9 @@ section.tj-service-section.service-3.section-gap.stragetic-pillers .service-item
   transition: all 0.3s ease-in-out;
 }
 .service-item.style-3:hover {
-  background-color: var(--tj-color-theme-primary);
+  background-color: #ECF2FF;
 }
-.service-item.style-3:hover .title {
+/* .service-item.style-3:hover .title {
   color: var(--tj-color-common-white);
 }
 .service-item.style-3:hover .service-icon {
@@ -10188,7 +10212,7 @@ section.tj-service-section.service-3.section-gap.stragetic-pillers .service-item
 }
 .service-item.style-3:hover .desc {
   color: var(--tj-color-grey-1);
-}
+} */
 @media only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px) {
   .service-item.style-3 {
     padding: 40px 40px 40px 30px;
@@ -10883,6 +10907,11 @@ START: Project CSS
 .project-item .project-content {
   position: relative;
   z-index: 99;
+      height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
   padding: 25px 20px 25px 30px;
 }
 .project-item .project-text {
@@ -10972,6 +11001,8 @@ START: Project CSS
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   gap: 10px;
+      border: 1px solid white;
+    border-radius: 50px;
 }
 .categories a {
     background-color: rgb(0 147 190);
@@ -11151,8 +11182,9 @@ START: Project CSS
   border-color: rgba(255, 255, 255, 0.1);
 }
 .project-slider-2 .project-item .categories a:hover {
-  background-color: var(--tj-color-theme-primary);
-  color: var(--tj-color-common-white);
+  background-color: white;
+  color: var(--tj-color-theme-primary);
+      border-radius: 50px;
 }
 .project-slider-2 .project-item .project-btn i {
   color: var(--tj-color-common-white);
@@ -12188,9 +12220,9 @@ START: Faq CSS
 /**----------------------------------------
 START: Blog CSS
 ----------------------------------------*/
-.tj-blog-section .sec-heading {
+/* .tj-blog-section .sec-heading {
   max-width: 550px;
-}
+} */
 .tj-blog-section .col-12 {
   display: flex;
   align-items: center;
@@ -12297,6 +12329,7 @@ START: Blog CSS
   display: -webkit-box;
   display: -ms-flexbox;
   height: 660px;
+      border-radius: 16px;
   display: flex;
       flex-direction: column;
   -ms-flex-wrap: wrap;
@@ -12310,7 +12343,7 @@ START: Blog CSS
 }
 .blog-item.style-2 .blog-thumb {
   width: 100%;
-  height: 50%;
+  height: 350px;
   border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0px !important;
   border-radius: 10px;
@@ -12325,7 +12358,7 @@ section.tj-blog-section.section-gap {
 }
 .blog-item.style-2 .blog-content {
   width: 90%;
-  height: 50%;
+  height: max-content;
   padding: 35px 30px;
   display: -webkit-box;
   background-color: transparent;
@@ -12348,10 +12381,10 @@ section.tj-blog-section.section-gap  .blog-content .blog-meta {
           top: -21px;
     z-index: 9;
     left: 0;
-}    
+}
 section.tj-blog-section.section-gap  .blog-content  {
    position: relative;
-}    
+}
 @media only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px) {
   .blog-item.style-2 .blog-content .title {
     font-size: 22px;
@@ -17332,9 +17365,9 @@ START: Choose CSS
 .tj-choose-section {
   overflow: hidden;
 }
-.tj-choose-section .sec-heading {
+/* .tj-choose-section .sec-heading {
   max-width: 100%;
-}
+} */
 .tj-choose-section .countup-item.style-2 {
   background-repeat: no-repeat;
   background-size: cover;
@@ -17582,11 +17615,11 @@ START: Services CSS
 }
 .service-item.style-5 .title {
   max-width: 360px;
-  color: var(--tj-color-common-white);
-  font-weight: var(--tj-fw-medium);
+  color: #0192bc;
+    font-weight: 600;
 }
 .service-item.style-5 .desc {
-  color: var(--tj-color-text-body-2);
+ color: #124e68;
 }
 .service-item.style-5 .tj-primary-btn {
   margin-top: 30px;
@@ -19299,8 +19332,9 @@ START: Hero CSS
 }
 .h5-banner-content .banner-title {
   max-width: 715px;
-  color: #015b75;
-  font-size: 85px;
+      font-weight: 600;
+    color: #015b75;
+    font-size: 82px;
   line-height: 1;
   margin-bottom: 30px;
 }
@@ -19713,6 +19747,10 @@ START: Strategy CSS
 }
 .h5-strategy-item {
   padding: 30px;
+      justify-content: space-between;
+      display: flex;
+    align-items: end;
+    flex-direction: column;
   background-color: var(--tj-color-common-white);
   /* border-radius: 10px; */
   position: relative;
@@ -22979,7 +23017,7 @@ START: Home 7 About CSS
   width: 100%;
 }
 .h7-about-counter-wrapper .style-2 {
-  border-radius: 10px;
+  border-radius: 17px;
   overflow: hidden;
   min-height: 400px;
   -webkit-box-pack: justify;
@@ -23000,8 +23038,10 @@ START: Home 7 About CSS
   color: var(--tj-color-text-body-3);
 }
 .h7-about-counter-wrapper .style-2.countup-item .count-text {
-  font-size: 18px;
-  font-weight: var(--tj-fw-regular);
+      color: white;
+    font-size: 22px;
+    z-index: 99;
+    font-weight: 600;
   letter-spacing: 0;
   line-height: 1.44;
 }
@@ -26306,7 +26346,7 @@ START: Service CSS
 }
 .h9-service-wrapper .service-item.style-5 {
   padding: 30px 30px 35px;
-  background-color: #124e68;
+  background-color: #ffffff;
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .h9-service-wrapper .service-item.style-5 {
@@ -26339,7 +26379,8 @@ START: Service CSS
   max-width: 100%;
 }
 .h9-service-wrapper .service-item.style-5 .service-content-area .title {
-  max-width: 300px;
+  max-width: 350px;
+  font-size:31px;
 }
 .h9-service-wrapper .service-item.style-5 .h9-service-nav {
   font-size: 59px;
@@ -26431,8 +26472,8 @@ START: Service CSS
   width: 100%;
   height: 48px;
   pointer-events: none;
-  background: -webkit-gradient(linear, left top, left bottom, from(var(--tj-color-theme-dark)), to(transparent));
-  background: linear-gradient(180deg, var(--tj-color-theme-dark), transparent);
+  background: -webkit-gradient(linear, left top, left bottom, from(#0192bc), to(transparent));
+  background: linear-gradient(180deg, #0192bc, transparent);
 }
 .tj-scroll-progress-item {
   display: -webkit-box;
@@ -28968,7 +29009,7 @@ section.tj-team-section.section-separator .service-item.style-6:hover {
 
 .booking-container {
     position: absolute;
-    /* z-index: 9999999; */
+    z-index: 9999999;
     background-color: white;
     bottom: 0;
     left: 28%;
@@ -29019,7 +29060,7 @@ color: #015b75;
    border-top-right-radius: 30px;
 }
 .book-content:first-child{
-    
+
    border-top-left-radius: 30px;
 }
 
@@ -29038,8 +29079,9 @@ color: #015b75;
     position: absolute;
     right: 30px;
     top: 30px;
+    background-color: #b7d5f1;
     justify-content: center;
-    border: 1px solid #124e68;
+    border: 2px solid #1b7f95;
 }
 
 .booking-container.banner-menu {
@@ -29068,6 +29110,7 @@ section#choose.core-about {
 .about-img-area.h10-about-banner.wow.bounceInLeft {
     height: 600px;
     border-radius: 15px;
+    background:linear-gradient(0deg, rgb(10 141 180) 0%, rgb(112 168 199) 47%, rgb(240 244 255) 100%);
     background-color: #0093be;
 }
 .about-img-area.h10-about-banner.wow.bounceInLeft h2.sec-title{
@@ -29780,7 +29823,7 @@ section.tj-page-header.section-gap-x.spacialiy-banner.doctors-bnn {
     padding-top: 100px;
     padding-bottom: 100px;
 }
-        
+
         .medical-tour.container {
             max-width: 1200px;
             margin: 0 auto;
@@ -29792,4 +29835,107 @@ section.tj-page-header.section-gap-x.spacialiy-banner.doctors-bnn {
 
         .tj-sidebar-widget.widget-feature-item.wow.fadeInUp.ambulnce-sticky {
     padding: 0;
+}
+
+
+.countup-item.style-2.wow.fadeInUp img{
+   width: 100%;
+    top: 0px;
+    object-fit: cover;
+    left: 0px;
+    position: absolute;
+    height: 100%;
+}
+button.book-content:hover{
+    /* color: white; */
+    background-color: #24a2c8;
+}
+button.book-content:hover h4{
+    color: white;
+    /* background-color: #24a2c8; */
+}
+button.book-content:hover i{
+    color: white;
+    /* background-color: #24a2c8; */
+}
+.countup-item.img-sec.style-2.wow.fadeInUp:before{
+    position:absolute;
+    content:'';
+    bottom:0px;
+    left:0px;
+    height:100%;
+    width:100%;
+    background: linear-gradient(359deg, rgb(52 188 254) 0%, rgb(116 225 241 / 15%) 61%, rgb(240 244 255 / 0%) 100%);
+    z-index: 1;
+}
+.countup-item.img-sec.style-2.wow.fadeInUp {
+    display: flex;
+    justify-content: end;
+    /* align-items: end; */
+}
+.testimonial-item p {
+    font-size: 15px;
+}
+.col-lg-6.service-side-12 .sec-title     {
+    font-size: 39px;
+}
+.about-us.h9-choose-box {
+    height: 100%;
+}
+.choose-content {
+    height: 100%;
+}
+.choose-content .descAbout{
+        font-size: 25px;
+        margin-top: 20px;
+    margin-bottom: 27px;
+    font-weight: 600;
+}
+.choose-content .titleBtn{
+    width: max-content;
+    font-size: 17px;
+    padding: 7px 20px;
+    border: 1px solid black;
+    font-weight: 500;
+    border-radius: 50px;
+}
+.h5-strategy-item-3 p{
+    color: white;
+    width:65%;
+}
+.locations a {
+        display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.locations .text-btn .btn-text{
+       width: max-content;
+    font-size: 17px;
+    padding: 7px 20px;
+  background-color: white;
+    font-weight: 500;
+    border-radius: 50px;
+}
+.locations .text-btn .btn-text span{
+       color:black;
+}
+.locations {
+    width: 100%;
+}
+.sec-heading.about-feature.style-2.style-6.text-center{
+    max-width: 100%;
+}
+
+.container.about-us-choose {
+    padding: 70px 50px;
+    border-radius: 13px;
+    background-color: white;
+}
+.service-item.style-3.about-us.wow.fadeInUp{
+    width: 100% !important;
+        flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    background-color:#ECF2FF;
 }

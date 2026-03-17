@@ -30,6 +30,17 @@
             object-fit: cover;
             border-radius: 6px;
         }
+
+
+        #aboutMenu {
+            position: sticky;
+            top: 20px;
+            /* distance from top */
+        }
+
+        .col-md-3 {
+            align-self: flex-start;
+        }
     </style>
     <div class="card">
         <div class="card-header">
@@ -45,12 +56,12 @@
                 <div class="col-md-3">
                     <div class="list-group" id="aboutMenu" role="tablist">
 
-                        <a class="list-group-item list-group-item-action active" data-bs-toggle="tab" href="#bannerSection"
+                        <a class="list-group-item list-group-item-action {{ old('active_tab','bannerSection') == 'bannerSection' ? 'active' : '' }}" data-bs-toggle="tab" href="#bannerSection"
                             role="tab">
                             Ambulance 1
                         </a>
 
-                        <a class="list-group-item list-group-item-action" data-bs-toggle="tab" href="#contentSection"
+                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'contentSection' ? 'active' : '' }}" data-bs-toggle="tab" href="#contentSection"
                             role="tab">
                             Ambulance 2
                         </a>
@@ -64,13 +75,15 @@
                 <div class="col-md-9">
                     <div class="tab-content">
                         <!-- ================= Banner Section ================= -->
-                        <div class="tab-pane fade show active" id="bannerSection" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab','bannerSection') == 'bannerSection' ? 'show active' : '' }}" id="bannerSection" role="tabpanel">
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <h1 class="mb-3">Banner Section</h1>
                                     <hr>
                                     <form method="POST" action="{{ route('admin.ambulance.store') }}"
                                         enctype="multipart/form-data">
+                                          <input type="hidden" name="active_tab" value="bannerSection">
+                                        <input type="hidden" name="banner_id" value="{{ $banner->id ?? '' }}">
                                         <input type="hidden" name="pages_id" value="{{ $id }}">
                                         @csrf
 
@@ -83,7 +96,7 @@
                                                     <input
                                                         class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"
                                                         type="text" name="title" placeholder="Enter title"
-                                                        id="title" value="{{ old('title', '') }}">
+                                                        id="title" value="{{ old('title', $banner->title ?? '') }}">
                                                     @if ($errors->has('title'))
                                                         <div class="invalid-feedback">
                                                             {{ $errors->first('title') }}
@@ -100,7 +113,8 @@
                                                     <input
                                                         class="form-control {{ $errors->has('button_text') ? 'is-invalid' : '' }}"
                                                         type="text" name="button_text" id="button_text"
-                                                        value="{{ old('button_text') }}" placeholder="Enter button text">
+                                                        value="{{ old('button_text', $banner->button_text ?? '') }}"
+                                                        placeholder="Enter button text">
                                                     @if ($errors->has('button_text'))
                                                         <div class="invalid-feedback">
                                                             {{ $errors->first('button_text') }}
@@ -120,7 +134,7 @@
                                                     </label>
 
                                                     <textarea class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" name="description"
-                                                        id="description" rows="6">{{ old('description') }}</textarea>
+                                                        id="description" rows="2">{{ old('description', $banner->description ?? '') }}</textarea>
 
                                                     @if ($errors->has('description'))
                                                         <div class="invalid-feedback">
@@ -138,9 +152,14 @@
                                                     <label class="required">Image</label>
                                                     <div class="image-box"
                                                         onclick="document.getElementById('image').click();">
-                                                        <div class="triangle-placeholder" id="trianglePlaceholder">
-                                                        </div>
-                                                        <img id="imagePreview" style="display:none;">
+                                                        @if (isset($banner) && $banner->image)
+                                                            <img src="{{ asset($banner->image) }}" id="imagePreview"
+                                                                style="width:100%; display:block;">
+                                                        @else
+                                                            <div class="triangle-placeholder" id="trianglePlaceholder">
+                                                            </div>
+                                                            <img id="imagePreview" style="display:none;">
+                                                        @endif
                                                     </div>
                                                     <input type="file" name="image" id="image" accept="image/*"
                                                         class="d-none {{ $errors->has('image') ? 'is-invalid' : '' }}"
@@ -163,7 +182,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="contentSection" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab') == 'contentSection' ? 'show active' : '' }}" id="contentSection" role="tabpanel">
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <h1 class="mb-3">content</h1>
@@ -173,6 +192,9 @@
                                             <form method="POST" action="{{ route('admin.ambulance.content.store') }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
+                                                <input type="hidden" name="active_tab" value="contentSection">
+                                                <input type="hidden" name="content_id"
+                                                    value="{{ $contents->id ?? '' }}">
                                                 <input type="hidden" name="pages_id" value="{{ $id }}">
                                                 <div class="row">
                                                     <!-- LEFT -->
@@ -183,7 +205,8 @@
                                                             <input
                                                                 class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"
                                                                 type="text" name="title" placeholder="Enter title"
-                                                                id="title" value="{{ old('title') }}">
+                                                                id="title"
+                                                                value="{{ old('title', $contents->title ?? '') }}">
                                                             @if ($errors->has('title'))
                                                                 <div class="invalid-feedback">
                                                                     {{ $errors->first('title') }}
@@ -202,7 +225,7 @@
                                                                 </label>
 
                                                                 <textarea class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" name="description"
-                                                                    id="editor" rows="6">{{ old('description') }}</textarea>
+                                                                    id="editor" rows="6">{{ old('description', $contents->description ?? '') }}</textarea>
 
                                                                 @if ($errors->has('description'))
                                                                     <div class="invalid-feedback">
@@ -221,7 +244,7 @@
                                                             <input
                                                                 class="form-control {{ $errors->has('sub_title') ? 'is-invalid' : '' }}"
                                                                 type="text" name="sub_title" id="sub_title"
-                                                                value="{{ old('sub_title') }}"
+                                                                value="{{ old('sub_title', $contents->sub_title ?? '') }}"
                                                                 placeholder="Enter Sub title">
                                                             @if ($errors->has('sub_title'))
                                                                 <div class="invalid-feedback">
@@ -241,7 +264,7 @@
                                                                 </label>
 
                                                                 <textarea class="form-control {{ $errors->has('sub_description') ? 'is-invalid' : '' }}" name="sub_description"
-                                                                    id="" rows="6">{{ old('sub_description') }}</textarea>
+                                                                    id="" rows="6">{{ old('sub_description', $contents->sub_description ?? '') }}</textarea>
 
                                                                 @if ($errors->has('sub_description'))
                                                                     <div class="invalid-feedback">
@@ -259,10 +282,17 @@
                                                             <label class="required">Image</label>
                                                             <div class="image-box"
                                                                 onclick="document.getElementById('content_image').click();">
-                                                                <div class="triangle-placeholder"
-                                                                    id="content_trianglePlaceholder">
-                                                                </div>
-                                                                <img id="content_imagePreview" style="display:none;">
+
+                                                                @if (isset($contents) && $contents->image)
+                                                                    <img src="{{ asset($contents->image) }}"
+                                                                        id="imagePreview"
+                                                                        style="width:100%; display:block;">
+                                                                @else
+                                                                    <div class="triangle-placeholder"
+                                                                        id="content_trianglePlaceholder">
+                                                                    </div>
+                                                                    <img id="content_imagePreview" style="display:none;">
+                                                                @endif
                                                             </div>
                                                             <input type="file" name="content_image" id="content_image"
                                                                 accept="image/*"
@@ -286,7 +316,8 @@
                                                             <input
                                                                 class="form-control {{ $errors->has('number') ? 'is-invalid' : '' }}"
                                                                 type="text" name="number" placeholder="Enter number"
-                                                                id="number" value="{{ old('number') }}">
+                                                                id="number"
+                                                                value="{{ old('number', $contents->number) }}">
                                                             @if ($errors->has('number'))
                                                                 <div class="invalid-feedback">
                                                                     {{ $errors->first('number') }}
@@ -299,20 +330,47 @@
                                                 </div>
                                                 <div id="feature-wrapper">
                                                     @php
-                                                        $heading = is_array(old('heading')) ? old('heading') : [''];
-                                                        $descs = is_array(old('content_descriptions'))
-                                                            ? old('content_descriptions')
-                                                            : [''];
+                                                        if (old('heading')) {
+                                                            $rows = collect(old('heading'))->map(function ($value, $i) {
+                                                                return [
+                                                                    'id' => old('sub_content_id')[$i] ?? '',
+                                                                    'heading' => $value,
+                                                                    'description' =>
+                                                                        old('content_descriptions')[$i] ?? '',
+                                                                ];
+                                                            });
+                                                        } elseif (
+                                                            isset($contents) &&
+                                                            $contents &&
+                                                            $contents->sub_content->count()
+                                                        ) {
+                                                            $rows = $contents->sub_content->map(function ($row) {
+                                                                return [
+                                                                    'id' => $row->id,
+                                                                    'heading' => $row->title,
+                                                                    'description' => $row->description,
+                                                                ];
+                                                            });
+                                                        } else {
+                                                            $rows = collect([
+                                                                [
+                                                                    'id' => '',
+                                                                    'heading' => '',
+                                                                    'description' => '',
+                                                                ],
+                                                            ]);
+                                                        }
                                                     @endphp
-                                                    @foreach ($heading as $index => $headings)
+                                                    @foreach ($rows as $index => $row)
                                                         <div class="feature-row border p-3 mb-3">
-
+                                                            <input type="hidden" name="sub_content_id[]"
+                                                                value="{{ $row['id'] ?? '' }}">
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
                                                                         <label class="required">Heading</label>
                                                                         <input type="text" name="heading[]"
-                                                                            value="{{ $headings ?? '' }}"
+                                                                            value="{{ $row['heading'] }}"
                                                                             class="form-control {{ $errors->has('heading.' . $index) ? 'is-invalid' : '' }}">
 
                                                                         @if ($errors->has('heading.' . $index))
@@ -329,10 +387,10 @@
                                                                     <div class="form-group">
                                                                         <label class="required"
                                                                             for="content_descriptions">
-                                                                            {{ trans('cruds.ambulance.fields.content_descriptions') }}
+                                                                            Content Descriptions
                                                                         </label>
                                                                         <textarea class="form-control {{ $errors->has('content_descriptions.' . $index) ? 'is-invalid' : '' }}"
-                                                                            name="content_descriptions[]" rows="6">{{ $descs[$index] ?? '' }}</textarea>
+                                                                            name="content_descriptions[]" rows="4">{{ $row['description'] }}</textarea>
 
                                                                         @if ($errors->has('content_descriptions.' . $index))
                                                                             <div class="invalid-feedback">

@@ -23,8 +23,9 @@ class InsuranceController extends Controller
      */
     public function create($id)
     {
-        //
-        return view('admin.insurance.create', compact('id'));
+        $edit_banner = InsuranceBanner::where('pages_id', $id)->first();
+        $edit_content = InsuranceContent::where('pages_id', $id)->with('subContents')->first();
+        return view('admin.insurance.create', compact('id', 'edit_banner', 'edit_content'));
     }
 
     /**
@@ -36,10 +37,17 @@ class InsuranceController extends Controller
             'title' => 'required|string|max:255',
             'button_text' => 'required|string|max:255',
             'description' => 'required',
-            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'image'              => $request->banner_id
+                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048'
+                : 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
-        $imagePath = null;
+        if ($request->banner_id) {
+            $banner = InsuranceBanner::findOrFail($request->banner_id);
+            $banner->image = $banner->image;
+        } else {
+            $banner = new InsuranceBanner();
+        }
 
         if ($request->hasFile('image')) {
 
@@ -54,18 +62,16 @@ class InsuranceController extends Controller
 
             $image->move($destinationPath, $imageName);
 
-            $imagePath = 'images/insurance/banner/' . $imageName;
+            $banner->image = 'images/insurance/banner/' . $imageName;
         }
 
-        InsuranceBanner::create([
-            'pages_id'   => $request->pages_id,
-            'title'      => $request->title,
-            'button_text' => $request->button_text,
-            'description' => $request->description,
-            'image'      => $imagePath,
-        ]);
+        $banner->pages_id    = $request->pages_id;
+        $banner->title       = $request->title;
+        $banner->description       = $request->description;
+        $banner->button_text = $request->button_text;
+        $banner->save();
 
-        return redirect()->route('admin.pages.index')->with('success', 'Career banner created successfully.');
+        return redirect()->route('admin.pages.index')->with('success', 'Insurance Banner created successfully.');
     }
 
     public function ContentStore(Request $request)
@@ -77,161 +83,53 @@ class InsuranceController extends Controller
             'content_descriptions.*' => 'required|string',
         ]);
 
+        if ($request->content_id) {
 
+            $content = InsuranceContent::findOrFail($request->content_id);
 
-        // 1️⃣ Insert Parent (Single Form Data)
-        $content = InsuranceContent::create([
-            'pages_id' => $request->pages_id,
-            'title' => $request->title,
-            'sub_title' => $request->sub_title,
-        ]);
+            $content->update([
+                'title'     => $request->title,
+                'sub_title' => $request->sub_title,
+            ]);
+        } else {
 
-        // 2️⃣ Insert Multiple Sub Rows
-        if ($request->icon) {
-
-            foreach ($request->icon as $index => $icon) {
-
-                InsuranceSubContent::create([
-                    'insurance_contents_id' => $content->id,
-                    'icon' => $icon,
-                    'description' => $request->content_descriptions[$index] ?? null,
-                ]);
-            }
+            $content = InsuranceContent::create([
+                'pages_id'  => $request->pages_id,
+                'title'     => $request->title,
+                'sub_title' => $request->sub_title,
+            ]);
         }
-        return redirect()->route('admin.pages.index')->with('success', 'Career content created successfully.');
-    }
 
-    public function ContentUpdate(Request $request, $id)
-    {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'sub_title' => 'required|string|max:255',
-            'icon.*' => 'required|string|max:255',
-            'content_descriptions.*' => 'required|string',
-        ]);
+        $savedIds = [];
 
-        $content = InsuranceContent::findOrFail($request->content_id);
-
-        // 1️⃣ Update Parent
-        $content->update([
-            'title' => $request->title,
-            'sub_title' => $request->sub_title,
-        ]);
-
-        $existingIds = $content->subContents->pluck('id')->toArray();
-        $submittedIds = $request->sub_content_id ?? [];
-
-        $keptIds = [];
-
-        // 2️⃣ Update or Insert Sub Rows
         foreach ($request->icon as $index => $icon) {
 
-            $subId = $submittedIds[$index] ?? null;
+            $subId = $request->sub_content_id[$index] ?? null;
 
             if ($subId) {
-                // Update existing row
+
                 $sub = InsuranceSubContent::find($subId);
-
-                if ($sub) {
-                    $sub->update([
-                        'icon' => $icon,
-                        'description' => $request->content_descriptions[$index] ?? null,
-                    ]);
-                    $keptIds[] = $subId;
-                }
             } else {
-                // Insert new row
-                $new = InsuranceSubContent::create([
-                    'insurance_contents_id' => $content->id,
-                    'icon' => $icon,
-                    'description' => $request->content_descriptions[$index] ?? null,
-                ]);
 
-                $keptIds[] = $new->id;
+                $sub = new InsuranceSubContent();
+                $sub->insurance_contents_id = $content->id;
             }
+
+            $sub->icon = $icon;
+            $sub->description = $request->content_descriptions[$index] ?? null;
+            $sub->save();
+
+            $savedIds[] = $sub->id;
         }
 
-        // // 3️⃣ Delete Removed Rows
-        // $deleteIds = array_diff($existingIds, $keptIds);
+        // ============================
+        // 3️⃣ DELETE REMOVED ROWS
+        // ============================
 
-        // if (!empty($deleteIds)) {
-        //     InsuranceSubContent::whereIn('id', $deleteIds)->delete();
-        // }
-
-        return redirect()->route('admin.pages.index')
-            ->with('success', 'Content updated successfully.');
-    }
-
-
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-        $data['id'] = $id;
-        $data['edit_banner'] = InsuranceBanner::where('pages_id', $id)->first();
-        $data['edit_content'] = InsuranceContent::where('pages_id', $id)->with('subContents')->first();
-        return view('admin.insurance.edit', $data);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id)
-    {
-        $banner = InsuranceBanner::findOrFail($request->banner_id);
-
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'button_text' => 'required|string|max:255',
-            'description' => 'required',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-        ]);
-
-        $imagePath = $banner->image;
-
-        // If new image uploaded
-        if ($request->hasFile('image')) {
-
-            // Delete old image
-            if ($banner->image && file_exists(public_path($banner->image))) {
-                unlink(public_path($banner->image));
-            }
-
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-
-            $destinationPath = public_path('images/insurance/banner');
-
-            if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0755, true);
-            }
-
-            $image->move($destinationPath, $imageName);
-
-            $imagePath = 'images/insurance/banner/' . $imageName;
-        }
-
-        $banner->update([
-            'pages_id' => $request->pages_id,
-            'title' => $request->title,
-            'button_text' => $request->button_text,
-            'description' => $request->description,
-            'image' => $imagePath,
-        ]);
-
-        return redirect()->route('admin.pages.index')
-            ->with('success', 'Banner updated successfully.');
+        // InsuranceSubContent::where('insurance_contents_id', $content->id)
+        //     ->whereNotIn('id', $savedIds)
+        //     ->delete();
+        return redirect()->route('admin.pages.index')->with('success', 'Career content created successfully.');
     }
 
 
