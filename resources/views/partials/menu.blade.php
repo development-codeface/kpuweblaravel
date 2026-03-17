@@ -48,16 +48,20 @@
                     </a>
                 </li>
             @endcan
-                <li class="nav-item nav-dropdown">
+            <li class="nav-item nav-dropdown">
                 <a class="nav-link nav-dropdown-toggle" href="#">
-                   <i class="fi fi-br-paint-brush nav-icon"></i>
+                    <i class="fi fi-br-paint-brush nav-icon"></i>
                     Apperance
                 </a>
                 <ul class="nav-dropdown-items" style="margin-left:28px;">
                     <li class="nav-item">
-                        <a href=""
-                            class="nav-link ">
+                        <a href="{{ route('admin.menus.index') }}" class="nav-link ">
                             Menus
+                        </a>
+                    </li>
+                    <li class="nav-item {{ request()->routeIs('admin.feature.*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.feature.index') }}" class="nav-link ">
+                            Fucture
                         </a>
                     </li>
                 </ul>
@@ -97,6 +101,6 @@
                     {{ trans('cruds.facility.title') }}
                 </a>
             </li>
-    </ul>
-</nav>
+        </ul>
+    </nav>
 </div>

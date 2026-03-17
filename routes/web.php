@@ -50,6 +50,7 @@ use App\Http\Controllers\Admin\MedicalTurism;
 use App\Http\Controllers\frondend\MedicalTurism as TurismController;
 use App\Http\Controllers\Admin\InternationalController;
 use App\Http\Controllers\frondend\InternationalController as FrondendInternationalController;
+use App\Http\Controllers\Admin\MenusController;
 
 Route::redirect('/', '/login');
 
@@ -83,6 +84,11 @@ Route::group([
     // Unblock a user
     Route::put('users/{user}/unblock', [UsersController::class, 'unblock'])->name('users.unblock');
 
+    Route::get('menus', [MenusController::class, 'index'])->name('menus.index');
+    Route::get('menus/create', [MenusController::class, 'create'])->name('menus.create');
+    Route::post('menus/store', [MenusController::class, 'store'])->name('menus.store');
+    Route::get('menus/items/{id}', [MenusController::class, 'menuItems'])->name('menus.items');
+
     // Banners
     Route::get('banners', [BannerController::class, 'index'])->name('banners.index');
     Route::get('banners/create', [BannerController::class, 'create'])->name('banners.create');
@@ -100,7 +106,7 @@ Route::group([
 
     //about
     Route::get('/about/create/{id}', [AboutController::class, 'create'])->name('about.create');
-    Route::post('/about/banner-store', [AboutController::class,'bannerStore'])->name('about.banner.store');
+    Route::post('/about/banner-store', [AboutController::class, 'bannerStore'])->name('about.banner.store');
     Route::post('/about/blog-store', [AboutController::class, 'blogStore'])->name('about.blog.store');
     Route::post('/about/content-store', [AboutController::class, 'contentStore'])->name('about.content.store');
     Route::post('/about/feature-store', [AboutController::class, 'featureStore'])->name('about.feature.store');
