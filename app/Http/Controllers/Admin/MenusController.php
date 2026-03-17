@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\MenuLocations;
+use App\Models\MenuItem;
+use App\Models\SubMenu;
+use Illuminate\Support\Facades\DB;
 
 class MenusController extends Controller
 {
@@ -30,7 +33,8 @@ class MenusController extends Controller
     {
         $data['id'] = $id;
         $data['menu'] = MenuLocations::with('menuItems.submenus')->find(1);
-        return view('admin.menus.menu-items-create',$data);
+   
+        return view('admin.menus.menu-items-create', $data);
     }
 
     /**
@@ -52,6 +56,72 @@ class MenusController extends Controller
         ];
 
         MenuLocations::create($data);
+
+        return redirect()->route('admin.menus.index')
+            ->with('success', 'Menu Location saved successfully.');
+    }
+
+
+    public function saveMenu(Request $request)
+    {
+        $request->validate([
+            'menu_name' => 'required',
+            'menu_items.*.name' => 'required',
+            'menu_items.*.submenus.*.name' => 'required',
+        ]);
+
+        // MENU LOCATION
+        $menu = MenuLocations::updateOrCreate(
+            ['id' => $request->location_id],
+            [
+                'name' => $request->menu_name,
+                'slug' => Str::slug($request->menu_name),
+            ]
+        );
+
+        $menuItemIds = [];
+
+        foreach ($request->menu_items as $item) {
+
+            $menuItem = MenuItem::updateOrCreate(
+                ['id' => $item['id'] ?? null],
+                [
+                    'menu_locations_id' => $menu->id,
+                    'name' => $item['name'],
+                    'url' => $item['url'] ?? null,
+                ]
+            );
+
+            $menuItemIds[] = $menuItem->id;
+
+            $subIds = [];
+
+            if (!empty($item['submenus'])) {
+                foreach ($item['submenus'] as $sub) {
+
+                    $submenu = SubMenu::updateOrCreate(
+                        ['id' => $sub['id'] ?? null],
+                        [
+                            'menu_items_id' => $menuItem->id,
+                            'name' => $sub['name'],
+                            'url' => $sub['url'] ?? null,
+                        ]
+                    );
+
+                    $subIds[] = $submenu->id;
+                }
+            }
+
+            SubMenu::where('menu_items_id', $menuItem->id)
+                ->whereNotIn('id', $subIds)
+                ->delete();
+        }
+
+        MenuItem::where('menu_locations_id', $menu->id)
+            ->whereNotIn('id', $menuItemIds)
+            ->delete();
+
+        DB::commit();
 
         return redirect()->route('admin.menus.index')
             ->with('success', 'Menu Location saved successfully.');

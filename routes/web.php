@@ -88,6 +88,7 @@ Route::group([
     Route::get('menus/create', [MenusController::class, 'create'])->name('menus.create');
     Route::post('menus/store', [MenusController::class, 'store'])->name('menus.store');
     Route::get('menus/items/{id}', [MenusController::class, 'menuItems'])->name('menus.items');
+    Route::post('menus/save/', [MenusController::class, 'saveMenu'])->name('menus.save');
 
     // Banners
     Route::get('banners', [BannerController::class, 'index'])->name('banners.index');
