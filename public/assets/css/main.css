@@ -952,6 +952,7 @@ START: Theme Header CSS
 }
 .header-area.header-1.header-absolute {
   top: 0;
+  left: 0px;
   position: absolute;
   inset-inline-start: 0;
   width:100% ;
@@ -1392,6 +1393,7 @@ nav#mobile-menu {
 }
 .mainmenu ul > li > .sub-menu > li {
   display: block;
+padding: 7px;
   width: 100%;
 }
 .mainmenu ul > li > .sub-menu > li > a {
@@ -12968,7 +12970,7 @@ START: Working process CSS
   background-color: var(--tj-color-common-white);
   border: 7px solid var(--tj-color-theme-bg);
   top: 50%;
-  inset-inline-end: -34px;
+  inset-inline-end: 0px;
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
@@ -14419,8 +14421,9 @@ START: Team CSS
 }
 .team-item .team-content {
   position: relative;
-     background-color: white;
-    padding: 30px;
+     /* background-color: #ffffff; */
+       padding: 9px;
+    padding-top: 30px;
 }
 .team-item .title {
   font-weight: var(--tj-fw-sbold);
@@ -18004,6 +18007,7 @@ START: Contact CSS
 .h4-contact-section {
   position: relative;
   overflow: hidden;
+      background-color: #ebf8ff;
 }
 .h4-contact-section::before {
   content: "";
@@ -18123,7 +18127,7 @@ START: Contact CSS
 .contact-form.style-3 .form-input .nice-select {
   color: var(--tj-color-text-body-2);
   padding: 12px 20px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgb(255 255 255);
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border-radius: 6px;
@@ -20401,11 +20405,15 @@ START: Pricing CSS
   color: var(--tj-color-common-white);
 }
 .h5-pricing-box-wrapper {
-  background-color: #bee6fd;
-  border-radius: 12px;
+      border: 2px solid #a0cfed;
+    background-color: #eaf7ff;
+    border-radius: 17px;
   padding: 30px;
   position: relative;
   z-index: 0;
+}
+.sec-heading.style-3.directors-price {
+    padding-left: 24px;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 575px) {
   .h5-pricing-box-wrapper {
@@ -29182,7 +29190,7 @@ section.tj-service-section-5.section-gap .col-lg-12{
     gap: 10px;
 }
 .h5-banner-content.speciality-btn.team-section .tj-primary-btn{
-    padding: 10px 20px;
+       padding: 15px 16px;
     font-size: 14px;
 }
 
@@ -29263,7 +29271,7 @@ section#choose .client-logo {
     max-width: 48%;
         gap: 30px;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     display: flex;
 }
 .second-op .process-item .process-content {
@@ -29938,4 +29946,113 @@ button.book-content:hover i{
     display: flex;
     justify-content: space-between;
     background-color:#ECF2FF;
+}
+section.tj-blog-section.h7-blog.director.section-gap .sec-heading.style-2.style-7.text-center .desc{
+    width:65%;
+}
+section.tj-blog-section.h7-blog.director.section-gap .sec-heading.style-2.style-7.text-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.row.row-gap-4.h7-blog-wrapper.director-imgs span.categories{
+    border: none;
+    gap: 2px;
+}
+.row.row-gap-4.h7-blog-wrapper.director-imgs .blog-item {
+    border-radius: 16px;
+}
+.social-links i {
+    transform: rotate(0deg) !important;
+    color: #1d1d1d !important;
+}
+.social-links p{
+   margin-bottom:0px;
+}
+.social-links .btn-icon {
+    height: auto !important;
+    width: auto !important;
+        border-radius: 0px;
+    display: block;
+    font-size: 18px !important;
+    background-color: transparent;
+}
+.social-links .text-btn:hover .btn-icon {
+    background-color: transparent !important;
+}
+.h7-blog-wrapper .blog-item:hover .blog-content .social-links .text-btn .btn-icon {
+    background-color: transparent;
+}
+header.header-area.header-1.header-absolute.section-gap-x .container-fluid{
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+header.header-area.header-1.header-absolute.section-gap-x .container-fluid .row{
+        margin: 0px;
+}
+
+.col-lg-3.col-sm-6.doctor-card .team-item{
+    padding: 10px;
+        margin-bottom: 0px;
+    height: 410px;
+        border-radius: 12px;
+    background-color: #24a2c8;
+}
+
+.col-lg-3.col-sm-6.doctor-card .team-item:hover{
+    background-color: white;
+}
+
+.col-lg-3.col-sm-6.doctor-card .team-item:hover .title{
+    display: none;
+}
+.col-lg-3.col-sm-6.doctor-card .team-item:hover .designation{
+    display: none;
+}
+.col-lg-3.col-sm-6.doctor-card .team-item:hover .h5-banner-content.speciality-btn.team-section{
+    display: flex;
+        width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.col-lg-3.col-sm-6.doctor-card .team-item .h5-banner-content.speciality-btn.team-section{
+    display: none;
+}
+.col-lg-3.col-sm-6.doctor-card .team-img .team-img-inner{
+     width: 100%;
+    border-radius: 15px;
+        height: 100%;
+    /* background: #96a8a8; */
+
+}
+.col-lg-3.col-sm-6.doctor-card .team-img {
+    height: 60%;
+}
+/* .row.leftSwipeWrap.selact-dr-card {
+    display: flex;
+    gap: 20px;
+} */
+ .row.leftSwipeWrap.selact-dr-card .team-item .team-content .title{
+    width: 100%;
+    color: white;
+}
+ .row.leftSwipeWrap.selact-dr-card .team-item .team-content {
+   height: 40%;
+}
+ .row.leftSwipeWrap.selact-dr-card  .team-item .designation{
+    width: 100%;
+    color: white;
+}
+ .row.leftSwipeWrap.selact-dr-card  .team-item .slider-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.row.leftSwipeWrap.selact-dr-card{
+    margin-top: 30px;
+}
+.tj-select label {
+    padding-left: 15px;
 }

@@ -21,7 +21,7 @@
     </section>
 
     <!-- start: Blog Section -->
-    <section class="tj-blog-section h7-blog  section-gap">
+    <section class="tj-blog-section h7-blog  director section-gap">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -33,7 +33,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row row-gap-4 h7-blog-wrapper">
+            <div class="row row-gap-4 h7-blog-wrapper director-imgs ">
                 @foreach ($blogs_data->directorBlog as $blog)
                     <div class="col-xl-4 col-md-6">
                         <div class="blog-item wow fadeInUp" data-wow-delay=".4s">
@@ -52,9 +52,17 @@
                                     <h4 class="title"><a href="blog-details.html">{{ $blog->text }}</a>
                                     </h4>
                                 </div>
-                                <a class="text-btn" href="service-details.html">
-                                    <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
+<div class="social-links">
+ <a class="text-btn" href="service-details.html">
+                                    <span class="btn-icon"><i class="fa-brands fa-linkedin-in"></i></span>
+<p>Linked in</p>
                                 </a>
+ <a class="text-btn" href="service-details.html">
+                                    <span class="btn-icon"><i class="fa-brands fa-email-in"></i></span>
+<p>E mail</p>
+                                </a>
+</div>
+
                             </div>
                         </div>
                     </div>
@@ -75,8 +83,8 @@
                     <div class="tab-content  package__tab__content ">
                         <div class="tab-pane active show" id="monthlyPackageContent">
                             <div class="h5-pricing-box-wrapper">
-                                <div class="sec-heading style-3">
-                                    <h2 class="sec-title text-anim">Our Pricing Plan.</h2>
+                                <div class="sec-heading style-3 directors-price">
+                                    <h2 class="sec-title ">Our Pricing Plan.</h2>
                                 </div>
                                 <div class="row ">
                                     <div class="col-lg-6 col-md-6">
@@ -120,15 +128,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bg-shape-1">
-                                    <img src="assets/images/shape/pattern-2.svg" alt="">
-                                </div>
-                                <div class="bg-shape-2">
-                                    <img src="assets/images/shape/pattern-3.svg" alt="">
-                                </div>
-                                <div class="bg-shape-3">
-                                    <img src="assets/images/shape/shape-blur-2.svg" alt="">
-                                </div>
+                               
                             </div>
                         </div>
                     </div>
