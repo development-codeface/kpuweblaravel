@@ -30,6 +30,16 @@
             object-fit: cover;
             border-radius: 6px;
         }
+
+        #aboutMenu {
+            position: sticky;
+            top: 20px;
+            /* distance from top */
+        }
+
+        .col-md-3 {
+            align-self: flex-start;
+        }
     </style>
     <div class="card">
         <div class="card-header">
@@ -45,20 +55,21 @@
                 <div class="col-md-3">
                     <div class="list-group" id="aboutMenu" role="tablist">
 
-                        <a class="list-group-item list-group-item-action show active" data-bs-toggle="tab"
-                            href="#contentSection" role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab', 'contentSection') == 'contentSection' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#contentSection" role="tab">
                             menu
                         </a>
 
-                        <a class="list-group-item list-group-item-action" data-bs-toggle="tab" href="#mid_content_Section"
-                            role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'mid_content_Section' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#mid_content_Section" role="tab">
                             content
                         </a>
                     </div>
                 </div>
                 <div class="col-md-9">
                     <div class="tab-content">
-                        <div class="tab-pane fade show active" id="contentSection" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab', 'contentSection') == 'contentSection' ? 'show active' : '' }}"
+                            id="contentSection" role="tabpanel">
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <h1 class="mb-3">Menu</h1>
@@ -70,7 +81,7 @@
                                                 @csrf
 
                                                 <input type="hidden" name="pages_id" value="{{ $id }}">
-
+                                                <input type="hidden" name="active_tab" value="contentSection">
                                                 <div id="content-wrapper">
 
                                                     @php
@@ -139,7 +150,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="mid_content_Section" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab') == 'mid_content_Section' ? 'show active' : '' }}" id="mid_content_Section" role="tabpanel">
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <h1 class="mb-3">content</h1>
@@ -149,6 +160,7 @@
                                             <form method="POST" action="{{ route('admin.service.content.store') }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
+                                                 <input type="hidden" name="active_tab" value="mid_content_Section">
                                                 <input type="hidden" name="pages_id" value="{{ $id }}">
 
                                                 <div id="feature-wrappers">

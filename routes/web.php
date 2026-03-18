@@ -50,6 +50,7 @@ use App\Http\Controllers\Admin\MedicalTurism;
 use App\Http\Controllers\frondend\MedicalTurism as TurismController;
 use App\Http\Controllers\Admin\InternationalController;
 use App\Http\Controllers\frondend\InternationalController as FrondendInternationalController;
+use App\Http\Controllers\Admin\MenusController;
 
 Route::redirect('/', '/login');
 
@@ -83,6 +84,12 @@ Route::group([
     // Unblock a user
     Route::put('users/{user}/unblock', [UsersController::class, 'unblock'])->name('users.unblock');
 
+    Route::get('menus', [MenusController::class, 'index'])->name('menus.index');
+    Route::get('menus/create', [MenusController::class, 'create'])->name('menus.create');
+    Route::post('menus/store', [MenusController::class, 'store'])->name('menus.store');
+    Route::get('menus/items/{id}', [MenusController::class, 'menuItems'])->name('menus.items');
+    Route::post('menus/save/', [MenusController::class, 'saveMenu'])->name('menus.save');
+
     // Banners
     Route::get('banners', [BannerController::class, 'index'])->name('banners.index');
     Route::get('banners/create', [BannerController::class, 'create'])->name('banners.create');
@@ -109,8 +116,6 @@ Route::group([
     Route::post('/about/section-store', [AboutController::class, 'sectionStore'])->name('about.section.store');
 
     Route::get('/about/edit/{id}', [AboutController::class, 'edit'])->name('about.edit');
-    Route::post('about/banner/update/{id}', [AboutController::class, 'bannerUpdate'])->name('about.banner.update');
-    Route::post('about/blog/update/{id}', [AboutController::class, 'blogUpdate'])->name('about.blog.update');
     Route::post('about/content/update/{id}', [AboutController::class, 'contentUpdate'])->name('about.content.update');
     Route::post('about/feature/update/{id}', [AboutController::class, 'featureUpdate'])->name('about.feature.update');
     Route::post('about/sub_content/update/{id}', [AboutController::class, 'subContentUpdate'])->name('about.sub_content.update');
@@ -121,62 +126,38 @@ Route::group([
     Route::get('/career/create/{id}', [CareerController::class, 'create'])->name('career.create');
     Route::post('/career/banner/store', [CareerController::class, 'store'])->name('career.banner.store');
     Route::post('/career/content/store', [CareerController::class, 'contentStore'])->name('career.content.store');
-    Route::get('/career/edit/{id}', [CareerController::class, 'edit'])->name('career.edit');
-    Route::post('/career/update/banner/{id}', [CareerController::class, 'update'])->name('career.update.banner');
-    Route::post('/career/update/content/{id}', [CareerController::class, 'contentUpdate'])->name('career.update.content');
 
     Route::get('/pharmacy/create/{id}', [PharmacyController::class, 'create'])->name('pharmacy.create');
     Route::post('/pharmacy/banner/store', [PharmacyController::class, 'store'])->name('pharmacy.banner.store');
     Route::post('/pharmacy/content/store', [PharmacyController::class, 'pharmacyStore'])->name('pharmacy.content.store');
     Route::post('/pharmacy/plans/store', [PharmacyController::class, 'pharmacyPlanStore'])->name('pharmacy.plans.store');
-    Route::get('/pharmacy/edit/{id}', [PharmacyController::class, 'edit'])->name('pharmacy.edit');
-    Route::post('/pharmacy/update/{id}', [PharmacyController::class, 'update'])->name('pharmacy.update');
-    Route::post('/pharmacy/content/update/{id}', [PharmacyController::class, 'contentUpdate'])->name('pharmacy.content.update');
-    Route::post('/pharmacy/plan/update/{id}', [PharmacyController::class, 'pharmacyPlanUpdate'])->name('pharmacy.plan.update');
 
     // Ambulance
     Route::get('/ambulance/create/{id}', [AmbulanceController::class, 'create'])->name('ambulance.create');
     Route::post('/ambulance/store', [AmbulanceController::class, 'store'])->name('ambulance.store');
     Route::post('/ambulance/content/store', [AmbulanceController::class, 'storeContent'])->name('ambulance.content.store');
-    Route::get('/ambulance/edit/{id}', [AmbulanceController::class, 'edit'])->name('ambulance.edit');
-    Route::post('/ambulance/update/{id}', [AmbulanceController::class, 'update'])->name('ambulance.update');
-    Route::post('/ambulance/content/update/{id}', [AmbulanceController::class, 'updateContent'])->name('ambulance.content.update');
 
     // Blood Bank
     Route::get('/blood-bank/create/{id}', [BloodBankController::class, 'create'])->name('blood_bank.create');
     Route::post('/blood-bank/store', [BloodBankController::class, 'store'])->name('blood_bank.store');
     Route::post('/blood-bank/content/store', [BloodBankController::class, 'contentStore'])->name('blood_bank.content.store');
     Route::post('/blood-bank/blood-group/store', [BloodBankController::class, 'bloodGroupStore'])->name('blood_bank.blood_group.store');
-    Route::get('/blood-bank/edit/{id}', [BloodBankController::class, 'edit'])->name('blood_bank.edit');
-    Route::post('/blood-bank/update/{id}', [BloodBankController::class, 'update'])->name('blood_bank.update');
-    Route::post('/blood-bank/content/update/{id}', [BloodBankController::class, 'contentUpdate'])->name('blood_bank.content.update');
-    Route::post('/blood-bank/blood-group/update/{id}', [BloodBankController::class, 'bloodGroupUpdate'])->name('blood_bank.blood_group.update');
 
     // Directors
     Route::get('/directors/create/{id}', [DirectorsController::class, 'create'])->name('directors.create');
     Route::post('/directors/store', [DirectorsController::class, 'store'])->name('directors.store');
     Route::post('/directors/blog/store', [DirectorsController::class, 'blogStore'])->name('directors.blog.store');
-    Route::get('/directors/edit/{id}', [DirectorsController::class, 'edit'])->name('directors.edit');
-    Route::post('/directors/update/{id}', [DirectorsController::class, 'update'])->name('directors.update');
-    Route::post('/directors/blog/update/{id}', [DirectorsController::class, 'blogUpdate'])->name('directors.blog.update');
 
     // Health Packages
     Route::get('/health-packages/create/{id}', [HealthPackagesController::class, 'create'])->name('health-packages.create');
     Route::post('/health-packages/store', [HealthPackagesController::class, 'store'])->name('health_packages.store');
     Route::post('/health-packages/content/store', [HealthPackagesController::class, 'ContentStore'])->name('health_packages.content.store');
     Route::post('/health-packages/blog/store', [HealthPackagesController::class, 'blogStore'])->name('health_packages.blog.store');
-    Route::get('/health-packages/edit/{id}', [HealthPackagesController::class, 'edit'])->name('health-packages.edit');
-    Route::post('/health-packages/update/{id}', [HealthPackagesController::class, 'update'])->name('health_packages.update');
-    Route::post('/health-packages/content/update/{id}', [HealthPackagesController::class, 'ContentUpdate'])->name('health_packages.content.update');
-
 
     // Insurance
     Route::get('/insurance/create/{id}', [InsuranceController::class, 'create'])->name('insurance.create');
     Route::post('/insurance/store', [InsuranceController::class, 'store'])->name('insurance.store');
     Route::post('/insurance/content/store', [InsuranceController::class, 'ContentStore'])->name('insurance.content.store');
-    Route::get('/insurance/edit/{id}', [InsuranceController::class, 'edit'])->name('insurance.edit');
-    Route::post('/insurance/update/{id}', [InsuranceController::class, 'update'])->name('insurance.update');
-    Route::post('/insurance/content/update/{id}', [InsuranceController::class, 'ContentUpdate'])->name('insurance.content.update');
 
     // ICU
     Route::get('/icu/create/{id}', [IcuController::class, 'create'])->name('icu.create');
@@ -186,9 +167,6 @@ Route::group([
     Route::get('second-opinion/create/{id}', [SecondOpinionController::class, 'create'])->name('second-opinion.create');
     Route::post('second-opinion/store', [SecondOpinionController::class, 'store'])->name('second-opinion.store');
     Route::post('second-opinion/content/store', [SecondOpinionController::class, 'contentStore'])->name('second-opinion.content.store');
-    Route::get('second-opinion/edit/{id}', [SecondOpinionController::class, 'edit'])->name('second-opinion.edit');
-    Route::post('second-opinion/update/{id}', [SecondOpinionController::class, 'update'])->name('second-opinion.update');
-    Route::post('second-opinion/content/update/{id}', [SecondOpinionController::class, 'contentUpdate'])->name('second-opinion.content.update');
 
     Route::get('facility/index', [FacilityController::class, 'index'])->name('facility.index');
     Route::get('facility/create', [FacilityController::class, 'create'])->name('facility.create');

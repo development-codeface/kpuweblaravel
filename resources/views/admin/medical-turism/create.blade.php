@@ -30,6 +30,16 @@
             object-fit: cover;
             border-radius: 6px;
         }
+
+        #aboutMenu {
+            position: sticky;
+            top: 20px;
+            /* distance from top */
+        }
+
+        .col-md-3 {
+            align-self: flex-start;
+        }
     </style>
     <div class="card">
         <div class="card-header">
@@ -45,16 +55,16 @@
                 <div class="col-md-3">
                     <div class="list-group" id="aboutMenu" role="tablist">
 
-                        <a class="list-group-item list-group-item-action active" data-bs-toggle="tab" href="#bannerSection"
+                        <a class="list-group-item list-group-item-action {{ old('active_tab','bannerSection') == 'bannerSection' ? 'active' : '' }}" data-bs-toggle="tab" href="#bannerSection"
                             role="tab">
                             Medical banner
                         </a>
 
-                        <a class="list-group-item list-group-item-action" data-bs-toggle="tab" href="#contentSection"
+                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'contentSection' ? 'active' : '' }}" data-bs-toggle="tab" href="#contentSection"
                             role="tab">
                             Medical content
                         </a>
-                        <a class="list-group-item list-group-item-action" data-bs-toggle="tab" href="#blogSection"
+                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'blogSection' ? 'active' : '' }}" data-bs-toggle="tab" href="#blogSection"
                             role="tab">
                             Medical Trip
                         </a>
@@ -63,13 +73,14 @@
                 <div class="col-md-9">
                     <div class="tab-content">
                         <!-- ================= Banner Section ================= -->
-                        <div class="tab-pane fade show active" id="bannerSection" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab','bannerSection') == 'bannerSection' ? 'show active' : '' }}" id="bannerSection" role="tabpanel">
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <h1 class="mb-3">Banner Section</h1>
                                     <hr>
                                     <form method="POST" action="{{ route('admin.medical-turism.banner.store') }}"
                                         enctype="multipart/form-data">
+                                         <input type="hidden" name="active_tab" value="bannerSection">
                                         <input type="hidden" name="pages_id" value="{{ $id }}">
                                         <input type="hidden" name="banner_id" value="{{ $banner->id ?? '' }}">
                                         @csrf
@@ -170,12 +181,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="contentSection" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab') == 'contentSection' ? 'show active' : '' }}" id="contentSection" role="tabpanel">
                             <h1 class="mb-3">content Section</h1>
                             <hr>
                             <form method="POST" action="{{ route('admin.medical-turism.content.store') }}"
                                 enctype="multipart/form-data">
                                 @csrf
+                                  <input type="hidden" name="active_tab" value="contentSection">
                                 <input type="hidden" name="pages_id" value="{{ $id }}">
                                 <input type="hidden" name="content_id" value="{{ $content->id ?? '' }}">
                                 <!-- Title -->
@@ -331,12 +343,13 @@
                             </form>
 
                         </div>
-                        <div class="tab-pane fade" id="blogSection" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab') == 'blogSection' ? 'show active' : '' }}" id="blogSection" role="tabpanel">
                             <h1 class="mb-3">content Section</h1>
                             <hr>
                             <form method="POST" action="{{ route('admin.medical-turism.medical.store') }}">
                                 @csrf
-                                <input name="medical_id" value="" type="text">
+                                   <input type="hidden" name="active_tab" value="blogSection">
+                                <input name="medical_id" value="{{ $medical->id ?? '' }}" type="hidden">
                                 <input type="hidden" name="pages_id" value="{{ $id }}">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -344,7 +357,7 @@
                                             <label class="required">Title</label>
                                             <input type="text" name="title"
                                                 class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"
-                                                value="{{ old('title', $content->title ?? '') }}"
+                                                value="{{ old('title', $medical->title ?? '') }}"
                                                 placeholder="Enter title">
 
                                             @if ($errors->has('title'))
@@ -362,7 +375,7 @@
                                             <label class="required">Sub Title</label>
                                             <input type="text" name="sub_title"
                                                 class="form-control {{ $errors->has('sub_title') ? 'is-invalid' : '' }}"
-                                                value="{{ old('sub_title', $content->sub_title ?? '') }}"
+                                                value="{{ old('sub_title', $medical->sub_title ?? '') }}"
                                                 placeholder="Enter sub title">
 
                                             @if ($errors->has('sub_title'))
@@ -376,15 +389,15 @@
                                 <div id="blog-wrapper">
 
                                     @php
-                                        $medicalData = old('medical', isset($medical) ? $medical->toArray() : [[]]);
+                                        $medicalData = old(
+                                            'medical',
+                                            isset($medical) ? $medical->contents->toArray() : [[]],
+                                        );
                                     @endphp
-
-
-
                                     @foreach ($medicalData as $index => $item)
                                         <div class="blog-row border p-3 mb-3">
 
-                                            <input type="text" name="medical[{{ $index }}][content_id]"
+                                            <input type="hidden" name="medical[{{ $index }}][content_id]"
                                                 value="{{ $item['id'] ?? '' }}">
 
                                             <!-- Title -->
@@ -419,7 +432,7 @@
                                                     @php
                                                         $texts = old(
                                                             "medical.$index.texts",
-                                                            $item['texts'] ?? [['id' => '', 'text' => '']],
+                                                            $item['subcontents'] ?? [['id' => '', 'text' => '']],
                                                         );
                                                     @endphp
 
@@ -435,8 +448,8 @@
                                                                 value="{{ $textItem['text'] ?? '' }}"
                                                                 class="form-control">
 
-                                                            <button type="button"
-                                                                class="btn btn-danger remove-text">X</button>
+                                                            {{-- <button type="button"
+                                                                class="btn btn-danger remove-text">X</button> --}}
 
                                                         </div>
                                                     @endforeach
@@ -641,7 +654,7 @@
 
                     wrapper.insertAdjacentHTML("beforeend", `
                 <div class="input-group mb-2">
-                      <input type="text"
+                      <input type="hidden"
                 name="medical[${index}][texts][${textIndex}][sub_content_id]"
                 value="">
                     <label>Text</label>

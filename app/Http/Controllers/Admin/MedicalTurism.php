@@ -29,6 +29,7 @@ class MedicalTurism extends Controller
         $data['id'] = $id;
         $data['banner'] = TurismBanner::where('pages_id', $id)->first();
         $data['content'] = TurismContent::where('pages_id', $id)->with('subContents')->first();
+        $data['medical']    = MedicalTrip::with('contents.subcontents')->where('pages_id',$id)->first();
         return view('admin.medical-turism.create', $data);
     }
 
@@ -37,7 +38,6 @@ class MedicalTurism extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'title'              => 'required|string|max:255',
             'button_text'        => 'required|string|max:255',
@@ -188,7 +188,7 @@ class MedicalTurism extends Controller
         //     ->whereNotIn('id', $existingMedicalIds)
         //     ->delete();
 
-          return redirect()->route('admin.pages.index')
+        return redirect()->route('admin.pages.index')
             ->with('success', 'Hospital Medical  saved successfully.');
     }
     /**

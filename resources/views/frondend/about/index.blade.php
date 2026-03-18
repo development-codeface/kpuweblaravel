@@ -56,13 +56,13 @@
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="h5-strategy-item h5-strategy-item-3 wow fadeInUp" data-wow-delay=".5s">
-                         <p class="desc">{{ $blog->icon_description }}</p>
-<div class="locations">
-<a class="text-btn" href="contact.html">
+                        <p class="desc">{{ $blog->icon_description }}</p>
+                        <div class="locations">
+                            <a class="text-btn" href="contact.html">
                                 <span class="btn-text"><span>Contact Us</span></span>
                                 <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
                             </a>
-</div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
@@ -94,9 +94,6 @@
 
                     </div>
                 </div>
-
-
-
                 <div class="col-xl-6 col-lg-6 order-lg-2 order-1 about-content">
                     <div class="about-content-area">
                         <div class="sec-heading style-3">
@@ -104,8 +101,6 @@
                             <h2 class="sec-title title-anim">{{ $content->heading }}</h2>
                         </div>
                     </div>
-
-
                     @if ($content)
                         @php
                             // Split by closing </p>
@@ -137,16 +132,9 @@
 
                         </div>
                     @endif
-
-
-
-
                 </div>
-
-
             </div>
         </div>
-
     </section>
     <!-- end: About Section -->
 
@@ -371,28 +359,30 @@
                                         <p class="desc">{{ $sectionData->description }}</p>
                                     </div>
                                 </div>
+                                <!-- <div class="service-reveal-bg" data-bg-image="assets/images/service/service-2.webp"></div> -->
                             @endforeach
-                            <!-- <div class="service-reveal-bg" data-bg-image="assets/images/service/service-2.webp"></div> -->
                         </div>
+
                     </div>
 
                 </div>
             </div>
         </div>
     </section>
-    <!-- end: Service Section -->
-
     <!-- start: Project Section -->
     <section class="tj-project-section-3 section-gap section-gap-x">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="sec-heading-wrap">
-                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i class="tji-box"></i>Proud
-                            Projects</span>
+                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
+                                class="tji-box"></i>{{ $facility->title }}
+                        </span>
                         <div class="heading-wrap-content">
                             <div class="sec-heading style-3">
-                                <h2 class="sec-title title-anim">Breaking Boundaries, Building Dreams.</h2>
+                                <h2 class="sec-title title-anim">
+                                    {{ $facility->sub_title }}
+                                </h2>
                             </div>
                             <div class="slider-navigation d-none d-md-inline-flex wow fadeInUp" data-wow-delay=".5s">
                                 <div class="slider-prev">
@@ -419,84 +409,31 @@
                     <div class="project-wrapper wow fadeInUp" data-wow-delay=".4s">
                         <div class="swiper project-slider-2">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="project-item">
-                                        <div class="project-img">
-                                            <img src="assets/images/project/project-6.webp" alt="">
+                                @foreach ($facility->content as $value)
+                                    <div class="swiper-slide">
+                                        <div class="project-item">
 
-                                            <div class="project-content">
-                                                <span class="categories"><a
-                                                        href="portfolio-details-2.html">Business</a></span>
-                                                <div class="project-text">
-                                                    <h4 class="title"><a href="portfolio-details-2.html">Event Management
-                                                            Platform</a></h4>
-                                                    <a class="project-btn" href="portfolio-details-2.html">
-                                                        <i class="tji-arrow-right-big"></i>
-                                                    </a>
+                                            <div class="project-img">
+                                                <img src="{{ asset('images/facility/' . $value->image) }}"
+                                                    alt="">
+
+                                                <div class="project-content">
+                                                    <span class="categories"><a
+                                                            href="portfolio-details-2.html">{{ $value->button_text }}</a></span>
+                                                    <div class="project-text">
+                                                        <h4 class="title"><a
+                                                                href="portfolio-details-2.html">{{ $value->heading }}</a>
+                                                        </h4>
+                                                        <a class="project-btn" href="portfolio-details-2.html">
+                                                            <i class="tji-arrow-right-big"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="project-item">
-                                        <div class="project-img">
-                                            <img src="assets/images/project/project-7.webp" alt="">
-
-                                            <div class="project-content">
-                                                <span class="categories"><a
-                                                        href="portfolio-details-2.html">Business</a></span>
-                                                <div class="project-text">
-                                                    <h4 class="title"><a href="portfolio-details-2.html">Rebranding
-                                                            Strategy for a Growing</a>
-                                                    </h4>
-                                                    <a class="project-btn" href="portfolio-details-2.html">
-                                                        <i class="tji-arrow-right-big"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="project-item">
-                                        <div class="project-img">
-                                            <img src="assets/images/project/project-8.webp" alt="">
-
-                                            <div class="project-content">
-                                                <span class="categories"><a
-                                                        href="portfolio-details-2.html">Business</a></span>
-                                                <div class="project-text">
-                                                    <h4 class="title"><a href="portfolio-details-2.html">Interactive
-                                                            Learning Platform</a></h4>
-                                                    <a class="project-btn" href="portfolio-details-2.html">
-                                                        <i class="tji-arrow-right-big"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="project-item">
-                                        <div class="project-img">
-                                            <img src="assets/images/project/project-9.webp" alt="">
-
-                                            <div class="project-content">
-                                                <span class="categories"><a
-                                                        href="portfolio-details-2.html">Business</a></span>
-                                                <div class="project-text">
-                                                    <h4 class="title"><a href="portfolio-details-2.html">Environmental
-                                                            Impact Dashboard</a></h4>
-                                                    <a class="project-btn" href="portfolio-details-2.html">
-                                                        <i class="tji-arrow-right-big"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                             <div class="swiper-pagination-area"></div>
                         </div>
@@ -504,7 +441,5 @@
                 </div>
             </div>
         </div>
-
     </section>
-    </main>
 @endsection

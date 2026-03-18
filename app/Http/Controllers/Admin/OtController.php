@@ -90,11 +90,11 @@ class OtController extends Controller
                 ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048'
                 : 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
 
-            // 'heading' => 'required|array|min:1',
-            // 'heading.*' => 'required|string|max:255',
+            'heading' => 'required|array|min:1',
+            'heading.*' => 'required|string|max:255',
 
-            // 'sub_description' => 'required|array|min:1',
-            // 'sub_description.*' => 'required|string',
+            'sub_description' => 'required|array|min:1',
+            'sub_description.*' => 'required|string',
         ]);
 
 

@@ -30,6 +30,16 @@
             object-fit: cover;
             border-radius: 6px;
         }
+
+        #aboutMenu {
+            position: sticky;
+            top: 20px;
+            /* distance from top */
+        }
+
+        .col-md-3 {
+            align-self: flex-start;
+        }
     </style>
     <div class="card">
         <div class="card-header">
@@ -45,17 +55,17 @@
                 <div class="col-md-3">
                     <div class="list-group" id="aboutMenu" role="tablist">
 
-                        <a class="list-group-item list-group-item-action active" data-bs-toggle="tab" href="#bannerSection"
-                            role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab', 'bannerSection') == 'bannerSection' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#bannerSection" role="tab">
                             spaciality banner
                         </a>
 
-                        <a class="list-group-item list-group-item-action" data-bs-toggle="tab" href="#contentSection"
-                            role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'contentSection' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#contentSection" role="tab">
                             spaciality content
                         </a>
-                        <a class="list-group-item list-group-item-action" data-bs-toggle="tab" href="#blogSection"
-                            role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'blogSection' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#blogSection" role="tab">
                             spaciality Blog
                         </a>
                     </div>
@@ -63,13 +73,15 @@
                 <div class="col-md-9">
                     <div class="tab-content">
                         <!-- ================= Banner Section ================= -->
-                        <div class="tab-pane fade show active" id="bannerSection" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab', 'bannerSection') == 'bannerSection' ? 'show active' : '' }}"
+                            id="bannerSection" role="tabpanel">
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <h1 class="mb-3">Banner Section</h1>
                                     <hr>
                                     <form method="POST" action="{{ route('admin.spaciality.store') }}"
                                         enctype="multipart/form-data">
+                                        <input type="hidden" name="active_tab" value="bannerSection">
                                         <input type="hidden" name="pages_id" value="{{ $id }}">
                                         <input type="hidden" name="banner_id" value="{{ $banner->id ?? '' }}">
                                         @csrf
@@ -187,12 +199,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="contentSection" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab') == 'contentSection' ? 'show active' : '' }}"
+                            id="contentSection" role="tabpanel">
 
                             <form method="POST" action="{{ route('admin.spaciality.content.store') }}"
                                 enctype="multipart/form-data">
                                 @csrf
-
+                                <input type="hidden" name="active_tab" value="contentSection">
                                 <input type="hidden" name="pages_id" value="{{ $id }}">
                                 <input type="hidden" name="content_id" value="{{ $content->id ?? '' }}">
 
@@ -366,11 +379,12 @@
                             </form>
 
                         </div>
-                        <div class="tab-pane fade" id="blogSection" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab') == 'blogSection' ? 'show active' : '' }}"
+                            id="blogSection" role="tabpanel">
 
                             <form method="POST" action="{{ route('admin.spaciality.blog.store') }}">
                                 @csrf
-
+                                <input type="hidden" name="active_tab" value="blogSection">
                                 <input type="hidden" name="pages_id" value="{{ $id }}">
 
                                 <div id="blog-wrapper">

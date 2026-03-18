@@ -24,8 +24,10 @@ class BloodBankController extends Controller
      */
     public function create($id)
     {
-        //
-        return view('admin.blood_bank.create', compact('id'));
+        $edit_bannner = BloodBank::where('pages_id', $id)->first();
+        $edit_content = BloodBankContent::with('sub_content')->where('pages_id', $id)->first();
+        $blood_groups = BloodGroup::where('pages_id', $id)->get();
+        return view('admin.blood_bank.create', compact('id', 'edit_bannner', 'edit_content', 'blood_groups'));
     }
 
     /**
@@ -37,10 +39,17 @@ class BloodBankController extends Controller
             'title' => 'required|string|max:255',
             'button_text' => 'required|string|max:255',
             'description' => 'required',
-            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'image'              => $request->banner_id
+                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048'
+                : 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
-        $imagePath = null;
+        if ($request->banner_id) {
+            $banner = BloodBank::findOrFail($request->banner_id);
+            $banner->image = $banner->image;
+        } else {
+            $banner = new BloodBank();
+        }
 
         if ($request->hasFile('image')) {
 
@@ -55,190 +64,91 @@ class BloodBankController extends Controller
 
             $image->move($destinationPath, $imageName);
 
-            $imagePath = 'images/blood/banner/' . $imageName;
+            $banner->image = 'images/blood/banner/' . $imageName;
         }
 
-        BloodBank::create([
-            'pages_id'   => $request->pages_id,
-            'title'      => $request->title,
-            'button_text' => $request->button_text,
-            'description' => $request->description,
-            'image'      => $imagePath,
-        ]);
+        $banner->pages_id    = $request->pages_id;
+        $banner->title       = $request->title;
+        $banner->button_text = $request->button_text;
+        $banner->description = $request->description;
+        $banner->save();
 
-        return redirect()->route('admin.pages.index')->with('success', 'Career banner created successfully.');
-    }
-
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'title'        => 'required|string|max:255',
-            'button_text'  => 'required|string|max:255',
-            'description'  => 'required',
-            'image'        => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-        ]);
-
-        $bloodBank = BloodBank::findOrFail($request->banner_id);
-
-        $imagePath = $bloodBank->image;
-
-        if ($request->hasFile('image')) {
-
-            // delete old image
-            if ($bloodBank->image && file_exists(public_path($bloodBank->image))) {
-                unlink(public_path($bloodBank->image));
-            }
-
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('images/blood/banner');
-
-            if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0755, true);
-            }
-
-            $image->move($destinationPath, $imageName);
-            $imagePath = 'images/blood/banner/' . $imageName;
-        }
-
-        $bloodBank->update([
-            'pages_id'    => $request->pages_id,
-            'title'       => $request->title,
-            'button_text' => $request->button_text,
-            'description' => $request->description,
-            'image'       => $imagePath,
-        ]);
-
-        return redirect()
-            ->route('admin.pages.index')
-            ->with('success', 'Blood bank banner updated successfully.');
+        return redirect()->route('admin.pages.index')->with('success', 'Blood Bank created successfully.');
     }
 
 
     public function contentStore(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'title'       => 'required|string|max:255',
             'description' => 'required',
-
             'heading.*'   => 'required|string|max:255',
             'text.*'      => 'required|string',
         ]);
 
-        // ✅ Insert Main Content
-        $content = BloodBankContent::create([
-            'pages_id'    => $request->pages_id,
-            'title'       => $request->title,
-            'description' => $request->description,
-        ]);
+        $content = BloodBankContent::find($request->content_id);
 
-        // ✅ Insert Multiple Sub Rows
+        if ($content) {
+
+            // UPDATE
+            $content->update([
+                'title'       => $request->title,
+                'description' => $request->description,
+            ]);
+        } else {
+
+            // CREATE
+            $content = BloodBankContent::create([
+                'pages_id'    => $request->pages_id,
+                'title'       => $request->title,
+                'description' => $request->description,
+            ]);
+        }
+
+
+        $keepIds = [];
+
         foreach ($request->heading as $index => $heading) {
 
-            BloodBankSubContent::create([
+            $subId = $request->sub_content_id[$index] ?? null;
+
+            $data = [
                 'blood_bank_contents_id' => $content->id,
                 'heading'                => $heading,
                 'text'                   => $request->text[$index] ?? null,
-            ]);
+            ];
+
+            if ($subId) {
+
+                BloodBankSubContent::where('id', $subId)->update($data);
+                // $keepIds[] = $subId;
+            } else {
+                $new = BloodBankSubContent::create($data);
+                // $keepIds[] = $new->id;
+            }
         }
+
+        // DELETE REMOVED ROWS
+        // BloodBankSubContent::where('blood_bank_contents_id', $content->id)
+        //     ->whereNotIn('id', $keepIds)
+        //     ->delete();
+
 
         return redirect()
             ->route('admin.pages.index')
             ->with('success', 'Blood Bank content created successfully.');
     }
 
-    public function contentUpdate(Request $request, $id)
-    {
-        $request->validate([
-            'title'       => 'required|string|max:255',
-            'description' => 'required',
-            'heading.*'   => 'required|string|max:255',
-            'text.*'      => 'required|string',
-        ]);
-
-        // =====================
-        // UPDATE MAIN CONTENT
-        // =====================
-
-        $content = BloodBankContent::findOrFail($request->blood_content_id);
-
-        $content->update([
-            'title'       => $request->title,
-            'description' => $request->description,
-        ]);
-
-        // =====================
-        // UPDATE MULTIPLE SUB CONTENT
-        // =====================
-
-        $existingIds = [];
-
-        foreach ($request->heading as $index => $heading) {
-
-            $subId = $request->sub_content_id[$index] ?? null;
-
-            if ($subId) {
-                // UPDATE EXISTING
-                $sub = BloodBankSubContent::find($subId);
-                if ($sub) {
-                    $sub->update([
-                        'heading' => $heading,
-                        'text'    => $request->text[$index],
-                    ]);
-                    $existingIds[] = $sub->id;
-                }
-            } else {
-                // CREATE NEW
-                $newSub = BloodBankSubContent::create([
-                    'blood_bank_contents_id' => $content->id,
-                    'heading'                => $heading,
-                    'text'                   => $request->text[$index],
-                ]);
-                $existingIds[] = $newSub->id;
-            }
-        }
-
-        // DELETE REMOVED ROWS
-        // BloodBankSubContent::where('blood_bank_contents_id', $content->id)
-        //     ->whereNotIn('id', $existingIds)
-        //     ->delete();
-
-        return redirect()
-            ->route('admin.pages.index')
-            ->with('success', 'Content updated successfully.');
-    }
-
-
     public function bloodGroupStore(Request $request)
     {
+
         $request->validate([
-            'blood_group.*'    => 'required|string|max:10',
-            'status.*'      => 'required|in:1,0',
-        ]);
-
-        foreach ($request->blood_group as $index => $group) {
-
-            BloodGroup::create([
-                'pages_id'    => $request->pages_id,
-                'blood_group' => $group,
-                'status'      => $request->status[$index] ?? null,
-            ]);
-        }
-
-        return redirect()
-            ->route('admin.pages.index')
-            ->with('success', 'Blood Group  created successfully.');
-    }
-
-    public function bloodGroupUpdate(Request $request)
-    {
-        $request->validate([
-            'blood_group.*' => 'required|string|max:255',
+            'blood_group.*' => 'required|string|max:10',
             'status.*'      => 'required|in:0,1',
         ]);
 
-        $existingIds = [];
-
+        $savedIds = [];
         foreach ($request->blood_group as $index => $group) {
 
             $id = $request->blood_group_id[$index] ?? null;
@@ -251,52 +161,28 @@ class BloodBankController extends Controller
                         'blood_group' => $group,
                         'status'      => $request->status[$index],
                     ]);
-                    $existingIds[] = $blood->id;
+                    $savedIds[] = $blood->id;
                 }
             } else {
-                // CREATE NEW
+                // CREATE
                 $new = BloodGroup::create([
                     'pages_id'    => $request->pages_id,
                     'blood_group' => $group,
                     'status'      => $request->status[$index],
                 ]);
-                $existingIds[] = $new->id;
+                $savedIds[] = $new->id;
             }
         }
 
-        // DELETE REMOVED
-        // BloodGroup::where('pages_id', $pageId)
-        //     ->whereNotIn('id', $existingIds)
+        // OPTIONAL DELETE REMOVED ROWS
+        // BloodGroup::where('pages_id', $request->pages_id)
+        //     ->whereNotIn('id', $savedIds)
         //     ->delete();
 
         return redirect()
             ->route('admin.pages.index')
-            ->with('success', 'Blood groups updated successfully.');
+            ->with('success', 'Blood Group  created successfully.');
     }
-
-
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $data['id'] = $id;
-        $data['edit_bannner'] = BloodBank::where('pages_id', $id)->first();
-        $data['edit_content'] = BloodBankContent::with('sub_content')->where('pages_id', $id)->first();
-        $data['blood_groups'] = BloodGroup::where('pages_id', $id)->get();
-        return view('admin.blood_bank.edit', $data);
-    }
-
-
 
     /**
      * Remove the specified resource from storage.

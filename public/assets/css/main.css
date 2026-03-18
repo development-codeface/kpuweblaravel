@@ -13011,7 +13011,7 @@ START: Working process CSS
 }
 @media only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .process-item:not(:last-child)::after {
-   
+
     display:none;
   }
 }
@@ -30053,6 +30053,7 @@ header.header-area.header-1.header-absolute.section-gap-x .container-fluid .row{
 }
  .row.leftSwipeWrap.selact-dr-card  .team-item .designation{
     width: 100%;
+        font-size: 16px;
     color: white;
 }
  .row.leftSwipeWrap.selact-dr-card  .team-item .slider-btn {

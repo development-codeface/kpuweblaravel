@@ -117,13 +117,13 @@
                                 <div class="team-img-inner">
                                     <img src="{{ asset($doctor->image) }}" alt="" />
                                 </div>
-                             
+
                             </div>
                             <div class="team-content">
                                 <h4 class="title">
                                     <a href="team-details.html">{{ $doctor->name }}</a>
                                 </h4>
-                                <span class="designation"> {{ $row->department->name }}</span>
+                                <span class="designation">{{ $doctor->designation }} </span>
                                 <div class="h5-banner-content speciality-btn team-section">
                                     <div class="slider-btn">
                                         <a class="tj-primary-btn" href="contact.html">
@@ -132,7 +132,7 @@
                                         <a class="tj-primary-btn" href="contact.html">
                                             <span class="btn-text"><span>Second opinion</span></span>
                                         </a>
-                                        
+
                                     </div>
                                 </div>
                                 <!-- <a class="mail-at" href="mailto:info@bexon.com"><i class="tji-at"></i></a> -->
