@@ -38,7 +38,7 @@
                                         </div>
                                     </div>
                                 </form>
-
+                                <a href="{{ route('doctor.search') }}" class="btn btn-primary">Reload</a>
                             </div>
                         </div>
                     </div>

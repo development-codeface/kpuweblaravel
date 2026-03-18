@@ -30,11 +30,12 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('*', function ($view) {
 
-            $main_menu = MenuLocations::with('menuItems.submenus')
-                ->where('slug', 'main-menu')
-                ->get(); // 🔥 use first, not get
+            $menus = MenuLocations::with('menuItems.submenus')
+                ->whereIn('slug', ['main-menu', 'header-menu'])
+                ->get()
+                ->keyBy('slug');; // 🔥 use first, not get
 
-            $view->with('main_menu', $main_menu);
+            $view->with('menus', $menus);
         });
     }
 }

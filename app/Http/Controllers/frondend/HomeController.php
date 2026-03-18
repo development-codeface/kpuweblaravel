@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\banner;
 use Illuminate\Http\Request;
 use App\Models\features;
-use App\Models\MenuLocations;
+use App\Models\Doctor;
 
 class HomeController extends Controller
 {
@@ -15,7 +15,7 @@ class HomeController extends Controller
     {
         $data['banner'] = banner::where('status', 1)->first();
         $data['features'] = features::with('featureContents')->get();
-        // $data['main_menu'] = MenuLocations::with('menuItems.submenus')->where('slug','main-menu')->get();
+        $data['dcotor_data'] = Doctor::with('doctorDepartments.department')->where('status', 'active')->get();
         return view('frondend.home', $data);
     }
 }

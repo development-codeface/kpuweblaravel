@@ -19,18 +19,14 @@
                                                 Emergency <a href="tel:8089091313">808-909-1313</a>
                                             </p>
                                             <div class="header-info">
-                                                <div class="info-item">
-                                                    <a href="/second-opinion">Send Opinion</a>
-                                                </div>
-                                                <div class="info-item">
-                                                    <a href="/doctors">Find a Doctor</a>
-                                                </div>
-                                                <div class="info-item">
-                                                    <a href="/career">Careers</a>
-                                                </div>
-                                                <div class="info-item">
-                                                    <a href="#">Blogs</a>
-                                                </div>
+                                                @if (isset($menus['header-menu']))
+                                                    @foreach ($menus['header-menu']->menuItems as $menu)
+                                                        <div class="info-item">
+                                                            <a href="{{ $menu->url }}">{{ $menu->name }}</a>
+                                                        </div>
+                                                    @endforeach
+                                                @endif
+
                                             </div>
                                         </div>
                                     </div>
@@ -39,10 +35,9 @@
                         </div>
                         <nav id="mobile-menu" class="mainmenu">
                             <ul>
-                                @foreach ($main_menu as $menuLocation)
-                                    @foreach ($menuLocation->menuItems as $menu)
+                                @if (isset($menus['main-menu']))
+                                    @foreach ($menus['main-menu']->menuItems as $menu)
                                         @if ($menu->submenus->count() > 0)
-                                            <!-- HAS SUBMENU -->
                                             <li class="has-dropdown">
                                                 <a href="{{ $menu->url ?? '#' }}">
                                                     {{ $menu->name }}
@@ -59,7 +54,6 @@
                                                 </ul>
                                             </li>
                                         @else
-                                            <!-- NORMAL MENU -->
                                             <li>
                                                 <a href="{{ $menu->url ?? '#' }}">
                                                     {{ $menu->name }}
@@ -67,7 +61,7 @@
                                             </li>
                                         @endif
                                     @endforeach
-                                @endforeach
+                                @endif
                             </ul>
 
                             <div class="header-button">
