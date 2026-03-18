@@ -5,7 +5,7 @@
                 <div class="header-wrapper">
                     <!-- site logo -->
                     <div class="site_logo">
-                        <a class="logo" href="index.html"><img src="assets/images/logos/kpu-logo1.png"
+                        <a class="logo" href="/home"><img src="assets/images/logos/kpu-logo1.png"
                                 alt="" /></a>
                     </div>
                     <!-- navigation -->

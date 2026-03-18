@@ -8,7 +8,7 @@ use App\Models\Doctor;
 
 class DoctorsController extends Controller
 {
-    //
+
     public function index()
     {
         $data['dcotor_data'] = Doctor::with('doctorDepartments.department')->where('status', 1)->get();
@@ -20,7 +20,7 @@ class DoctorsController extends Controller
         $query = $request->q;
 
         $dcotor_data = Doctor::with('doctorDepartments.department')
-            ->where('status', 1)
+            ->where('status', 'active')
             ->where(function ($q) use ($query) {
                 $q->where('name', 'LIKE', "%{$query}%")
                     ->orWhereHas('doctorDepartments.department', function ($dq) use ($query) {
