@@ -32,8 +32,7 @@ class MenusController extends Controller
     public function menuItems($id)
     {
         $data['id'] = $id;
-        $data['menu'] = MenuLocations::with('menuItems.submenus')->find(1);
-   
+        $data['menu'] = MenuLocations::with('menuItems.submenus')->find($id);
         return view('admin.menus.menu-items-create', $data);
     }
 
