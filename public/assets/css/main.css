@@ -718,6 +718,7 @@ img {
       -ms-flex-pack: center;
           justify-content: center;
   gap: 10px;
+  border-radius: 12px;
   position: relative;
   background-color: #1eb5ff;
   font-size: 16px;
@@ -12992,18 +12993,26 @@ START: Working process CSS
     font-size: 20px;
     width: 50px;
     height: 50px;
-    inset-inline-end: -30px;
+    inset-inline-end: 0px;
   }
+}
+@media  (max-width: 991px) {
+ .second-op .process-item {
+            background-color: #ebf8ff;
+    flex-direction: column;
+            padding: 30px 30px 30px 30px;
+ }
+ .site_logo .logo {
+    padding:0px;
+ }
+ .second-op .process-item .process-content {
+    width: 100% !important;
+}
 }
 @media only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .process-item:not(:last-child)::after {
-    -webkit-transform: translate(-50%, 0) rotate(90deg);
-        -ms-transform: translate(-50%, 0) rotate(90deg);
-            transform: translate(-50%, 0) rotate(90deg);
-    top: inherit;
-    inset-inline-end: inherit;
-    bottom: -40px;
-    inset-inline-start: 50%;
+   
+    display:none;
   }
 }
 .process-item .process-step {
@@ -14372,6 +14381,8 @@ START: Team CSS
 }
 .team-item .team-img img {
   width: 100%;
+      object-fit: cover;
+    height: 100%;
   /* border-radius: 10px; */
   -webkit-transition: -webkit-transform 500ms;
   transition: -webkit-transform 500ms;
@@ -29805,7 +29816,7 @@ section.tj-page-header.section-gap-x.spacialiy-banner.doctors-bnn {
             }
 
             .container {
-                padding: 60px 40px;
+                padding: 0px;
             }
         }
 
@@ -30055,4 +30066,18 @@ header.header-area.header-1.header-absolute.section-gap-x .container-fluid .row{
 }
 .tj-select label {
     padding-left: 15px;
+}
+@media (max-width: 604px) {
+    .container {
+        padding: 0px 5%;
+    }
+    .second-op .process-item {
+    max-width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+   .row.leftSwipeWrap.selact-dr-card{
+    gap: 30px;
+ }
 }

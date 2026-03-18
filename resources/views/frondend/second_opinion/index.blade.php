@@ -123,7 +123,7 @@
                                 <h4 class="title">
                                     <a href="team-details.html">{{ $doctor->name }}</a>
                                 </h4>
-                                <span class="designation">{{ $department->name }}</span>
+                                <span class="designation"> {{ $row->department->name }}</span>
                                 <div class="h5-banner-content speciality-btn team-section">
                                     <div class="slider-btn">
                                         <a class="tj-primary-btn" href="contact.html">
