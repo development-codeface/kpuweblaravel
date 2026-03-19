@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\ChangePasswordController;
-use App\Http\Controllers\frondend\HomeController;
+use App\Http\Controllers\frondend\HomeController as FrondendHomeController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\DepartmentController;
@@ -51,6 +51,9 @@ use App\Http\Controllers\frondend\MedicalTurism as TurismController;
 use App\Http\Controllers\Admin\InternationalController;
 use App\Http\Controllers\frondend\InternationalController as FrondendInternationalController;
 use App\Http\Controllers\Admin\MenusController;
+use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\BlogController;
 
 Route::redirect('/', '/login');
 
@@ -90,14 +93,41 @@ Route::group([
     Route::get('menus/items/{id}', [MenusController::class, 'menuItems'])->name('menus.items');
     Route::post('menus/save/', [MenusController::class, 'saveMenu'])->name('menus.save');
 
+    Route::get('home/{id}', [HomeController::class, 'create'])->name('home.create');
+    Route::post('banners/store', [HomeController::class, 'store'])->name('banners.store');
+    Route::post('content/store', [HomeController::class, 'contentStore'])->name('content.store');
+    Route::post('section/store', [HomeController::class, 'sectionStore'])->name('section.store');
+
+    Route::get('slider', [SliderController::class, 'index'])->name('slider.index');
+    Route::get('slider/create', [SliderController::class, 'create'])->name('slider.create');
+    Route::post('slider/store', [SliderController::class, 'store'])->name('slider.store');
+    Route::get('slider/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
+    Route::post('slider/update/{id}', [SliderController::class, 'update'])->name('slider.update');
+    Route::delete('slider/delete/{id}', [SliderController::class, 'destroy'])->name('slider.delete');
+
+    Route::get('blog/category', [BlogController::class, 'categoryPage'])->name('blog.category.index');
+    Route::get('blog/category/create', [BlogController::class, 'categoryCreate'])->name('blog.category.create');
+    Route::post('blog/category/store', [BlogController::class, 'categoryStore'])->name('blog.category.store');
+    Route::get('blog/category/edit/{id}', [BlogController::class, 'categoryEdit'])->name('blog.category.edit');
+    Route::post('blog/category/update/{id}', [BlogController::class, 'categoryUpdate'])->name('blog.category.update');
+    Route::delete('blog/category/delete/{id}', [BlogController::class, 'categoryDestroy'])->name('blog.category.delete');
+
+    
+    Route::get('blog/post', [BlogController::class, 'index'])->name('blog.post.index');
+    Route::get('blog/post/create', [BlogController::class, 'create'])->name('blog.post.create');
+    Route::post('blog/post/store', [BlogController::class, 'store'])->name('blog.post.store');
+    Route::get('blog/post/edit/{id}', [BlogController::class, 'edit'])->name('blog.post.edit');
+    Route::post('blog/post/update/{id}', [BlogController::class, 'update'])->name('blog.post.update');
+
     // Banners
-    Route::get('banners', [BannerController::class, 'index'])->name('banners.index');
-    Route::get('banners/create', [BannerController::class, 'create'])->name('banners.create');
-    Route::post('banners/store', [BannerController::class, 'store'])->name('banners.store');
-    Route::post('banners/status-change/{id}', [BannerController::class, 'statusChange'])->name('banners.status.change');
-    Route::get('banners/edit/{id}', [BannerController::class, 'edit'])->name('banners.edit');
-    Route::post('banners/update/{id}', [BannerController::class, 'update'])->name('banners.update');
-    Route::delete('banners/destroy/{id}', [BannerController::class, 'destroy'])->name('banners.destroy');
+    // Route::get('banners', [BannerController::class, 'index'])->name('banners.index');
+    // Route::get('banners/create', [BannerController::class, 'create'])->name('banners.create');
+    // // Route::post('banners/store', [BannerController::class, 'store'])->name('banners.store');
+    // Route::post('banners/status-change/{id}', [BannerController::class, 'statusChange'])->name('banners.status.change');
+    // Route::get('banners/edit/{id}', [BannerController::class, 'edit'])->name('banners.edit');
+    // Route::post('banners/update/{id}', [BannerController::class, 'update'])->name('banners.update');
+    // Route::delete('banners/destroy/{id}', [BannerController::class, 'destroy'])->name('banners.destroy');
+
     //feature
     Route::resource('/feature', FeatureController::class);
     Route::resource('/department', DepartmentController::class);
@@ -219,10 +249,9 @@ Route::group([
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [FrondendHomeController::class, 'index'])->name('home');
 Route::get('/doctors', [DoctorsController::class, 'index'])->name('doctors.index');
-Route::get('/doctors', [DoctorsController::class, 'search'])
-    ->name('doctor.search');
+Route::get('/doctors', [DoctorsController::class, 'search'])->name('doctor.search');
 Route::get('/about', [FrondendAboutController::class, 'index'])->name('about.index');
 Route::get('/career', [FrondendCareerController::class, 'index'])->name('career.index');
 Route::get('/pharmacy', [FrondendPharmacyController::class, 'index'])->name('pharmacy.index');

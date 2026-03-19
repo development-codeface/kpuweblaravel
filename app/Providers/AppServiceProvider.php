@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
             $menus = MenuLocations::with('menuItems.submenus')
                 ->whereIn('slug', ['main-menu', 'header-menu'])
                 ->get()
-                ->keyBy('slug');; // 🔥 use first, not get
+                ->keyBy('slug'); // 🔥 use first, not get
 
             $view->with('menus', $menus);
         });

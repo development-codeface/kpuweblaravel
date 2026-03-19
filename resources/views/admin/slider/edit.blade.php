@@ -30,28 +30,28 @@
             object-fit: cover;
             border-radius: 6px;
         }
-
-        .col-md-3 {
-            align-self: flex-start;
-        }
     </style>
-    <div class="card ">
+    <div class="card">
         <div class="card-header">
             <p><i class="fi fi-br-edit mr_15_icc"></i>
-                {{ trans('global.create') }} {{ trans('cruds.banner.title_singular') }} </p>
+                Edit Slider </p>
         </div>
+
         <div class="card-body">
-            <form method="POST" action="{{ route('admin.banners.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.slider.update',$edit->id) }}" enctype="multipart/form-data">
                 @csrf
+                <input name="id" value="{{ $edit->id }}" type="hidden">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="required">Image</label>
+
                             <div class="image-box" onclick="document.getElementById('image').click();">
-                                <div class="triangle-placeholder" id="trianglePlaceholder">
-                                </div>
-                                <img id="imagePreview" style="display:none;">
+                                <div class="triangle-placeholder" id="trianglePlaceholder"></div>
+                                <img src="{{ asset($edit->image) }}" id="imagePreview"
+                                    style="width:100%; display:block;">
                             </div>
+
                             <input type="file" name="image" id="image" accept="image/*"
                                 class="d-none {{ $errors->has('image') ? 'is-invalid' : '' }}"
                                 onchange="previewImage(this)">
@@ -72,4 +72,22 @@
             </form>
         </div>
     </div>
+    <script>
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const img = document.getElementById('imagePreview');
+                    const triangle = document.getElementById('trianglePlaceholder');
+
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                    triangle.style.display = 'none';
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 @endsection

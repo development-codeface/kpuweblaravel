@@ -34,11 +34,11 @@
     <div class="card">
         <div class="card-header">
             <p><i class="fi fi-br-edit mr_15_icc"></i>
-                {{ trans('global.create') }} {{ trans('cruds.cms.pages') }} </p>
+                {{ trans('global.create') }} Slider </p>
         </div>
 
         <div class="card-body">
-            <form method="POST" action="{{ route('admin.pages.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.slider.store') }}" enctype="multipart/form-data">
                 @csrf
                   <div class="row">
                     <div class="col-md-12">

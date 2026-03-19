@@ -30,37 +30,28 @@
             object-fit: cover;
             border-radius: 6px;
         }
-
-        .col-md-3 {
-            align-self: flex-start;
-        }
     </style>
-    <div class="card ">
+    <div class="card">
         <div class="card-header">
             <p><i class="fi fi-br-edit mr_15_icc"></i>
-                {{ trans('global.create') }} {{ trans('cruds.banner.title_singular') }} </p>
+                {{ trans('global.create') }} Category </p>
         </div>
+
         <div class="card-body">
-            <form method="POST" action="{{ route('admin.banners.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.blog.category.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="required">Image</label>
-                            <div class="image-box" onclick="document.getElementById('image').click();">
-                                <div class="triangle-placeholder" id="trianglePlaceholder">
-                                </div>
-                                <img id="imagePreview" style="display:none;">
-                            </div>
-                            <input type="file" name="image" id="image" accept="image/*"
-                                class="d-none {{ $errors->has('image') ? 'is-invalid' : '' }}"
-                                onchange="previewImage(this)">
-
-                            @if ($errors->has('image'))
+                            <label class="required" for="name">{{ trans('cruds.user.fields.name') }}</label>
+                            <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text"
+                                name="name" id="name" value="{{ old('name', '') }}">
+                            @if ($errors->has('name'))
                                 <div class="invalid-feedback">
-                                    {{ $errors->first('image') }}
+                                    {{ $errors->first('name') }}
                                 </div>
                             @endif
+                            <span class="help-block">{{ trans('cruds.user.fields.name_helper') }}</span>
                         </div>
                     </div>
                 </div>

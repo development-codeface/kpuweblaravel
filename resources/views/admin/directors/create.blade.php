@@ -78,7 +78,7 @@
                                     <form method="POST" action="{{ route('admin.directors.store') }}"
                                         enctype="multipart/form-data">
                                          <input type="hidden" name="active_tab" value="bannerSection">
-                                        <input type="hidden" name="banner_id" value="{{ $edit_banner->id }}">
+                                        <input type="hidden" name="banner_id" value="{{ $edit_banner->id ?? ''}}">
                                         <input type="hidden" name="pages_id" value="{{ $id }}">
                                         @csrf
 
