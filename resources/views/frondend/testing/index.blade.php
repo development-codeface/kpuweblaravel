@@ -21,7 +21,43 @@
                 </div>
             </div>
         </div>
-
+<div class="row">
+            <div class="col-12">
+                <div class="countup-wrap">
+                    <div class="countup-item">
+                        <div class="inline-content">
+                            <span class="odometer countup-number" data-count="93"></span>
+                            <!-- <span class="count-plus">%</span> -->
+                        </div>
+                        <span class="count-text">Projects Completed.</span>
+                        <span class="count-separator" data-bg-image="assets/images/shape/separator.svg"></span>
+                    </div>
+                    <div class="countup-item">
+                        <div class="inline-content">
+                            <span class="odometer countup-number" data-count="20"></span>
+                            <span class="count-plus">M</span>
+                        </div>
+                        <span class="count-text">Reach Worldwide</span>
+                        <span class="count-separator" data-bg-image="assets/images/shape/separator.svg"></span>
+                    </div>
+                    <div class="countup-item">
+                        <div class="inline-content">
+                            <span class="odometer countup-number" data-count="8.5"></span>
+                            <span class="count-plus">X</span>
+                        </div>
+                        <span class="count-text">Faster Growth</span>
+                        <span class="count-separator" data-bg-image="assets/images/shape/separator.svg"></span>
+                    </div>
+                    <div class="countup-item">
+                        <div class="inline-content">
+                            <span class="odometer countup-number" data-count="100"></span>
+                            <span class="count-plus">+</span>
+                        </div>
+                        <span class="count-text">Awards Archived</span>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- <div class="page-header-overlay" data-bg-image="assets/images/shape/pheader-overlay.webp"></div> -->
     </section>
 
@@ -79,16 +115,42 @@
                 <div class="col-xl-6 col-lg-6">
                     <div class="about-content-area h6-about-content style-1 wow fadeInLeft" data-wow-delay=".2s">
                         <div class="sec-heading style-2 style-6">
-                            <span class="sub-title wow fadeInUp" data-wow-delay=".3s">Our Commitment</span>
+                          
                             <h2 class="sec-title title-anim">{{ $content->title }}</h2>
                             <p class="desc wow fadeInUp" data-wow-delay=".8s">
                                {{ $content->description }}
                             </p>
                         </div>
                     </div>
+                     <div class="hspt-grid-contents">
+                        <div class="content-area-grid">
+                            <h4 class="grid-content-title">Our International Services</h4>
+                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
+                        </div>
+                        <div class="content-area-grid">
+                            <h4 class="grid-content-title">Our International Services</h4>
+                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
+                        </div>
+                        <div class="content-area-grid">
+                            <h4 class="grid-content-title">Our International Services</h4>
+                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
+                        </div>
+                        <div class="content-area-grid">
+                            <h4 class="grid-content-title">Our International Services</h4>
+                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
+                        </div>
+                        <div class="content-area-grid">
+                            <h4 class="grid-content-title">Our International Services</h4>
+                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
+                        </div>
+                        <div class="content-area-grid">
+                            <h4 class="grid-content-title">Our International Services</h4>
+                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-xl-6 col-lg-6">
-                    <div class="about-img-area h6-about-img wow fadeInLeft" data-wow-delay=".2s">
+                    <div class="about-img-area h6-about-img wow inter-national fadeInLeft" data-wow-delay=".2s">
                         <div class="about-img overflow-hidden wow fadeInRight" data-wow-delay=".8s">
                             <img data-speed=".8" src="{{ $content->image }}" alt="" />
                         </div>
@@ -97,9 +159,7 @@
             </div>
         </div>
 
-        <div class="bg-shape-3">
-            <img src="assets/images/shape/shape-blur.svg" alt="" />
-        </div>
+        
     </section>
     <!-- end: About Section -->
 
@@ -137,7 +197,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="project-wrapper wow fadeInUp" data-wow-delay=".4s">

@@ -718,6 +718,7 @@ img {
       -ms-flex-pack: center;
           justify-content: center;
   gap: 10px;
+  border-radius: 12px;
   position: relative;
   background-color: #1eb5ff;
   font-size: 16px;
@@ -759,10 +760,10 @@ img {
           align-items: center;
   font-size: 20px;
   line-height: 1;
-  width: 42px;
-  height: 42px;
-  overflow: hidden;
-  background-color: var(--tj-color-theme-dark);
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+    background-color: transparent;
   border-radius: 50%;
 }
 .tj-primary-btn .btn-icon i {
@@ -952,6 +953,7 @@ START: Theme Header CSS
 }
 .header-area.header-1.header-absolute {
   top: 0;
+  left: 0px;
   position: absolute;
   inset-inline-start: 0;
   width:100% ;
@@ -1392,6 +1394,7 @@ nav#mobile-menu {
 }
 .mainmenu ul > li > .sub-menu > li {
   display: block;
+padding: 7px;
   width: 100%;
 }
 .mainmenu ul > li > .sub-menu > li > a {
@@ -2557,11 +2560,12 @@ START: Theme Footer CSS
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .tj-footer-section {
     padding-top: 320px;
+
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .tj-footer-section {
-    padding-top: 270px;
+    padding-top: 0px;
     margin-bottom: 0;
     border-end-start-radius: 0;
     border-end-end-radius: 0;
@@ -2747,8 +2751,8 @@ START: Theme Footer CSS
 }
 .widget-nav-menu ul li a:hover {
   color: var(--tj-color-theme-primary);
-  -webkit-padding-start: 5px;
-          padding-inline-start: 5px;
+  -webkit-padding-start: 0px;
+          padding-inline-start: 0px;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .widget-nav-menu {
@@ -3635,7 +3639,10 @@ START: Theme Search CSS
           align-items: center;
 }
 .tj_search_wrapper .search_form {
-  width: 100%;
+      width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 .tj_search_wrapper .search_form form .search_input {
   position: relative;
@@ -3819,7 +3826,7 @@ START: Theme Search CSS
   }
 }
 .hamburger_bg {
-  background-color: var(--tj-color-theme-dark);
+  background-color: #2a8f9f;
   height: 100%;
   width: 100%;
   position: absolute;
@@ -7557,10 +7564,10 @@ START: Heading CSS
 } */
 
 .sec-heading  p.desc {
-      margin-bottom: 40px;
-      color: #124e68;
-          font-size: 18px;
-    font-weight: 500;
+        margin-bottom: 40px;
+    color: #000000;
+    font-size: 18px;
+    font-weight: 400;
 }
 .sec-heading .sec-title span {
   color: var(--tj-color-theme-primary);
@@ -7585,7 +7592,7 @@ START: Heading CSS
   border-radius: 4px;
 }
 .sec-heading .sub-title i {
-  color: var(--tj-color-theme-primary);
+  color: #000000;
   font-size: 22px;
   line-height: 1;
   display: -webkit-inline-box;
@@ -7609,7 +7616,7 @@ START: Heading CSS
   color: var(--tj-color-text-body-2);
 }
 .sec-heading.style-2 .sub-title {
-  color: var(--tj-color-theme-primary);
+  color:#000000;
   background-color: var(--tj-color-common-white);
   border: 0;
   padding: 7px 10px;
@@ -8652,8 +8659,15 @@ START: Choose CSS
 .tj-choose-section {
   overflow: hidden;
 }
-.tj-choose-section .sec-heading {
+.tj-choose-section .sec-heading p.desc{
   max-width: 550px;
+ text-align: center;
+}
+.tj-choose-section .sec-heading {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .tj-choose-section.choose-3 .sec-heading {
   -webkit-margin-start: 0;
@@ -9213,7 +9227,7 @@ START: About CSS
 }
 .about-img-area .about-img img {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 12px;
@@ -9328,7 +9342,6 @@ START: About CSS
   background-color: var(--tj-color-common-white);
   border-radius: 12px;
   padding: 30px;
-  min-height: 408px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -9813,6 +9826,7 @@ section.tj-service-section.service-3.section-gap.stragetic-pillers .service-item
 section.tj-service-section.service-3.section-gap.stragetic-pillers .service-item.style-3 .service-content-wrap {
   flex-wrap: nowrap;
   padding: 25px 50px;
+  margin-bottom: 20px;
   border-radius: 17px;
   width: 48%;
   background-color: white;
@@ -9887,7 +9901,7 @@ section.tj-service-section.service-3.section-gap.stragetic-pillers .service-item
   font-size: 70px;
   width: 80px;
   height: 80px;
-  background: linear-gradient(-45deg, rgba(30, 138, 138, 0.3) 0%, rgba(30, 138, 138, 0) 50%, rgba(30, 138, 138, 0.3) 100%);
+  /* background: linear-gradient(-45deg, rgba(30, 138, 138, 0.3) 0%, rgba(30, 138, 138, 0) 50%, rgba(30, 138, 138, 0.3) 100%); */
   border-radius: 50%;
   border: 1px solid rgba(30, 138, 138, 0.15);
   display: -webkit-inline-box;
@@ -10277,7 +10291,11 @@ section.tj-service-section.service-3.section-gap.stragetic-pillers .service-item
 }
 
 .list-items {
-  list-style: none;
+      list-style-type: decimal;
+margin-bottom: 15px;
+}
+.feature-box.ambulace-page p {
+    margin-top: 14px;
 }
 .list-items li {
   color: var(--tj-color-text-body);
@@ -10375,15 +10393,15 @@ section.tj-service-section.service-3.section-gap.stragetic-pillers .service-item
   .service-content-wrap .service-content {
     width: 100%;
     margin-top: 20px;
-    -webkit-padding-start: 90px;
-            padding-inline-start: 90px;
+    -webkit-padding-start: 0px;
+    padding-inline-start: 0px;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .service-content-wrap .service-content {
     margin-top: 20px;
-    -webkit-padding-start: 80px;
-            padding-inline-start: 80px;
+    -webkit-padding-start: 0px;
+     padding-inline-start: 0px;
   }
 }
 
@@ -12638,15 +12656,18 @@ section.tj-blog-section.section-gap  .blog-content  {
 START: CTA CSS
 ----------------------------------------*/
 .tj-cta-section {
-  margin-bottom: -195px;
+      margin-top: 130px;
+    margin-bottom: -173px;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .tj-cta-section {
+        margin-top: 130px;
     margin-bottom: -150px;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .tj-cta-section {
+        margin-top: 130px;
     margin-bottom: -135px;
   }
 }
@@ -12655,8 +12676,9 @@ START: CTA CSS
     margin-bottom: -320px;
   }
 }
-@media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
+@media  (max-width: 767px) {
   .tj-cta-section {
+    display: none;
     margin-bottom: -270px;
   }
 }
@@ -12968,7 +12990,7 @@ START: Working process CSS
   background-color: var(--tj-color-common-white);
   border: 7px solid var(--tj-color-theme-bg);
   top: 50%;
-  inset-inline-end: -34px;
+  inset-inline-end: 0px;
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
@@ -12990,18 +13012,26 @@ START: Working process CSS
     font-size: 20px;
     width: 50px;
     height: 50px;
-    inset-inline-end: -30px;
+    inset-inline-end: 0px;
   }
+}
+@media  (max-width: 991px) {
+ .second-op .process-item {
+            background-color: #ebf8ff;
+    flex-direction: column;
+            padding: 30px 30px 30px 30px;
+ }
+ .site_logo .logo {
+    padding:0px;
+ }
+ .second-op .process-item .process-content {
+    width: 100% !important;
+}
 }
 @media only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .process-item:not(:last-child)::after {
-    -webkit-transform: translate(-50%, 0) rotate(90deg);
-        -ms-transform: translate(-50%, 0) rotate(90deg);
-            transform: translate(-50%, 0) rotate(90deg);
-    top: inherit;
-    inset-inline-end: inherit;
-    bottom: -40px;
-    inset-inline-start: 50%;
+
+    display:none;
   }
 }
 .process-item .process-step {
@@ -13254,8 +13284,8 @@ START: Contact CSS
   background-color: var(--tj-color-common-white);
   -webkit-margin-start: 0;
           margin-inline-start: 0;
-  -webkit-margin-end: 15px;
-          margin-inline-end: 15px;
+  -webkit-margin-end: 0px;
+          margin-inline-end: 0px;
   padding: 60px 50px;
   border-radius: 12px;
 }
@@ -14370,6 +14400,8 @@ START: Team CSS
 }
 .team-item .team-img img {
   width: 100%;
+      object-fit: cover;
+    height: 100%;
   /* border-radius: 10px; */
   -webkit-transition: -webkit-transform 500ms;
   transition: -webkit-transform 500ms;
@@ -14419,8 +14451,9 @@ START: Team CSS
 }
 .team-item .team-content {
   position: relative;
-     background-color: white;
-    padding: 30px;
+     /* background-color: #ffffff; */
+       padding: 9px;
+    padding-top: 30px;
 }
 .team-item .title {
   font-weight: var(--tj-fw-sbold);
@@ -15954,12 +15987,12 @@ blockquote cite::before {
 }
 
 .tj-sidebar-widget {
-  background-color: var(--tj-color-theme-bg);
+  /* background-color: var(--tj-color-theme-bg); */
   margin-bottom: 30px;
-  padding: 30px;
+  /* padding: 30px; */
   position: relative;
   z-index: 3;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   overflow: hidden;
 }
 .tj-sidebar-widget:last-child {
@@ -16381,13 +16414,10 @@ blockquote cite::before {
 }
 .widget-feature-item .feature-images {
   width: 100%;
-  height: 370px;
-  /* border-radius: 50%; */
+    height: 270px;
+    margin-bottom: 25px;
+    border-radius: 15px;
   overflow: hidden;
-  /* -webkit-margin-start: 60px;
-          margin-inline-start: 60px;
-  margin-bottom: -50px; */
-  /* border: 5px solid var(--tj-color-theme-primary); */
 }
 .widget-feature-item .feature-images img {
   height: 100%;
@@ -16397,33 +16427,33 @@ blockquote cite::before {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px) {
   .widget-feature-item .feature-images {
-    width: 320px;
-    height: 320px;
-    -webkit-margin-start: 45px;
-            margin-inline-start: 45px;
+    width: 100%;
+    height: 270px;
+    -webkit-margin-start: 0px;
+            margin-inline-start: 0px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .widget-feature-item .feature-images {
-    width: 500px;
-    height: 500px;
-    -webkit-margin-start: 260px;
-            margin-inline-start: 260px;
-    margin-bottom: -70px;
+    width: 100%;
+    height: 270px;
+    -webkit-margin-start: 0px;
+            margin-inline-start: 0px;
+    margin-bottom: 0px;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   .widget-feature-item .feature-images {
-    -webkit-margin-start: 180px;
-            margin-inline-start: 180px;
+    -webkit-margin-start: 0px;
+            margin-inline-start: 0px;
   }
 }
 @media (max-width: 400px) {
   .widget-feature-item .feature-images {
-    width: 320px;
-    height: 320px;
-    -webkit-margin-start: 45px;
-            margin-inline-start: 45px;
+    width: 100%;
+    height: 270px;
+    -webkit-margin-start: 0px;
+            margin-inline-start: 0px;
   }
 }
 @media (max-width: 575px) {
@@ -16485,6 +16515,7 @@ blockquote cite::before {
 }
 .service-details-item .desc p:last-child {
   margin-bottom: 0;
+      color: black;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .service-details-item {
@@ -18004,6 +18035,7 @@ START: Contact CSS
 .h4-contact-section {
   position: relative;
   overflow: hidden;
+      background-color: #ebf8ff;
 }
 .h4-contact-section::before {
   content: "";
@@ -18123,7 +18155,7 @@ START: Contact CSS
 .contact-form.style-3 .form-input .nice-select {
   color: var(--tj-color-text-body-2);
   padding: 12px 20px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgb(255 255 255);
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border-radius: 6px;
@@ -19327,7 +19359,7 @@ START: Hero CSS
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px) {
   .h5-banner-area {
-    min-height: 700px;
+    min-height: 550px;
   }
 }
 .h5-banner-content .banner-title {
@@ -19397,24 +19429,24 @@ START: Hero CSS
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .h5-banner-content .banner-title {
-    max-width: 600px;
-    font-size: 80px;
+    /* max-width: 600px; */
+    font-size: 50px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .h5-banner-content .banner-title {
-    max-width: 560px;
-    font-size: 65px;
+    /* max-width: 560px; */
+    font-size: 45px;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   .h5-banner-content .banner-title {
-    font-size: 55px;
+    font-size: 35px;
   }
 }
 @media (max-width: 575px) {
   .h5-banner-content .banner-title {
-    font-size: 50px;
+    font-size: 30px;
   }
 }
 
@@ -20401,11 +20433,15 @@ START: Pricing CSS
   color: var(--tj-color-common-white);
 }
 .h5-pricing-box-wrapper {
-  background-color: #bee6fd;
-  border-radius: 12px;
+      border: 2px solid #a0cfed;
+    background-color: #eaf7ff;
+    border-radius: 17px;
   padding: 30px;
   position: relative;
   z-index: 0;
+}
+.sec-heading.style-3.directors-price {
+    padding-left: 24px;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 575px) {
   .h5-pricing-box-wrapper {
@@ -21358,7 +21394,7 @@ START: Home 5 About CSS
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 20px 30px 26px;
+  padding: 20px 0px 26px;
   width: 100%;
 }
 .h6-about-funfact-wrapper {
@@ -29134,15 +29170,9 @@ section.tj-page-header.section-gap-x.spacialiy-banner .desc{
 section.tj-page-header.section-gap-x.spacialiy-banner .col-lg-12{
    display: flex;
 }
-section.tj-page-header.section-gap-x.spacialiy-banner .col-lg-12 .h5-banner-content{
-   width: 50%;
-}
 
-/* section.tj-page-header.section-gap-x.spacialiy-banner .col-lg-12 .h5-banner-content .tj-primary-btn{
-   padding-right: 0px;
-   padding-bottom: 0px;
-   padding-top: 0px;
-} */
+
+
 section.tj-page-header.section-gap-x.spacialiy-banner .col-lg-12 .h5-banner-content .slider-btn .btn-icon {
   border-radius: 0;
   height: 100%;
@@ -29153,6 +29183,7 @@ section.tj-page-header.section-gap-x.spacialiy-banner .col-lg-12 .h5-banner-cont
 
 .h5-banner-content.speciality-btn {
     display: flex;
+        width: auto;
     flex-direction: column;
     align-items: end;
     justify-content: end;
@@ -29182,7 +29213,7 @@ section.tj-service-section-5.section-gap .col-lg-12{
     gap: 10px;
 }
 .h5-banner-content.speciality-btn.team-section .tj-primary-btn{
-    padding: 10px 20px;
+       padding: 15px 16px;
     font-size: 14px;
 }
 
@@ -29221,12 +29252,12 @@ section.tj-page-header.section-gap-x.hospital-icu .countup-wrap .countup-item {
  background-color: #8fe6ff;
 }
 .tj-main-sidebar.slidebar-stickiy {
-    padding-left: 0 !important;
-    padding-right: 20px !important;
+   padding-left: 20px !important;
+    padding-right: 0px !important;
 }
 section#choose .client-logo {
     height: auto;
-    width: 20%;
+        width: 270px;
 }
 .list-items.pharmacy {
     display: flex;
@@ -29248,6 +29279,7 @@ section#choose .client-logo {
     border-radius: 25px;
     height: auto;
     display: flex;
+        background-color: #97dcf0;
     justify-content: center;
     align-items: center;
     padding: 5px 9px;
@@ -29263,7 +29295,7 @@ section#choose .client-logo {
     max-width: 48%;
         gap: 30px;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     display: flex;
 }
 .second-op .process-item .process-content {
@@ -29314,10 +29346,15 @@ section.tj-page-header.section-gap-x.spacialiy-banner.doctors-bnn {
 .countup-item.donate-blo {
     width: 100%;
     gap: 20px;
+    background-color: #fef2f2;
     display: flex;
     padding: 30px;
 }
-
+.countup-item.donate-blo .count-text {
+    color: black;
+    width: 100%;
+    max-width: 100%;
+}
 .blood-groups .client-logo{
   width: 21%;
   display: flex;
@@ -29325,10 +29362,12 @@ section.tj-page-header.section-gap-x.spacialiy-banner.doctors-bnn {
   justify-content: center;
   align-items: center;
   /* gap: 10px; */
-      background: blueviolet;
+      background: #e2f8e1;
 }
 .blood-groups .client-logo h1{
-  font-size: 30px;
+  font-size: 27px;
+    font-weight: 500;
+    margin-bottom: 0px;
 }
 
 .blood-groups {
@@ -29337,7 +29376,7 @@ section.tj-page-header.section-gap-x.spacialiy-banner.doctors-bnn {
  gap: 20px;
  flex-wrap: wrap;
  align-items: center;
- justify-content: center;
+ justify-content: flex-start;
 }
 
 
@@ -29358,7 +29397,7 @@ section.tj-page-header.section-gap-x.spacialiy-banner.doctors-bnn {
         }
 
         .subtitle {
-            color: #666;
+            color: #000000;
             font-size: 1rem;
             line-height: 1.6;
             margin-bottom: 40px;
@@ -29369,7 +29408,7 @@ section.tj-page-header.section-gap-x.spacialiy-banner.doctors-bnn {
         }
 
         .services-list li {
-            color: #333;
+            color: #100f0f;
             font-size: 1rem;
             padding: 16px 0;
             padding-left: 30px;
@@ -29471,23 +29510,6 @@ section.tj-page-header.section-gap-x.spacialiy-banner.doctors-bnn {
             font-size: 0.9rem;
         }
 
-        .submit-btn {
-            width: 100%;
-            padding: 14px;
-            background: #14b8a6;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin-top: 10px;
-        }
-
-        .submit-btn:hover {
-            background: #0d9488;
-        }
 
         @media (max-width: 968px) {
             .container {
@@ -29536,20 +29558,20 @@ section.tj-page-header.section-gap-x.spacialiy-banner.doctors-bnn {
         }
 
         .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+                flex-wrap: wrap;
+    display: flex;
             gap: 30px;
             margin-bottom: 60px;
         }
 
         .step-card {
+                border: 1px solid #fdfbfb;
             background: white;
+                width: 48%;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 20px;
+            display: flex;
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
@@ -29568,18 +29590,23 @@ section.tj-page-header.section-gap-x.spacialiy-banner.doctors-bnn {
             justify-content: flex-start;
             min-width: 120px;
         }
+        .hspt-intr .step-number {
+               width: 35%;
+                   padding: 20px;
+                   justify-content: center;
+        }
 
         .step-number .number {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            background: rgba(255, 255, 255, 0.2);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    width: 46px;
+    height: 46px;
+    border-radius: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
         }
 
         .step-number .icon {
@@ -29587,7 +29614,8 @@ section.tj-page-header.section-gap-x.spacialiy-banner.doctors-bnn {
         }
 
         .step-content {
-            padding: 30px 30px 30px 0;
+               width: 65%;
+            padding: 30px
         }
 
         .step-content h3 {
@@ -29605,12 +29633,17 @@ section.tj-page-header.section-gap-x.spacialiy-banner.doctors-bnn {
         }
 
         .step-features {
-            list-style: none;
+                gap: 12px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    display: flex;
+    list-style: none;
         }
 
         .step-features li {
             font-size: 0.9rem;
             color: #555;
+                width: 47%;
             padding: 6px 0;
             padding-left: 24px;
             position: relative;
@@ -29706,20 +29739,29 @@ section.tj-page-header.section-gap-x.spacialiy-banner.doctors-bnn {
             }
         }
 
+        @media (max-width: 1250px) {
+            .step-card{
+                width: 100% !important;
+               }
+        }
+
         @media (max-width: 640px) {
             .step-card {
-                grid-template-columns: 1fr;
+               flex-direction: column;
             }
-
+ .hspt-intr .step-number {
+    width: 100%
+}
             .step-number {
                 padding: 20px;
                 min-width: auto;
-                flex-direction: row;
+                /* flex-direction: row; */
                 justify-content: flex-start;
                 gap: 15px;
             }
 
             .step-content {
+                    width: 100% !important;
                 padding: 20px;
             }
 
@@ -29797,7 +29839,7 @@ section.tj-page-header.section-gap-x.spacialiy-banner.doctors-bnn {
             }
 
             .container {
-                padding: 60px 40px;
+                padding: 0px;
             }
         }
 
@@ -29835,6 +29877,7 @@ section.tj-page-header.section-gap-x.spacialiy-banner.doctors-bnn {
 
         .tj-sidebar-widget.widget-feature-item.wow.fadeInUp.ambulnce-sticky {
     padding: 0;
+background-color: transparent;
 }
 
 
@@ -29938,4 +29981,366 @@ button.book-content:hover i{
     display: flex;
     justify-content: space-between;
     background-color:#ECF2FF;
+}
+section.tj-blog-section.h7-blog.director.section-gap .sec-heading.style-2.style-7.text-center .desc{
+    width:65%;
+}
+section.tj-blog-section.h7-blog.director.section-gap .sec-heading.style-2.style-7.text-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.row.row-gap-4.h7-blog-wrapper.director-imgs span.categories{
+    border: none;
+    gap: 2px;
+}
+.row.row-gap-4.h7-blog-wrapper.director-imgs .blog-item {
+    border-radius: 16px;
+}
+.social-links i {
+    transform: rotate(0deg) !important;
+    color: #1d1d1d !important;
+}
+.social-links p{
+   margin-bottom:0px;
+}
+.social-links .btn-icon {
+    height: auto !important;
+    width: auto !important;
+        border-radius: 0px;
+    display: block;
+    font-size: 18px !important;
+    background-color: transparent;
+}
+.social-links .text-btn:hover .btn-icon {
+    background-color: transparent !important;
+}
+.h7-blog-wrapper .blog-item:hover .blog-content .social-links .text-btn .btn-icon {
+    background-color: transparent;
+}
+header.header-area.header-1.header-absolute.section-gap-x .container-fluid{
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+header.header-area.header-1.header-absolute.section-gap-x .container-fluid .row{
+        margin: 0px;
+}
+
+.col-lg-3.col-sm-6.doctor-card .team-item{
+    padding: 10px;
+        margin-bottom: 0px;
+    height: 410px;
+        border-radius: 12px;
+    background-color: #24a2c8;
+}
+
+.col-lg-3.col-sm-6.doctor-card .team-item:hover{
+    background-color: white;
+}
+
+.col-lg-3.col-sm-6.doctor-card .team-item:hover .title{
+    display: none;
+}
+.col-lg-3.col-sm-6.doctor-card .team-item:hover .designation{
+    display: none;
+}
+.col-lg-3.col-sm-6.doctor-card .team-item:hover .h5-banner-content.speciality-btn.team-section{
+    display: flex;
+        width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.col-lg-3.col-sm-6.doctor-card .team-item .h5-banner-content.speciality-btn.team-section{
+    display: none;
+}
+.col-lg-3.col-sm-6.doctor-card .team-img .team-img-inner{
+     width: 100%;
+    border-radius: 15px;
+        height: 100%;
+    /* background: #96a8a8; */
+
+}
+.col-lg-3.col-sm-6.doctor-card .team-img {
+    height: 60%;
+}
+/* .row.leftSwipeWrap.selact-dr-card {
+    display: flex;
+    gap: 20px;
+} */
+ .row.leftSwipeWrap.selact-dr-card .team-item .team-content .title{
+    width: 100%;
+    color: white;
+}
+ .row.leftSwipeWrap.selact-dr-card .team-item .team-content {
+   height: 40%;
+}
+ .row.leftSwipeWrap.selact-dr-card  .team-item .designation{
+    width: 100%;
+        font-size: 16px;
+    color: white;
+}
+ .row.leftSwipeWrap.selact-dr-card  .team-item .slider-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.row.leftSwipeWrap.selact-dr-card{
+    margin-top: 30px;
+}
+.tj-select label {
+    padding-left: 15px;
+}
+@media (max-width: 604px) {
+    .container {
+        padding: 0px 5%;
+    }
+    .second-op .process-item {
+    max-width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+   .row.leftSwipeWrap.selact-dr-card{
+    gap: 30px;
+ }
+}
+.amb-cll {
+    padding: 15px 20px;
+        border-radius: 13px;
+    margin-bottom: 25px;
+display: flex;
+align-items: center;
+justify-content: center;
+    background-color: #ff3a3a;
+}
+.amb-cll h3 {
+    color: white;
+    letter-spacing: .5px;
+    font-weight: 600;
+    font-size: 19px;
+margin-bottom: 0px;
+}
+.feature-box.ambulace-page{
+    background-color: transparent;
+}
+.feature-box.ambulace-page h3{
+    font-weight: 500;
+    font-size: 26px;
+}
+/* .feature-box.ambulace-page .feature-content{
+    padding-top: 0px;
+} */
+@media (min-width: 1250px) {
+   .h5-banner-content .desc {
+    width: 70%;
+}
+}
+.countup-item.donate-blo .sub-title {
+    gap: 7px;
+    align-items: center;
+    display: flex;
+    color: black;
+    font-weight: 500;
+    font-size: 20px;
+}
+section.h10-project.section-gap.tj-sticky-panel-container.health-packages .sec-heading-centered{
+    width: 100%;
+        margin-bottom: 40px;
+}
+section.h10-project.section-gap.tj-sticky-panel-container.health-packages .sec-heading-centered .sec-heading .sec-title{
+    width: 550px;
+}
+section.h10-project.section-gap.tj-sticky-panel-container.health-packages .blog-meta span {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: #000000;
+    line-height: 1;
+}
+button.submit-btn {
+    color: white;
+    margin-top: 16px;
+        width: 100%;
+    border-radius: 12px;
+    padding: 14px 24px;
+    background-color: #0f9d8f;
+}
+h2.sec-title.sec-header {
+    font-size: 35px;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+h2.sec-title.sub-text{
+    font-size: 30px;
+    color: black;
+    font-weight: 700;
+}
+.about-content-area.hspt-intr.h6-about-content.style-1.wow.fadeInLeft{
+    height: auto;
+    min-height: auto;
+    /* margin-bottom: 40px; */
+}
+.hspt-grid-contents {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5%;
+}
+.content-area-grid{
+    width: 45%;
+        padding: 20px 15px;
+}
+h4.grid-content-title{
+    width: 80%;
+    font-weight: 600;
+    font-size: 22px;
+}
+.h5-banner-content{
+    width: 850px;
+}
+
+@media (max-width: 991px) {
+   
+   
+.about-img-area.style-2{
+  display: none;
+}
+    .container.inquiry-section {
+    flex-direction: column;
+            gap: 40px;
+                padding: 100px 5%;
+}
+.list-items.pharmacy{
+    flex-direction: column;
+ }
+ section.tj-page-header.section-gap-x.spacialiy-banner .col-lg-12 {
+    flex-direction: column;
+ }
+ .h5-banner-content.speciality-btn {
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 30px;
+}
+.h5-banner-content {
+    width: auto;
+}
+}
+
+.about-img-area.h6-about-img.inter-national.wow.fadeInLeft {
+    margin-inline-start: 0px;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.about-img-area.h6-about-img.inter-national.wow.fadeInLeft img{
+   height: 550px;
+}
+.step-orde{
+        gap: 15px;
+    margin-bottom: 15px;
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+    width: 100%;
+}
+.step-detai h3{
+    color: white;
+    font-weight: 600;
+    font-size: 19px;
+}
+.step-detai p{
+    letter-spacing: .6px;
+    font-size: 13px;
+}
+.client-logo.insurence-details .choose-box{
+    border: 1px solid #a29c9c;
+    background: white;
+    background-color: white;
+}
+.client-logo.insurence-details .choose-box .desc{
+  color: black;
+}
+h2.sec-title.insurence {
+    color: black;
+    font-size: 35px;
+}
+h2.sec-title.pharmacy {
+    font-size: 33px;
+    margin-bottom: 40px;
+}
+.h5-banner-content.speciality-btn .slider-btn {
+    display: flex;
+}
+.h5-banner-content.speciality-btn span.btn-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: auto !important;
+    background-color: #d7e2fd;
+    padding: 14px 10px;
+}
+.h5-banner-content.speciality-btn .tj-primary-btn {
+    border-radius: 0px;
+}
+.h5-banner-content.speciality{
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .banner-menu-conta a {
+    font-size: 14px;
+ }
+ section.tj-service-section.service-3.section-gap.stragetic-pillers .service-item.style-3 .service-content-wrap{
+    width: 100% !important;
+ }
+ .content-area-grid{
+    width: 100%;
+ }
+}
+
+@media (max-width: 1200px) {
+   .tj-product-details-tab-nav.tj-tab{
+    flex-direction: column;
+ }
+ .tj-product-details-tab-nav.tj-tab nav {
+    width: 100% !important;
+}
+.tj-product-details-tab-nav .tj-product-tab{
+    flex-direction: row !important;
+            justify-content: center;
+        align-items: center;
+ }
+ .tj-product-details-tab-nav .tj-product-tab .nav-link{
+    width: max-content !important;
+ }
+ .tj-product-details-tab-nav.tj-tab div#navPresentationTabContent{
+    width: 87%;
+    margin: 60px;
+}
+.booking-container {
+    position: absolute;
+    z-index: 9999999;
+    background-color: white;
+    bottom: 0;
+    left: 0%;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.about-img-area.h10-about-banner.wow.bounceInLeft{
+    margin-bottom: 50px;
+ }
+ section.tj-service-section.service-3.section-gap.stragetic-pillers .service-item.style-3 .service-content-wrap{
+    flex-direction: column;
+    gap: 20px;
+ }
 }

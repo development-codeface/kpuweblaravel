@@ -30,8 +30,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="sec-heading-wrap">
-                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
-                                class="tji-box"></i>{{ $contents->title }}</span>
+                        
                         <div class="heading-wrap-content">
                             <div class="sec-heading">
                                 @php
@@ -39,9 +38,9 @@
                                     $lastWord = array_pop($words);
                                 @endphp
 
-                                <h2 class="sec-title title-anim">
+                                <h2 class="sec-title insurence">
                                     {{ implode(' ', $words) }}
-                                    <span>{{ $lastWord }}</span>
+                                    {{ $lastWord }}
                                 </h2>
 
                             </div>
@@ -51,11 +50,12 @@
             </div>
             <div class="row row-gap-4 rightSwipeWrap">
                 @foreach ($contents->subContents as $content)
-                    <div class="client-logo">
+                    <div class="client-logo insurence-details">
                         <div class="choose-box right-swipe">
                             <div class="choose-content">
-                                <div class="choose-icon">
-                                    <i class="{{ $content->icon }}"></i>
+                                <div class="choose-image">
+                                    <img src="../../../../assets/health-india-logo.png" alt="">
+                                    {{-- <i class="{{ $content->icon }}"></i> --}}
                                 </div>
                                 <p class="desc">{{ $content->description }}</p>
                             </div>

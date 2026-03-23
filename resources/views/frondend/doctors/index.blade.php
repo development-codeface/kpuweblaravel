@@ -57,34 +57,15 @@
                             </div> -->
                 </div>
             </div>
-            <div class="row leftSwipeWrap">
+            <div class="row leftSwipeWrap selact-dr-card">
                 @foreach ($dcotor_data as $doctor)
-                    <div class="col-lg-3 col-sm-6">
+                    <div class="col-lg-3 col-sm-6 doctor-card">
                         <div class="team-item left-swipe">
                             <div class="team-img">
                                 <div class="team-img-inner">
                                     <img src="{{ $doctor->image }}" alt="" />
                                 </div>
-                                <div class="social-links">
-                                    <ul>
-                                        <li>
-                                            <a href="https://www.facebook.com/" target="_blank"><i
-                                                    class="fa-brands fa-facebook-f"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="https://www.instagram.com/" target="_blank"><i
-                                                    class="fa-brands fa-instagram"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="https://x.com/" target="_blank"><i
-                                                    class="fa-brands fa-x-twitter"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="https://www.linkedin.com/" target="_blank"><i
-                                                    class="fa-brands fa-linkedin-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
+                               
                             </div>
                             <div class="team-content">
                                 <h4 class="title">
@@ -101,9 +82,12 @@
                                 <div class="h5-banner-content speciality-btn team-section">
                                     <div class="slider-btn">
                                         <a class="tj-primary-btn" href="contact.html">
-                                            <span class="btn-text"><span>Get Started</span></span>
+                                            <span class="btn-text"><span>Book Appointment</span></span>
                                         </a>
-                                        <!-- <span class="btn-icon"><i class="tji-arrow-right-long"></i></span> -->
+                                        <a class="tj-primary-btn" href="contact.html">
+                                            <span class="btn-text"><span>View Profile</span></span>
+                                        </a>
+                                      
                                     </div>
                                 </div>
                                 <!-- <a class="mail-at" href="mailto:info@bexon.com"><i class="tji-at"></i></a> -->

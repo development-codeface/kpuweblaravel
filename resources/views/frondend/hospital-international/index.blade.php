@@ -77,18 +77,45 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-lg-6">
-                    <div class="about-content-area h6-about-content style-1 wow fadeInLeft" data-wow-delay=".2s">
+                    <div class="about-content-area hspt-intr h6-about-content style-1 wow fadeInLeft" data-wow-delay=".2s">
+ <h2 class="sec-title  sec-header">Patients from around the world</h2>
                         <div class="sec-heading style-2 style-6">
-                            <span class="sub-title wow fadeInUp" data-wow-delay=".3s">Our Commitment</span>
-                            <h2 class="sec-title title-anim">{{ $content->title }}</h2>
+                            {{-- <span class="sub-title wow fadeInUp" data-wow-delay=".3s">Our Commitment</span> --}}
+                            <h2 class="sec-title sub-text">{{ $content->title }}</h2>
                             <p class="desc wow fadeInUp" data-wow-delay=".8s">
                                 {{ $content->description }}
                             </p>
                         </div>
                     </div>
+                    <div class="hspt-grid-contents">
+                        <div class="content-area-grid">
+                            <h4 class="grid-content-title">Our International Services</h4>
+                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
+                        </div>
+                        <div class="content-area-grid">
+                            <h4 class="grid-content-title">Our International Services</h4>
+                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
+                        </div>
+                        <div class="content-area-grid">
+                            <h4 class="grid-content-title">Our International Services</h4>
+                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
+                        </div>
+                        <div class="content-area-grid">
+                            <h4 class="grid-content-title">Our International Services</h4>
+                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
+                        </div>
+                        <div class="content-area-grid">
+                            <h4 class="grid-content-title">Our International Services</h4>
+                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
+                        </div>
+                        <div class="content-area-grid">
+                            <h4 class="grid-content-title">Our International Services</h4>
+                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-xl-6 col-lg-6">
-                    <div class="about-img-area h6-about-img wow fadeInLeft" data-wow-delay=".2s">
+                    <div class="about-img-area h6-about-img inter-national wow fadeInLeft" data-wow-delay=".2s">
                         <div class="about-img overflow-hidden wow fadeInRight" data-wow-delay=".8s">
                             <img data-speed=".8" src="{{ $content->image }}" alt="" />
                         </div>
@@ -97,9 +124,9 @@
             </div>
         </div>
 
-        <div class="bg-shape-3">
+        {{-- <div class="bg-shape-3">
             <img src="assets/images/shape/shape-blur.svg" alt="" />
-        </div>
+        </div> --}}
     </section>
     <!-- end: About Section -->
 
@@ -179,18 +206,23 @@
             </p>
         </div>
 
-        <div class="steps-grid">
+        <div class="steps-grid hspt-intr">
             @foreach ($trip->contents as $index => $content)
                 <div class="step-card">
                     <div class="step-number">
-                        <div class="number"> {{ $index + 1 }}</div>
+                        <div class="step-orde">
+ <div class="number"> {{ $index + 1 }}</div>
                         <div class="icon">📄</div>
-                    </div>
-                    <div class="step-content">
-                        <h3>{{ $content->heading }}</h3>
+                        </div>
+                        <div class="step-detai">
+                             <h3>{{ $content->heading }}</h3>
                         <p>
                             {{ $content->description }}
                         </p>
+                        </div>
+                    </div>
+                    <div class="step-content">
+                        
                         @if ($content->subcontents->count())
                             <ul class="step-features">
                                 @foreach ($content->subcontents as $sub)
@@ -254,7 +286,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="project-wrapper wow fadeInUp" data-wow-delay=".4s">

@@ -86,9 +86,7 @@
                 </div>
             </div>
 
-            <div class="bg-shape-3">
-                <img src="assets/images/shape/shape-blur.svg" alt="">
-            </div>
+          
 
         </section>
     @endif
@@ -112,44 +110,8 @@
                                             data-wow-delay=".4s"
                                             style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
 
-                                            <h2 class="sec-title text-anim">
-                                                <div style="position:relative;display:inline-block;">
-                                                    <div
-                                                        style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
-                                                        P</div>
-                                                    <div
-                                                        style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
-                                                        l</div>
-                                                    <div
-                                                        style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
-                                                        a</div>
-                                                    <div
-                                                        style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
-                                                        n</div>
-                                                </div>
-                                                <div style="position:relative;display:inline-block;">
-                                                    <div
-                                                        style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
-                                                        I</div>
-                                                    <div
-                                                        style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
-                                                        n</div>
-                                                    <div
-                                                        style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
-                                                        c</div>
-                                                    <div
-                                                        style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
-                                                        l</div>
-                                                    <div
-                                                        style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
-                                                        u</div>
-                                                    <div
-                                                        style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
-                                                        d</div>
-                                                    <div
-                                                        style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
-                                                        e</div>
-                                                </div>
+                                            <h2 class="sec-title  pharmacy">
+                                               Why choose Our Pharmacy
                                             </h2>
                                             <div class="list-items pharmacy d-flex gap-5">
 
@@ -184,45 +146,7 @@
                                             style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
 
                                             <div class="list-items">
-                                                <h2 class="sec-title text-anim">
-                                                    <div style="position:relative;display:inline-block;">
-                                                        <div
-                                                            style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
-                                                            P</div>
-                                                        <div
-                                                            style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
-                                                            l</div>
-                                                        <div
-                                                            style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
-                                                            a</div>
-                                                        <div
-                                                            style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
-                                                            n</div>
-                                                    </div>
-                                                    <div style="position:relative;display:inline-block;">
-                                                        <div
-                                                            style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
-                                                            I</div>
-                                                        <div
-                                                            style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
-                                                            n</div>
-                                                        <div
-                                                            style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
-                                                            c</div>
-                                                        <div
-                                                            style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
-                                                            l</div>
-                                                        <div
-                                                            style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
-                                                            u</div>
-                                                        <div
-                                                            style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
-                                                            d</div>
-                                                        <div
-                                                            style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
-                                                            e</div>
-                                                    </div>
-                                                </h2>
+                                                <h2 class="sec-title pharmacy">Pharmacy Locations</h2>
                                                 <div class="col-12">
                                                     @foreach ($plans as $plan)
                                                         <div class="service-wrapper">
@@ -256,15 +180,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bg-shape-1">
-                                    <img src="assets/images/shape/pattern-2.svg" alt="">
-                                </div>
-                                <div class="bg-shape-2">
-                                    <img src="assets/images/shape/pattern-3.svg" alt="">
-                                </div>
-                                <div class="bg-shape-3">
-                                    <img src="assets/images/shape/shape-blur-2.svg" alt="">
-                                </div>
+                              
                             </div>
                         </div>
                     </div>
@@ -313,7 +229,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="project-wrapper wow fadeInUp" data-wow-delay=".4s"

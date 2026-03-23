@@ -164,7 +164,7 @@
                         </span>
                         <div class="heading-wrap-content">
                             <div class="sec-heading style-3">
-                                <h2 class="sec-title title-anim">
+                                <h2 class="sec-title ">
                                     {{ $facility->sub_title }}
                                 </h2>
                             </div>
@@ -187,7 +187,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="project-wrapper wow fadeInUp" data-wow-delay=".4s">

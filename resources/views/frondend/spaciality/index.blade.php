@@ -8,7 +8,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="h5-banner-content">
+                    <div class="h5-banner-content speciality">
                         <div class="btn-area wow fadeInUp" data-wow-delay=".8s">
                             <a class="tj-primary-btn tag-port">
                                 <span class="btn-text">{{ $banner->button_text }}</span>
@@ -26,9 +26,15 @@
                     <div class="h5-banner-content speciality-btn">
                         <div class="slider-btn">
                             <a class="tj-primary-btn" href="contact.html">
-                                <span class="btn-text"><span>Get Started</span></span>
+                                <span class="btn-text"><span>Book Appointment</span></span>
                             </a>
-                            <!-- <span class="btn-icon"><i class="tji-arrow-right-long"></i></span> -->
+                             <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
+                        </div>
+                        <div class="slider-btn">
+                            <a class="tj-primary-btn" href="contact.html">
+                                <span class="btn-text"><span>Get Second Opinion</span></span>
+                            </a>
+                             <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
                         </div>
 
                     </div>
@@ -250,33 +256,19 @@
                     <div class="sec-heading text-center">
                         <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i class="tji-box"></i> Meet Our
                             Team</span>
-                        <h2 class="sec-title title-anim">Success <span>Stories</span> Fuel our Innovation.</h2>
+                        <h2 class="sec-title ">Success <span>Stories</span> Fuel our Innovation.</h2>
                     </div>
                 </div>
             </div>
-            <div class="row leftSwipeWrap">
+            <div class="row leftSwipeWrap selact-dr-card">
                 @foreach ($doctors as $value)
-                    <div class="col-lg-3 col-sm-6">
+                    <div class="col-lg-3 col-sm-6 doctor-card">
                         <div class="team-item left-swipe">
                             <div class="team-img">
                                 <div class="team-img-inner">
                                     <img src="{{ $value->image }}" alt="">
                                 </div>
-                                <div class="social-links">
-                                    <ul>
-                                        <li><a href="https://www.facebook.com/" target="_blank"><i
-                                                    class="fa-brands fa-facebook-f"></i></a>
-                                        </li>
-                                        <li><a href="https://www.instagram.com/" target="_blank"><i
-                                                    class="fa-brands fa-instagram"></i></a>
-                                        </li>
-                                        <li><a href="https://x.com/" target="_blank"><i
-                                                    class="fa-brands fa-x-twitter"></i></a></li>
-                                        <li><a href="https://www.linkedin.com/" target="_blank"><i
-                                                    class="fa-brands fa-linkedin-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                
                             </div>
                             <div class="team-content">
                                 <h4 class="title"><a href="team-details.html">{{ $value->name }}</a></h4>
@@ -286,28 +278,23 @@
                                         <a class="tj-primary-btn" href="contact.html">
                                             <span class="btn-text"><span>Get Started</span></span>
                                         </a>
-                                        <!-- <span class="btn-icon"><i class="tji-arrow-right-long"></i></span> -->
+                                       
                                     </div>
                                     <div class="slider-btn">
                                         <a class="tj-primary-btn" href="contact.html">
                                             <span class="btn-text"><span>Get Started</span></span>
                                         </a>
-                                        <!-- <span class="btn-icon"><i class="tji-arrow-right-long"></i></span> -->
+                                      
                                     </div>
                                 </div>
-                                <!-- <a class="mail-at" href="mailto:info@bexon.com"><i class="tji-at"></i></a> -->
+                                
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
         </div>
-        <div class="bg-shape-1">
-            <img src="assets/images/shape/pattern-2.svg" alt="">
-        </div>
-        <div class="bg-shape-2">
-            <img src="assets/images/shape/pattern-3.svg" alt="">
-        </div>
+       
     </section>
     <!-- end: Team Section -->
 
