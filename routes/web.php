@@ -55,7 +55,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\BlogController;
 
-Route::redirect('/', '/login');
+Route::redirect('/', '/home');
 
 Auth::routes(['register' => false]);
 
