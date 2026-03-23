@@ -80,16 +80,41 @@
                 <div class="col-xl-6 col-lg-6">
                     <div class="about-content-area h6-about-content style-1 wow fadeInLeft" data-wow-delay=".2s">
                         <div class="sec-heading style-2 style-6">
-                            <span class="sub-title wow fadeInUp" data-wow-delay=".3s">Our Commitment</span>
                             <h2 class="sec-title title-anim">{{ $content->title }}</h2>
                             <p class="desc wow fadeInUp" data-wow-delay=".8s">
                                 {{ $content->description }}
                             </p>
                         </div>
                     </div>
+                     <div class="hspt-grid-contents">
+                        <div class="content-area-grid">
+                            <h4 class="grid-content-title">Our International Services</h4>
+                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
+                        </div>
+                        <div class="content-area-grid">
+                            <h4 class="grid-content-title">Our International Services</h4>
+                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
+                        </div>
+                        <div class="content-area-grid">
+                            <h4 class="grid-content-title">Our International Services</h4>
+                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
+                        </div>
+                        <div class="content-area-grid">
+                            <h4 class="grid-content-title">Our International Services</h4>
+                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
+                        </div>
+                        <div class="content-area-grid">
+                            <h4 class="grid-content-title">Our International Services</h4>
+                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
+                        </div>
+                        <div class="content-area-grid">
+                            <h4 class="grid-content-title">Our International Services</h4>
+                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-xl-6 col-lg-6">
-                    <div class="about-img-area h6-about-img wow fadeInLeft" data-wow-delay=".2s">
+                    <div class="about-img-area h6-about-img wow inter-national fadeInLeft" data-wow-delay=".2s">
                         <div class="about-img overflow-hidden wow fadeInRight" data-wow-delay=".8s">
                             <img data-speed=".8" src="{{  $content->image  }}" alt="" />
                         </div>
@@ -98,9 +123,7 @@
             </div>
         </div>
 
-        <div class="bg-shape-3">
-            <img src="assets/images/shape/shape-blur.svg" alt="" />
-        </div>
+        
     </section>
     <!-- end: About Section -->
 
@@ -115,7 +138,7 @@
                         </span>
                         <div class="heading-wrap-content">
                             <div class="sec-heading style-3">
-                                <h2 class="sec-title title-anim">
+                                <h2 class="sec-title ">
                                     {{ $facility->sub_title }}
                                 </h2>
                             </div>
@@ -138,7 +161,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="project-wrapper wow fadeInUp" data-wow-delay=".4s">

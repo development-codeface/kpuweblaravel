@@ -104,18 +104,24 @@
             </p>
         </div>
 
-        <div class="steps-grid">
+        <div class="steps-grid hspt-intr">
             @foreach ($trip->contents as $index => $content)
                 <div class="step-card">
                     <div class="step-number">
-                        <div class="number"> {{ $index + 1 }}</div>
-                        <div class="icon">📄</div>
-                    </div>
-                    <div class="step-content">
-                        <h3>{{ $content->heading }}</h3>
+                         <div class="step-orde">
+
+                             <div class="number"> {{ $index + 1 }}</div>
+                             <div class="icon">📄</div>
+                         </div>
+                        <div class="step-detai">
+        <h3>{{ $content->heading }}</h3>
                         <p>
                             {{ $content->description }}
                         </p>
+                        </div>
+                    </div>
+                    <div class="step-content">
+                        
                         @if ($content->subcontents->count())
                             <ul class="step-features">
                                 @foreach ($content->subcontents as $sub)
@@ -147,7 +153,7 @@
     </div>
 
     <!-- start: Project Section -->
-    <section class="tj-project-section-3 section-gap section-gap-x">
+    {{-- <section class="tj-project-section-3 section-gap section-gap-x">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -180,7 +186,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="project-wrapper wow fadeInUp" data-wow-delay=".4s">
@@ -218,7 +224,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
+
+    
     <script>
         document.querySelectorAll('.scroll-link').forEach(link => {
             link.addEventListener('click', function(e) {

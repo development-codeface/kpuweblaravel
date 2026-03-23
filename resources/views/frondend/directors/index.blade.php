@@ -128,7 +128,7 @@
                                         </div>
                                     </div>
                                 </div>
-                               
+
                             </div>
                         </div>
                     </div>
@@ -145,11 +145,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="sec-heading-wrap">
-                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i class="tji-box"></i>Proud
+                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i class="tji-box"></i>
                             {{ $facility->title }}</span>
                         <div class="heading-wrap-content">
                             <div class="sec-heading style-3">
-                                <h2 class="sec-title title-anim"> {{ $facility->sub_title }}</h2>
+                                <h2 class="sec-title "> {{ $facility->sub_title }}</h2>
                             </div>
                             <div class="slider-navigation d-none d-md-inline-flex wow fadeInUp" data-wow-delay=".5s">
                                 <div class="slider-prev">
@@ -170,7 +170,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="project-wrapper wow fadeInUp" data-wow-delay=".4s">

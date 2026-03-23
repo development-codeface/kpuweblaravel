@@ -201,7 +201,7 @@
                 <div class="row flex-column-reverse flex-md-row">
 
                     {{-- Left Side --}}
-                    <div class="col-12 col-lg-5 d-block d-md-none d-lg-block">
+                    <div class="col-12 col-lg-5 d-block  d-lg-block">
                         <div class="about-img-area h10-about-banner wow bounceInLeft" data-wow-delay=".3s">
                             <div class="about-img overflow-hidden">
                                 <h2 class="sec-title">

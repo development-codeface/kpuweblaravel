@@ -66,7 +66,10 @@
                     <div class="tj-main-sidebar slidebar-stickiy">
                         <div class="tj-sidebar-widget widget-feature-item wow fadeInUp ambulnce-sticky"
                             data-wow-delay=".3s">
-                            <div class="feature-box">
+<div class="amb-cll">
+<h3>For Ambulance Call : 00123 764 </h3>
+</div>
+                            <div class="feature-box ambulace-page">
                                 <div class="feature-images">
                                     <img src="{{ $contents->image }}" alt="" />
                                 </div>
