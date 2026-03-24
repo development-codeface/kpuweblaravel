@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\pages;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PagesController extends Controller
 {
@@ -27,13 +28,11 @@ class PagesController extends Controller
 
         $request->validate([
             'title' => 'required|string|max:255',
-            'slug'  =>  'required|string|max:255'
         ]);
 
         pages::create([
             'title' => $request->input('title'),
-            'slug'  => $request->input('slug'),
-            // Add other fields as necessary
+            'slug'  => Str::slug($request->input('title')),
         ]);
 
         return redirect()->route('admin.pages.index')->with('success', 'Page created successfully.');
@@ -52,14 +51,12 @@ class PagesController extends Controller
 
         $request->validate([
             'title' => 'required|string|max:255',
-            'slug'  =>  'required|string|max:255'
         ]);
 
         $page = pages::findOrFail($id);
         $page->update([
             'title' => $request->input('title'),
-            'slug'  => $request->input('slug'),
-            // Add other fields as necessary
+            'slug'  => Str::slug($request->input('title')),
         ]);
 
         return redirect()->route('admin.pages.index')->with('success', 'Page updated successfully.');

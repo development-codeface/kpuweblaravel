@@ -54,6 +54,10 @@ use App\Http\Controllers\Admin\MenusController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\frondend\VisionController as FrondendVisionController;
+use App\Http\Controllers\frondend\RoomController as FrondendRoomController;
+use App\Http\Controllers\Admin\VisionController;
+use App\Http\Controllers\Admin\RoomsController;
 
 Route::redirect('/', '/home');
 
@@ -112,7 +116,7 @@ Route::group([
     Route::post('blog/category/update/{id}', [BlogController::class, 'categoryUpdate'])->name('blog.category.update');
     Route::delete('blog/category/delete/{id}', [BlogController::class, 'categoryDestroy'])->name('blog.category.delete');
 
-    
+
     Route::get('blog/post', [BlogController::class, 'index'])->name('blog.post.index');
     Route::get('blog/post/create', [BlogController::class, 'create'])->name('blog.post.create');
     Route::post('blog/post/store', [BlogController::class, 'store'])->name('blog.post.store');
@@ -231,6 +235,15 @@ Route::group([
 
     Route::get('hospital-international/create/{id}', [InternationalController::class, 'create'])->name('hospital-international.create');
     Route::post('hospital-international/banner/store', [InternationalController::class, 'store'])->name('hospital-international.banner.store');
+
+    Route::get('our-vision/create/{id}', [VisionController::class, 'create'])->name('our-vision.create');
+    Route::post('our-vision/store', [VisionController::class, 'store'])->name('our-vision.store');
+    Route::post('our-vision/section/store', [VisionController::class, 'SectionStore'])->name('our-vision.section.store');
+    Route::post('our-vision/content/store', [VisionController::class, 'contentSection'])->name('our-vision.content.store');
+
+    Route::get('rooms/create/{id}', [RoomsController::class, 'create'])->name('rooms.create');
+    Route::post('rooms/store', [RoomsController::class, 'store'])->name('rooms.store');
+    Route::post('rooms/feature/store', [RoomsController::class, 'roomStore'])->name('rooms.feature.store');
 });
 
 
@@ -272,3 +285,5 @@ Route::get('/hospital-ot', [FrondendOtController::class, 'index'])->name('hospit
 Route::get('/hospital-testing', [FrondendTestingController::class, 'index'])->name('hospital-testing.index');
 Route::get('/medical-turism', [TurismController::class, 'index'])->name('medical-turism.index');
 Route::get('/hospital-international', [FrondendInternationalController::class, 'index'])->name('hospital-international.index');
+Route::get('/vision', [FrondendVisionController::class, 'index'])->name('vision.index');
+Route::get('/room', [FrondendRoomController::class, 'index'])->name('room.index');
