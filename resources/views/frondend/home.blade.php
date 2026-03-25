@@ -1,6 +1,6 @@
 @extends('frondend.app')
 @section('content')
-    <div class="top-space-15"></div>
+    {{-- <div class="top-space-15"></div> --}}
     <!-- start: Banner Section -->
     <section class="h5-banner-section section-gap-x">
         <div class="banner-bg" data-bg-image="{{ asset($banner->image) }}">
@@ -20,15 +20,15 @@
 
         <div class="booking-container">
             <button class="book-content ">
-                <i class="tji-arrow-right-long"></i>
+                {{-- <i class="tji-arrow-right-long"></i> --}}
                 <h4 class="title">Book Appointment</h4>
             </button>
             <button class="book-content">
-                <i class="tji-arrow-right-long"></i>
+                {{-- <i class="tji-arrow-right-long"></i> --}}
                 <h4 class="title">Book Appointment</h4>
             </button>
             <button class="book-content">
-                <i class="tji-arrow-right-long"></i>
+                {{-- <i class="tji-arrow-right-long"></i> --}}
                 <h4 class="title">Book Appointment</h4>
             </button>
         </div>
@@ -43,7 +43,7 @@
                     <div class="col-12">
                         <div class="sec-heading style-3 text-left">
                             <h2 class="sec-title ">
-                                {{ $feature->title }}
+                                Empowering Business with <span> Expertise.</span>
                             </h2>
                             <p class="desc">
                                 {{ $feature->sub_title }}
@@ -56,16 +56,19 @@
                         <div class="col-xl-3 col-md-6">
                             <div class="choose-box style-2 right-swipe">
                                 <div class="choose-content">
-                                    <div class="next-icon">
+                                    {{-- <div class="next-icon">
                                         <i class="tji-arrow-right-long"></i>
+                                    </div> --}}
+                                    <div class="choose-icon index-page">
+                                        <img src="{{ asset('images/kidney-icon.png') }}" alt="Kidney icon">
                                     </div>
-                                    <div class="choose-icon">
-                                        <i class="{{ $content->icon }}"></i>
+                                    <div class="description">
+
+                                        <h4 class="title">{{ $content->name }}</h4>
+                                        <p class="desc">
+                                            {{ $content->description }}
+                                        </p>
                                     </div>
-                                    <h4 class="title">{{ $content->name }}</h4>
-                                    <p class="desc">
-                                        {{ $content->description }}
-                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -159,7 +162,7 @@
                 <div class="col-12">
                     <div class="sec-heading style-3 text-left">
                         <h2 class="sec-title title-anim">
-                            Empowering Business with Expertise.
+                            Empowering Business with <span> Expertise.</span>
                         </h2>
                         <p class="desc">
                             We stay ahead of the leveraging cutting-edge technologies

@@ -681,16 +681,6 @@ img {
   border-radius: 12px;
 }
 
-#smooth-content {
-  padding-bottom: 0px;
-  will-change: transform;
-}
-@media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
-  #smooth-content {
-    padding-bottom: 0;
-  }
-}
-
 .tj-sticky-panel-2,
 .slidebar-stickiy {
   will-change: transform;

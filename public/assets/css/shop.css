@@ -112,8 +112,8 @@ ul.woocommerce-error li a {
 }
 .tj-product-details-description ol.commentlist .review .comment_container .comment-text {
   overflow: hidden;
-  -webkit-margin-start: 75px;
-          margin-inline-start: 75px;
+  -webkit-margin-start: 0px;
+          margin-inline-start: 0px;
 }
 .tj-product-details-description ol.commentlist .review .comment_container .comment-text .meta {
   margin-bottom: 5px;
