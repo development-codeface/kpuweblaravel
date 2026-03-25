@@ -2,14 +2,60 @@
       <div class="footer-main-area">
           <div class="container">
               <div class="row justify-content-between">
-                  <div class="col-xl-3 col-lg-4 col-md-6">
-                      <div class="footer-widget wow fadeInUp" data-wow-delay=".1s">
+                  <div class="col-12 footer-top">
+                      <div class="footer-widget  wow fadeInUp" data-wow-delay=".1s">
                           <div class="footer-logo">
-                              <a href="index-11.html">
+                              <a href="">
                                   <img src="assets/images/logos/kpu-logo1.png" alt="Logos" />
                               </a>
                           </div>
-                          <div class="footer-text">
+                         <div class=" sub-form-container">
+                <div class="cta-area">
+                    <div class="cta-content">
+                        <div class="cta-texts">
+
+                            <h4 class="sub-title">
+                                Could not find what you are looking for?
+                            </h4>
+                            <h2 class="title">Request a callback</h2>
+                        </div>
+                        <div class="contact-form wow fadeInUp" data-wow-delay=".1s">
+                            <form id="contact-form">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-input">
+                                            <input type="text" name="cfName" />
+                                            <label class="cf-label">Full Name <span>*</span></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-input">
+                                            <input type="tel" name="cfPhone" />
+                                            <label class="cf-label">Phone number <span>*</span></label>
+                                        </div>
+                                        <div class="submit-btn">
+                                        <button class="tj-primary-btn ftr-form" type="submit">
+                                            <span class="btn-text"><span>Submit Now</span></span>
+                                        </button>
+                                    </div>
+                                    </div>
+
+                                    
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                      </div>
+                  </div>
+       
+                  <div class="footer-bottom">
+
+                  <div class="col-xl-3 col-lg-4 col-md-6">
+                      <div class="footer-widget widget-nav-menu wow fadeInUp" data-wow-delay=".3s">
+                           <div class="footer-text">
                               <h5 class="title">Address</h5>
                               <p>Kpu Hospital</p>
                               <p>Palakkad</p>
@@ -81,6 +127,8 @@
                           </ul>
                       </div>
                   </div>
+</div>
+
               </div>
           </div>
       </div>
@@ -108,6 +156,12 @@
                                               class="fa-brands fa-linkedin-in"></i></a>
                                   </li>
                               </ul>
+                          </div>
+                          <div class="social-links">
+                             <p class="copy-right-text">Copyright 2026 KPU Hospital All Rights Reserved</p>
+                          </div>
+                          <div class="social-links">
+                             <p class="emergency-numbr">Emergency: +1 453 456-7890</p>
                           </div>
                       </div>
                   </div>

@@ -124,28 +124,29 @@
                             </div>
 
                             <div class="col-12 col-md-6">
-                                <div class="customers-box style-2 wow fadeInUp" data-wow-delay=".5s">
-                                    {{-- <div class="customers-bg" data-bg-image="assets/images/about/h7-about-item-bg.webp"></div> --}}
-
-                                    <h6 class="customers-text wow fadeInLeft" data-wow-delay=".6s">
-                                        Enabling startups to raise $25M+ in venture funding.
-                                    </h6>
+                                <div class="customers-box bg-img style-2 wow fadeInUp" data-wow-delay=".5s">
+                                      <img src="{{ asset('images/doctors/doctor.jpg') }}" alt="">
                                 </div>
                             </div>
                         </div>
                         <div class="grid-div">
                             <div class="col-12 col-md-6">
                                 <div class="customers-box style-2 wow fadeInUp" data-wow-delay=".5s">
-                                    <div class="customers-bg" data-bg-image="assets/images/about/h7-about-item-bg.webp">
-                                    </div>
-
+                                <div class="inline-content">
+                            <span class="odometer countup-number" data-count="99">0</span>
+                            <span class="count-plus">+</span>
+                        </div>
                                     <h6 class="customers-text wow fadeInLeft" data-wow-delay=".6s">
-                                        Enabling startups to raise $25M+ in venture funding.
+                                
+                                        Doctors <br> Find your Doctor
                                     </h6>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
-                                <div class="countup-item style-2 wow fadeInUp" data-wow-delay=".6s"></div>
+                                <div class="countup-item style-2 wow fadeInUp" data-wow-delay=".6s">
+                                      <img src="{{ asset('images/doctors/doctor-2.jpg') }}" alt="">
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -179,14 +180,13 @@
                                 <img src="{{ $data->image }}" alt="" />
                             </div>
                             <div class="service-content">
-                                <a class="text-btn" href="service-details.html">
-                                    <span class="btn-text"><span>Learn More</span></span>
-                                </a>
+                                
                                 <div class="team-content desc">
                                     <h4 class="title">
                                         <a href="team-details.html">{{ $data->name }}</a>
                                     </h4>
                                     <span class="designation">{{ $data->designation }}</span>
+                                    <span class="degree">MD,DA</span>
                                 </div>
                             </div>
                         </div>
@@ -231,6 +231,20 @@
                                         <!-- </div> -->
                                     </div>
                                 </div>
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <!-- <div class="h5-testimonial-author-wrapper"> -->
+                                        <img src="./assets/images/award/download (4).jpg" alt="" />
+                                        <!-- </div> -->
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <!-- <div class="h5-testimonial-author-wrapper"> -->
+                                        <img src="./assets/images/award/download (4).jpg" alt="" />
+                                        <!-- </div> -->
+                                    </div>
+                                </div>
                             </div>
                             <div class="swiper-pagination-area"></div>
                         </div>
@@ -248,7 +262,7 @@
                 <div class="col-lg-6">
                     <div class="blog-item style-2">
                         <div class="blog-thumb">
-                            <a href="blog-details.html"><img src="assets/images/blog/blog-4.webp" alt="" /></a>
+                            <a href=""><img src="{{ asset('images/second-op.jpg') }}" alt="" /></a>
                         </div>
                         <div class="blog-content">
                             <div class="sec-heading style-3 text-left">
@@ -282,99 +296,32 @@
                     <div class="swiper swiper-container h5-testimonial-slider">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <div class="testimonial-item">
+                                 <div class="testimonial-item">
                                     <div class="h5-testimonial-author-wrapper">
-                                        <div class="testimonial-author">
-                                            <div class="author-inner">
-                                                <div class="author-header">
-                                                    <h4 class="title">Guy Hawkins</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="desc">
-                                        <p>
-                                            “Working with Bexon has been a game-changer for
-                                            our business. Their team's professionalism,
-                                            attention to detail, and innovative solutions have
-                                            helped us streamline operations our goals faster
-                                            than imagined. We truly feel like a valued
-                                            partner.”
-                                        </p>
-                                    </div>
+                                    <img src="{{ asset('images/slide-img-2.jpg') }}" alt="" />
+                                    
                                 </div>
                             </div>
+                            </div>
+                            <div class="swiper-slide">
+                                 <div class="testimonial-item">
+                                    <div class="h5-testimonial-author-wrapper">
+                                    <img src="{{ asset('images/slide-img.jpg') }}" alt="" />
+                                    
+                                </div>
+                            </div>
+                            </div>
+                           
                             <div class="swiper-slide">
                                 <div class="testimonial-item">
                                     <div class="h5-testimonial-author-wrapper">
-                                        <div class="testimonial-author">
-                                            <div class="author-inner">
-                                                <div class="author-header">
-                                                    <h4 class="title">Ralph Edwards</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="desc">
-                                        <p>
-                                            “Working with Bexon has been a game-changer for
-                                            our business. Their team's professionalism,
-                                            attention to detail, and innovative solutions have
-                                            helped us streamline operations our goals faster
-                                            than imagined. We truly feel like a valued
-                                            partner.”
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="testimonial-item">
-                                    <div class="h5-testimonial-author-wrapper">
-                                        <div class="testimonial-author">
-                                            <div class="author-inner">
-                                                <div class="author-header">
-                                                    <h4 class="title">Devon Lane</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="desc">
-                                        <p>
-                                            “Working with Bexon has been a game-changer for
-                                            our business. Their team's professionalism,
-                                            attention to detail, and innovative solutions have
-                                            helped us streamline operations our goals faster
-                                            than imagined. We truly feel like a valued
-                                            partner.”
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="testimonial-item">
-                                    <div class="h5-testimonial-author-wrapper">
-                                        <div class="testimonial-author">
-                                            <div class="author-inner">
-                                                <div class="author-header">
-                                                    <h4 class="title">Guy Hawkins</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="desc">
-                                        <p>
-                                            “Working with Bexon has been a game-changer for
-                                            our business. Their team's professionalism,
-                                            attention to detail, and innovative solutions have
-                                            helped us streamline operations our goals faster
-                                            than imagined. We truly feel like a valued
-                                            partner.”
-                                        </p>
-                                    </div>
+                                    <img src="{{ asset('images/slide-img.jpg') }}" alt="" />
+                                    
                                 </div>
                             </div>
                         </div>
-                        <div class="swiper-pagination-area"></div>
+                        </div>
+                        <div class="swiper-pagination-area sec-op-sec"></div>
                     </div>
                 </div>
             </div>
@@ -398,70 +345,58 @@
                 </div>
             </div>
             <div class="row row-gap-4">
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-4 col-sm-6">
                     <div class="blog-item wow fadeInUp" data-wow-delay=".4s">
+                         <div class="blog-meta">
+                                <span class="categories"><i class="tji-box"></i><a href="">Business</a></span>
+                            </div>
                         <div class="blog-thumb">
                             <a href="blog-details.html"><img src="assets/images/blog/blog-1.webp" alt="" /></a>
                         </div>
                         <div class="blog-content">
-                            <div class="blog-meta">
-                                <span class="categories"><a href="blog-details.html">Business</a></span>
-                            </div>
+                            
                             <h4 class="title">
                                 <a href="blog-details.html">Innovative Solutions for every Business Success.</a>
                             </h4>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-4 col-sm-6">
                     <div class="blog-item wow fadeInUp" data-wow-delay=".4s">
+                         <div class="blog-meta">
+                                <span class="categories"><i class="tji-box"></i><a href="">Business</a></span>
+                            </div>
                         <div class="blog-thumb">
                             <a href="blog-details.html"><img src="assets/images/blog/blog-1.webp" alt="" /></a>
                         </div>
                         <div class="blog-content">
-                            <div class="blog-meta">
-                                <span class="categories"><a href="blog-details.html">Business</a></span>
-                            </div>
+                            
                             <h4 class="title">
                                 <a href="blog-details.html">Innovative Solutions for every Business Success.</a>
                             </h4>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-4 col-sm-6">
                     <div class="blog-item wow fadeInUp" data-wow-delay=".4s">
+                         <div class="blog-meta">
+                                <span class="categories"><i class="tji-box"></i><a href="">Business</a></span>
+                            </div>
                         <div class="blog-thumb">
                             <a href="blog-details.html"><img src="assets/images/blog/blog-2.webp" alt="" /></a>
                         </div>
                         <div class="blog-content">
-                            <div class="blog-meta">
-                                <span class="categories"><a href="blog-details.html">Business</a></span>
-                            </div>
+                           
                             <h4 class="title">
                                 <a href="blog-details.html">Harnessing Digital Transform a Roadmap Businesses.</a>
                             </h4>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="blog-item wow fadeInUp" data-wow-delay=".4s">
-                        <div class="blog-thumb">
-                            <a href="blog-details.html"><img src="assets/images/blog/blog-3.webp" alt="" /></a>
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span class="categories"><a href="blog-details.html">Business</a></span>
-                            </div>
-                            <h4 class="title">
-                                <a href="blog-details.html">Mastering Change Management Lessons for
-                                    Businesses.</a>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
+             
             </div>
             <div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
-                <a class="tj-primary-btn" href="contact.html">
+                <a class="tj-primary-btn" href="">
                     <span class="btn-text"><span>Get Started Now</span></span>
                 </a>
             </div>
