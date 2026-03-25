@@ -63,21 +63,16 @@
         </div>
     </div>
     @include('frondend.header')
-    <div id="smooth-wrapper">
-        <div id="smooth-content">
-            <main id="primary" class="site-main">
-                <div class="top-space-15"></div>
-                @yield('content')
-                @include('frondend.form')
-            </main>
-            @include('frondend.footer')
-        </div>
-    </div>
+    <main id="primary" class="site-main">
+        {{-- <div class="top-space-15"></div> --}}
+        @yield('content')
+        @include('frondend.form')
+    </main>
+    @include('frondend.footer')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/gsap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/ScrollSmoother.js') }}"></script>
     <script src="{{ asset('assets/js/gsap-scroll-to-plugin.min.js') }}"></script>
     <script src="{{ asset('assets/js/gsap-scroll-trigger.min.js') }}"></script>
     <script src="{{ asset('assets/js/gsap-split-text.min.js') }}"></script>

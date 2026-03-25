@@ -1,23 +1,12 @@
 <header class="header-area header-1 header-absolute section-gap-x">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-                <div class="header-wrapper">
-                    <!-- site logo -->
-                    <div class="site_logo">
-                        <a class="logo" href="/home"><img src="assets/images/logos/kpu-logo1.png"
-                                alt="" /></a>
-                    </div>
-                    <!-- navigation -->
-                    <div class="menu-area d-none d-lg-inline-flex align-items-center">
-                        <div class="header-top">
+ <div class="header-top">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="header-top-content">
-                                            <p class="topbar-text">
-                                                Emergency <a href="tel:8089091313">808-909-1313</a>
-                                            </p>
+                                           
                                             <div class="header-info">
                                                 @if (isset($menus['header-menu']))
                                                     @foreach ($menus['header-menu']->menuItems as $menu)
@@ -28,11 +17,25 @@
                                                 @endif
 
                                             </div>
+                                             <p class="topbar-text">
+                                                Emergency <a href="tel:8089091313">808-909-1313</a>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+            <div class="col-12">
+                <div class="header-wrapper container">
+                    {{-- <div class="container"> --}}
+                    <!-- site logo -->
+                    <div class="site_logo">
+                        <a class="logo" href="/home"><img src="assets/images/logos/kpu-logo1.png"
+                                alt="" /></a>
+                    </div>
+                    <!-- navigation -->
+                    <div class="menu-area d-none d-lg-inline-flex align-items-center">
+
                         <nav id="mobile-menu" class="mainmenu">
                             <ul>
                                 @if (isset($menus['main-menu']))
@@ -80,6 +83,7 @@
                         <span></span>
                         <span></span>
                     </div>
+                {{-- </div> --}}
                 </div>
             </div>
         </div>

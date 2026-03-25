@@ -66,19 +66,10 @@ Progressbar js
 	});
 
 	/* ------------- Gsap registration Js -------------*/
-	gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin);
-	if ($("#smooth-wrapper").length && $("#smooth-content").length) {
-		gsap.config({
-			nullTargetWarn: false,
-		});
-
-		let smoother = ScrollSmoother.create({
-			smooth: 1.5,
-			effects: true,
-			smoothTouch: 0.1,
-			ignoreMobileResize: true,
-		});
-	}
+	gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+	gsap.config({
+		nullTargetWarn: false,
+	});
 
 	////////////////////////////////////////////////////
 	// Data js
