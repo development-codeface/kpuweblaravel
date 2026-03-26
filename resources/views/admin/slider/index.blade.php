@@ -14,9 +14,9 @@
             </p>
             <div style="margin-bottom: 10px;" class="row">
                 <div class="col-lg-12">
-                    <a class="btn btn-success " href="{{ route('admin.pages.create') }}">
+                    <a class="btn btn-success " href="{{ route('admin.slider.create') }}">
                         <i class="fi fi-br-plus-small mr_5"></i>
-                        {{ trans('global.add') }} {{ trans('cruds.slider.pages') }}
+                        {{ trans('global.add') }} Slider
                     </a>
                 </div>
             </div>
@@ -44,21 +44,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($pages as $key => $page) --}}
+                        @foreach ($slider as $key => $slid)
                             <tr>
-                                <td></td>
+                                <td><img src="{{ asset($slid->image) }}"
+                                        style="width:80px;height:50px;object-fit:cover;"></td>
                                 <td>
                                     <div class="action-buttons">
 
                                         {{-- @can('user_edit') --}}
-                                        <a class="btn btn-xs btn-info" href="{{ route('admin.pages.edit', $page->id) }}">
+                                        <a class="btn btn-xs btn-info" href="{{ route('admin.slider.edit',$slid->id) }}">
                                             <!-- {{ trans('global.edit') }}  -->
                                             <i class="fi fi-br-list"></i>
                                         </a>
                                         {{-- @endcan --}}
 
                                         {{-- @can('user_delete') --}}
-                                        <form action="{{ route('admin.pages.destroy', $page->id) }}" method="POST"
+                                        <form action="{{ route('admin.slider.delete',$slid->id)}}" method="POST"
                                             onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
                                             style="display: inline-block;">
                                             <input type="hidden" name="_method" value="DELETE">
@@ -67,15 +68,11 @@
                                             <button input type="submit" class="btn btn-xs btn-danger" value="">
                                                 <i class="fi fi-br-trash"></i> </button>
                                         </form>
-                                        <a class="btn btn-xs btn-info" href="{{ route('admin.feature.index') }}">
-                                            <i class="fi fi-br-plus"></i>
-                                        </a>
-
                                         {{-- @endcan --}}
                                     </div>
                                 </td>
                             </tr>
-                        {{-- @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>

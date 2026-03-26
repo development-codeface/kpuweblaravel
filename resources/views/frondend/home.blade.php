@@ -137,7 +137,7 @@
                             <span class="count-plus">+</span>
                         </div>
                                     <h6 class="customers-text wow fadeInLeft" data-wow-delay=".6s">
-                                
+
                                         Doctors <br> Find your Doctor
                                     </h6>
                                 </div>
@@ -180,7 +180,7 @@
                                 <img src="{{ $data->image }}" alt="" />
                             </div>
                             <div class="service-content">
-                                
+
                                 <div class="team-content desc">
                                     <h4 class="title">
                                         <a href="team-details.html">{{ $data->name }}</a>
@@ -299,7 +299,7 @@
                                  <div class="testimonial-item">
                                     <div class="h5-testimonial-author-wrapper">
                                     <img src="{{ asset('images/slide-img-2.jpg') }}" alt="" />
-                                    
+
                                 </div>
                             </div>
                             </div>
@@ -307,16 +307,16 @@
                                  <div class="testimonial-item">
                                     <div class="h5-testimonial-author-wrapper">
                                     <img src="{{ asset('images/slide-img.jpg') }}" alt="" />
-                                    
+
                                 </div>
                             </div>
                             </div>
-                           
+
                             <div class="swiper-slide">
                                 <div class="testimonial-item">
                                     <div class="h5-testimonial-author-wrapper">
                                     <img src="{{ asset('images/slide-img.jpg') }}" alt="" />
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -354,7 +354,7 @@
                             <a href="blog-details.html"><img src="assets/images/blog/blog-1.webp" alt="" /></a>
                         </div>
                         <div class="blog-content">
-                            
+
                             <h4 class="title">
                                 <a href="blog-details.html">Innovative Solutions for every Business Success.</a>
                             </h4>
@@ -370,7 +370,7 @@
                             <a href="blog-details.html"><img src="assets/images/blog/blog-1.webp" alt="" /></a>
                         </div>
                         <div class="blog-content">
-                            
+
                             <h4 class="title">
                                 <a href="blog-details.html">Innovative Solutions for every Business Success.</a>
                             </h4>
@@ -386,14 +386,14 @@
                             <a href="blog-details.html"><img src="assets/images/blog/blog-2.webp" alt="" /></a>
                         </div>
                         <div class="blog-content">
-                           
+
                             <h4 class="title">
                                 <a href="blog-details.html">Harnessing Digital Transform a Roadmap Businesses.</a>
                             </h4>
                         </div>
                     </div>
                 </div>
-             
+
             </div>
             <div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
                 <a class="tj-primary-btn" href="">

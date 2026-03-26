@@ -26,22 +26,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <!-- LEFT -->
-                    <div class="col-md-8">
-                        <div class="form-group">
-                            <label class="required" for="slug">{{ trans('cruds.cms.fields.slug') }}</label>
-                            <input class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" type="text"
-                                name="slug" placeholder="Enter slug" id="slug" value="{{ old('slug',$page->slug) }}">
-                            @if ($errors->has('slug'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('slug') }}
-                                </div>
-                            @endif
-                            <span class="help-block">{{ trans('cruds.cms.fields.name_helper') }}</span>
-                        </div>
-                    </div>
-                </div>
                 <button class=" btn btn-success min-w-200 " type="submit">
                     {{ trans('global.save') }}
                 </button>

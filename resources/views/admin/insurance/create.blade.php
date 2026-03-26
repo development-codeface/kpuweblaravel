@@ -56,13 +56,13 @@
                 <div class="col-md-3">
                     <div class="list-group" id="aboutMenu" role="tablist">
 
-                        <a class="list-group-item list-group-item-action {{ old('active_tab','bannerSection') == 'bannerSection' ? 'active' : '' }}" data-bs-toggle="tab" href="#bannerSection"
-                            role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab', 'bannerSection') == 'bannerSection' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#bannerSection" role="tab">
                             Insurance 1
                         </a>
 
-                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'contentSection' ? 'active' : '' }}" data-bs-toggle="tab" href="#contentSection"
-                            role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'contentSection' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#contentSection" role="tab">
                             Insurance 2
                         </a>
 
@@ -75,14 +75,15 @@
                 <div class="col-md-9">
                     <div class="tab-content">
                         <!-- ================= Banner Section ================= -->
-                        <div class="tab-pane fade {{ old('active_tab','bannerSection') == 'bannerSection' ? 'show active' : '' }}" id="bannerSection" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab', 'bannerSection') == 'bannerSection' ? 'show active' : '' }}"
+                            id="bannerSection" role="tabpanel">
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <h1 class="mb-3">Banner Section</h1>
                                     <hr>
                                     <form method="POST" action="{{ route('admin.insurance.store') }}"
                                         enctype="multipart/form-data">
-                                         <input type="hidden" name="active_tab" value="bannerSection">
+                                        <input type="hidden" name="active_tab" value="bannerSection">
                                         <input type="hidden" name="banner_id" value="{{ $edit_banner->id }}">
                                         <input type="hidden" name="pages_id" value="{{ $id }}">
                                         @csrf
@@ -183,7 +184,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade {{ old('active_tab') == 'contentSection' ? 'show active' : '' }}" id="contentSection" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab') == 'contentSection' ? 'show active' : '' }}"
+                            id="contentSection" role="tabpanel">
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <h1 class="mb-3">content</h1>
@@ -260,19 +262,25 @@
                                                         <div class="feature-row border p-3 mb-3">
                                                             <input type="hidden" name="sub_content_id[]"
                                                                 value="{{ $row->id ?? '' }}">
-                                                            <div class="row">
+                                                            <div class="row mt-2">
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
-                                                                        <label class="required">Icon</label>
-                                                                        <input type="text" name="icon[]"
-                                                                            value="{{ old('icon.' . $index, $row->icon ?? '') }}"
-                                                                            class="form-control {{ $errors->has('icon.' . $index) ? 'is-invalid' : '' }}">
+                                                                        <label class="required">Image</label>
+                                                                        <div class="image-box image-trigger">
+                                                                            @if (isset($row->icon))
+                                                                                <img src="{{ asset($row->icon) }}"
+                                                                                    class="image-preview"
+                                                                                    style="width:200px; display:block;">
+                                                                            @else
+                                                                                <div class="triangle-placeholder"></div>
+                                                                                <img class="image-preview"
+                                                                                    style="display:none; width:200px;">
+                                                                            @endif
+                                                                        </div>
 
-                                                                        @if ($errors->has('icon.' . $index))
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $errors->first('icon.' . $index) }}
-                                                                            </div>
-                                                                        @endif
+                                                                        <input type="file" name="images[]"
+                                                                            accept="image/*"
+                                                                            class="d-none image-input {{ $errors->has('images.' . $index) ? 'is-invalid' : '' }}">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -355,14 +363,18 @@
 
             let html = `
         <div class="feature-row border p-3 mb-3">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                    <label class="required">Icon</label>
-                    <input type="text" name="icon[]" class="form-control">
-                    </div>
+                <div class="row mt-2">
+            <div class="col-md-12">
+                <div class="form-group">
+                <label class="required">Image</label>
+                <div class="image-box image-trigger" style="cursor:pointer;">
+                    <div class="triangle-placeholder"></div>
+                    <img class="image-preview" style="display:none; width:200px;">
                 </div>
+                <input type="file" name="images[]" accept="image/*" class="d-none image-input">
                 </div>
+            </div>
+        </div>
              <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
@@ -380,121 +392,18 @@
 
             wrapper.insertAdjacentHTML('beforeend', html);
         });
-        document.querySelector('.image-box').addEventListener('click', function(e) {
-            if (e.target.closest('.image-trigger')) {
-                let row = e.target.closest('.feature-row');
-                row.querySelector('.image-input').click();
-            }
-        });
 
         document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('remove-row')) {
-                e.target.closest('.feature-row').remove();
-            }
-        });
 
-        function conetentpreviewImage(input) {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-
-                reader.onload = function(e) {
-                    const img = document.getElementById('content_imagePreview');
-                    const triangle = document.getElementById('content_trianglePlaceholder');
-
-                    img.src = e.target.result;
-                    img.style.display = 'block';
-                    triangle.style.display = 'none';
-                };
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-
-        document.getElementById('content_mid_addRow').addEventListener('click', function() {
-            let wrapper = document.getElementById('content-wrappers');
-
-            let html = `
-    <div class="feature-row border p-3 mb-3">
-        <div class="row">
-            <div class="col-md-12">
-                  <div class="form-group">
-                <label class="required">Text</label>
-                <input type="text" name="text[]" class="form-control">
-                </div>
-            </div>
-        </div>
-        <button type="button" class="btn btn-danger btn-sm mt-2 remove-row">
-            Remove
-        </button>
-    </div>
-    `;
-
-            wrapper.insertAdjacentHTML('beforeend', html);
-        });
-
-
-        document.getElementById('mid_addRow').addEventListener('click', function() {
-            let wrapper = document.getElementById('feature-wrappers');
-
-            let html = `
-    <div class="feature-row border p-3 mb-3">
-        <div class="row">
-            <div class="col-md-6">
-                  <div class="form-group">
-                <label class="required">Title</label>
-                <input type="text" name="title[]" class="form-control">
-                </div>
-            </div>
-            <div class="col-md-6">
-                  <div class="form-group">
-                <label class="required">Sub Title</label>
-                <input type="text" name="sub_title[]" class="form-control">
-                </div>
-            </div>
-              <div class="col-md-6">
-                  <div class="form-group">
-                <label class="required">From Time</label>
-                <input type="text" name="from_time[]" class="form-control">
-                </div>
-            </div>
-              <div class="col-md-6">
-                  <div class="form-group">
-                <label class="required">To Time</label>
-                <input type="text" name="to_time[]" class="form-control">
-                </div>
-            </div>
-        </div>
-        <button type="button" class="btn btn-danger btn-sm mt-2 remove-row">
-            Remove
-        </button>
-    </div>
-    `;
-
-            wrapper.insertAdjacentHTML('beforeend', html);
-        });
-        document.querySelector('.image-box').addEventListener('click', function(e) {
             if (e.target.closest('.image-trigger')) {
-                let row = e.target.closest('.feature-row');
-                row.querySelector('.image-input').click();
-            }
-        });
 
-        document.addEventListener('change', function(e) {
+                let box = e.target.closest('.image-trigger');
+                let row = box.closest('.feature-row');
+                let input = row.querySelector('.image-input');
 
-            if (e.target.classList.contains('image-input')) {
-
-                let input = e.target;
-                let row = input.closest('.feature-row');
-                let preview = row.querySelector('.image-preview');
-
-                let reader = new FileReader();
-                reader.onload = function(event) {
-                    preview.src = event.target.result;
-                    preview.style.display = 'block';
-                };
-
-                reader.readAsDataURL(input.files[0]);
+                if (input) {
+                    input.click();
+                }
             }
 
         });
@@ -504,5 +413,28 @@
                 e.target.closest('.feature-row').remove();
             }
         });
+
+     document.addEventListener('change', function(e) {
+
+    if (e.target.classList.contains('image-input')) {
+
+        let input = e.target;
+
+        if (!input.files || !input.files[0]) return;
+
+        let row = input.closest('.feature-row');
+        let preview = row.querySelector('.image-preview');
+
+        let reader = new FileReader();
+
+        reader.onload = function(event) {
+            preview.src = event.target.result;
+            preview.style.display = 'block';
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+
+});
     </script>
 @endsection

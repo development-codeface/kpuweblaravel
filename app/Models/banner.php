@@ -19,11 +19,10 @@ class banner extends Model
     ];
 
     protected $fillable = [
+        'pages_id',
         'title',
         'image',
         'status',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'button_text'
     ];
 }

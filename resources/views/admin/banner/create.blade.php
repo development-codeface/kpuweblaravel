@@ -1,5 +1,40 @@
 @extends('layouts.admin')
 @section('content')
+    <style>
+        .image-box {
+            width: 180px;
+            height: 220px;
+            border: 1px dashed #c7c7c7;
+            cursor: pointer;
+            position: relative;
+            background: #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+        }
+
+        .triangle-placeholder {
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 40px solid #b5b5b5;
+        }
+
+        .image-box img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .col-md-3 {
+            align-self: flex-start;
+        }
+    </style>
     <div class="card ">
         <div class="card-header">
             <p><i class="fi fi-br-edit mr_15_icc"></i>
@@ -8,29 +43,27 @@
         <div class="card-body">
             <form method="POST" action="{{ route('admin.banners.store') }}" enctype="multipart/form-data">
                 @csrf
-                <div class="form-group">
-                    <label class="required" for="name">{{ trans('cruds.banner.fields.title') }}</label>
-                    <input class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" type="text"
-                        name="title" id="title" value="{{ old('title', '') }}">
-                    @if ($errors->has('title'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('title') }}
-                        </div>
-                    @endif
-                    <span class="help-block">{{ trans('cruds.banner.fields.name_helper') }}</span>
-                </div>
-                <div class="form-group">
-                    <label class="required" for="name">{{ trans('cruds.banner.fields.image') }}</label>
-                    <input class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}" type="file"
-                        name="image" id="image" value="{{ old('image', '') }}">
-                    @if ($errors->has('image'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('image') }}
-                        </div>
-                    @endif
-                    <span class="help-block">{{ trans('cruds.banner.fields.name_helper') }}</span>
-                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="required">Image</label>
+                            <div class="image-box" onclick="document.getElementById('image').click();">
+                                <div class="triangle-placeholder" id="trianglePlaceholder">
+                                </div>
+                                <img id="imagePreview" style="display:none;">
+                            </div>
+                            <input type="file" name="image" id="image" accept="image/*"
+                                class="d-none {{ $errors->has('image') ? 'is-invalid' : '' }}"
+                                onchange="previewImage(this)">
 
+                            @if ($errors->has('image'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('image') }}
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group">
                     <button class=" btn btn-success min-w-200 " type="submit">
                         {{ trans('global.save') }}

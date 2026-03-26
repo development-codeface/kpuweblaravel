@@ -67,11 +67,29 @@
                 </ul>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.banners.index') }}"
-                    class="nav-link {{ request()->routeIs('admin.banners.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.slider.index') }}"
+                    class="nav-link {{ request()->routeIs('admin.slider.*') ? 'active' : '' }}">
                     <i class="fi fi-br-picture nav-icon"></i>
-                    {{ trans('cruds.banner.title') }}
+                    Slider
                 </a>
+            </li>
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="fi fi-br-document nav-icon"></i>
+                    Blog
+                </a>
+                <ul class="nav-dropdown-items" style="margin-left:28px;">
+                    <li class="nav-item {{ request()->routeIs('admin.blog.post.*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.blog.post.index') }}" class="nav-link ">
+                            Post
+                        </a>
+                    </li>
+                    <li class="nav-item {{ request()->routeIs('admin.blog.category.*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.blog.category.index') }}" class="nav-link ">
+                            Category
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li class="nav-item">
                 <a href="{{ route('admin.pages.index') }}"

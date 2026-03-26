@@ -79,7 +79,7 @@ class InsuranceController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'sub_title' => 'required|string|max:255',
-            'icon.*' => 'required|string|max:255',
+            'icon.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'content_descriptions.*' => 'required|string',
         ]);
 
@@ -92,7 +92,6 @@ class InsuranceController extends Controller
                 'sub_title' => $request->sub_title,
             ]);
         } else {
-
             $content = InsuranceContent::create([
                 'pages_id'  => $request->pages_id,
                 'title'     => $request->title,
@@ -102,21 +101,41 @@ class InsuranceController extends Controller
 
         $savedIds = [];
 
-        foreach ($request->icon as $index => $icon) {
+        foreach ($request->content_descriptions as $index => $desc) {
 
             $subId = $request->sub_content_id[$index] ?? null;
 
             if ($subId) {
-
                 $sub = InsuranceSubContent::find($subId);
             } else {
-
                 $sub = new InsuranceSubContent();
                 $sub->insurance_contents_id = $content->id;
             }
+            
+            if ($request->hasFile('images.' . $index)) {
 
-            $sub->icon = $icon;
-            $sub->description = $request->content_descriptions[$index] ?? null;
+                $file = $request->file('images')[$index];
+
+                $imageName = time() . '_' . $index . '.' . $file->getClientOriginalExtension();
+
+                $destinationPath = public_path('images/insurance/content');
+
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 0755, true);
+                }
+
+                $file->move($destinationPath, $imageName);
+
+                // delete old image (optional but recommended)
+                if ($sub->icon && file_exists(public_path($sub->icon))) {
+                    unlink(public_path($sub->icon));
+                }
+
+                $sub->icon = 'images/insurance/content/' . $imageName;
+            }
+
+            // description
+            $sub->description = $desc;
             $sub->save();
 
             $savedIds[] = $sub->id;
@@ -129,7 +148,7 @@ class InsuranceController extends Controller
         // InsuranceSubContent::where('insurance_contents_id', $content->id)
         //     ->whereNotIn('id', $savedIds)
         //     ->delete();
-        return redirect()->route('admin.pages.index')->with('success', 'Career content created successfully.');
+        return redirect()->route('admin.pages.index')->with('success', 'Insurance content created successfully.');
     }
 
 
