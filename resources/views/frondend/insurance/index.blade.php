@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="sec-heading-wrap">
-                        
+
                         <div class="heading-wrap-content">
                             <div class="sec-heading">
                                 @php
@@ -54,7 +54,7 @@
                         <div class="choose-box right-swipe">
                             <div class="choose-content">
                                 <div class="choose-image">
-                                    <img src="../../../../assets/health-india-logo.png" alt="">
+                                    <img src="{{ $content->icon }}" alt="">
                                     {{-- <i class="{{ $content->icon }}"></i> --}}
                                 </div>
                                 <p class="desc">{{ $content->description }}</p>
