@@ -198,61 +198,32 @@
     <!-- end: Team Section -->
 
     <!-- start: Testimonial Section -->
-    <section class="h5-testimonial section-gap section-gap-x">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="testimonial-wrapper h5-testimonial-wrapper wow fadeInUp" data-wow-delay=".5s">
-                        <div class="swiper swiper-container h5-testimonial-slider">
-                            <div class="swiper-wrapper">
+ <section class="h5-testimonial section-gap section-gap-x">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="testimonial-wrapper h5-testimonial-wrapper wow fadeInUp" data-wow-delay=".5s">
+                    <div class="swiper swiper-container h5-testimonial-slider">
+
+                        <div class="swiper-wrapper">
+
+                            @foreach($slider as $item)
                                 <div class="swiper-slide">
                                     <div class="testimonial-item">
-                                        <!-- <div class="h5-testimonial-author-wrapper"> -->
-                                        <img src="./assets/images/award/download (4).jpg" alt="" />
-                                        <!-- </div> -->
+                                        <img src="{{ asset($item->image) }}" alt="slider-image" />
                                     </div>
                                 </div>
-                                <div class="swiper-slide">
-                                    <div class="testimonial-item">
-                                        <img src="./assets/images/award/download (5).jpg" alt="" />
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="testimonial-item">
-                                        <!-- <div class="h5-testimonial-author-wrapper"> -->
-                                        <img src="./assets/images/award/download (4).jpg" alt="" />
-                                        <!-- </div> -->
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="testimonial-item">
-                                        <!-- <div class="h5-testimonial-author-wrapper"> -->
-                                        <img src="./assets/images/award/download (4).jpg" alt="" />
-                                        <!-- </div> -->
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="testimonial-item">
-                                        <!-- <div class="h5-testimonial-author-wrapper"> -->
-                                        <img src="./assets/images/award/download (4).jpg" alt="" />
-                                        <!-- </div> -->
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="testimonial-item">
-                                        <!-- <div class="h5-testimonial-author-wrapper"> -->
-                                        <img src="./assets/images/award/download (4).jpg" alt="" />
-                                        <!-- </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-pagination-area"></div>
+                            @endforeach
+
                         </div>
+
+                        <div class="swiper-pagination-area"></div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
     <!-- end: Testimonial Section -->
 
     <!-- start: Testimonial Section -->
@@ -335,73 +306,62 @@
     </section>
     <!-- end: Testimonial Section -->
     <!-- start: Blog Section -->
-    <section class="tj-blog-section section-gap">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="sec-heading">
-                        <h2 class="sec-title "><span>Blogs</span></h2>
-                    </div>
+  <section class="tj-blog-section section-gap">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="sec-heading">
+                    <h2 class="sec-title"><span>Blogs</span></h2>
                 </div>
-            </div>
-            <div class="row row-gap-4">
-                <div class="col-lg-4 col-sm-6">
-                    <div class="blog-item wow fadeInUp" data-wow-delay=".4s">
-                         <div class="blog-meta">
-                                <span class="categories"><i class="tji-box"></i><a href="">Business</a></span>
-                            </div>
-                        <div class="blog-thumb">
-                            <a href="blog-details.html"><img src="assets/images/blog/blog-1.webp" alt="" /></a>
-                        </div>
-                        <div class="blog-content">
-
-                            <h4 class="title">
-                                <a href="blog-details.html">Innovative Solutions for every Business Success.</a>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="blog-item wow fadeInUp" data-wow-delay=".4s">
-                         <div class="blog-meta">
-                                <span class="categories"><i class="tji-box"></i><a href="">Business</a></span>
-                            </div>
-                        <div class="blog-thumb">
-                            <a href="blog-details.html"><img src="assets/images/blog/blog-1.webp" alt="" /></a>
-                        </div>
-                        <div class="blog-content">
-
-                            <h4 class="title">
-                                <a href="blog-details.html">Innovative Solutions for every Business Success.</a>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="blog-item wow fadeInUp" data-wow-delay=".4s">
-                         <div class="blog-meta">
-                                <span class="categories"><i class="tji-box"></i><a href="">Business</a></span>
-                            </div>
-                        <div class="blog-thumb">
-                            <a href="blog-details.html"><img src="assets/images/blog/blog-2.webp" alt="" /></a>
-                        </div>
-                        <div class="blog-content">
-
-                            <h4 class="title">
-                                <a href="blog-details.html">Harnessing Digital Transform a Roadmap Businesses.</a>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
-                <a class="tj-primary-btn" href="">
-                    <span class="btn-text"><span>Get Started Now</span></span>
-                </a>
             </div>
         </div>
-    </section>
+
+        <div class="row row-gap-4">
+
+            @foreach($blog as $item)
+                <div class="col-lg-4 col-sm-6">
+                    <div class="blog-item wow fadeInUp" data-wow-delay=".4s">
+
+                        <!-- Category -->
+                        <div class="blog-meta">
+                            <span class="categories">
+                                <i class="tji-box"></i>
+                                <a href="#">
+                                    {{ $item->category->name ?? '' }}
+                                </a>
+                            </span>
+                        </div>
+
+                        <!-- Image -->
+                        <div class="blog-thumb">
+                            <a href="">
+                                <img src="{{ asset( $item->image) }}" alt="blog-image" />
+                            </a>
+                        </div>
+
+                        <!-- Title -->
+                        <div class="blog-content">
+                            <h4 class="title">
+                                <a href="">
+                                    {{ $item->title }}
+                                </a>
+                            </h4>
+                        </div>
+
+                    </div>
+                </div>
+            @endforeach
+
+        </div>
+
+        <!-- Button -->
+        <div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
+            <a class="tj-primary-btn" href="">
+                <span class="btn-text"><span>Get Started Now</span></span>
+            </a>
+        </div>
+    </div>
+</section>
     <!-- end: Blog Section -->
 
     <!-- start: Cta Section -->

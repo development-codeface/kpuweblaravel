@@ -56,6 +56,10 @@
                         </div>
                     </div>
                 </div>
+                @include('admin.blog.partials.seo-fields', [
+                    'seo' => $edit->seo,
+                    'seoImageHelperText' => 'Leave empty if you do not need a category SEO image.',
+                ])
                 <div class="form-group">
                     <button class=" btn btn-success min-w-200 " type="submit">
                         {{ trans('global.save') }}

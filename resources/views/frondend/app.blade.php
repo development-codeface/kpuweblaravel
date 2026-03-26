@@ -5,10 +5,9 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="" />
-
-    <!-- Site Title -->
-    <title>KPU</title>
+    {{-- @section('seo')
+        {!! seo() !!}
+    @show --}}
 
     <!-- Place favicon.ico in the root directory -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/logos/kpu-logo1.png') }}" />
@@ -29,7 +28,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/odometer-theme-default.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/meanmenu.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
-      <link rel="stylesheet" href="{{ asset('assets/css/shop.css')  }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop.css') }}">
 </head>
 
 <body>

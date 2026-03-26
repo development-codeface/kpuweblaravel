@@ -34,7 +34,7 @@
     <div class="card">
         <div class="card-header">
             <p><i class="fi fi-br-edit mr_15_icc"></i>
-                {{ __('Edit') }} {{ trans('cruds.doctor.title_singular') }} </p>
+                {{ __('Edit') }} Facility </p>
         </div>
         <div class="card-body">
             <form method="POST" action="{{ route('admin.facility.update',$edit->id) }}" enctype="multipart/form-data">
@@ -79,7 +79,8 @@
                     @php
                         $contents = old('heading')
                             ? collect(old('heading'))->map(function ($item, $key) {
-                                return [
+                                return (object) [
+                                    'id' => old('content_id')[$key] ?? null,
                                     'heading' => old('heading')[$key],
                                     'button_text' => old('button_text')[$key] ?? '',
                                     'image' => null,
@@ -90,13 +91,13 @@
 
                     @foreach ($contents as $index => $item)
                         <div class="feature-row border p-3 mb-3">
-                            <input type="hidden" name="content_id[]" value="{{ $item['id'] ?? ''}}">
+                            <input type="hidden" name="content_id[]" value="{{ $item->id ?? '' }}">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="required">Heading</label>
                                         <input type="text" name="heading[]"
-                                            value="{{ old('heading.' . $index, $item->heading ?? $item['heading']) }}"
+                                            value="{{ old('heading.' . $index, $item->heading) }}"
                                             class="form-control {{ $errors->has('heading.' . $index) ? 'is-invalid' : '' }}">
 
                                         @error('heading.' . $index)
@@ -109,7 +110,7 @@
                                     <div class="form-group">
                                         <label class="required">Button Text</label>
                                         <input type="text" name="button_text[]"
-                                            value="{{ old('button_text.' . $index, $item->button_text ?? $item['button_text']) }}"
+                                            value="{{ old('button_text.' . $index, $item->button_text) }}"
                                             class="form-control {{ $errors->has('button_text.' . $index) ? 'is-invalid' : '' }}">
 
                                         @error('button_text.' . $index)
@@ -135,7 +136,7 @@
                                             @endif
                                         </div>
 
-                                        <input type="file" value="{{ $item['image'] }}" name="images[]" accept="image/*" class="d-none image-input">
+                                        <input type="file" name="images[]" accept="image/*" class="d-none image-input">
 
                                         @error('images.' . $index)
                                             <div class="text-danger mt-1">{{ $message }}</div>
@@ -144,12 +145,22 @@
                                 </div>
                             </div>
 
+                            <button type="button" class="btn btn-danger btn-sm mt-2 remove-row">
+                                Remove
+                            </button>
+
                         </div>
                     @endforeach
+
                 </div>
-                <button type="button" id="mid_addRow" class="btn btn-primary mb-3">
+                  <button type="button" id="mid_addRow" class="btn btn-primary mb-3">
                     + Add Row
                 </button>
+                @include('admin.blog.partials.seo-fields', [
+                    'seo' => $edit->seo,
+                    'seoImageHelperText' => 'Leave empty to use the first facility image for SEO.',
+                ])
+
                 <button class=" btn btn-success min-w-200 " type="submit">
                     {{ trans('global.save') }}
                 </button>
