@@ -535,9 +535,9 @@ img {
     }
 }
 
-.section-separator {
+/* .section-separator {
     border-top: 1px dashed var(--tj-color-border-1);
-}
+} */
 
 .mt-10 {
     margin-top: 10px;
@@ -733,9 +733,9 @@ img {
     -ms-flex-pack: center;
     justify-content: center;
     gap: 10px;
-    border-radius: 12px;
+    border-radius: 30px;
     position: relative;
-    background-color: #1eb5ff;
+    background-color: #0093be;
     font-size: 16px;
     font-weight: var(--tj-fw-sbold);
     padding: 14px 30px;
@@ -3047,10 +3047,10 @@ nav#mobile-menu {
 START: Theme Footer CSS
 ----------------------------------------*/
 .tj-footer-section {
-    background-color: #124e68;
+    background-color: #0093BE21;
     position: relative;
     z-index: 1;
-    padding-top: 195px;
+    padding-top: 0px;
     /* border-radius: 12px; */
     overflow: hidden;
 }
@@ -3113,17 +3113,17 @@ START: Theme Footer CSS
 }
 .footer-widget .footer-text p {
     margin-top: 0px;
-    color: white;
+    color: #000000;
     margin-bottom: 0px;
 }
 .footer-widget .footer-text h5 {
     margin-top: 20px;
-    color: white;
+    color: #000000;
     margin-bottom: 8px;
 }
 .h10-footer-subscribe-wrapper.wow.fadeInUp .footer-text p {
     margin-top: 0px;
-    color: white;
+    color: #000000;
     margin-bottom: 0px;
 }
 .h10-footer-subscribe-wrapper.wow.fadeInUp .footer-text h5 {
@@ -3147,7 +3147,7 @@ START: Theme Footer CSS
 .footer-widget .title {
     font-weight: var(--tj-fw-sbold);
     margin-bottom: 23px;
-    color: white;
+    color: #000000;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px),
     only screen and (min-width: 576px) and (max-width: 767px),
@@ -3246,7 +3246,7 @@ START: Theme Footer CSS
     padding-top: 0;
 }
 .widget-nav-menu ul li a {
-    color: #ffffff;
+    color: #000000;
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
     display: inline-flex;
@@ -3669,11 +3669,12 @@ START: Theme Footer CSS
 
 .tj-copyright-area {
     background-color: white;
-    padding-bottom: 30px;
+    padding-bottom:0px;
 }
 .tj-copyright-area .copyright-content-area {
-    border-top: 1px solid var(--tj-color-border-1);
-    border-bottom: 1px solid var(--tj-color-border-1);
+        display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 20px 0;
 }
 
@@ -9563,26 +9564,37 @@ START: Choose CSS
 
 .col-lg-6.service-side-12 {
     padding: 30px;
+        padding-top: 60px;
     border-radius: 16px;
-    background-color: #ebf8ff;
+    background-color: #0093BE;
 }
 
 .testimonial-item {
     border-radius: 16px;
     background: #d7e2fd;
-    padding: 30px;
+    padding: 20px;
+}
+.service-side-12 .testimonial-item {
+    border-radius: 16px;
+    background: #d7e2fd;
+    padding: 0px;
+    height: 325px;
+}
+.service-side-12 .testimonial-item .h5-testimonial-author-wrapper {
+    height:100%;
+}
+.service-side-12 .testimonial-item .h5-testimonial-author-wrapper img{
+        border-radius: 16px;
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
 }
 
 .choose-box {
     height: 100%;
     padding: 50px 28px 45px;
-    background: #0da2d9;
-    background: linear-gradient(
-        0deg,
-        rgb(188 215 242) 0%,
-        rgb(227 240 247) 47%,
-        rgb(240 244 255) 100%
-    );
+    background: #DEF1F7;
+    
     -webkit-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
     /* border-radius: 10px; */
@@ -9676,13 +9688,8 @@ START: Choose CSS
     justify-content: flex-start;
 }
 .choose-box:hover {
-    background: linear-gradient(
-        0deg,
-        rgb(47 113 178) 0%,
-        rgb(115 206 255) 47%,
-        rgb(147 185 253) 100%
-    );
-    background-color: #0093bd;
+    
+    background-color: #DEF1F7;
 }
 .choose-box:hover .choose-icon {
     color: var(--tj-color-common-white);
@@ -10920,7 +10927,7 @@ section.tj-service-section.service-3.section-gap.stragetic-pillers
     transition: none;
 }
 .service-item .title a:hover {
-    color: var(--tj-color-theme-primary);
+    color: #ffffff;
 }
 .service-item .desc {
     margin-bottom: 0;
@@ -13386,8 +13393,8 @@ START: Blog CSS
     }
 }
 .blog-item .blog-content {
-    background-color: var(--tj-color-common-white);
-    padding: 50px 28px 35px 28px;
+    background-color: #0093be;
+    padding: 38px 28px;
     /* height: 100%; */
 }
 .blog-item .blog-content .title {
@@ -13400,6 +13407,8 @@ START: Blog CSS
   background-image: linear-gradient(to bottom, currentColor 0%, currentColor 100%); */
     background-size: 0 2px;
     background-repeat: no-repeat;
+        color: white;
+    font-size: 19px;
     background-position: 0 85%;
     display: inline;
 }
@@ -13429,13 +13438,13 @@ START: Blog CSS
     /* padding: 15px 0 15px 15px; */
     display: -webkit-box;
     display: -ms-flexbox;
-    height: 660px;
+    height: 630px;
     border-radius: 16px;
     display: flex;
     flex-direction: column;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    background-color: #bee6fd;
+    background-color: #0093BE;
 }
 @media (max-width: 575px) {
     .blog-item.style-2 {
@@ -13454,9 +13463,9 @@ START: Blog CSS
         width: 100%;
     }
 }
-section.tj-blog-section.section-gap {
+/* section.tj-blog-section.section-gap {
     background-color: #f4f9fd;
-}
+} */
 .blog-item.style-2 .blog-content {
     width: 90%;
     height: max-content;
@@ -13673,11 +13682,28 @@ section.tj-blog-section.section-gap .blog-content {
     margin-bottom: 18px;
 }
 .blog-meta span {
-    color: var(--tj-color-text-body-3);
+   border: none;
+    color: #ffffff;
+    align-items: center;
+    justify-content: center;
+    display: flex;
     line-height: 1;
+        padding: 11px 19px;
+    background-color: #0093be;
+}
+.blog-item.wow.fadeInUp {
+        border-radius: 20px;
+    position: relative;
+}
+.blog-item.wow.fadeInUp .blog-meta {
+    position: absolute;
+    z-index: 99;
+    left: 15px;
+    top: 17px;
 }
 .blog-meta span a {
     color: white;
+    padding:0px;
 }
 .blog-meta span a:hover {
     color: var(--tj-color-theme-primary);
@@ -13787,7 +13813,7 @@ START: CTA CSS
 }
 
 .cta-area {
-    background-color: #bee6fd;
+    /* background-color: #bee6fd; */
     position: relative;
     z-index: 3;
     overflow: hidden;
@@ -13799,7 +13825,10 @@ START: CTA CSS
     flex-wrap: wrap;
 }
 .cta-area .cta-content {
-    width: 90%;
+   width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
     margin: 0;
     padding: 44px 15px 60px 55px;
 }
@@ -13810,11 +13839,17 @@ START: CTA CSS
     padding-top: 20px;
 }
 .cta-area .cta-content .contact-form .form-input {
-    margin-bottom: 0px;
+        margin-bottom: 0px;
     position: relative;
-    background-color: white;
+    /* background-color: white; */
     padding-left: 20px;
-    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px;
+}
+input[type="text"] {
+    border: none !important;
 }
 .cta-area .cta-content .contact-form.wow.fadeInUp .submit-btn {
     width: auto;
@@ -13824,13 +13859,24 @@ START: CTA CSS
 }
 .cta-area .cta-content .contact-form .form-input .cf-label {
     margin-left: 20px;
+        margin-bottom: 0px;
 }
 .cta-area .cta-content .contact-form.wow.fadeInUp .col-sm-6 {
+       justify-content: center;
+ align-items: center;
+    padding: 0px;
+    display: flex;
+    border: 1px solid black;
+    margin-right: 15px;
     flex: 0 0 auto;
-    width: 30%;
+    border-radius: 30px;
+    width: max-content;
+}
+.cta-content .sub-title {
+    font-size: 17px;
 }
 .cta-area .cta-content .title {
-    font-size: 74px;
+       font-size: 33px;
     line-height: 1.12;
     color: #124e68;
     margin-bottom: 17px;
@@ -14443,9 +14489,9 @@ START: Contact CSS
 .contact-form .form-input input[type="email"] {
     background-color: transparent;
     color: var(--tj-color-text-body-3);
-    padding: 11px 0;
+    padding: 8px 0;
     border: 0;
-    border-bottom: 1px dashed var(--tj-color-border-1);
+    /* border-bottom: 1px dashed var(--tj-color-border-1); */
 }
 .contact-form .form-input textarea::-webkit-input-placeholder,
 .contact-form .form-input select::-webkit-input-placeholder,
@@ -14550,7 +14596,7 @@ START: Contact CSS
     font-size: 16px;
     color: var(--tj-color-text-body-3);
     position: absolute;
-    top: 10px;
+    
     inset-inline-start: 0;
     pointer-events: none;
     -webkit-transition: all 0.2s linear;
@@ -15578,7 +15624,7 @@ START: Team CSS
 .tj-team-section {
     padding-top: 120px;
     padding-bottom: 90px;
-    background-color: #ebf8ff;
+    /* background-color: #ebf8ff; */
     overflow: hidden;
 }
 .tj-team-section .sec-heading {
@@ -16370,7 +16416,7 @@ START: Breadcrumb CSS
 ----------------------------------------*/
 .tj-page-header {
     padding-top: 133px;
-    margin-top: 100px;
+    margin-top: 00px;
     padding-bottom: 150px;
     background-position: center;
     background-size: cover;
@@ -21090,6 +21136,7 @@ START: Services CSS
 .service-item.style-6 .title {
     max-width: 250px;
     margin-bottom: 0;
+        font-size: 20px;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
     .service-item.style-6 .title {
@@ -21121,7 +21168,7 @@ START: Services CSS
     -webkit-transform: rotateY(360deg);
     transform: rotateY(360deg);
 }
-.service-item.style-6:hover .desc,
+/* .service-item.style-6:hover .desc,
 .service-item.style-6:hover .title {
     color: var(--tj-color-common-white);
 }
@@ -21142,7 +21189,7 @@ START: Services CSS
     bottom: 30px;
     -webkit-transition: all 0.2s linear;
     transition: all 0.2s linear;
-}
+} */
 @media only screen and (min-width: 576px) and (max-width: 767px),
     (max-width: 575px) {
     .service-item.style-6:hover .text-btn {
@@ -21928,7 +21975,7 @@ START: Home 5 Project CSS
 START: Testimonial CSS
 ----------------------------------------*/
 .h5-testimonial {
-    -webkit-mask-image: -webkit-gradient(
+    /* -webkit-mask-image: -webkit-gradient(
         linear,
         left top,
         right top,
@@ -21959,7 +22006,7 @@ START: Testimonial CSS
         var(--tj-color-grey-1) 30.6%,
         var(--tj-color-grey-1) 69.4%,
         rgba(255, 255, 255, 0) 100%
-    );
+    ); */
     position: relative;
     z-index: 1;
     overflow: hidden;
@@ -21979,7 +22026,33 @@ START: Testimonial CSS
     }
 }
 .h5-testimonial-wrapper .swiper {
-    overflow: visible;
+    /* overflow: visible; */
+    -webkit-mask-image: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        from(rgba(255, 255, 255, 0)),
+        color-stop(30.6%, var(--tj-color-grey-1)),
+        color-stop(69.4%, var(--tj-color-grey-1)),
+        to(rgba(255, 255, 255, 0))
+    );
+    -webkit-mask-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        var(--tj-color-grey-1) 30.6%,
+        var(--tj-color-grey-1) 69.4%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    mask-image: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        from(rgba(255, 255, 255, 0)),
+        color-stop(30.6%, var(--tj-color-grey-1)),
+        color-stop(69.4%, var(--tj-color-grey-1)),
+        to(rgba(255, 255, 255, 0))
+    );
+    mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, var(--tj-color-grey-1) 30.6%, var(--tj-color-grey-1) 69.4%, rgba(255, 255, 255, 0) 100%);
 }
 .h5-testimonial-wrapper .testimonial-item {
     background-color: var(--tj-color-common-white);
@@ -31438,26 +31511,14 @@ START: Blog CSS
 }
 section.tj-team-section.section-separator .service-content {
     height: 40%;
-    padding: 30px;
+    padding: 20px;
     align-items: center;
     display: flex;
 }
-section.tj-team-section.section-separator
-    .service-item.style-6:hover
-    .text-btn {
-    opacity: 1;
-    visibility: visible;
-    bottom: 60px;
-}
+
 section.tj-team-section.section-separator .service-item.style-6 .text-btn {
     border: 1px solid #24a2c8;
     padding: 14px 30px;
-}
-section.tj-team-section.section-separator
-    .service-item.style-6:hover
-    .text-btn
-    .btn-text {
-    color: #24a2c8;
 }
 
 .team-content.desc a {
@@ -31467,29 +31528,24 @@ section.tj-team-section.section-separator
     color: white;
 }
 
-.service-item.style-6:hover .service-content {
-    align-items: center;
-    justify-content: center;
-}
+
 .service-image {
-    width: 100%;
-    border-radius: 15px;
+        width: 100%;
+    border-radius: 0px;
     background: #96a8a8;
-    height: 60%;
+    height: 80%;
 }
 .service-image img {
     height: 100%;
     width: 100%;
-    border-radius: 15px;
+    border-radius: 0px;
     object-fit: cover;
 }
 section.tj-team-section.section-separator .service-item.style-6 {
-    padding: 10px;
+    padding: 0px;
+    border-radius: 0px;
     height: 410px;
     background-color: #24a2c8;
-}
-section.tj-team-section.section-separator .service-item.style-6:hover {
-    background-color: #ffffff;
 }
 
 .booking-container {
@@ -31508,7 +31564,7 @@ section.tj-team-section.section-separator .service-item.style-6:hover {
 }
 
 a.tj-primary-btn.tag-port {
-    border-radius: 10px;
+    border-radius: 30px;
     margin-bottom: 30px;
     background-color: #d7e2fd;
 }
@@ -32396,7 +32452,29 @@ button.book-content:hover i {
     font-size: 15px;
 }
 .col-lg-6.service-side-12 .sec-title {
-    font-size: 39px;
+        font-size: 34px;
+            color: white;
+    margin-bottom: 15px;
+
+}
+.col-lg-6.service-side-12 .sec-heading p.desc{
+            color: white;
+
+}
+.col-lg-6.service-side-12 .sec-heading.style-3.text-left {
+    width: 83%;
+}
+.blog-item.style-2 .blog-content .sec-title {
+        font-size: 34px;
+            color: white;
+    margin-bottom: 15px;
+
+}
+.blog-item.style-2 .blog-content .sec-heading p.desc{
+            color: white;
+}
+.blog-item.style-2 .blog-content .text-btn .btn-text span{
+            color: white;
 }
 .about-us.h9-choose-box {
     height: 100%;
@@ -32890,7 +32968,7 @@ nav#mobile-menu {
     justify-content: flex-start !important;
 }
 .footer-widget.widget-nav-menu.wow.fadeInUp {
-    margin-top: 170px;
+    margin-top: 20px;
 }
 .choose-box.style-2 .choose-icon.index-page{
     max-width: 150px;
@@ -32905,4 +32983,52 @@ nav#mobile-menu {
 }
 .choose-box.style-2 .choose-icon.index-page img{
    width: 96px;
+}
+.footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    /* gap: 20px; */
+}
+
+.customers-box.bg-img.style-2.wow.fadeInUp {
+    padding: 0px;
+}
+.customers-box.bg-img.style-2.wow.fadeInUp img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.team-content.desc{
+    display: flex;
+    flex-direction: column;
+    gap: -4px;
+}
+
+section.h5-testimonial.section-gap.section-gap-x .swiper-backface-hidden .swiper-slide {
+    width: 600px !important;
+    margin-right: 0px !important;
+}
+.h5-testimonial-wrapper .testimonial-item img{
+    border-radius: 14px;
+}
+.swiper-pagination-area.sec-op-sec .swiper-pagination-bullet{
+  background-color: white !important;
+}
+.swiper-pagination-area.sec-op-sec {
+      display: flex;
+    margin-top: 25px;
+    align-items: baseline;
+    justify-content: flex-start;
+}
+.col-12.footer-top .footer-widget.wow.fadeInUp {
+    display: flex;
+}
+.sub-form-container {
+    width: 80%;
+}
+
+button.tj-primary-btn.ftr-form {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    height: 100%;
 }

@@ -35,7 +35,7 @@
                 <div class="countup-wrap">
                     <div class="countup-item">
                         <div class="inline-content">
-                            <span class="odometer countup-number" data-count="93"></span>
+                            <span class="odometer countup-number" data-count="93">0</span>
                             <!-- <span class="count-plus">%</span> -->
                         </div>
                         <span class="count-text">Projects Completed.</span>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="countup-item">
                         <div class="inline-content">
-                            <span class="odometer countup-number" data-count="20"></span>
+                            <span class="odometer countup-number" data-count="20">0</span>
                             <span class="count-plus">M</span>
                         </div>
                         <span class="count-text">Reach Worldwide</span>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="countup-item">
                         <div class="inline-content">
-                            <span class="odometer countup-number" data-count="8.5"></span>
+                            <span class="odometer countup-number" data-count="8.5">0</span>
                             <span class="count-plus">X</span>
                         </div>
                         <span class="count-text">Faster Growth</span>
@@ -59,7 +59,7 @@
                     </div>
                     <div class="countup-item">
                         <div class="inline-content">
-                            <span class="odometer countup-number" data-count="100"></span>
+                            <span class="odometer countup-number" data-count="100">0</span>
                             <span class="count-plus">+</span>
                         </div>
                         <span class="count-text">Awards Archived</span>

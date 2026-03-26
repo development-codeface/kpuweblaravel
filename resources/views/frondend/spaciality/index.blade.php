@@ -307,16 +307,16 @@
     <!-- start: Faq Section -->
     <section class="tj-faq-section section-gap tj-arrange-container-2" id="mile-stone">
         <div class="container">
-            <div class="row justify-content-between">
+            <div class="row justify-content-between  wow fadeInUp" data-wow-delay=".3s">
                 <div class="col-lg-6">
                     <div class="col-12">
                         <div class="sec-heading text-left">
-                            <span class="sub-title wow fadeInUp" data-wow-delay=".3s">Choose the Best</span>
+                            <span class="sub-title ">Choose the Best</span>
                             <h4 class="title">{{ $contents->title ?? '' }}</h4>
                             <p class="desc">{{ $contents->sub_title ?? '' }}</p>
                         </div>
                     </div>
-                    <div class="faq-img-area tj-arrange-item-2">
+                    <div class="faq-img-area ">
                         <div class="faq-img overflow-hidden">
                             <img src="{{ asset($contents->image) }}" alt="">
 
@@ -325,7 +325,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="accordion tj-faq tj-arrange-item-2" id="faqOne">
+                    <div class="accordion tj-faq " id="faqOne">
 
                         @foreach ($contents->subContents as $key => $item)
                             <div class="accordion-item {{ $key == 0 ? 'active' : '' }}">

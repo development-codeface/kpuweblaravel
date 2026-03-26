@@ -93,12 +93,12 @@
                         <div class="sec-heading style-3 text-left">
                             <div class="btn-area wow fadeInUp" data-wow-delay=".8s">
                                 <a class="tj-primary-btn tag-port">
-                                    <span class="btn-text">#{{ $edit_content->button_text }}</span>
+                                    <span class="btn-text">#Healthy Families First</span>
                                 </a>
                             </div>
                             <h2 class="sec-title">
-                                {!! $edit_content->heading !!}
-                                {{-- <span class="blue-clr"> need</span> it --}}
+                                Find quality care nearby and access it when you
+                                <span class="blue-clr"> need</span> it
                             </h2>
                             <p class="desc">
                                 We stay ahead of the leveraging cutting-edge
@@ -115,55 +115,40 @@
 
                 <div class="col-12 col-xl-6">
                     <div class="row h7-about-counter-wrapper 2-sectio-grid">
-
-                        @php
-                            $items = $edit_content->subContent;
-                        @endphp
-
-                        {{-- FIRST ROW --}}
                         <div class="grid-div">
-                            {{-- IMAGE --}}
                             <div class="col-12 col-md-6">
-                                <div class="countup-item img-sec style-2 wow fadeInUp">
-                                    <img src="{{ asset($items[0]->image ?? '') }}" alt="">
-                                    <h4 class="count-text">
-                                        {{ $items[0]->title ?? '' }}
-                                    </h4>
+                                <div class="countup-item img-sec style-2 wow fadeInUp" data-wow-delay=".3s">
+                                    <img src="{{ asset('images/doctor.jpg') }}" alt="">
+                                    <h4 class="count-text">Find quality care nearby and access it when you</h4>
                                 </div>
                             </div>
 
-                            {{-- TEXT --}}
                             <div class="col-12 col-md-6">
-                                <div class="customers-box style-2 wow fadeInUp">
-                                    <h6 class="customers-text">
-                                        {{ $items[0]->description ?? '' }}
-                                    </h6>
+                                <div class="customers-box bg-img style-2 wow fadeInUp" data-wow-delay=".5s">
+                                      <img src="{{ asset('images/doctors/doctor.jpg') }}" alt="">
                                 </div>
                             </div>
                         </div>
-
-                        {{-- SECOND ROW --}}
                         <div class="grid-div">
-                            {{-- TEXT --}}
                             <div class="col-12 col-md-6">
-                                <div class="customers-box style-2 wow fadeInUp">
-                                    <h6 class="customers-text">
-                                        {{ $items[1]->description ?? '' }}
+                                <div class="customers-box style-2 wow fadeInUp" data-wow-delay=".5s">
+                                <div class="inline-content">
+                            <span class="odometer countup-number" data-count="99">0</span>
+                            <span class="count-plus">+</span>
+                        </div>
+                                    <h6 class="customers-text wow fadeInLeft" data-wow-delay=".6s">
+
+                                        Doctors <br> Find your Doctor
                                     </h6>
                                 </div>
                             </div>
-
-                            {{-- IMAGE --}}
                             <div class="col-12 col-md-6">
-                                <div class="countup-item img-sec style-2 wow fadeInUp">
-                                    <img src="{{ asset($items[1]->image ?? '') }}" alt="">
-                                    <h4 class="count-text">
-                                        {{ $items[1]->title ?? '' }}
-                                    </h4>
+                                <div class="countup-item style-2 wow fadeInUp" data-wow-delay=".6s">
+                                      <img src="{{ asset('images/doctors/doctor-2.jpg') }}" alt="">
+
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -195,14 +180,13 @@
                                 <img src="{{ $data->image }}" alt="" />
                             </div>
                             <div class="service-content">
-                                <a class="text-btn" href="service-details.html">
-                                    <span class="btn-text"><span>Learn More</span></span>
-                                </a>
+
                                 <div class="team-content desc">
                                     <h4 class="title">
                                         <a href="team-details.html">{{ $data->name }}</a>
                                     </h4>
                                     <span class="designation">{{ $data->designation }}</span>
+                                    <span class="degree">MD,DA</span>
                                 </div>
                             </div>
                         </div>
@@ -219,21 +203,51 @@
             <div class="row">
                 <div class="col-12">
                     <div class="testimonial-wrapper h5-testimonial-wrapper wow fadeInUp" data-wow-delay=".5s">
-
                         <div class="swiper swiper-container h5-testimonial-slider">
                             <div class="swiper-wrapper">
-
-                                @foreach ($slider as $item)
-                                    <div class="swiper-slide">
-                                        <div class="testimonial-item">
-                                            <img src="{{ asset($item->image) }}" alt="">
-                                        </div>
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <!-- <div class="h5-testimonial-author-wrapper"> -->
+                                        <img src="./assets/images/award/download (4).jpg" alt="" />
+                                        <!-- </div> -->
                                     </div>
-                                @endforeach
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <img src="./assets/images/award/download (5).jpg" alt="" />
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <!-- <div class="h5-testimonial-author-wrapper"> -->
+                                        <img src="./assets/images/award/download (4).jpg" alt="" />
+                                        <!-- </div> -->
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <!-- <div class="h5-testimonial-author-wrapper"> -->
+                                        <img src="./assets/images/award/download (4).jpg" alt="" />
+                                        <!-- </div> -->
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <!-- <div class="h5-testimonial-author-wrapper"> -->
+                                        <img src="./assets/images/award/download (4).jpg" alt="" />
+                                        <!-- </div> -->
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <!-- <div class="h5-testimonial-author-wrapper"> -->
+                                        <img src="./assets/images/award/download (4).jpg" alt="" />
+                                        <!-- </div> -->
+                                    </div>
+                                </div>
                             </div>
                             <div class="swiper-pagination-area"></div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -245,147 +259,153 @@
     <section class="tj-testimonial-section-2 section-gap">
         <div class="container">
             <div class="row row-gap-3">
-
-                {{-- LEFT SIDE (SINGLE DATA) --}}
                 <div class="col-lg-6">
                     <div class="blog-item style-2">
                         <div class="blog-thumb">
-                            <a href="#">
-                                <img src="{{ asset($edit_section->image) }}" alt="">
-                            </a>
+                            <a href=""><img src="{{ asset('images/second-op.jpg') }}" alt="" /></a>
                         </div>
-
                         <div class="blog-content">
                             <div class="sec-heading style-3 text-left">
-                                <h2 class="sec-title">
-                                    {{ $edit_section->heading }}
+                                <h2 class="sec-title ">
+                                    second-Opinion
                                 </h2>
                                 <p class="desc">
-                                    {{ $edit_section->sub_heading }}
+                                    We stay ahead of the leveraging cutting-edge
+                                    technologies and strategies to keep.
                                 </p>
                             </div>
-
-                            <a class="text-btn" href="#">
+                            <a class="text-btn" href="blog-details.html">
                                 <span class="btn-text"><span>Read More</span></span>
                             </a>
                         </div>
                     </div>
                 </div>
 
-                {{-- RIGHT SIDE --}}
                 <div class="col-lg-6 service-side-12">
-
-                    {{-- SECTION TITLE --}}
                     <div class="col-12">
                         <div class="sec-heading style-3 text-left">
-                            <h2 class="sec-title">
-                                {{ $edit_section->title ?? '' }}
+                            <h2 class="sec-title ">
+                                Empowering Business with Expertise.
                             </h2>
                             <p class="desc">
-                                {{ $edit_section->sub_title ?? '' }}
+                                We stay ahead of the leveraging cutting-edge
+                                technologies and strategies to keep.
                             </p>
                         </div>
                     </div>
-
-                    {{-- SLIDER (MULTIPLE DATA) --}}
                     <div class="swiper swiper-container h5-testimonial-slider">
                         <div class="swiper-wrapper">
-                            @foreach ($edit_section->subContent as $item)
-                                <div class="swiper-slide">
-                                    <div class="testimonial-item">
-                                        <div class="h5-testimonial-author-wrapper">
-                                            <div class="testimonial-author">
-                                                <div class="author-inner">
-                                                    <div class="author-header">
-                                                        <h4 class="title">
-                                                            {{ $item->name }}
-                                                        </h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="desc">
-                                            <p>
-                                                {{ $item->description }}
-                                            </p>
-                                        </div>
+                            <div class="swiper-slide">
+                                 <div class="testimonial-item">
+                                    <div class="h5-testimonial-author-wrapper">
+                                    <img src="{{ asset('images/slide-img-2.jpg') }}" alt="" />
 
-                                    </div>
                                 </div>
-                            @endforeach
-                        </div>
-                        <div class="swiper-pagination-area"></div>
-                    </div>
+                            </div>
+                            </div>
+                            <div class="swiper-slide">
+                                 <div class="testimonial-item">
+                                    <div class="h5-testimonial-author-wrapper">
+                                    <img src="{{ asset('images/slide-img.jpg') }}" alt="" />
 
+                                </div>
+                            </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <div class="h5-testimonial-author-wrapper">
+                                    <img src="{{ asset('images/slide-img.jpg') }}" alt="" />
+
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="swiper-pagination-area sec-op-sec"></div>
+                    </div>
                 </div>
             </div>
 
-            {{-- BUTTON --}}
             <div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
-                <a class="tj-primary-btn" href="#">
+                <a class="tj-primary-btn" href="contact.html">
                     <span class="btn-text"><span>Get Started Now</span></span>
                 </a>
             </div>
-
         </div>
     </section>
     <!-- end: Testimonial Section -->
     <!-- start: Blog Section -->
     <section class="tj-blog-section section-gap">
         <div class="container">
-
-            {{-- HEADING --}}
             <div class="row">
                 <div class="col-12">
                     <div class="sec-heading">
-                        <h2 class="sec-title"><span>Blogs</span></h2>
+                        <h2 class="sec-title "><span>Blogs</span></h2>
                     </div>
                 </div>
             </div>
-
-            {{-- BLOG LIST --}}
             <div class="row row-gap-4">
-                @foreach ($blog as $item)
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="blog-item wow fadeInUp" data-wow-delay=".4s">
-
-                            {{-- IMAGE --}}
-                            <div class="blog-thumb">
-                                <a href="#">
-                                    <img src="{{ asset( $item->image) }}" alt="">
-                                </a>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="blog-item wow fadeInUp" data-wow-delay=".4s">
+                         <div class="blog-meta">
+                                <span class="categories"><i class="tji-box"></i><a href="">Business</a></span>
                             </div>
+                        <div class="blog-thumb">
+                            <a href="blog-details.html"><img src="assets/images/blog/blog-1.webp" alt="" /></a>
+                        </div>
+                        <div class="blog-content">
 
-                            {{-- CONTENT --}}
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <span class="categories">
-                                        <a href="#">
-                                            {{ $item->category->name ?? 'No Category' }}
-                                        </a>
-                                    </span>
-                                </div>
-
-                                <h4 class="title">
-                                    <a href="#">
-                                        {{ $item->title }}
-                                    </a>
-                                </h4>
-                            </div>
-
+                            <h4 class="title">
+                                <a href="blog-details.html">Innovative Solutions for every Business Success.</a>
+                            </h4>
                         </div>
                     </div>
-                @endforeach
-            </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="blog-item wow fadeInUp" data-wow-delay=".4s">
+                         <div class="blog-meta">
+                                <span class="categories"><i class="tji-box"></i><a href="">Business</a></span>
+                            </div>
+                        <div class="blog-thumb">
+                            <a href="blog-details.html"><img src="assets/images/blog/blog-1.webp" alt="" /></a>
+                        </div>
+                        <div class="blog-content">
 
-            {{-- BUTTON --}}
+                            <h4 class="title">
+                                <a href="blog-details.html">Innovative Solutions for every Business Success.</a>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="blog-item wow fadeInUp" data-wow-delay=".4s">
+                         <div class="blog-meta">
+                                <span class="categories"><i class="tji-box"></i><a href="">Business</a></span>
+                            </div>
+                        <div class="blog-thumb">
+                            <a href="blog-details.html"><img src="assets/images/blog/blog-2.webp" alt="" /></a>
+                        </div>
+                        <div class="blog-content">
+
+                            <h4 class="title">
+                                <a href="blog-details.html">Harnessing Digital Transform a Roadmap Businesses.</a>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
             <div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
-                <a class="tj-primary-btn" href="#">
+                <a class="tj-primary-btn" href="">
                     <span class="btn-text"><span>Get Started Now</span></span>
                 </a>
             </div>
-
         </div>
     </section>
     <!-- end: Blog Section -->
+
+    <!-- start: Cta Section -->
+
+    <!-- end: Cta Section -->
+    </main>
 @endsection

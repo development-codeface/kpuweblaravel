@@ -997,10 +997,26 @@ Progressbar js
 	if (jQuery(".odometer").length > 0) {
 		var om = jQuery(".odometer");
 		om.each(function () {
-			jQuery(this).appear(function () {
-				var numCount = jQuery(this).attr("data-count");
-				jQuery(this).html(numCount);
-			});
+			var $this = jQuery(this);
+			var numCount = $this.attr("data-count");
+			$this.html(0);
+
+			function startOdometer() {
+				if ($this.data("odometer-started")) {
+					return;
+				}
+
+				$this.data("odometer-started", true);
+				setTimeout(function () {
+					$this.html(numCount);
+				}, 100);
+			}
+
+			$this.appear(startOdometer);
+
+			if ($this.is(":visible")) {
+				startOdometer();
+			}
 		});
 	}
 

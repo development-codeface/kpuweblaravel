@@ -1,4 +1,4 @@
-<section class="tj-cta-section">
+{{-- <section class="tj-cta-section">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -38,4 +38,4 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
