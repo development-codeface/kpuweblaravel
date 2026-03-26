@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <div class="booking-container banner-menu">
+        <div class="booking-container banner-menu speciality">
             <div class="banner-menu-conta">
                 <a href="">Who we are</a>
                 <a href="">Our Values</a>
@@ -336,7 +336,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="sec-heading style-3 text-center">
+                    <div class="sec-heading style-3 ">
                         <span class="sub-title wow fadeInUp" data-wow-delay=".3s">{{ $section->heading }}</span>
                         <h2 class="sec-title title-anim">{{ $section->title }}</h2>
                     </div>
