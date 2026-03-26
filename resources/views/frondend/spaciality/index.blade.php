@@ -68,7 +68,7 @@
                     </div>
                 </div>
             </div>
-            <div class="booking-container banner-menu">
+            <div class="booking-container banner-menu speciality">
                 <div class="banner-menu-conta">
                     <a href="#who-we-are">Who we are</a>
                     <a href="#our-values">Our Values</a>
@@ -258,7 +258,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="sec-heading text-center">
+                    <div class="sec-heading text-left">
                         <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i class="tji-box"></i> Meet Our
                             Team</span>
                         <h2 class="sec-title ">Success <span>Stories</span> Fuel our Innovation.</h2>
@@ -278,20 +278,7 @@
                             <div class="team-content">
                                 <h4 class="title"><a href="team-details.html">{{ $value->name }}</a></h4>
                                 <span class="designation">{{ $value->designation }}</span>
-                                <div class="h5-banner-content speciality-btn team-section">
-                                    <div class="slider-btn">
-                                        <a class="tj-primary-btn" href="contact.html">
-                                            <span class="btn-text"><span>Get Started</span></span>
-                                        </a>
-
-                                    </div>
-                                    <div class="slider-btn">
-                                        <a class="tj-primary-btn" href="contact.html">
-                                            <span class="btn-text"><span>Get Started</span></span>
-                                        </a>
-
-                                    </div>
-                                </div>
+<span class="degree">MD,DA</span>
 
                             </div>
                         </div>
@@ -382,9 +369,9 @@
                                         <div class="service-item style-4 wow fadeInUp" data-wow-delay=".1s">
 
                                             <!-- Number -->
-                                            <h6 class="h10-service-sln">
+                                            {{-- <h6 class="h10-service-sln">
                                                 {{ str_pad($key + 1, 2, '0', STR_PAD_LEFT) }}.
-                                            </h6>
+                                            </h6> --}}
 
                                             <!-- Icon -->
                                             <div class="service-icon">

@@ -1,6 +1,6 @@
 @extends('frondend.app')
 @section('content')
-    <div class="top-space-15"></div>
+    {{-- <div class="top-space-15"></div> --}}
     <section class="tj-page-header section-gap-x" data-bg-image="{{ asset($banner->image) }}">
         <div class="container">
             <div class="row">
@@ -39,10 +39,10 @@
                         <div class="blog-item wow fadeInUp" data-wow-delay=".4s">
                             <div class="blog-thumb">
                                 <a href="blog-details.html"><img src="{{ asset($blog->image) }}" alt=""></a>
-                                <div class="blog-meta">
-                                    <span class="categories">
-                                        <h3>{{ $blog->heading }}</h3>
-                                        <a>{{ $blog->designation }}</a>
+                                <div class="directors-intro">
+                                    <span class="dir-categories">
+                                        <h3 class="direct-name">{{ $blog->heading }}</h3>
+                                        <a  class="direct-position">{{ $blog->designation }}</a>
                                     </span></span>
                                 </div>
                             </div>

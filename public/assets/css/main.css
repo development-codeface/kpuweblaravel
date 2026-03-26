@@ -9594,7 +9594,7 @@ START: Choose CSS
     height: 100%;
     padding: 50px 28px 45px;
     background: #DEF1F7;
-    
+
     -webkit-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
     /* border-radius: 10px; */
@@ -9611,13 +9611,17 @@ START: Choose CSS
     text-align: center;
 }
 .choose-box.h6-choose-box.right-swipe {
-    border-radius: 15px;
-    background-color: transparent;
+       background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+    padding: 40px 30px;
+    text-align: left;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
 }
 .choose-box .choose-content {
     display: -webkit-box;
     display: -ms-flexbox;
-    align-items: center;
+    align-items: flex-start;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -9688,11 +9692,11 @@ START: Choose CSS
     justify-content: flex-start;
 }
 .choose-box:hover {
-    
+
     background-color: #DEF1F7;
 }
 .choose-box:hover .choose-icon {
-    color: var(--tj-color-common-white);
+    color: #3baeda;
     -webkit-animation: gelatine 0.6s;
     animation: gelatine 0.6s;
 }
@@ -9702,7 +9706,7 @@ START: Choose CSS
 .choose-box:hover .btn-text,
 .choose-box:hover .desc,
 .choose-box:hover .title {
-    color: var(--tj-color-common-white);
+    color: #3baeda;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
     only screen and (min-width: 992px) and (max-width: 1199px),
@@ -11294,6 +11298,9 @@ section.tj-service-section.service-3.section-gap.stragetic-pillers
 .service-item.style-4:hover .text-btn .btn-text {
     color: var(--tj-color-common-white);
 }
+.service-item.style-4:hover .text-btn .btn-text span{
+    color: var(--tj-color-common-white);
+}
 .service-item.style-4:hover .text-btn .btn-icon {
     background-color: var(--tj-color-theme-dark);
 }
@@ -11675,7 +11682,8 @@ START: Project CSS
     max-width: 550px;
 }
 .tj-project-section-3 {
-    background-color: #ecf2ff;
+    /* background-color: #ecf2ff; */
+        padding-top: 0px;
     /* border-radius: 12px; */
     position: relative;
     overflow: hidden;
@@ -12243,10 +12251,14 @@ START: Project CSS
     color: var(--tj-color-theme-primary);
 }
 .project-slider-2 .project-item .categories a {
-    background-color: transparent;
+    background-color: #0093be;
     backdrop-filter: none;
-    color: var(--tj-color-text-body-2);
-    border-color: rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    color: #ffffff;
+    /* border-color: rgba(255, 255, 255, 0.1); */
+}
+.project-slider-2 .project-item .categories  {
+    border:none;
 }
 .project-slider-2 .project-item .categories a:hover {
     background-color: white;
@@ -13020,7 +13032,7 @@ START: Testimonial CSS
 }
 
 .swiper-pagination-area {
-    text-align: center;
+    text-align: left;
     line-height: 0;
     margin-top: 55px;
 }
@@ -13494,6 +13506,7 @@ section.tj-blog-section.section-gap .blog-content .blog-meta {
 }
 section.tj-blog-section.section-gap .blog-content {
     position: relative;
+    height: -webkit-fill-available;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
     only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -13698,6 +13711,7 @@ section.tj-blog-section.section-gap .blog-content {
 .blog-item.wow.fadeInUp .blog-meta {
     position: absolute;
     z-index: 99;
+    height: max-content;
     left: 15px;
     top: 17px;
 }
@@ -14596,7 +14610,7 @@ START: Contact CSS
     font-size: 16px;
     color: var(--tj-color-text-body-3);
     position: absolute;
-    
+
     inset-inline-start: 0;
     pointer-events: none;
     -webkit-transition: all 0.2s linear;
@@ -15757,7 +15771,7 @@ START: Team CSS
     display: inline-block;
 }
 .team-item .title a:hover {
-    color: var(--tj-color-theme-primary);
+    color: #ffffff;
 }
 .team-item .designation {
     font-size: 14px;
@@ -19596,9 +19610,10 @@ START: Contact CSS
 .h4-contact-section {
     position: relative;
     overflow: hidden;
-    background-color: #ebf8ff;
+        padding-top: 0px;
+    /* background-color: #ebf8ff; */
 }
-.h4-contact-section::before {
+/* .h4-contact-section::before {
     content: "";
     position: absolute;
     bottom: 2%;
@@ -19612,7 +19627,7 @@ START: Contact CSS
     opacity: 0.3;
     z-index: -1;
     backdrop-filter: blur(10px);
-}
+} */
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .h4-contact-section::before {
         width: 280px;
@@ -19735,7 +19750,7 @@ START: Contact CSS
     color: var(--tj-color-text-body-2);
     padding: 12px 20px;
     background-color: rgb(255 255 255);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgb(0 0 0 / 14%);
     backdrop-filter: blur(10px);
     border-radius: 6px;
     z-index: 2;
@@ -21577,12 +21592,12 @@ START: Working process CSS
 ----------------------------------------*/
 .sec-heading-centered {
     max-width: 550px;
-    -webkit-margin-start: auto;
+    /* -webkit-margin-start: auto;
     margin-inline-start: auto;
     -webkit-margin-end: auto;
-    margin-inline-end: auto;
+    margin-inline-end: auto; */
     width: 100%;
-    text-align: center;
+     text-align: left;
 }
 
 .h5-working-process {
@@ -23224,7 +23239,8 @@ START: Choose CSS
 START: Home 5 About CSS
 ----------------------------------------*/
 .h6-about {
-    background-color: #ecf2ff;
+    /* background-color: #ecf2ff; */
+        padding-top: 0; 
     /* border-radius: 12px; */
     position: relative;
     overflow: hidden;
@@ -25753,7 +25769,7 @@ START: Blog CSS
   color: var(--tj-color-common-white);
 } */
 .h7-blog-wrapper .blog-content {
-    background-color: var(--tj-color-common-white);
+    background-color: #0093be;
     padding: 20px 25px 30px;
 }
 .h7-blog-wrapper .blog-content .title {
@@ -25774,9 +25790,13 @@ START: Blog CSS
     justify-content: space-between;
 }
 .h7-blog-wrapper .blog-content .text-btn .btn-icon {
-    width: 48px;
+    width: 20px;
     height: 48px;
-    font-size: 24px;
+    font-size: 20px;
+}
+a.direct-position {
+    color: antiquewhite;
+    font-weight: 500;
 }
 .h7-blog-wrapper .blog-date {
     position: static;
@@ -28487,6 +28507,7 @@ START: Choose CSS
 .h9-choose-box.choose-box .choose-icon {
     max-width: 90px;
     height: 90px;
+        width: 90px;
     font-size: 64px;
     background-color: var(--tj-color-theme-primary);
     color: var(--tj-color-common-white);
@@ -30603,10 +30624,11 @@ START: Hero CSS
 START: Service CSS
 ----------------------------------------*/
 .h10-service-wrapper .service-item.style-4 {
-    padding: 30px 30px 35px;
+      padding: 30px 30px 35px;
     position: relative;
-    border-radius: 8px;
+    border-radius: 15px;
     z-index: 0;
+    border: 1px solid #0093bd;
 }
 @media only screen and (min-width: 576px) and (max-width: 767px),
     (max-width: 575px) {
@@ -31027,7 +31049,7 @@ START: Process CSS
     display: flex;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
-    justify-content: center;
+    justify-content: flex-start;
     margin-top: 34px;
 }
 @media only screen and (min-width: 576px) and (max-width: 767px),
@@ -31647,9 +31669,9 @@ a.tj-primary-btn.tag-port span {
     color: black;
 }
 
-section#choose.core-about {
+/* section#choose.core-about {
     background-color: #ecf2ff;
-}
+} */
 
 .about-img-area.h10-about-banner.wow.bounceInLeft {
     height: 600px;
@@ -31712,7 +31734,7 @@ section.tj-service-section-5.section-gap .col-lg-12 {
 }
 .tj-team-section-3 .col-12 {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -31731,6 +31753,9 @@ section.tj-service-section-5.section-gap .col-lg-12 {
 
 section.h10-project.section-gap.tj-sticky-panel-container.health-packages
     .blog-meta {
+            position: relative;
+    left: 0px;
+    top: 0px;
     justify-content: space-between;
 }
 section.h10-project.section-gap.tj-sticky-panel-container.health-packages
@@ -31782,7 +31807,8 @@ section#choose .client-logo {
 }
 .list-items.pharmacy {
     display: flex;
-    gap: 24px;
+        gap: 24px;
+        flex-direction: column;
 }
 .service-content-wrap.pharmacy-service .service-title {
     display: flex;
@@ -31867,7 +31893,7 @@ section.tj-page-header.section-gap-x.spacialiy-banner.doctors-bnn {
 .countup-item.donate-blo {
     width: 100%;
     gap: 20px;
-    background-color: #fef2f2;
+    background-color: #def1f7;
     display: flex;
     padding: 30px;
 }
@@ -32059,7 +32085,7 @@ textarea {
 }
 
 .header {
-    text-align: center;
+    text-align: left;
     margin-bottom: 60px;
 }
 
@@ -32075,7 +32101,7 @@ textarea {
     color: #0c7489;
     line-height: 1.6;
     max-width: 600px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
 }
 
 .steps-grid {
@@ -32104,7 +32130,7 @@ textarea {
 }
 
 .step-number {
-    background: #14b8a6;
+    background: #0093be;
     color: white;
     padding: 30px;
     display: flex;
@@ -32181,7 +32207,7 @@ textarea {
 }
 
 .contact-section {
-    background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+        background: #0093be;
     padding: 60px 40px;
     border-radius: 16px;
     text-align: center;
@@ -32201,6 +32227,7 @@ textarea {
 }
 
 .contact-section h2 {
+        color: white;
     font-size: 2.5rem;
     margin-bottom: 20px;
     font-weight: 700;
@@ -32236,6 +32263,7 @@ textarea {
 }
 
 .contact-btn:hover {
+        color: #0093be;
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
@@ -32311,7 +32339,7 @@ textarea {
     border: 1px solid #e5e5e5;
     border-radius: 16px;
     padding: 40px 30px;
-    text-align: center;
+    text-align: left;
     transition:
         transform 0.3s,
         box-shadow 0.3s,
@@ -32328,14 +32356,20 @@ textarea {
     width: 80px;
     height: 80px;
     margin: 0 auto 30px;
-    background: linear-gradient(135deg, #a7f3d0 0%, #6ee7b7 100%);
-    border-radius: 20px;
+       background: #0093be;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: transform 0.3s;
 }
-
+.icon-wrapper i {
+    align-items: center;
+        width: 26px;
+    color: white;
+    display: flex;
+    font-size: 34px;
+}
 .benefit-card:hover .icon-wrapper {
     transform: scale(1.1) rotate(5deg);
 }
@@ -32395,12 +32429,12 @@ textarea {
 }
 
 .medical-tour.container {
-    max-width: 1200px;
+    /* max-width: 1200px; */
     margin: 0 auto;
     background: white;
     padding: 80px 60px;
     border-radius: 20px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+    /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08); */
 }
 
 .tj-sidebar-widget.widget-feature-item.wow.fadeInUp.ambulnce-sticky {
@@ -32540,12 +32574,13 @@ section.tj-blog-section.h7-blog.director.section-gap
     .sec-heading.style-2.style-7.text-center
     .desc {
     width: 65%;
+    text-align: left;
 }
 section.tj-blog-section.h7-blog.director.section-gap
     .sec-heading.style-2.style-7.text-center {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
 }
 .row.row-gap-4.h7-blog-wrapper.director-imgs span.categories {
     border: none;
@@ -32556,14 +32591,15 @@ section.tj-blog-section.h7-blog.director.section-gap
 }
 .social-links i {
     transform: rotate(0deg) !important;
-    color: #1d1d1d !important;
+    color: #ffffff !important;
 }
 .social-links p {
+        color: #000000;
     margin-bottom: 0px;
 }
 .social-links .btn-icon {
     height: auto !important;
-    width: auto !important;
+    /* width: auto !important; */
     border-radius: 0px;
     display: block;
     font-size: 18px !important;
@@ -32592,31 +32628,32 @@ header.header-area.header-1.header-absolute.section-gap-x
 }
 
 .col-lg-3.col-sm-6.doctor-card .team-item {
-    padding: 10px;
+   padding: 0px;
     margin-bottom: 0px;
     height: 410px;
-    border-radius: 12px;
+    border-radius: 0px;
     background-color: #24a2c8;
 }
 
-.col-lg-3.col-sm-6.doctor-card .team-item:hover {
+/* .col-lg-3.col-sm-6.doctor-card .team-item:hover {
     background-color: white;
-}
+} */
 
-.col-lg-3.col-sm-6.doctor-card .team-item:hover .title {
+/* .col-lg-3.col-sm-6.doctor-card .team-item:hover .title {
     display: none;
-}
-.col-lg-3.col-sm-6.doctor-card .team-item:hover .designation {
+} */
+/* .col-lg-3.col-sm-6.doctor-card .team-item:hover .designation {
     display: none;
-}
-.col-lg-3.col-sm-6.doctor-card
+} */
+
+/* .col-lg-3.col-sm-6.doctor-card
     .team-item:hover
     .h5-banner-content.speciality-btn.team-section {
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: center;
-}
+} */
 .col-lg-3.col-sm-6.doctor-card
     .team-item
     .h5-banner-content.speciality-btn.team-section {
@@ -32624,12 +32661,15 @@ header.header-area.header-1.header-absolute.section-gap-x
 }
 .col-lg-3.col-sm-6.doctor-card .team-img .team-img-inner {
     width: 100%;
-    border-radius: 15px;
+    border-radius: 0px;
     height: 100%;
     /* background: #96a8a8; */
 }
 .col-lg-3.col-sm-6.doctor-card .team-img {
-    height: 60%;
+width: 100%;
+    border-radius: 0px;
+    background: #96a8a8;
+    height: 70%;
 }
 /* .row.leftSwipeWrap.selact-dr-card {
     display: flex;
@@ -32640,7 +32680,15 @@ header.header-area.header-1.header-absolute.section-gap-x
     color: white;
 }
 .row.leftSwipeWrap.selact-dr-card .team-item .team-content {
-    height: 40%;
+    height: 30%;
+    padding: 20px;
+        gap: 3px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+span.degree{
+    color: white;
 }
 .row.leftSwipeWrap.selact-dr-card .team-item .designation {
     width: 100%;
@@ -32727,8 +32775,21 @@ section.h10-project.section-gap.tj-sticky-panel-container.health-packages
     .blog-meta
     span {
     font-size: 20px;
+        padding-left: 0px;
+    background-color: transparent;
     font-weight: 600;
     text-transform: capitalize;
+    color: #000000;
+    line-height: 1;
+}
+section.h10-project.section-gap.tj-sticky-panel-container.health-packages
+    .blog-meta
+    span a{
+    font-size: 20px;
+    padding-left: 0px;
+    background-color: transparent;
+    font-weight: 600;
+    /* text-transform: capitalize; */
     color: #000000;
     line-height: 1;
 }
@@ -33031,4 +33092,44 @@ button.tj-primary-btn.ftr-form {
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     height: 100%;
+}
+section.tj-blog-section.section-gap {
+    padding-top: 0px;
+}
+section.tj-testimonial-section-2.section-gap {
+    padding-top: 0px;
+}
+section.tj-team-section.section-separator {
+    padding-top: 0px;
+}
+section.tj-about-section.h7-about.section-gap.section-gap-x.mt-10 {
+    padding-top: 0px;
+}
+section.tj-blog-section.h7-blog.director.section-gap {
+    padding-top: 120px;
+}
+.directors-intro{
+    position: absolute;
+    z-index: 99;
+    bottom: 10px;
+    left: 17px;
+}
+h3.direct-name {
+    color: white;
+    margin-bottom: 0px;
+    font-size: 25px;
+    letter-spacing: .7px;
+}
+section.h5-pricing.section-gap{
+    padding-top: 0px;
+}
+.booking-container.banner-menu.speciality{
+    padding: 0px;
+    /* background-color: white; */
+}
+section.tj-blog-section.section-gap.slidebar-stickiy-container{
+    padding-top: 120px;
+}
+section.tj-about-section.h6-about.section-gap.section-gap-x{
+    padding-top: 120px;
 }
