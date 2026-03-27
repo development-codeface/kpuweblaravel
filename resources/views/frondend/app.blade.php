@@ -2,12 +2,29 @@
 <html lang="en">
 
 <head>
+    @php
+        $seoTitle = optional($currentSeo)->title ?: (optional($currentSeoPage)->title ? $currentSeoPage->title . ' | ' . config('app.name') : config('app.name'));
+        $seoDescription = optional($currentSeo)->description;
+        $seoAuthor = optional($currentSeo)->author;
+        $seoRobots = optional($currentSeo)->robots ?: 'index,follow';
+        $seoCanonical = optional($currentSeo)->canonical_url ?: url()->current();
+        $seoImage = !empty(optional($currentSeo)->image) ? asset($currentSeo->image) : asset('assets/images/logos/kpu-logo1.png');
+    @endphp
+
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {{-- @section('seo')
-        {!! seo() !!}
-    @show --}}
+    <title>{{ $seoTitle }}</title>
+    <meta name="description" content="{{ $seoDescription }}">
+    <meta name="author" content="{{ $seoAuthor }}">
+    <meta name="robots" content="{{ $seoRobots }}">
+    <link rel="canonical" href="{{ $seoCanonical }}">
+
+    <meta property="og:title" content="{{ $seoTitle }}">
+    <meta property="og:description" content="{{ $seoDescription }}">
+    <meta property="og:image" content="{{ $seoImage }}">
+    <meta property="og:url" content="{{ $seoCanonical }}">
+    <meta property="og:type" content="website">
 
     <!-- Place favicon.ico in the root directory -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/logos/kpu-logo1.png') }}" />
