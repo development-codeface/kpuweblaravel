@@ -72,7 +72,6 @@
                     </div>
                 </div>
                 <div id="feature-wrappers">
-
                     @php
                         $heading = is_array(old('heading')) ? old('heading') : [''];
                         $button_text = is_array(old('button_text')) ? old('button_text') : [''];

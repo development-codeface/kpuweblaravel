@@ -301,6 +301,10 @@
                                                                         <input type="file" name="content_image[]"
                                                                             accept="image/*"
                                                                             class="d-none image-input {{ $errors->has('content_image.' . $index) ? 'is-invalid' : '' }}">
+                                                                        <button type="button"
+                                                                            class="btn btn-danger btn-sm remove-row mt-2">
+                                                                            Remove
+                                                                        </button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -447,6 +451,7 @@
                                                                 return (object) [
                                                                     'name' => old('name')[$index],
                                                                     'description' => old('section_description')[$index],
+                                                                    'image' => null,
                                                                     'id' => old('sub_section_id')[$index] ?? null,
                                                                 ];
                                                             })
@@ -482,6 +487,38 @@
                                                                         @if ($errors->has('section_description.' . $index))
                                                                             <div class="invalid-feedback">
                                                                                 {{ $errors->first('section_description.' . $index) }}
+                                                                            </div>
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label>Image</label>
+                                                                        <div class="image-box image-trigger"
+                                                                            style="cursor:pointer;">
+                                                                            @if (isset($blog) && $blog->image)
+                                                                                <img src="{{ asset($blog->image) }}"
+                                                                                    class="image-preview"
+                                                                                    style="width:200px; display:block;">
+                                                                            @else
+                                                                                <div class="triangle-placeholder"></div>
+                                                                                <img class="image-preview"
+                                                                                    style="display:none; width:200px;">
+                                                                            @endif
+                                                                        </div>
+                                                                        <input type="file" name="sub_section_image[]"
+                                                                            accept="image/*"
+                                                                            class="d-none image-input {{ $errors->has('sub_section_image.' . $index) ? 'is-invalid' : '' }}">
+                                                                        <button type="button"
+                                                                            class="btn btn-danger btn-sm remove-row mt-2">
+                                                                            Remove
+                                                                        </button>
+
+                                                                        @if ($errors->has('sub_section_image.' . $index))
+                                                                            <div class="text-danger mt-1">
+                                                                                {{ $errors->first('sub_section_image.' . $index) }}
                                                                             </div>
                                                                         @endif
                                                                     </div>
@@ -609,6 +646,17 @@
             <textarea name="section_description[]" class="form-control" rows="4"></textarea>
         </div>
 
+        <div class="form-group mt-2">
+            <label>Image</label>
+            <div class="image-box image-trigger" style="cursor:pointer;">
+                <div class="triangle-placeholder"></div>
+                <img class="image-preview" style="display:none; width:200px;">
+            </div>
+            <input type="file" name="sub_section_image[]"
+                   accept="image/*"
+                   class="d-none image-input">
+        </div>
+
         <button type="button"
                 class="btn btn-danger btn-sm remove-row mt-2">
             Remove
@@ -636,12 +684,16 @@
                 let file = e.target.files[0];
                 let row = e.target.closest('.feature-row');
                 let preview = row.querySelector('.image-preview');
+                let placeholder = row.querySelector('.triangle-placeholder');
 
                 if (file) {
                     let reader = new FileReader();
                     reader.onload = function(event) {
                         preview.src = event.target.result;
                         preview.style.display = 'block';
+                        if (placeholder) {
+                            placeholder.style.display = 'none';
+                        }
                     };
                     reader.readAsDataURL(file);
                 }

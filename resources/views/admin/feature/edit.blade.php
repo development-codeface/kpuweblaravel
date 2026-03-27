@@ -1,5 +1,36 @@
 @extends('layouts.admin')
 @section('content')
+    <style>
+        .image-box {
+            width: 180px;
+            height: 220px;
+            border: 1px dashed #c7c7c7;
+            cursor: pointer;
+            position: relative;
+            background: #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+        }
+
+        .triangle-placeholder {
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 40px solid #b5b5b5;
+        }
+
+        .image-box img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+    </style>
     <div class="card">
         <div class="card-header">
             <p><i class="fi fi-br-edit mr_15_icc"></i>
@@ -31,34 +62,51 @@
                 </div>
                 <div id="feature-wrapper">
                     @php
-                        if (old('icon')) {
-                            $icons = old('icon');
-                            $names = old('name');
-                            $descs = old('description');
+                        if (old('name')) {
+                            $rows = collect(old('name'))->map(function ($item, $index) {
+                                return (object) [
+                                    'id' => old('content_id')[$index] ?? '',
+                                    'icon' => old('existing_icon')[$index] ?? '',
+                                    'name' => old('name')[$index] ?? '',
+                                    'description' => old('description')[$index] ?? '',
+                                ];
+                            });
                         } elseif (isset($feature)) {
-                            $content_id = $feature->featureContents->pluck('id')->toArray();
-                            $icons = $feature->featureContents->pluck('icon')->toArray();
-                            $names = $feature->featureContents->pluck('name')->toArray();
-                            $descs = $feature->featureContents->pluck('description')->toArray();
+                            $rows = $feature->featureContents;
                         } else {
-                            $icons = [''];
-                            $names = [''];
-                            $descs = [''];
+                            $rows = collect([
+                                (object) [
+                                    'id' => '',
+                                    'icon' => '',
+                                    'name' => '',
+                                    'description' => '',
+                                ],
+                            ]);
                         }
                     @endphp
 
-                    @foreach ($icons as $index => $icon)
+                    @foreach ($rows as $index => $row)
                         <div class="feature-row border p-3 mb-3">
-                            <input type="hidden" name="content_id[]" value="{{ $content_id[$index] ?? '' }}">
+                            <input type="hidden" name="content_id[]" value="{{ $row->id ?? '' }}">
+                            <input type="hidden" name="existing_icon[]" value="{{ $row->icon ?? '' }}">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="required">Icon</label>
-                                        <input type="text" name="icon[]" value="{{ $icon }}"
-                                            class="form-control {{ $errors->has('icon.' . $index) ? 'is-invalid' : '' }}">
+                                        <div class="image-box image-trigger" style="cursor:pointer;">
+                                            @if (!empty($row->icon))
+                                                <img src="{{ asset($row->icon) }}" class="image-preview"
+                                                    style="display:block;">
+                                            @else
+                                                <div class="triangle-placeholder"></div>
+                                                <img class="image-preview" style="display:none;">
+                                            @endif
+                                        </div>
+                                        <input type="file" name="icon[]" accept="image/*"
+                                            class="d-none image-input {{ $errors->has('icon.' . $index) ? 'is-invalid' : '' }}">
 
                                         @if ($errors->has('icon.' . $index))
-                                            <div class="invalid-feedback">
+                                            <div class="text-danger mt-1">
                                                 {{ $errors->first('icon.' . $index) }}
                                             </div>
                                         @endif
@@ -68,7 +116,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="required">Name</label>
-                                        <input type="text" name="name[]" value="{{ $names[$index] ?? '' }}"
+                                        <input type="text" name="name[]" value="{{ $row->name ?? '' }}"
                                             class="form-control {{ $errors->has('name.' . $index) ? 'is-invalid' : '' }}">
 
                                         @if ($errors->has('name.' . $index))
@@ -85,7 +133,7 @@
                                     <div class="form-group">
                                         <label>Description</label>
                                         <textarea name="description[]" class="form-control {{ $errors->has('description.' . $index) ? 'is-invalid' : '' }}"
-                                            rows="2">{{ $descs[$index] ?? '' }}</textarea>
+                                            rows="2">{{ $row->description ?? '' }}</textarea>
 
                                         @if ($errors->has('description.' . $index))
                                             <div class="invalid-feedback">
@@ -96,6 +144,9 @@
                                 </div>
                             </div>
 
+                            <button type="button" class="btn btn-danger btn-sm mt-2 remove-row">
+                                Remove
+                            </button>
                         </div>
                     @endforeach
                 </div>
@@ -119,11 +170,17 @@
 
             let html = `
         <div class="feature-row border p-3 mb-3">
+            <input type="hidden" name="content_id[]" value="">
+            <input type="hidden" name="existing_icon[]" value="">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                     <label class="required">Icon</label>
-                    <input type="text" name="icon[]" class="form-control">
+                    <div class="image-box image-trigger" style="cursor:pointer;">
+                        <div class="triangle-placeholder"></div>
+                        <img class="image-preview" style="display:none;">
+                    </div>
+                    <input type="file" name="icon[]" accept="image/*" class="d-none image-input">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -153,8 +210,34 @@
         });
 
         document.addEventListener('click', function(e) {
+            if (e.target.closest('.image-trigger')) {
+                let row = e.target.closest('.feature-row');
+                row.querySelector('.image-input').click();
+            }
+
             if (e.target.classList.contains('remove-row')) {
                 e.target.closest('.feature-row').remove();
+            }
+        });
+
+        document.addEventListener('change', function(e) {
+            if (e.target.classList.contains('image-input')) {
+                let file = e.target.files[0];
+                let row = e.target.closest('.feature-row');
+                let preview = row.querySelector('.image-preview');
+                let placeholder = row.querySelector('.triangle-placeholder');
+
+                if (file) {
+                    let reader = new FileReader();
+                    reader.onload = function(event) {
+                        preview.src = event.target.result;
+                        preview.style.display = 'block';
+                        if (placeholder) {
+                            placeholder.style.display = 'none';
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                }
             }
         });
     </script>

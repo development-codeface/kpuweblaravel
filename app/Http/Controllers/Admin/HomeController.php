@@ -69,7 +69,9 @@ class HomeController extends Controller
             'content_heading' => 'required|string|max:255',
             'content_sub_heading' => 'required|string|max:255',
 
+            'content_title' => 'nullable|array',
             'content_title.*' => 'required|string|max:255',
+            'content_description' => 'nullable|array',
             'content_description.*' => 'required|string',
 
             'content_image.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
@@ -96,7 +98,7 @@ class HomeController extends Controller
         $savedIds = [];
 
         // ✅ MULTIPLE SUB CONTENT
-        foreach ($request->content_title as $key => $title) {
+        foreach ($request->input('content_title', []) as $key => $title) {
 
             $subId = $request->sub_content_id[$key] ?? null;
 
@@ -104,7 +106,10 @@ class HomeController extends Controller
                 $subContent = SubContent::find($subId);
             } else {
                 $subContent = new SubContent();
-                $subContent->contents_id = $content->id;
+            }
+
+            if (!$subContent) {
+                $subContent = new SubContent();
             }
 
             $imagePath = $subContent->image ?? null;
@@ -131,6 +136,7 @@ class HomeController extends Controller
             }
 
             // ✅ SAVE DATA
+            $subContent->contents_id = $content->id;
             $subContent->title = $title;
             $subContent->description = $request->content_description[$key] ?? null;
             $subContent->image = $imagePath;
@@ -140,9 +146,19 @@ class HomeController extends Controller
         }
 
         // ✅ DELETE REMOVED ROWS (IMPORTANT)
-        // SubContent::where('content_id', $content->id)
-        //     ->whereNotIn('id', $savedIds)
-        //     ->delete();
+        $removedSubContents = SubContent::where('contents_id', $content->id)
+            ->when(!empty($savedIds), function ($query) use ($savedIds) {
+                $query->whereNotIn('id', $savedIds);
+            })
+            ->get();
+
+        foreach ($removedSubContents as $removedSubContent) {
+            if ($removedSubContent->image && file_exists(public_path($removedSubContent->image))) {
+                unlink(public_path($removedSubContent->image));
+            }
+
+            $removedSubContent->delete();
+        }
 
         return redirect()->route('admin.pages.index')->with('success', 'Content created successfully.');
     }
@@ -155,10 +171,13 @@ class HomeController extends Controller
             'section_title' => 'required|string|max:255',
             'section_sub_title' => 'required|string|max:255',
 
+            'name' => 'nullable|array',
             'name.*' => 'required|string|max:255',
+            'section_description' => 'nullable|array',
             'section_description.*' => 'required|string',
 
             'imagess' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'sub_section_image.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
         // ✅ STORE OR UPDATE SECTION
@@ -206,7 +225,7 @@ class HomeController extends Controller
         $savedIds = [];
 
         // ✅ MULTIPLE SUB SECTION
-        foreach ($request->name as $key => $value) {
+        foreach ($request->input('name', []) as $key => $value) {
 
             $subId = $request->sub_section_id[$key] ?? null;
 
@@ -214,20 +233,56 @@ class HomeController extends Controller
                 $subSection = SubSection::find($subId);
             } else {
                 $subSection = new SubSection();
-                $subSection->sections_id = $section->id;
             }
 
+            if (!$subSection) {
+                $subSection = new SubSection();
+            }
+
+            $imagePath = $subSection->image ?? null;
+
+            if ($request->hasFile('sub_section_image') && isset($request->file('sub_section_image')[$key])) {
+
+                if ($subSection->image && file_exists(public_path($subSection->image))) {
+                    unlink(public_path($subSection->image));
+                }
+
+                $image = $request->file('sub_section_image')[$key];
+                $imageName = time() . '_' . $key . '.' . $image->getClientOriginalExtension();
+
+                $destinationPath = public_path('images/section/subsection');
+
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 0755, true);
+                }
+
+                $image->move($destinationPath, $imageName);
+                $imagePath = 'images/section/subsection/' . $imageName;
+            }
+
+            $subSection->sections_id = $section->id;
             $subSection->name = $request->name[$key];
             $subSection->description = $request->section_description[$key];
+            $subSection->image = $imagePath;
             $subSection->save();
 
             $savedIds[] = $subSection->id;
         }
 
         // ✅ DELETE REMOVED ROWS
-        // SubSection::where('section_id', $section->id)
-        //     ->whereNotIn('id', $savedIds)
-        //     ->delete();
+        $removedSubSections = SubSection::where('sections_id', $section->id)
+            ->when(!empty($savedIds), function ($query) use ($savedIds) {
+                $query->whereNotIn('id', $savedIds);
+            })
+            ->get();
+
+        foreach ($removedSubSections as $removedSubSection) {
+            if ($removedSubSection->image && file_exists(public_path($removedSubSection->image))) {
+                unlink(public_path($removedSubSection->image));
+            }
+
+            $removedSubSection->delete();
+        }
 
         return redirect()->route('admin.pages.index')->with('success', 'Section created successfully.');
     }

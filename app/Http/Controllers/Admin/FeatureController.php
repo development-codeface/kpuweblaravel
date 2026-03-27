@@ -35,8 +35,8 @@ class FeatureController extends Controller
             'title'     => 'required|string|max:255',
             'sub_title' => 'required|string|max:255',
 
-            'icon'        => 'required|array',
-            'icon.*'      => 'required|string|max:255',
+            'icon'        => 'required|array|min:1',
+            'icon.*'      => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
 
             'name'        => 'required|array',
             'name.*'      => 'required|string|max:255',
@@ -51,13 +51,13 @@ class FeatureController extends Controller
             'sub_title'   => $request->sub_title,
         ]);
 
-        $IconArray = $request->input('icon');
+        foreach ($request->input('name', []) as $key => $name) {
+            $iconPath = $this->uploadFeatureIcon($request->file('icon')[$key], $key);
 
-        foreach ($IconArray as $key => $icon) {
             FeatureContent::create([
                 'feature_id'  => $feature->id,
-                'icon'        => $icon,
-                'name'        => $request->input('name')[$key],
+                'icon'        => $iconPath,
+                'name'        => $name,
                 'description' => $request->input('description')[$key],
             ]);
         }
@@ -94,8 +94,9 @@ class FeatureController extends Controller
             'title' => 'required|string|max:255',
             'sub_title' => 'required|string|max:255',
 
-            'icon' => 'required|array',
-            'icon.*' => 'required|string',
+            'icon' => 'nullable|array',
+            'icon.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'existing_icon' => 'nullable|array',
 
             'name' => 'required|array',
             'name.*' => 'required|string',
@@ -111,29 +112,48 @@ class FeatureController extends Controller
         ]);
 
         $contentIds = $request->input('content_id', []);
+        $existingIcons = $request->input('existing_icon', []);
+        $savedIds = [];
 
-        foreach ($request->input('icon') as $key => $icon) {
+        foreach ($request->input('name', []) as $key => $name) {
             $contentId = $contentIds[$key] ?? null;
+            $featureContent = $contentId ? FeatureContent::find($contentId) : new FeatureContent();
 
-            if ($contentId) {
-                // Update existing content
-                $featureContent = FeatureContent::find($contentId);
-                if ($featureContent) {
-                    $featureContent->update([
-                        'icon' => $icon,
-                        'name' => $request->input('name')[$key],
-                        'description' => $request->input('description')[$key],
-                    ]);
-                }
-            } else {
-                // Create new content
-                FeatureContent::create([
-                    'feature_id' => $feature->id,
-                    'icon' => $icon,
-                    'name' => $request->input('name')[$key],
-                    'description' => $request->input('description')[$key],
-                ]);
+            if (!$featureContent) {
+                $featureContent = new FeatureContent();
             }
+
+            $iconPath = $existingIcons[$key] ?? $featureContent->icon ?? null;
+
+            if ($request->hasFile('icon') && isset($request->file('icon')[$key])) {
+                $this->deleteImageIfExists($featureContent->icon ?? null);
+                $iconPath = $this->uploadFeatureIcon($request->file('icon')[$key], $key);
+            }
+
+            if (!$iconPath) {
+                return back()
+                    ->withErrors(['icon.' . $key => 'The icon field is required.'])
+                    ->withInput();
+            }
+
+            $featureContent->feature_id = $feature->id;
+            $featureContent->icon = $iconPath;
+            $featureContent->name = $name;
+            $featureContent->description = $request->input('description')[$key];
+            $featureContent->save();
+
+            $savedIds[] = $featureContent->id;
+        }
+
+        $removedContents = FeatureContent::where('feature_id', $feature->id)
+            ->when(!empty($savedIds), function ($query) use ($savedIds) {
+                $query->whereNotIn('id', $savedIds);
+            })
+            ->get();
+
+        foreach ($removedContents as $removedContent) {
+            $this->deleteImageIfExists($removedContent->icon);
+            $removedContent->delete();
         }
 
         return redirect()
@@ -147,11 +167,37 @@ class FeatureController extends Controller
      */
     public function destroy($id)
     {
-        FeatureContent::where('feature_id', $id)->delete();
         $feature = features::findOrFail($id);
+
+        foreach ($feature->featureContents as $content) {
+            $this->deleteImageIfExists($content->icon);
+            $content->delete();
+        }
+
         $feature->delete();
         return redirect()
             ->route('admin.feature.index')
             ->with('success', 'Feature deleted successfully');
+    }
+
+    private function uploadFeatureIcon($icon, int $key): string
+    {
+        $imageName = time() . '_' . $key . '.' . $icon->getClientOriginalExtension();
+        $destinationPath = public_path('images/feature/icons');
+
+        if (!file_exists($destinationPath)) {
+            mkdir($destinationPath, 0755, true);
+        }
+
+        $icon->move($destinationPath, $imageName);
+
+        return 'images/feature/icons/' . $imageName;
+    }
+
+    private function deleteImageIfExists(?string $imagePath): void
+    {
+        if ($imagePath && file_exists(public_path($imagePath))) {
+            unlink(public_path($imagePath));
+        }
     }
 }
