@@ -3,40 +3,40 @@
     {{-- <div class="top-space-15"></div> --}}
     <!-- start: Banner Section -->
     <section class="h5-banner-section section-gap-x">
-<div class="container">
-        <div class="banner-bg" data-bg-image="{{ asset($banner->image) }}">
-        </div>
-        <div class="h5-banner-area">
-            <div class="h5-banner-content">
-                <div class="btn-area wow fadeInUp" data-wow-delay=".8s">
-                    <a class="tj-primary-btn tag-port">
-                        <span class="btn-text">#Healthy Families First</span>
-                    </a>
-                </div>
-                <h1 class="banner-title">
-                    {{ $banner->title }}
-                </h1>
+        <div class="container">
+            <div class="banner-bg" data-bg-image="{{ asset($banner->image) }}">
             </div>
-        </div>
+            <div class="h5-banner-area">
+                <div class="h5-banner-content">
+                    <div class="btn-area wow fadeInUp" data-wow-delay=".8s">
+                        <a class="tj-primary-btn tag-port">
+                            <span class="btn-text">#Healthy Families First</span>
+                        </a>
+                    </div>
+                    <h1 class="banner-title">
+                        {{ $banner->title }}
+                    </h1>
+                </div>
+            </div>
 
-        <div class="booking-container">
-<div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
+            <div class="booking-container">
+                <div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
                     <a class="tj-primary-btn" href="">
                         <span class="btn-text"><span>Book Appointment</span></span>
                     </a>
                 </div>
-<div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
+                <div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
                     <a class="tj-primary-btn" href="">
                         <span class="btn-text"><span>Find Speciality</span></span>
                     </a>
                 </div>
-<div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
+                <div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
                     <a class="tj-primary-btn" href="">
                         <span class="btn-text"><span>Book Health Checkup</span></span>
                     </a>
                 </div>
+            </div>
         </div>
-</div>
     </section>
     <!-- end: Banner Section -->
 
@@ -243,7 +243,7 @@
                         </div>
                         <div class="blog-content">
                             <div class="sec-heading style-3 text-left">
-                                <h2 class="sec-title ">
+                                <h2 class="sec-title">
                                     {{ $edit_section->heading }}
                                 </h2>
                                 <p class="desc">

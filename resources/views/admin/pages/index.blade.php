@@ -67,10 +67,16 @@
                                             <button input type="submit" class="btn btn-xs btn-danger" value="">
                                                 <i class="fi fi-br-trash"></i> </button>
                                         </form>
-                                        <a class="btn btn-xs btn-info"
-                                            href="{{ route('admin.' . $page->slug . '.create', $page->id) }}">
-                                            <i class="fi fi-br-pencil"></i>
-                                        </a>
+                                        @if ($page->adminBuilderUrl())
+                                            <a class="btn btn-xs btn-info" href="{{ $page->adminBuilderUrl() }}">
+                                                <i class="fi fi-br-pencil"></i>
+                                            </a>
+                                        @else
+                                            <button type="button" class="btn btn-xs btn-secondary" disabled
+                                                title="No content builder route for this page slug">
+                                                <i class="fi fi-br-pencil"></i>
+                                            </button>
+                                        @endif
 
                                         {{-- <a class="btn btn-xs btn-info"
                                             href="{{ route('admin.' . $page->slug . '.edit', $page->id) }}">
