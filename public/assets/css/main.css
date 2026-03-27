@@ -3054,21 +3054,21 @@ START: Theme Footer CSS
     /* border-radius: 12px; */
     overflow: hidden;
 }
-@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+/* @media only screen and (min-width: 1200px) and (max-width: 1399px) {
     .tj-footer-section {
         padding-top: 150px;
     }
-}
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
+} */
+/* @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .tj-footer-section {
         padding-top: 135px;
     }
-}
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+} */
+/* @media only screen and (min-width: 768px) and (max-width: 991px) {
     .tj-footer-section {
         padding-top: 320px;
     }
-}
+} */
 @media only screen and (min-width: 576px) and (max-width: 767px),
     (max-width: 575px) {
     .tj-footer-section {
@@ -4533,9 +4533,9 @@ START: Theme Search CSS
 .hamburger-area {
     position: fixed;
     inset-inline-end: -490px;
-    top: 15px;
+        top: 0px;
     width: 450px;
-    height: calc(100% - 30px);
+    height: 100%;
     -webkit-box-shadow: -5px 0 20px -5px rgba(0, 0, 0, 0.5);
     box-shadow: -5px 0 20px -5px rgba(0, 0, 0, 0.5);
     -webkit-transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
@@ -4552,7 +4552,7 @@ START: Theme Search CSS
     display: none;
 }
 .hamburger-area.opened {
-    inset-inline-end: 15px;
+    inset-inline-end: 0px;
 }
 @media only screen and (min-width: 576px) and (max-width: 767px),
     (max-width: 575px) {
@@ -13895,31 +13895,31 @@ input[type="text"] {
     color: #124e68;
     margin-bottom: 17px;
 }
-@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+/* @media only screen and (min-width: 1200px) and (max-width: 1399px) {
     .cta-area .cta-content .title {
         font-size: 62px;
     }
-}
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
+} */
+/* @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .cta-area .cta-content .title {
         font-size: 56px;
     }
-}
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+} */
+/* @media only screen and (min-width: 768px) and (max-width: 991px) {
     .cta-area .cta-content .title {
         font-size: 60px;
     }
-}
-@media only screen and (min-width: 576px) and (max-width: 767px) {
+} */
+/* @media only screen and (min-width: 576px) and (max-width: 767px) {
     .cta-area .cta-content .title {
         font-size: 50px;
     }
-}
-@media (max-width: 575px) {
+} */
+/* @media (max-width: 575px) {
     .cta-area .cta-content .title {
         font-size: 43px;
     }
-}
+} */
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .cta-area .cta-content {
         padding: 34px 15px 45px 35px;
@@ -16452,8 +16452,8 @@ START: Breadcrumb CSS
     only screen and (min-width: 576px) and (max-width: 767px),
     (max-width: 575px) {
     .tj-page-header {
-        padding-top: 60px;
-        padding-bottom: 70px;
+        padding-top: 160px;
+        padding-bottom: 200px;
     }
 }
 .tj-page-title {
@@ -20987,6 +20987,7 @@ START: Hero CSS
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .h5-banner-area {
         padding-top: 160px;
+                min-height: 663px;
     }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px),
@@ -32302,6 +32303,12 @@ textarea {
     }
 }
 
+@media (max-width: 991px) {
+    .sub-form-container{
+    display: none;
+}
+}
+
 @media (max-width: 640px) {
     .step-card {
         flex-direction: column;
@@ -32983,6 +32990,33 @@ nav#mobile-menu {
     display: none;
  }
 }
+@media (max-width: 991px) {
+.tj-copyright-area .container{
+    padding: 0 5%;
+    max-width: 100%;
+}
+section.tj-team-section.section-separator .service-item.style-6{
+    margin-bottom: 25px;
+ }
+ .col-lg-3.col-sm-6.doctor-card {
+    margin-bottom: 25px;
+}
+.col-12.footer-top{
+    margin-bottom: 50px;
+}
+}
+
+@media (max-width: 1400px) {
+.header-button{
+    display: none;
+}
+.cta-area .cta-content{
+   justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        padding-top: 14px;
+}
+}
 
 @media (max-width: 1200px) {
     .row.h7-about-counter-wrapper.\32 -sectio-grid{
@@ -32998,7 +33032,7 @@ nav#mobile-menu {
     }
     .tj-product-details-tab-nav .tj-product-tab {
         flex-direction: row !important;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
     }
     .tj-product-details-tab-nav .tj-product-tab .nav-link {
@@ -33162,290 +33196,21 @@ section.tj-about-section.h6-about.section-gap.section-gap-x{
 color:white
     }
 
-/* Shared responsive fixes for frontend pages */
-img {
-    max-width: 100%;
-    height: auto;
+    header.header-area.header-1.header-absolute.section-gap-x .col-12{
+        padding:0px;
+    }
+
+
+    form#contact-form .row{
+    gap: 20px;
 }
-
-@media (max-width: 1199px) {
-    .header-wrapper.container {
-        max-width: 100%;
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .h5-banner-content,
-    .h5-banner-content.speciality,
-    .h5-banner-content.speciality-btn,
-    .sub-form-container,
-    .search-box.dr-search,
-    section.h10-project.section-gap.tj-sticky-panel-container.health-packages
-        .sec-heading-centered
-        .sec-heading
-        .sec-title {
-        width: 100% !important;
-        max-width: 100%;
-    }
-
-    .booking-container {
-        left: 0;
-        width: 100%;
-        padding: 18px 16px;
-        border-radius: 0;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .search_input.dr-banner-flr,
-    .hspt-grid-contents,
-    .footer-bottom,
-    .copyright-content-area,
-    .col-12.footer-top .footer-widget.wow.fadeInUp {
-        flex-wrap: wrap;
-    }
-
-    .search_input.dr-banner-flr,
-    .copyright-content-area {
-        gap: 16px;
-    }
-
-    section.h5-testimonial.section-gap.section-gap-x
-        .swiper-backface-hidden
-        .swiper-slide {
-        width: 100% !important;
-    }
+.footer-bottom .col-xl-3 {
+    padding-right: 60px;
+    /* padding: 0px 0px; */
+    max-width: max-content;
 }
-
-@media (max-width: 991px) {
-    .header-top-content,
-    .header-top-content .header-info,
-    .header-top-content .topbar-text,
-    .header-wrapper,
-    .footer-bottom,
-    .copyright-content-area,
-    .search_input.dr-banner-flr,
-    .hspt-grid-contents,
-    .appointment-btn {
-        width: 100%;
-    }
-
-    .header-top-content,
-    .header-top-content .header-info,
-    .header-wrapper,
-    .footer-bottom,
-    .copyright-content-area,
-    .search_input.dr-banner-flr,
-    .appointment-btn {
-        flex-direction: column;
-    }
-
-    .header-top-content .header-info,
-    .header-top-content .topbar-text {
-        justify-content: center;
-        text-align: center;
-    }
-
-    .header-top-content .header-info .info-item {
-        padding: 0 8px 10px;
-    }
-
-    .site_logo,
-    .site_logo .logo,
-    .site_logo .logo img {
-        max-width: 180px;
-    }
-
-    .tj-page-header {
-        padding-top: 110px;
-        padding-bottom: 80px;
-        background-position: center;
-    }
-
-    .h5-banner-content .banner-title,
-    section.tj-page-header.section-gap-x.spacialiy-banner .banner-title {
-        font-size: clamp(32px, 8vw, 48px);
-        line-height: 1.1;
-    }
-
-    .h5-banner-content .desc,
-    section.tj-page-header.section-gap-x.spacialiy-banner .desc {
-        width: 100%;
-        font-size: 16px;
-    }
-
-    .second-op .process-item,
-    .process-item,
-    .content-area-grid,
-    .search-box.dr-search,
-    section#choose .client-logo {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .second-op .process-item,
-    .process-item {
-        gap: 18px;
-    }
-
-    .second-op .process-item .process-content,
-    .service-content-wrap.pharmacy-service .service-title {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    section.tj-page-header.section-gap-x.hospital-icu .countup-wrap {
-        margin-top: 40px;
-        flex-wrap: wrap;
-    }
-
-    section.tj-page-header.section-gap-x.hospital-icu .countup-wrap .countup-item {
-        width: 50%;
-    }
-
-    .tj-main-sidebar.slidebar-stickiy {
-        padding-left: 0 !important;
-    }
-
-    .booking-container.banner-menu,
-    .booking-container.banner-menu.speciality {
-        position: static;
-        margin-top: 24px;
-    }
-
-    .doctors-bner-fltr,
-    .container.inquiry-section {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
-
-    .sub-form-container {
-        width: 100%;
-    }
-
-    .form-row {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 767px) {
-    .top-space-15 {
-        height: 86px;
-    }
-
-    .tj-page-header {
-        padding-top: 90px;
-        padding-bottom: 64px;
-    }
-
-    .h5-banner-content {
-        text-align: left;
-    }
-
-    .booking-container,
-    .booking-container.banner-menu,
-    .booking-container.banner-menu.speciality,
-    .h5-banner-content.speciality-btn,
-    .step-orde,
-    .footer-bottom,
-    .copyright-content-area {
-        gap: 12px;
-    }
-
-    .book-content,
-    .booking-container .btn-area,
-    .booking-container .tj-primary-btn,
-    .h5-banner-content.speciality-btn .tj-primary-btn,
-    .appointment-btn .tj-primary-btn,
-    button.submit-btn,
-    button.tj-primary-btn.ftr-form {
-        width: 100%;
-    }
-
-    .book-content {
-        border-radius: 18px;
-        padding: 14px 16px;
-    }
-
-    section.tj-page-header.section-gap-x.hospital-icu .countup-wrap .countup-item,
-    .grid-div,
-    .content-area-grid {
-        width: 100%;
-    }
-
-    .about-img-area.h6-about-img.inter-national.wow.fadeInLeft img,
-    section.tj-team-section.section-separator .service-item.style-6,
-    .choose-box.style-2 .choose-icon.index-page {
-        height: auto;
-    }
-
-    .choose-box.style-2 .choose-icon.index-page {
-        width: 110px;
-        margin-bottom: 24px;
-    }
-
-    .choose-box.style-2 .choose-icon.index-page img {
-        width: 64px;
-    }
-
-    h2.sec-title.sec-header {
-        font-size: 28px;
-    }
-
-    h2.sec-title.sub-text,
-    h3.direct-name {
-        font-size: 24px;
-    }
-}
-
-@media (max-width: 575px) {
-    .header-top,
-    .tj-page-header,
-    .booking-container,
-    .container.inquiry-section,
-    .doctors-bner-fltr {
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-
-    .header-top-content .header-info .info-item {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .site_logo,
-    .site_logo .logo,
-    .site_logo .logo img {
-        max-width: 150px;
-    }
-
-    .h5-banner-content .banner-title,
-    section.tj-page-header.section-gap-x.spacialiy-banner .banner-title {
-        font-size: 30px;
-    }
-
-    .h5-banner-content .desc,
-    .countup-item.donate-blo .sub-title,
-    section.h10-project.section-gap.tj-sticky-panel-container.health-packages
-        .blog-meta
-        span,
-    section.h10-project.section-gap.tj-sticky-panel-container.health-packages
-        .blog-meta
-        span
-        a {
-        font-size: 15px;
-    }
-
-    .process-item .process-step,
-    .second-op .process-item .process-step {
-        width: 42px;
-        height: 42px;
-        font-size: 16px;
-    }
-
-    .tj-primary-btn,
-    .header-button .tj-primary-btn {
-        padding-left: 18px;
-        padding-right: 18px;
-    }
+.footer-bottom .col-xl-2 {
+    padding-right: 60px;
+    /* padding: 0px 0px; */
+    max-width: max-content;
 }
