@@ -6,30 +6,30 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        if (Schema::hasTable('sub_contents')) {
+        if (Schema::hasTable('seo')) {
             return;
         }
 
-        Schema::create('sub_contents', function (Blueprint $table) {
+        Schema::create('seo', function (Blueprint $table) {
             $table->id();
-            $table->integer('contents_id')->nullable();
+
+            $table->morphs('model');
+
+            $table->longText('description')->nullable();
             $table->string('title')->nullable();
             $table->string('image')->nullable();
-            $table->longText('description')->nullable();
+            $table->string('author')->nullable();
+            $table->string('robots')->nullable();
+            $table->string('canonical_url')->nullable();
+
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('sub_contents');
+        Schema::dropIfExists('seo');
     }
 };

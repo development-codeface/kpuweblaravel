@@ -1,5 +1,10 @@
 @extends('frondend.app')
 @section('content')
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
     <div class="top-space-15"></div>
 
 
@@ -28,13 +33,13 @@
                             <a class="tj-primary-btn" href="contact.html">
                                 <span class="btn-text"><span>Book Appointment</span></span>
                             </a>
-                             <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
+                            <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
                         </div>
                         <div class="slider-btn">
                             <a class="tj-primary-btn" href="contact.html">
                                 <span class="btn-text"><span>Get Second Opinion</span></span>
                             </a>
-                             <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
+                            <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
                         </div>
 
                     </div>
@@ -65,11 +70,11 @@
             </div>
             <div class="booking-container banner-menu speciality">
                 <div class="banner-menu-conta">
-                    <a href="">Who we are</a>
-                    <a href="">Our Values</a>
-                    <a href="">Our Guiding Mission</a>
-                    <a href="">Mile stones</a>
-                    <a href="">Strategic Pillars</a>
+                    <a href="#who-we-are">Who we are</a>
+                    <a href="#our-values">Our Values</a>
+                    <a href="#our-guiding-mission">Our Guiding Mission</a>
+                    <a href="#mile-stone">Mile stones</a>
+                    <a href="#strategic-pillars">Strategic Pillars</a>
                 </div>
             </div>
         </div>
@@ -78,7 +83,7 @@
     </section>
 
     <!-- start: Product Section -->
-    <section class="tj-product-area section-gap">
+    <section class="tj-product-area section-gap" id="who-we-are">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -216,7 +221,7 @@
     <!-- end: Product Section -->
 
     <!-- start: Choose Section -->
-    <section id="choose" class="tj-choose-section section-gap">
+    <section id="our-values" class="tj-choose-section section-gap">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -249,7 +254,7 @@
     <!-- end: Choose Section -->
 
     <!-- start: Team Section -->
-    <section class="tj-team-section-3 section-gap section-gap-x">
+    <section class="tj-team-section-3 section-gap section-gap-x" id="our-guiding-mission">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -287,7 +292,7 @@
 
 
     <!-- start: Faq Section -->
-    <section class="tj-faq-section section-gap tj-arrange-container-2">
+    <section class="tj-faq-section section-gap tj-arrange-container-2" id="mile-stone">
         <div class="container">
             <div class="row justify-content-between  wow fadeInUp" data-wow-delay=".3s">
                 <div class="col-lg-6">
@@ -338,7 +343,7 @@
     <!-- end: Faq Section -->
 
     <!-- start: Service Section -->
-    <section class="h5-service-section h10-service section-gap">
+    <section class="h5-service-section h10-service section-gap" id="strategic-pillars">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -457,4 +462,26 @@
             </div>
         </div>
     </section>
+    <script>
+        document.querySelectorAll('.banner-menu-conta a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const target = document.querySelector(this.getAttribute('href'));
+
+                if (target) {
+                    const elementPosition = target.offsetTop;
+                    const elementHeight = target.offsetHeight;
+                    const windowHeight = window.innerHeight;
+
+                    const offsetPosition = elementPosition - (windowHeight / 2) + (elementHeight / 2);
+
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }
+            });
+        });
+    </script>
 @endsection

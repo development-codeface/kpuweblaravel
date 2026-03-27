@@ -132,9 +132,13 @@
                         </div>
                     @endforeach
                 </div>
-                <button type="button" id="mid_addRow" class="btn btn-primary mb-3">
+                 <button type="button" id="mid_addRow" class="btn btn-primary mb-3">
                     + Add Row
                 </button>
+                @include('admin.blog.partials.seo-fields', [
+                    'seo' => null,
+                    'seoImageHelperText' => 'Leave empty to use the first facility image for SEO.',
+                ])
                 <button class=" btn btn-success min-w-200 " type="submit">
                     {{ trans('global.save') }}
                 </button>

@@ -34,7 +34,7 @@
     <div class="card">
         <div class="card-header">
             <p><i class="fi fi-br-edit mr_15_icc"></i>
-                {{ trans('global.create') }} Slider </p>
+                Edit Blog </p>
         </div>
 
         <div class="card-body">
@@ -97,7 +97,6 @@
                     </div>
                 </div>
                 <div class="row">
-                    <!-- LEFT -->
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="required" for="description">
@@ -113,6 +112,10 @@
                         </div>
                     </div>
                 </div>
+                @include('admin.blog.partials.seo-fields', [
+                    'seo' => $edit->seo,
+                    'seoImageHelperText' => 'Leave empty to use the main blog image for SEO.',
+                ])
                 <div class="form-group">
                     <button class=" btn btn-success min-w-200 " type="submit">
                         {{ trans('global.save') }}

@@ -11,6 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (Schema::hasTable('vision_contents')) {
+            return;
+        }
+
         Schema::create('vision_contents', function (Blueprint $table) {
             $table->id();
             $table->integer('pages_id')->nullable();

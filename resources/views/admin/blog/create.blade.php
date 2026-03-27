@@ -34,7 +34,7 @@
     <div class="card">
         <div class="card-header">
             <p><i class="fi fi-br-edit mr_15_icc"></i>
-                {{ trans('global.create') }} Slider </p>
+                {{ trans('global.create') }} Blog </p>
         </div>
 
         <div class="card-body">
@@ -52,7 +52,7 @@
 
                                 @foreach ($category as $cat)
                                     <option value="{{ $cat->id }}"
-                                        {{ old('category', $blog->category ?? '') == $cat->id ? 'selected' : '' }}>
+                                        {{ old('category') == $cat->id ? 'selected' : '' }}>
                                         {{ $cat->name }}
                                     </option>
                                 @endforeach
@@ -107,7 +107,6 @@
                     </div>
                 </div>
                 <div class="row">
-                    <!-- LEFT -->
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="required" for="description">
@@ -127,6 +126,10 @@
                     </div>
 
                 </div>
+                @include('admin.blog.partials.seo-fields', [
+                    'seo' => null,
+                    'seoImageHelperText' => 'Leave empty to use the main blog image for SEO.',
+                ])
                 <div class="form-group">
                     <button class=" btn btn-success min-w-200 " type="submit">
                         {{ trans('global.save') }}

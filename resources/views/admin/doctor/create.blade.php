@@ -149,6 +149,10 @@
                         </div>
                     </div>
                 </div>
+                @include('admin.blog.partials.seo-fields', [
+                    'seo' => null,
+                    'seoImageHelperText' => 'Leave empty to use the main doctor image for SEO.',
+                ])
                 <button class=" btn btn-success min-w-200 " type="submit">
                     {{ trans('global.save') }}
                 </button>

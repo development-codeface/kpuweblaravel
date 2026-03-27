@@ -11,6 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (Schema::hasTable('sub_sections')) {
+            return;
+        }
+
         Schema::create('sub_sections', function (Blueprint $table) {
             $table->id();
             $table->integer('sections_id')->nullable();

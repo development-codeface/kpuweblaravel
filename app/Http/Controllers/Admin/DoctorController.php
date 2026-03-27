@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\DoctorDepartment;
-use App\Models\Department;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Str;
 
 class DoctorController extends Controller
 {
@@ -34,36 +37,31 @@ class DoctorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required',
-            'designation' => 'required',
-            'departments' => 'required|array',
-            'image' => 'required|image|mimes:jpg,jpeg,png',
+            'name'              => 'required|string|max:255',
+            'description'       => 'required',
+            'designation'       => 'required',
+            'departments'       => 'required|array',
+            'image'             => 'required|image|mimes:jpg,jpeg,png',
+            'seo_title'         => 'nullable|string|max:255',
+            'seo_description'   => 'nullable|string',
+            'seo_author'        => 'nullable|string|max:255',
+            'seo_robots'        => 'nullable|string|max:255',
+            'seo_canonical_url' => 'nullable|url|max:2048',
+            'seo_image'         => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
-        $image = $request->file('image');
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
-
-        // destination path
-        $destinationPath = public_path('images/doctors');
-
-        // create folder if not exists
-        if (!file_exists($destinationPath)) {
-            mkdir($destinationPath, 0755, true);
-        }
-
-        // move file
-        $image->move($destinationPath, $imageName);
-
         $user_id = auth()->id();
+        $imagePath = $this->storeUploadedImage($request->file('image'), 'images/doctors');
 
         $doctor = Doctor::create([
             'name' => $request->name,
             'description' => $request->description,
             'designation' => $request->designation,
-            'image' => 'images/doctors/' . $imageName,
+            'image' => $imagePath,
             'created_by' => $user_id,
         ]);
+
+        $this->syncSeoData($doctor, $request, 'images/doctors/seo');
 
         $departments = $request->departments;
         foreach ($departments as $departmentId) {
@@ -112,33 +110,24 @@ class DoctorController extends Controller
     {
 
         $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required',
-            'designation' => 'required',
-            'departments' => 'required|array'
+            'name'              => 'required|string|max:255',
+            'description'       => 'required',
+            'designation'       => 'required',
+            'departments'       => 'required|array',
+            'seo_title'         => 'nullable|string|max:255',
+            'seo_description'   => 'nullable|string',
+            'seo_author'        => 'nullable|string|max:255',
+            'seo_robots'        => 'nullable|string|max:255',
+            'seo_canonical_url' => 'nullable|url|max:2048',
+            'seo_image'         => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
         // Image update (optional)
+        $imagePath = $doctor->image;
+
         if ($request->hasFile('image')) {
-
-            // delete old image
-            if ($doctor->image && file_exists(public_path($doctor->image))) {
-                unlink(public_path($doctor->image));
-            }
-
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-
-            $destinationPath = public_path('images/doctors');
-            if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0755, true);
-            }
-
-            $image->move($destinationPath, $imageName);
-
-            $doctor->image = 'images/doctors/' . $imageName;
-        }else{
-            $imageName = basename($doctor->image);
+            $this->deleteUploadedImage($doctor->image);
+            $imagePath = $this->storeUploadedImage($request->file('image'), 'images/doctors');
         }
 
         // Update doctor
@@ -146,8 +135,10 @@ class DoctorController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'designation' => $request->designation,
-            'image' => 'images/doctors/' . $imageName,
+            'image' => $imagePath,
         ]);
+
+        $this->syncSeoData($doctor, $request, 'images/doctors/seo');
 
         // Update departments
         DoctorDepartment::where('doctor_id', $doctor->id)->delete();
@@ -196,5 +187,64 @@ class DoctorController extends Controller
         $doctor->delete();
 
         return redirect()->route('admin.doctor.index')->with('success', 'Doctor deleted successfully.');
+    }
+
+    private function syncSeoData(Model $model, Request $request, string $directory): void
+    {
+        $existingSeo = $model->seo()->first();
+        $seoImagePath = $existingSeo?->image;
+
+        if ($request->hasFile('seo_image')) {
+            $this->deleteUploadedImage($seoImagePath);
+            $seoImagePath = $this->storeUploadedImage($request->file('seo_image'), $directory);
+        }
+
+        $seoPayload = [
+            'title'         => $request->filled('seo_title') ? $request->input('seo_title') : null,
+            'description'   => $request->filled('seo_description') ? $request->input('seo_description') : null,
+            'author'        => $request->filled('seo_author') ? $request->input('seo_author') : null,
+            'robots'        => $request->filled('seo_robots') ? $request->input('seo_robots') : null,
+            'canonical_url' => $request->filled('seo_canonical_url') ? $request->input('seo_canonical_url') : null,
+            'image'         => $seoImagePath,
+        ];
+
+        $hasSeoData = collect($seoPayload)->contains(fn ($value) => filled($value));
+
+        if (! $hasSeoData) {
+            if ($existingSeo) {
+                $this->deleteUploadedImage($existingSeo->image);
+                $existingSeo->delete();
+            }
+
+            return;
+        }
+
+        if ($existingSeo) {
+            $existingSeo->update($seoPayload);
+            return;
+        }
+
+        $model->seo()->create($seoPayload);
+    }
+
+    private function storeUploadedImage(UploadedFile $image, string $directory): string
+    {
+        $imageName = Str::uuid() . '.' . $image->getClientOriginalExtension();
+        $destinationPath = public_path($directory);
+
+        if (! file_exists($destinationPath)) {
+            mkdir($destinationPath, 0755, true);
+        }
+
+        $image->move($destinationPath, $imageName);
+
+        return trim($directory, '/\\') . '/' . $imageName;
+    }
+
+    private function deleteUploadedImage(?string $path): void
+    {
+        if ($path && file_exists(public_path($path))) {
+            unlink(public_path($path));
+        }
     }
 }
