@@ -5544,7 +5544,7 @@ div.woocommerce .cart_totals table {
 .tj-product-details-tab-nav .tj-product-tab {
   border: 0;
   flex-direction: column;
-  border-bottom: 1px solid var(--tj-color-border-1);
+  /* border-bottom: 1px solid var(--tj-color-border-1); */
   gap: 20px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -6241,6 +6241,6 @@ div.woocommerce .cart_totals table {
 
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
     color: white !important;
-    background-color: #78d8ee;
-    /* border-color: var(--bs-nav-tabs-link-active-border-color); */
+  border-color: #0093be;
+    background-color: #0093be;
 }
