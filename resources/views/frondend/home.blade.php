@@ -3,6 +3,7 @@
     {{-- <div class="top-space-15"></div> --}}
     <!-- start: Banner Section -->
     <section class="h5-banner-section section-gap-x">
+<div class="container">
         <div class="banner-bg" data-bg-image="{{ asset($banner->image) }}">
         </div>
         <div class="h5-banner-area">
@@ -19,19 +20,23 @@
         </div>
 
         <div class="booking-container">
-            <button class="book-content ">
-                {{-- <i class="tji-arrow-right-long"></i> --}}
-                <h4 class="title">Book Appointment</h4>
-            </button>
-            <button class="book-content">
-                {{-- <i class="tji-arrow-right-long"></i> --}}
-                <h4 class="title">Book Appointment</h4>
-            </button>
-            <button class="book-content">
-                {{-- <i class="tji-arrow-right-long"></i> --}}
-                <h4 class="title">Book Appointment</h4>
-            </button>
+<div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
+                    <a class="tj-primary-btn" href="">
+                        <span class="btn-text"><span>Book Appointment</span></span>
+                    </a>
+                </div>
+<div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
+                    <a class="tj-primary-btn" href="">
+                        <span class="btn-text"><span>Find Speciality</span></span>
+                    </a>
+                </div>
+<div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
+                    <a class="tj-primary-btn" href="">
+                        <span class="btn-text"><span>Book Health Checkup</span></span>
+                    </a>
+                </div>
         </div>
+</div>
     </section>
     <!-- end: Banner Section -->
 
@@ -75,7 +80,7 @@
                     @endforeach
                 </div>
                 <div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
-                    <a class="tj-primary-btn" href="contact.html">
+                    <a class="tj-primary-btn" href="">
                         <span class="btn-text"><span>Get Started Now</span></span>
                     </a>
                 </div>
@@ -245,7 +250,7 @@
                                     technologies and strategies to keep.
                                 </p>
                             </div>
-                            <a class="text-btn" href="blog-details.html">
+                            <a class="text-btn" href="">
                                 <span class="btn-text"><span>Read More</span></span>
                             </a>
                         </div>

@@ -25,9 +25,10 @@
         }
 
         /* ─── Section ─── */
-        .rooms-section {
-            padding: 52px 60px 64px;
-        }
+       .rooms-section {
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
 
         .section-label {
             font-size: 0.75rem;
@@ -387,7 +388,7 @@
     <div class="top-space-15"></div>
 
 
-    <section class="tj-page-header section-gap-x" data-bg-image="{{ $edit_banner->image }}">
+    <section class="tj-page-header section-gap-x" data-bg-image="{{ asset( $edit_banner->image) }}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -409,7 +410,7 @@
     </section>
 
 
-    
+
     <!-- Rooms Section -->
    <section class="rooms-section">
     <div class="container">

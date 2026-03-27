@@ -16432,7 +16432,7 @@ START: Breadcrumb CSS
     padding-top: 133px;
     margin-top: 00px;
     padding-bottom: 150px;
-    background-position: center;
+    /* background-position: center; */
     background-size: cover;
     background-repeat: no-repeat;
     /* background-color: var(--tj-color-theme-dark); */
@@ -23240,7 +23240,7 @@ START: Home 5 About CSS
 ----------------------------------------*/
 .h6-about {
     /* background-color: #ecf2ff; */
-        padding-top: 0; 
+        padding-top: 0;
     /* border-radius: 12px; */
     position: relative;
     overflow: hidden;
@@ -31713,6 +31713,8 @@ section.tj-page-header.section-gap-x.spacialiy-banner
     border-radius: 0;
     height: 100%;
     width: 42px;
+border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
 }
 
 .h5-banner-content.speciality-btn {
@@ -31786,6 +31788,8 @@ section.tj-page-header.section-gap-x.hospital-icu {
 }
 section.tj-page-header.section-gap-x.hospital-icu .countup-wrap {
     margin-top: 100px;
+        position: relative;
+    z-index: 9999;
     gap: 0;
     background-color: #8fe6ff;
 }
@@ -32832,6 +32836,8 @@ h4.grid-content-title {
 }
 .h5-banner-content {
     width: 850px;
+    position: relative;
+    z-index: 999;
 }
 
 @media (max-width: 991px) {
@@ -32907,6 +32913,8 @@ h2.sec-title.pharmacy {
 }
 .h5-banner-content.speciality-btn .slider-btn {
     display: flex;
+    background-color: #0093be;
+    border-radius: 30px;
 }
 .h5-banner-content.speciality-btn span.btn-icon {
     display: flex;
@@ -33132,4 +33140,312 @@ section.tj-blog-section.section-gap.slidebar-stickiy-container{
 }
 section.tj-about-section.h6-about.section-gap.section-gap-x{
     padding-top: 120px;
+}
+.booking-container .btn-area.scroled-ab.wow.fadeInUp {
+    margin-top: 0px;
+}
+.tj-page-header::after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.72) 31%, rgba(0, 0, 0, 0.63) 64%, rgba(0, 0, 0, 0.52) 100%);
+    -webkit-filter: blur(80px);
+    filter: blur(0px);
+    opacity: 1;
+    backdrop-filter: blur(0px);
+}
+    .h5-banner-content .desc{
+color:white
+    }
+
+/* Shared responsive fixes for frontend pages */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 1199px) {
+    .header-wrapper.container {
+        max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .h5-banner-content,
+    .h5-banner-content.speciality,
+    .h5-banner-content.speciality-btn,
+    .sub-form-container,
+    .search-box.dr-search,
+    section.h10-project.section-gap.tj-sticky-panel-container.health-packages
+        .sec-heading-centered
+        .sec-heading
+        .sec-title {
+        width: 100% !important;
+        max-width: 100%;
+    }
+
+    .booking-container {
+        left: 0;
+        width: 100%;
+        padding: 18px 16px;
+        border-radius: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .search_input.dr-banner-flr,
+    .hspt-grid-contents,
+    .footer-bottom,
+    .copyright-content-area,
+    .col-12.footer-top .footer-widget.wow.fadeInUp {
+        flex-wrap: wrap;
+    }
+
+    .search_input.dr-banner-flr,
+    .copyright-content-area {
+        gap: 16px;
+    }
+
+    section.h5-testimonial.section-gap.section-gap-x
+        .swiper-backface-hidden
+        .swiper-slide {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 991px) {
+    .header-top-content,
+    .header-top-content .header-info,
+    .header-top-content .topbar-text,
+    .header-wrapper,
+    .footer-bottom,
+    .copyright-content-area,
+    .search_input.dr-banner-flr,
+    .hspt-grid-contents,
+    .appointment-btn {
+        width: 100%;
+    }
+
+    .header-top-content,
+    .header-top-content .header-info,
+    .header-wrapper,
+    .footer-bottom,
+    .copyright-content-area,
+    .search_input.dr-banner-flr,
+    .appointment-btn {
+        flex-direction: column;
+    }
+
+    .header-top-content .header-info,
+    .header-top-content .topbar-text {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .header-top-content .header-info .info-item {
+        padding: 0 8px 10px;
+    }
+
+    .site_logo,
+    .site_logo .logo,
+    .site_logo .logo img {
+        max-width: 180px;
+    }
+
+    .tj-page-header {
+        padding-top: 110px;
+        padding-bottom: 80px;
+        background-position: center;
+    }
+
+    .h5-banner-content .banner-title,
+    section.tj-page-header.section-gap-x.spacialiy-banner .banner-title {
+        font-size: clamp(32px, 8vw, 48px);
+        line-height: 1.1;
+    }
+
+    .h5-banner-content .desc,
+    section.tj-page-header.section-gap-x.spacialiy-banner .desc {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .second-op .process-item,
+    .process-item,
+    .content-area-grid,
+    .search-box.dr-search,
+    section#choose .client-logo {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .second-op .process-item,
+    .process-item {
+        gap: 18px;
+    }
+
+    .second-op .process-item .process-content,
+    .service-content-wrap.pharmacy-service .service-title {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    section.tj-page-header.section-gap-x.hospital-icu .countup-wrap {
+        margin-top: 40px;
+        flex-wrap: wrap;
+    }
+
+    section.tj-page-header.section-gap-x.hospital-icu .countup-wrap .countup-item {
+        width: 50%;
+    }
+
+    .tj-main-sidebar.slidebar-stickiy {
+        padding-left: 0 !important;
+    }
+
+    .booking-container.banner-menu,
+    .booking-container.banner-menu.speciality {
+        position: static;
+        margin-top: 24px;
+    }
+
+    .doctors-bner-fltr,
+    .container.inquiry-section {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .sub-form-container {
+        width: 100%;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 767px) {
+    .top-space-15 {
+        height: 86px;
+    }
+
+    .tj-page-header {
+        padding-top: 90px;
+        padding-bottom: 64px;
+    }
+
+    .h5-banner-content {
+        text-align: left;
+    }
+
+    .booking-container,
+    .booking-container.banner-menu,
+    .booking-container.banner-menu.speciality,
+    .h5-banner-content.speciality-btn,
+    .step-orde,
+    .footer-bottom,
+    .copyright-content-area {
+        gap: 12px;
+    }
+
+    .book-content,
+    .booking-container .btn-area,
+    .booking-container .tj-primary-btn,
+    .h5-banner-content.speciality-btn .tj-primary-btn,
+    .appointment-btn .tj-primary-btn,
+    button.submit-btn,
+    button.tj-primary-btn.ftr-form {
+        width: 100%;
+    }
+
+    .book-content {
+        border-radius: 18px;
+        padding: 14px 16px;
+    }
+
+    section.tj-page-header.section-gap-x.hospital-icu .countup-wrap .countup-item,
+    .grid-div,
+    .content-area-grid {
+        width: 100%;
+    }
+
+    .about-img-area.h6-about-img.inter-national.wow.fadeInLeft img,
+    section.tj-team-section.section-separator .service-item.style-6,
+    .choose-box.style-2 .choose-icon.index-page {
+        height: auto;
+    }
+
+    .choose-box.style-2 .choose-icon.index-page {
+        width: 110px;
+        margin-bottom: 24px;
+    }
+
+    .choose-box.style-2 .choose-icon.index-page img {
+        width: 64px;
+    }
+
+    h2.sec-title.sec-header {
+        font-size: 28px;
+    }
+
+    h2.sec-title.sub-text,
+    h3.direct-name {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 575px) {
+    .header-top,
+    .tj-page-header,
+    .booking-container,
+    .container.inquiry-section,
+    .doctors-bner-fltr {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .header-top-content .header-info .info-item {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .site_logo,
+    .site_logo .logo,
+    .site_logo .logo img {
+        max-width: 150px;
+    }
+
+    .h5-banner-content .banner-title,
+    section.tj-page-header.section-gap-x.spacialiy-banner .banner-title {
+        font-size: 30px;
+    }
+
+    .h5-banner-content .desc,
+    .countup-item.donate-blo .sub-title,
+    section.h10-project.section-gap.tj-sticky-panel-container.health-packages
+        .blog-meta
+        span,
+    section.h10-project.section-gap.tj-sticky-panel-container.health-packages
+        .blog-meta
+        span
+        a {
+        font-size: 15px;
+    }
+
+    .process-item .process-step,
+    .second-op .process-item .process-step {
+        width: 42px;
+        height: 42px;
+        font-size: 16px;
+    }
+
+    .tj-primary-btn,
+    .header-button .tj-primary-btn {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
 }
