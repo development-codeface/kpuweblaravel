@@ -1093,7 +1093,11 @@ START: Theme Header CSS
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .header-area.header-3 .header-wrapper,
     .header-area.header-1 .header-wrapper {
-        padding: 0 4px;
+               padding: 0 0% 0 5%;
+        max-width: 100%;
+    }
+	    .menu-area{
+        width: max-content !important;
     }
     .header-area.header-2.header-absolute .header-wrapper {
         padding: 0 16px;
@@ -1107,7 +1111,7 @@ START: Theme Header CSS
     (max-width: 575px) {
     .header-area.header-3 .header-wrapper,
     .header-area.header-1 .header-wrapper {
-        padding: 15px 0px;
+        padding: 15px 9%;
     }
     .header-area.header-2.header-absolute .header-wrapper {
         padding: 15px 12px;
@@ -1507,7 +1511,7 @@ nav#mobile-menu {
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .mainmenu ul {
-        gap: 0 16px;
+        gap: 0;
     }
 }
 
@@ -21083,12 +21087,13 @@ START: Hero CSS
 }
 @media only screen and (min-width: 576px) and (max-width: 767px) {
     .h5-banner-content .banner-title {
-        font-size: 35px;
+        font-size: 57px;
+		width:90%
     }
 }
 @media (max-width: 575px) {
     .h5-banner-content .banner-title {
-        font-size: 30px;
+        font-size: 50px;
     }
 }
 
@@ -31721,7 +31726,7 @@ border-top-right-radius: 30px;
 .h5-banner-content.speciality-btn {
     display: flex;
     width: auto;
-    flex-direction: column;
+    flex-direction: row;
     align-items: end;
     justify-content: end;
     gap: 30px;
@@ -31784,15 +31789,15 @@ section.h10-project.section-gap.tj-sticky-panel-container.health-packages
     display: flex;
     justify-content: space-between;
 }
-section.tj-page-header.section-gap-x.hospital-icu {
+/* section.tj-page-header.section-gap-x.hospital-icu {
     padding-bottom: 0;
-}
+} */
 section.tj-page-header.section-gap-x.hospital-icu .countup-wrap {
     margin-top: 100px;
         position: relative;
     z-index: 9999;
     gap: 0;
-    background-color: #8fe6ff;
+    background-color: #0093be;
 }
 section.tj-page-header.section-gap-x.hospital-icu
     .countup-wrap
@@ -31800,7 +31805,7 @@ section.tj-page-header.section-gap-x.hospital-icu
     opacity: 1;
 }
 section.tj-page-header.section-gap-x.hospital-icu .countup-wrap .countup-item {
-    background-color: #8fe6ff;
+    background-color: #0093be;
 }
 .tj-main-sidebar.slidebar-stickiy {
     padding-left: 20px !important;
@@ -33213,4 +33218,15 @@ color:white
     padding-right: 60px;
     /* padding: 0px 0px; */
     max-width: max-content;
+}
+@media (max-width: 768px) {
+    .container {
+        padding: 0px 5%;
+    }
+	.header-top-content .header-info{
+		display:none !important;
+	}
+}
+section.tj-page-header.section-gap-x.hospital-icu{
+    padding-bottom: 0px;
 }
