@@ -506,6 +506,9 @@
         <span id="toastMsg">Appointment booked successfully!</span>
     </div>
 
+
+    
+
     <script>
         // Set min date to today
         const dateInput = document.getElementById("dateInput");

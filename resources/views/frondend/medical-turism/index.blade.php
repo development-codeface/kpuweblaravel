@@ -1,7 +1,7 @@
 @extends('frondend.app')
 @section('content')
     <div class="top-space-15"></div>
-    <section class="tj-page-header section-gap-x hospital-icu" data-bg-image="{{ asset($banner->image) }}">
+    <section class="tj-page-header section-gap-x insurence-page" data-bg-image="{{ asset($banner->image) }}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -96,7 +96,7 @@
         </div>
     </div>
 
-    <div class="container medical-iner">
+    <div class="container medical-iner planning">
         <div class="header">
             <h1>{{ $trip->title }}</h1>
             <p>
@@ -153,7 +153,7 @@
     </div>
 
     <!-- start: Project Section -->
-    {{-- <section class="tj-project-section-3 section-gap section-gap-x">
+    <section class="tj-project-section-3 section-gap section-gap-x">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -224,7 +224,7 @@
                 </div>
             </div>
         </div>
-    </section> --}}
+    </section>
 
     
     <script>

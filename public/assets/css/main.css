@@ -51,7 +51,7 @@ START: Theme Default CSS
     /**
      @Font-Family Declaration
    */
-    --tj-ff-body: "google-flex";
+    --tj-ff-body: "Gantari";
     --tj-ff-heading: "google-flex";
     --tj-ff-fontawesome: "Font Awesome 6 Pro";
     /**
@@ -121,7 +121,7 @@ START: Theme Default CSS
 }
 
 body {
-    font-family: "google-flex";
+    font-family: "Gantari";
     font-size: var(--tj-fs-body);
     font-weight: normal;
     color: var(--tj-color-text-body);
@@ -733,12 +733,12 @@ img {
     -ms-flex-pack: center;
     justify-content: center;
     gap: 10px;
-    border-radius: 30px;
+  border-radius: 0px;
     position: relative;
     background-color: #0093be;
     font-size: 16px;
     font-weight: var(--tj-fw-sbold);
-    padding: 14px 30px;
+    padding: 17px 35px;
     text-align: center;
     line-height: 1;
     z-index: 2;
@@ -1111,7 +1111,7 @@ START: Theme Header CSS
     (max-width: 575px) {
     .header-area.header-3 .header-wrapper,
     .header-area.header-1 .header-wrapper {
-        padding: 15px 9%;
+        padding: 15px 5%;
     }
     .header-area.header-2.header-absolute .header-wrapper {
         padding: 15px 12px;
@@ -1135,6 +1135,8 @@ START: Theme Header CSS
     padding: 0 12px;
 }
 .header-top-content {
+        width: 100%;
+    background-color: #6fcddf;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1146,6 +1148,10 @@ START: Theme Header CSS
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    /* background-color: #ecf2ff; */
+    border-end-start-radius: 12px;
+    border-end-end-radius: 12px;
+    padding: 0 12px;
 }
 .header-top-content .topbar-text {
     width: 40%;
@@ -1341,10 +1347,12 @@ nav#mobile-menu {
 }
 
 .menu-area {
+        padding-bottom: 30px;
     /* width: 100%; */
+        width: 82%;
     flex-direction: column;
     justify-content: space-around;
-    /* gap: 25px; */
+    gap: 25px;
 }
 
 .mainmenu ul {
@@ -1405,13 +1413,14 @@ nav#mobile-menu {
 .mainmenu ul > li.current-menu-ancestor > a,
 .mainmenu ul > li.current-menu-item > a,
 .mainmenu ul > li:hover > a {
-        border: 1px solid black;
-    border-radius: 11px;
+    background-color: #6fcddf;
+    color: white;
+    /* border-radius: 11px; */
 }
 .mainmenu ul > li.current-menu-ancestor > a::after,
 .mainmenu ul > li.current-menu-item > a::after,
 .mainmenu ul > li:hover > a::after {
-    color: var(--tj-color-theme-primary);
+    color: white;
 }
 .mainmenu ul > li.current-menu-ancestor > a::before,
 .mainmenu ul > li.current-menu-item > a::before,
@@ -1424,7 +1433,7 @@ nav#mobile-menu {
     position: absolute;
     top: 100%;
     inset-inline-start: 0;
-    width: 220px;
+    width: max-content;
     top: 100%;
     inset-inline-start: 0;
     z-index: 99;
@@ -1456,7 +1465,7 @@ nav#mobile-menu {
     position: relative;
     padding: 10px 20px;
     display: block;
-    color: var(--tj-color-text-body);
+    color: #000000;
 }
 .mainmenu ul > li > .sub-menu > li > a::before {
     display: none;
@@ -1476,7 +1485,7 @@ nav#mobile-menu {
 .mainmenu ul > li > .sub-menu > li.current-menu-ancestor > a,
 .mainmenu ul > li > .sub-menu > li.current-menu-item > a,
 .mainmenu ul > li > .sub-menu > li:hover > a {
-    color: var(--tj-color-theme-primary);
+    color: white;
 }
 .mainmenu ul > li > .sub-menu > li.current-menu-ancestor > a::before,
 .mainmenu ul > li > .sub-menu > li.current-menu-item > a::before,
@@ -4242,6 +4251,7 @@ START: Theme Search CSS
     width: 100%;
     height: 65px;
     font-size: 20px;
+        border: 1px solid #364e52 !important;
     font-family: var(--tj-ff-body);
     color: var(--tj-color-text-body);
     border-color: var(--tj-color-border-1);
@@ -8377,6 +8387,7 @@ START: Heading CSS
 }
 .sec-heading .sec-title {
     margin-bottom: 30px;
+    text-align: left;
     letter-spacing: 0.2px;
     color: #124e68;
     font-weight: 500;
@@ -8411,7 +8422,7 @@ START: Heading CSS
     letter-spacing: 1.4px;
     text-transform: uppercase;
     font-weight: var(--tj-fw-bold);
-    border: 1px dashed var(--tj-color-border-1);
+    /* border: 1px dashed var(--tj-color-border-1); */
     padding: 2px 10px;
     margin-bottom: 20px;
     border-radius: 4px;
@@ -8486,6 +8497,7 @@ START: Heading CSS
     only screen and (min-width: 576px) and (max-width: 767px),
     (max-width: 575px) {
     .sec-heading {
+        width: 100% !important;
         margin-bottom: 35px;
     }
 }
@@ -9570,23 +9582,32 @@ START: Choose CSS
     padding: 30px;
         padding-top: 60px;
     border-radius: 16px;
-    background-color: #0093BE;
+    background-color: #bee6fd;
 }
 
+.service-icon {
+    margin-bottom: 20px;
+}
+.service-icon i{
+       font-size: 48px;
+    /* background-color: #0093be; */
+    color: white;
+}
 .testimonial-item {
     border-radius: 16px;
-    background: #d7e2fd;
-    padding: 20px;
+    background: #6fcddf;
+        margin-bottom: 20px;
+
+    padding: 30px;
 }
 .service-side-12 .testimonial-item {
-    border-radius: 16px;
-    background: #d7e2fd;
-    padding: 0px;
-    height: 325px;
+       border-radius: 16px;
+    background: #0093bd;
+    padding: 30px;
 }
-.service-side-12 .testimonial-item .h5-testimonial-author-wrapper {
+/* .service-side-12 .testimonial-item .h5-testimonial-author-wrapper {
     height:100%;
-}
+} */
 .service-side-12 .testimonial-item .h5-testimonial-author-wrapper img{
         border-radius: 16px;
     width: 100%;
@@ -9608,11 +9629,11 @@ START: Choose CSS
 }
 
 .choose-box.h6-choose-box.right-swipe .choose-content {
-    align-items: center;
+   align-items: flex-start;
     justify-content: center;
 }
 .choose-box.h6-choose-box.right-swipe .choose-content .desc {
-    text-align: center;
+    text-align: left;
 }
 .choose-box.h6-choose-box.right-swipe {
        background: white;
@@ -9673,7 +9694,7 @@ START: Choose CSS
 }
 
 .choose-box.h6-choose-box.right-swipe .title {
-    text-align: center;
+    text-align: left;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px),
     only screen and (min-width: 576px) and (max-width: 767px),
@@ -10183,7 +10204,7 @@ START: About CSS
     height: 100%;
     display: flex;
     align-items: center;
-    padding-left: 50px;
+    padding-left: 0px;
     position: relative;
     /* border-radius: 12px; */
 }
@@ -10209,13 +10230,13 @@ START: About CSS
     }
 }
 .about-img-area.style-2 {
-    max-width: 591px;
-    position: absolute;
+    max-width: 401px;
+    /* position: absolute; */
     width: 100%;
-    left: -120px;
-    bottom: 68px;
-    -webkit-margin-end: auto;
-    margin-inline-end: auto;
+    left: 0px;
+    bottom: 0px;
+    /* -webkit-margin-end: auto; */
+    /* margin-inline-end: auto; */
 }
 .about-img-area.style-2 .box-area {
     max-width: 343px;
@@ -10330,14 +10351,14 @@ START: About CSS
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
     only screen and (min-width: 992px) and (max-width: 1199px) {
     .about-content-area.style-1 {
-        min-height: 300px;
+        /* min-height: 300px; */
     }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px),
     (max-width: 575px) {
     .about-content-area.style-1 {
         padding: 30px 20px;
-        min-height: 300px;
+        /* min-height: 300px; */
     }
 }
 .about-content-area .sec-heading {
@@ -10742,6 +10763,8 @@ START: About CSS
 @media (min-width: 991px) {
     .col-xl-6.col-lg-6.order-lg-1.order-2.who-about-imge {
         width: 40%;
+                display: flex;
+        align-items: center;
     }
     .col-xl-6.col-lg-6.order-lg-2.order-1.about-content {
         width: 60%;
@@ -12445,6 +12468,7 @@ START: Testimonial CSS
 .testimonial-author .title {
     margin-bottom: 0;
     line-height: 1;
+        color: white;
 }
 .testimonial-author .designation {
     font-size: 14px;
@@ -13425,6 +13449,7 @@ START: Blog CSS
     background-repeat: no-repeat;
         color: white;
     font-size: 19px;
+    letter-spacing: .8px;
     background-position: 0 85%;
     display: inline;
 }
@@ -13454,13 +13479,13 @@ START: Blog CSS
     /* padding: 15px 0 15px 15px; */
     display: -webkit-box;
     display: -ms-flexbox;
-    height: 630px;
+    /* height: 630px; */
     border-radius: 16px;
     display: flex;
     flex-direction: column;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    background-color: #0093BE;
+    background-color: #bee6fd;
 }
 @media (max-width: 575px) {
     .blog-item.style-2 {
@@ -13724,7 +13749,7 @@ section.tj-blog-section.section-gap .blog-content {
     padding:0px;
 }
 .blog-meta span a:hover {
-    color: var(--tj-color-theme-primary);
+    color: white;
 }
 @media (max-width: 575px) {
     .blog-meta {
@@ -14076,9 +14101,9 @@ START: Countup CSS
 @media (max-width: 575px) {
     .inline-content {
         font-size: 55px;
-        -webkit-box-pack: center;
+        /* -webkit-box-pack: center;
         -ms-flex-pack: center;
-        justify-content: center;
+        justify-content: center; */
     }
 }
 
@@ -16436,7 +16461,7 @@ START: Breadcrumb CSS
     padding-top: 133px;
     margin-top: 00px;
     padding-bottom: 150px;
-    /* background-position: center; */
+    background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     /* background-color: var(--tj-color-theme-dark); */
@@ -17776,8 +17801,9 @@ blockquote cite::before {
     font-weight: var(--tj-fw-sbold);
     color: var(--tj-color-heading-primary);
     background: var(--tj-color-common-white);
-    padding: 20px 15px 17px 25px;
-    border-radius: 10px;
+   padding: 20px 15px 20px 25px;
+    border-radius: 20px;
+    border: 1px solid;
 }
 .service-categories ul li a span {
     color: var(--tj-color-heading-primary);
@@ -19146,6 +19172,7 @@ START: Services CSS
 }
 .service-item.style-5 .service-content-area {
     display: -webkit-box;
+        width: 50%;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
@@ -19154,7 +19181,7 @@ START: Services CSS
     flex-direction: column;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 60px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px),
@@ -19170,11 +19197,16 @@ START: Services CSS
     }
 }
 .service-item.style-5 .service-content {
-    max-width: 360px;
+    max-width: 100%;
+}
+.service-item.style-5 .service-content .desc{
+       color: #ffffff;
+    font-size: 18px;
+
 }
 .service-item.style-5 .no {
-    color: var(--tj-color-text-body-3);
-    font-size: 20px;
+       color: #ffffff;
+    font-size: 50px;
     font-weight: var(--tj-fw-sbold);
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
@@ -19200,8 +19232,7 @@ START: Services CSS
     margin-top: 30px;
 }
 .service-item.style-5 .service-img {
-    max-width: 581px;
-    width: 100%;
+        width: 50%;
     height: 605px;
 }
 .service-item.style-5 .service-img img {
@@ -20804,6 +20835,11 @@ START: Hero CSS
     position: relative;
     overflow: hidden;
     z-index: 1;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
 }
 .h5-banner-section .banner-bg::before {
     content: "";
@@ -20829,7 +20865,7 @@ START: Hero CSS
 .h5-banner-section .banner-scroll .scroll-down:hover {
     margin-bottom: -6px;
 }
-.h5-banner-section::after {
+/* .h5-banner-section::after {
   content: "";
     position: absolute;
     top: 0px;
@@ -20842,7 +20878,7 @@ START: Hero CSS
     filter: blur(0px);
     opacity: 1;
     backdrop-filter: blur(0px);
-}
+} */
 
 
 
@@ -20985,20 +21021,23 @@ START: Hero CSS
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
     only screen and (min-width: 768px) and (max-width: 991px) {
     .h5-banner-area {
+        min-height: max-content;
         padding-top: 190px;
+        padding-bottom: 260px;
     }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .h5-banner-area {
         padding-top: 160px;
-                min-height: 663px;
+                /* min-height: 663px; */
+                padding-bottom: 260px;
     }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px),
     (max-width: 575px) {
     .h5-banner-area {
-        padding: 140px 12px 15px;
-        min-height: 90vh;
+        padding: 140px 12px 200px;
+        min-height: max-content;
     }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
@@ -21009,8 +21048,9 @@ START: Hero CSS
 }
 .h5-banner-content .banner-title {
     max-width: 715px;
+        letter-spacing: 1.2px;
     font-weight: 600;
-    color: #ffffff;
+    color: #124e68;
     font-size: 82px;
     line-height: 1;
     margin-bottom: 30px;
@@ -21076,13 +21116,13 @@ START: Hero CSS
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .h5-banner-content .banner-title {
         /* max-width: 600px; */
-        font-size: 50px;
+        font-size: 70px;
     }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .h5-banner-content .banner-title {
         /* max-width: 560px; */
-        font-size: 45px;
+        font-size: 65px;
     }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -23399,6 +23439,9 @@ START: Home 5 About CSS
         margin-inline-start: 0;
         margin-top: 50px;
     }
+    .about-img-area.h6-about-img.wow.inter-national.fadeInLeft {
+     margin-top: 10px;
+}
 }
 .h6-about-box {
     inset-inline-start: 25px;
@@ -25089,7 +25132,7 @@ START: Home 7 About CSS
     font-size: 22px;
     z-index: 99;
     font-weight: 600;
-    letter-spacing: 0;
+    letter-spacing: .8px;
     line-height: 1.44;
 }
 .h7-about-counter-wrapper .style-2.img-box {
@@ -28507,7 +28550,7 @@ START: Choose CSS
     }
 }
 .h9-choose-box.choose-box {
-    background-color: var(--tj-color-common-white);
+    background-color:#6fcddf;
     padding: 30px;
 }
 .h9-choose-box.choose-box .choose-icon {
@@ -28554,7 +28597,8 @@ START: Choose CSS
     }
 }
 .h9-choose-box.choose-box .title {
-    color: var(--tj-color-heading-primary);
+        color: #ffffff;
+    letter-spacing: .8px;
     margin-bottom: 18px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px),
@@ -28564,7 +28608,7 @@ START: Choose CSS
     }
 }
 .h9-choose-box.choose-box .desc {
-    color: var(--tj-color-text-body);
+    color:#ffffff;
 }
 .h9-choose-box.choose-box .text-btn .btn-text {
     color: var(--tj-color-common-white);
@@ -31514,7 +31558,7 @@ START: Blog CSS
 /* !END: Blog CSS */ /*# sourceMappingURL=main.css.map */
 
 .btn-area.scroled-ab.wow.fadeInUp {
-    width: 100%;
+    width: max-content;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -31592,12 +31636,12 @@ section.tj-team-section.section-separator .service-item.style-6 {
 }
 
 a.tj-primary-btn.tag-port {
-    border-radius: 30px;
+    border-radius: 10px;
     margin-bottom: 30px;
-    background-color: #d7e2fd;
+    background-color: #6fcddf;
 }
 a.tj-primary-btn.tag-port span {
-    color: #05516c;
+    color: #ffffff;
 }
 
 .book-content {
@@ -31639,7 +31683,10 @@ a.tj-primary-btn.tag-port span {
 } */
 
 .site_logo {
-    /* width: 20%; */
+  justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 14%;
 }
 
 .next-icon {
@@ -31937,8 +31984,11 @@ section.tj-page-header.section-gap-x.spacialiy-banner.doctors-bnn {
 }
 
 .container.inquiry-section {
-    display: flex;
-    padding: 100px 0;
+       display: flex;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    /* padding-top: 100px; */
+    padding-bottom: 120px;
 }
 
 .left-section {
@@ -31966,7 +32016,7 @@ h1 {
 .services-list li {
     color: #100f0f;
     font-size: 1rem;
-    padding: 16px 0;
+    padding: 8px 0;
     padding-left: 30px;
     position: relative;
     line-height: 1.5;
@@ -32370,8 +32420,8 @@ textarea {
 
 .icon-wrapper {
     width: 80px;
-    height: 80px;
-    margin: 0 auto 30px;
+    height: 80px;   
+    margin-bottom: 30px;
        background: #0093be;
     border-radius: 50%;
     display: flex;
@@ -32399,6 +32449,7 @@ textarea {
 }
 
 .benefit-card h3 {
+        letter-spacing: .8px;
     font-size: 1.3rem;
     color: #1a1a1a;
     margin-bottom: 16px;
@@ -32431,6 +32482,7 @@ textarea {
     }
 
     .header h1 {
+            letter-spacing: .8px;
         font-size: 2rem;
     }
 
@@ -32440,7 +32492,7 @@ textarea {
 }
 
 .container.medical-iner {
-    padding-top: 100px;
+    padding-top: 00px;
     padding-bottom: 100px;
 }
 
@@ -32448,7 +32500,7 @@ textarea {
     /* max-width: 1200px; */
     margin: 0 auto;
     background: white;
-    padding: 80px 60px;
+    padding: 120px 60px;
     border-radius: 20px;
     /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08); */
 }
@@ -32499,16 +32551,18 @@ button.book-content:hover i {
     /* align-items: end; */
 }
 .testimonial-item p {
-    font-size: 15px;
+    font-size: 16px;
+        color: white;
+   line-height: 1.5;
 }
 .col-lg-6.service-side-12 .sec-title {
         font-size: 34px;
-            color: white;
+            color: #124e68;
     margin-bottom: 15px;
 
 }
 .col-lg-6.service-side-12 .sec-heading p.desc{
-            color: white;
+            color: #124e68;
 
 }
 .col-lg-6.service-side-12 .sec-heading.style-3.text-left {
@@ -32516,18 +32570,20 @@ button.book-content:hover i {
 }
 .blog-item.style-2 .blog-content .sec-title {
         font-size: 34px;
-            color: white;
+                 color: #124e68;;
     margin-bottom: 15px;
 
 }
 .blog-item.style-2 .blog-content .sec-heading p.desc{
-            color: white;
+               color: #124e68;
 }
 .blog-item.style-2 .blog-content .text-btn .btn-text span{
-            color: white;
+                color: #124e68;
 }
 .about-us.h9-choose-box {
     height: 100%;
+        border: 1px solid #124e68;
+    padding: 30px;
 }
 .choose-content {
     height: 100%;
@@ -32575,7 +32631,7 @@ button.book-content:hover i {
 }
 
 .container.about-us-choose {
-    padding: 70px 50px;
+    padding: 0px 50px;
     border-radius: 13px;
     background-color: white;
 }
@@ -32610,7 +32666,7 @@ section.tj-blog-section.h7-blog.director.section-gap
     color: #ffffff !important;
 }
 .social-links p {
-        color: #000000;
+        color: #ffffff;
     margin-bottom: 0px;
 }
 .social-links .btn-icon {
@@ -32729,6 +32785,7 @@ span.degree{
     }
     .second-op .process-item {
         max-width: 100%;
+                align-items: flex-start;
     }
 }
 
@@ -32838,11 +32895,17 @@ h2.sec-title.sub-text {
     gap: 5%;
 }
 .content-area-grid {
-    width: 45%;
+    width: 47%;
+    color: white;
+    background-color: #0093be;
+    border: 1px solid #0093be;
+    margin-bottom: 20px;
     padding: 20px 15px;
 }
 h4.grid-content-title {
     width: 80%;
+        letter-spacing: .6px;
+    color: white;
     font-weight: 600;
     font-size: 22px;
 }
@@ -32859,7 +32922,7 @@ h4.grid-content-title {
     .container.inquiry-section {
         flex-direction: column;
         gap: 40px;
-        padding: 100px 5%;
+        padding: 00px 5% 120px;
     }
     .list-items.pharmacy {
         flex-direction: column;
@@ -32891,6 +32954,7 @@ h4.grid-content-title {
     height: 550px;
 }
 .step-orde {
+
     gap: 15px;
     margin-bottom: 15px;
     justify-content: flex-start;
@@ -32900,6 +32964,7 @@ h4.grid-content-title {
 }
 .step-detai h3 {
     color: white;
+        letter-spacing: .8px;
     font-weight: 600;
     font-size: 19px;
 }
@@ -32953,9 +33018,7 @@ h2.sec-title.pharmacy {
         .service-content-wrap {
         width: 100% !important;
     }
-    .content-area-grid {
-        width: 100%;
-    }
+    
     .row.h7-about-counter-wrapper.\32 -sectio-grid {
     display: flex;
         gap: 22px;
@@ -32967,6 +33030,11 @@ h2.sec-title.pharmacy {
 }
 
 
+@media (max-width: 601px) {
+.content-area-grid {
+        width: 100%;
+    }
+}
 @media (max-width: 1400px) {
 .menu-area{
     width: 85% !important;
@@ -33136,9 +33204,10 @@ section.h5-testimonial.section-gap.section-gap-x .swiper-backface-hidden .swiper
 }
 
 button.tj-primary-btn.ftr-form {
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
+        border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
     height: 100%;
+border-radius: 30px;
 }
 section.tj-blog-section.section-gap {
     padding-top: 0px;
@@ -33176,6 +33245,7 @@ section.h5-pricing.section-gap{
 }
 section.tj-blog-section.section-gap.slidebar-stickiy-container{
     padding-top: 120px;
+        padding-bottom: 0px
 }
 section.tj-about-section.h6-about.section-gap.section-gap-x{
     padding-top: 120px;
@@ -33183,7 +33253,7 @@ section.tj-about-section.h6-about.section-gap.section-gap-x{
 .booking-container .btn-area.scroled-ab.wow.fadeInUp {
     margin-top: 0px;
 }
-.tj-page-header::after {
+/* .tj-page-header::after {
     content: "";
     position: absolute;
     top: 0px;
@@ -33196,9 +33266,9 @@ section.tj-about-section.h6-about.section-gap.section-gap-x{
     filter: blur(0px);
     opacity: 1;
     backdrop-filter: blur(0px);
-}
+} */
     .h5-banner-content .desc{
-color:white
+color:#124e68;
     }
 
     header.header-area.header-1.header-absolute.section-gap-x .col-12{
@@ -33226,7 +33296,82 @@ color:white
 	.header-top-content .header-info{
 		display:none !important;
 	}
+    .medical-tour.container {
+    padding: 120px 5% !important;
+    }
+}
+
+@media (max-width: 991px) {
+   section.tj-testimonial-section-2.section-gap .col-lg-6.test-vers {
+    padding: 0px;
+}
 }
 section.tj-page-header.section-gap-x.hospital-icu{
     padding-bottom: 0px;
+}
+
+@media(max-width:650px){
+    .booking-container{
+        padding:15px 0px;
+        gap:0px;
+        display:none !important;
+    }
+    .booking-container .btn-area.scroled-ab.wow.fadeInUp {
+    width: 33%;
+    border-left: 1px solid white;
+    }
+    .btn-area.scroled-ab.wow.fadeInUp .tj-primary-btn{
+    width: 100%;
+    }
+    section.tj-testimonial-section-2.section-gap .row{
+         padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+}
+section.tj-blog-section.h7-blog.director.section-gap .sec-heading.style-2.style-7.text-center .desc{
+    width: 95% !important;
+    text-align: left;
+}
+}
+
+
+
+/* section.tj-about-section-2.section-gap.section-gap-x{
+    padding-top: 0px;
+} */
+/* section#choose {
+    padding-top: 0px;
+} */
+section.h10-about.section-gap {
+    padding-top: 0px;
+}
+.about-img.overflow-hidden.text-about {
+    justify-content: flex-start;
+    padding-left: 50px;
+}
+
+p.copy-right-text{
+    color: black;
+}
+p.emergency-numbr {
+     color: black;
+}
+
+.about-img-area.h6-about-img.wow.inter-national.fadeInLeft .about-img{
+    padding-bottom:20px;
+    align-items:flex-end;
+}
+section.tj-service-section-5.section-gap {
+    padding-top: 0px;
+}
+.col-lg-12.visionery {
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+}
+.col-lg-12.visionery .sec-heading.style-4.text-center {
+    text-align: start !important;
+}
+h3.vision-title {
+    color: white;
+    letter-spacing: .8px;
+    font-size: 40px;
 }
