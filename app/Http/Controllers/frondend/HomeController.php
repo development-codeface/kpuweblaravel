@@ -11,6 +11,7 @@ use App\Models\Content;
 use App\Models\slider;
 use App\Models\Section;
 use App\Models\Blog;
+use App\Models\Facility;
 
 class HomeController extends Controller
 {
@@ -24,6 +25,9 @@ class HomeController extends Controller
         $data['edit_section'] = Section::with('subContent')->first();
         $data['blog'] = Blog::with('category')->get();
         $data['dcotor_data'] = Doctor::with('doctorDepartments.department')->where('status', 'active')->get();
+        $data['facility'] = Facility::with('content')->first();
+        $data['doctors_count'] = Doctor::where('status', 'active')->count();
+        $data['display_count'] = $data['doctors_count'] > 0 ? $data['doctors_count'] - 1 : 0;
         return view('frondend.home', $data);
     }
 }

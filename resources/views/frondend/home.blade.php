@@ -3,21 +3,21 @@
     {{-- <div class="top-space-15"></div> --}}
     <!-- start: Banner Section -->
     <section class="h5-banner-section section-gap-x" data-bg-image="{{ asset($banner->image) }}">
-<div class="container">
-        <div class="banner-bg" >
-        </div>
-        <div class="h5-banner-area">
-            <div class="h5-banner-content">
-                <div class="btn-area wow fadeInUp" data-wow-delay=".8s">
-                    <a class="tj-primary-btn tag-port">
-                        <span class="btn-text">#Healthy Families First</span>
-                    </a>
-                </div>
-                <h1 class="banner-title">
-                    {{ $banner->title }}
-                </h1>
+        <div class="container">
+            <div class="banner-bg">
             </div>
-        </div>
+            <div class="h5-banner-area">
+                <div class="h5-banner-content">
+                    <div class="btn-area wow fadeInUp" data-wow-delay=".8s">
+                        <a class="tj-primary-btn tag-port">
+                            <span class="btn-text">#Healthy Families First</span>
+                        </a>
+                    </div>
+                    <h1 class="banner-title">
+                        {{ $banner->title }}
+                    </h1>
+                </div>
+            </div>
 
             <div class="booking-container">
                 <div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
@@ -118,7 +118,7 @@
                                 it
                             </h2>
                             <p class="desc">
-                              {{ $edit_content->sub_heading }}
+                                {{ $edit_content->sub_heading }}
                             </p>
                             <div class="btn-area wow fadeInUp" data-wow-delay=".8s">
                                 <a class="tj-primary-btn" href="contact.html">
@@ -142,7 +142,9 @@
                             <div class="col-12 col-md-6">
                                 <div class="customers-box style-2 wow fadeInUp" data-wow-delay=".5s">
                                     <div class="inline-content">
-                                        <span class="odometer countup-number" data-count="99">0</span>
+                                        <span class="odometer countup-number" data-count="{{ $display_count }}">
+                                            {{ $display_count }}
+                                        </span>
                                         <span class="count-plus">+</span>
                                     </div>
                                     <h6 class="customers-text wow fadeInLeft" data-wow-delay=".6s">
@@ -285,108 +287,37 @@
                     @endphp
 
                     {{-- @if ($sectionSlides->count() > 1) --}}
-                        <div class="swiper swiper-container h5-testimonial-slider">
-                    <div class="swiper-wrapper">
-                      <div class="swiper-slide">
-                        <div class="testimonial-item">
-                          <div class="h5-testimonial-author-wrapper">
-                            <div class="testimonial-author">
-                              <div class="author-inner">
+                    <div class="swiper swiper-container h5-testimonial-slider">
+                        <div class="swiper-wrapper">
 
-                                <div class="author-header">
-                                  <h4 class="title">Guy Hawkins</h4>
+                            @foreach ($sectionSlides as $slide)
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <div class="h5-testimonial-author-wrapper">
+                                            <div class="testimonial-author">
+                                                <div class="author-inner">
+                                                    <div class="author-header">
+                                                        <h4 class="title">
+                                                            {{ $slide->name ?? 'No Name' }}
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
+                                        <div class="desc">
+                                            <p>
+                                                {{ $slide->description ?? 'No Description' }}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                              </div>
-                            </div>
+                            @endforeach
 
-                          </div>
-                          <div class="desc">
-                            <p>“Working with Bexon has been a game-changer for our business. Their team's
-                              professionalism,
-                              attention to detail, and innovative solutions have helped us streamline operations our
-                              goals
-                              faster than imagined. We truly feel like a valued partner.”</p>
-                          </div>
                         </div>
 
-
-                      </div>
-                      <div class="swiper-slide">
-                        <div class="testimonial-item">
-                          <div class="h5-testimonial-author-wrapper">
-                            <div class="testimonial-author">
-                              <div class="author-inner">
-
-                                <div class="author-header">
-                                  <h4 class="title">Ralph Edwards</h4>
-
-                                </div>
-                              </div>
-                            </div>
-
-                          </div>
-                          <div class="desc">
-                            <p>“Working with Bexon has been a game-changer for our business. Their team's
-                              professionalism,
-                              attention to detail, and innovative solutions have helped us streamline operations our
-                              goals
-                              faster than imagined. We truly feel like a valued partner.”</p>
-                          </div>
-                        </div>
-
-
-                      </div>
-                      <div class="swiper-slide">
-                        <div class="testimonial-item">
-                          <div class="h5-testimonial-author-wrapper">
-                            <div class="testimonial-author">
-                              <div class="author-inner">
-
-                                <div class="author-header">
-                                  <h4 class="title">Devon Lane</h4>
-
-                                </div>
-                              </div>
-                            </div>
-
-                          </div>
-                          <div class="desc">
-                            <p>“Working with Bexon has been a game-changer for our business. Their team's
-                              professionalism,
-                              attention to detail, and innovative solutions have helped us streamline operations our
-                              goals
-                              faster than imagined. We truly feel like a valued partner.”</p>
-                          </div>
-                        </div>
-
-
-                      </div>
-                      <div class="swiper-slide">
-                        <div class="testimonial-item">
-                          <div class="h5-testimonial-author-wrapper">
-                            <div class="testimonial-author">
-                              <div class="author-inner">
-
-                                <div class="author-header">
-                                  <h4 class="title">Guy Hawkins</h4>
-                                </div>
-                              </div>
-                            </div>
-
-                          </div>
-                          <div class="desc">
-                            <p>“Working with Bexon has been a game-changer for our business. Their team's
-                              professionalism,
-                              attention to detail, and innovative solutions have helped us streamline operations our
-                              goals
-                              faster than imagined. We truly feel like a valued partner.”</p>
-                          </div>
-                        </div>
-                      </div>
+                        <div class="swiper-pagination-area"></div>
                     </div>
-                    <div class="swiper-pagination-area"></div>
-                </div>
                     {{-- @elseif ($sectionSlides->count() === 1)
                         <div class="testimonial-item">
                             <div class="h5-testimonial-author-wrapper">
