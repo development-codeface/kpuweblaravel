@@ -138,7 +138,7 @@
                         <div class="choose-box h6-choose-box right-swipe">
                             <div class="choose-content">
                                 <div class="choose-icon">
-                                    <i class="{{ $value->icon }}"></i>
+                                    <i class="{{ $value->image }}"></i>
                                 </div>
                                 <h4 class="title">{{ $value->name }}</h4>
                                 <p class="desc">
