@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="h5-banner-content">
-                        <div class="btn-area wow fadeInUp" data-wow-delay=".8s">
+                        <div class="btn-area" >
                             <a class="tj-primary-btn tag-port">
                                 <span class="btn-text">{{ $banner->button_text }}</span>
                             </a>
@@ -91,7 +91,7 @@
     <!-- end: Choose Section -->
 
     <!-- start: About Section -->
-    <section class="tj-about-section-2 section-gap section-gap-x ">
+    <section class="tj-about-section-2  ">
         <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 order-lg-1 order-2 who-about-imge">
@@ -156,7 +156,7 @@
                     <div class="col-12">
                         <div class="sec-heading about-feature style-2 style-6 text-center">
 
-                            <h2 class="sec-title title-anim">
+                            <h2 class="sec-title ">
                                 {{ $feature->title }}
                             </h2>
 
@@ -211,7 +211,7 @@
                     {{-- Left Side --}}
                     <div class="col-12 col-lg-5 d-block  d-lg-block">
                         <div class="about-img-area h10-about-banner wow bounceInLeft" data-wow-delay=".3s">
-                            <div class="about-img overflow-hidden">
+                            <div class="about-img overflow-hidden text-about">
                                 <h2 class="sec-title">
                                     {{ $sub_content->title }}
                                 </h2>

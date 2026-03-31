@@ -2,22 +2,22 @@
 @section('content')
     {{-- <div class="top-space-15"></div> --}}
     <!-- start: Banner Section -->
-    <section class="h5-banner-section section-gap-x">
-        <div class="container">
-            <div class="banner-bg" data-bg-image="{{ asset($banner->image) }}">
-            </div>
-            <div class="h5-banner-area">
-                <div class="h5-banner-content">
-                    <div class="btn-area wow fadeInUp" data-wow-delay=".8s">
-                        <a class="tj-primary-btn tag-port">
-                            <span class="btn-text">#Healthy Families First</span>
-                        </a>
-                    </div>
-                    <h1 class="banner-title">
-                        {{ $banner->title }}
-                    </h1>
+    <section class="h5-banner-section section-gap-x" data-bg-image="{{ asset($banner->image) }}">
+<div class="container">
+        <div class="banner-bg" >
+        </div>
+        <div class="h5-banner-area">
+            <div class="h5-banner-content">
+                <div class="btn-area wow fadeInUp" data-wow-delay=".8s">
+                    <a class="tj-primary-btn tag-port">
+                        <span class="btn-text">#Healthy Families First</span>
+                    </a>
                 </div>
+                <h1 class="banner-title">
+                    {{ $banner->title }}
+                </h1>
             </div>
+        </div>
 
             <div class="booking-container">
                 <div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
@@ -244,7 +244,7 @@
     <section class="tj-testimonial-section-2 section-gap">
         <div class="container">
             <div class="row row-gap-3">
-                <div class="col-lg-6">
+                <div class="col-lg-6 test-vers">
                     <div class="blog-item style-2">
                         <div class="blog-thumb">
                             <a href=""><img src="{{ asset($edit_section->image) }}" alt="" /></a>
@@ -284,29 +284,116 @@
                             ->values();
                     @endphp
 
-                    @if ($sectionSlides->count() > 1)
+                    {{-- @if ($sectionSlides->count() > 1) --}}
                         <div class="swiper swiper-container h5-testimonial-slider">
-                            <div class="swiper-wrapper">
-                                @foreach ($sectionSlides as $sub)
-                                    <div class="swiper-slide">
-                                        <div class="testimonial-item">
-                                            <div class="h5-testimonial-author-wrapper">
-                                                <img src="{{ asset($sub->image) }}" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide">
+                        <div class="testimonial-item">
+                          <div class="h5-testimonial-author-wrapper">
+                            <div class="testimonial-author">
+                              <div class="author-inner">
+
+                                <div class="author-header">
+                                  <h4 class="title">Guy Hawkins</h4>
+
+                                </div>
+                              </div>
                             </div>
 
-                            <div class="swiper-pagination-area sec-op-sec"></div>
+                          </div>
+                          <div class="desc">
+                            <p>“Working with Bexon has been a game-changer for our business. Their team's
+                              professionalism,
+                              attention to detail, and innovative solutions have helped us streamline operations our
+                              goals
+                              faster than imagined. We truly feel like a valued partner.”</p>
+                          </div>
                         </div>
-                    @elseif ($sectionSlides->count() === 1)
+
+
+                      </div>
+                      <div class="swiper-slide">
+                        <div class="testimonial-item">
+                          <div class="h5-testimonial-author-wrapper">
+                            <div class="testimonial-author">
+                              <div class="author-inner">
+
+                                <div class="author-header">
+                                  <h4 class="title">Ralph Edwards</h4>
+
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="desc">
+                            <p>“Working with Bexon has been a game-changer for our business. Their team's
+                              professionalism,
+                              attention to detail, and innovative solutions have helped us streamline operations our
+                              goals
+                              faster than imagined. We truly feel like a valued partner.”</p>
+                          </div>
+                        </div>
+
+
+                      </div>
+                      <div class="swiper-slide">
+                        <div class="testimonial-item">
+                          <div class="h5-testimonial-author-wrapper">
+                            <div class="testimonial-author">
+                              <div class="author-inner">
+
+                                <div class="author-header">
+                                  <h4 class="title">Devon Lane</h4>
+
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="desc">
+                            <p>“Working with Bexon has been a game-changer for our business. Their team's
+                              professionalism,
+                              attention to detail, and innovative solutions have helped us streamline operations our
+                              goals
+                              faster than imagined. We truly feel like a valued partner.”</p>
+                          </div>
+                        </div>
+
+
+                      </div>
+                      <div class="swiper-slide">
+                        <div class="testimonial-item">
+                          <div class="h5-testimonial-author-wrapper">
+                            <div class="testimonial-author">
+                              <div class="author-inner">
+
+                                <div class="author-header">
+                                  <h4 class="title">Guy Hawkins</h4>
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="desc">
+                            <p>“Working with Bexon has been a game-changer for our business. Their team's
+                              professionalism,
+                              attention to detail, and innovative solutions have helped us streamline operations our
+                              goals
+                              faster than imagined. We truly feel like a valued partner.”</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-pagination-area"></div>
+                </div>
+                    {{-- @elseif ($sectionSlides->count() === 1)
                         <div class="testimonial-item">
                             <div class="h5-testimonial-author-wrapper">
                                 <img src="{{ asset($sectionSlides->first()->image) }}" alt="">
                             </div>
                         </div>
-                    @endif
+                    @endif --}}
                 </div>
             </div>
 
@@ -375,5 +462,7 @@
             </div>
         </div>
     </section>
+
+    <!-- end: Blog Section -->
     </main>
 @endsection

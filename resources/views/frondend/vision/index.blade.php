@@ -1,6 +1,6 @@
 @extends('frondend.app')
 @section('content')
-    <div class="top-space-15"></div>
+    
 
     <section class="tj-page-header section-gap-x" data-bg-image="{{ asset($edit_banner->image) }}">
         <div class="container">
@@ -22,7 +22,7 @@
     </section>
 
     <!-- start: Faq Section -->
-    <section class="tj-faq-section section-gap tj-arrange-container-2">
+    <section class="tj-faq-section section-gap ">
         <div class="container">
             <div class="row justify-content-between">
                 @foreach ($edit_section as $key => $value)
@@ -59,7 +59,7 @@
 
             <!-- TITLE -->
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12 visionery">
                     <div class="sec-heading style-4 text-center">
                         <span class="sub-title">
                             <i class="tji-box"></i>
@@ -83,9 +83,7 @@
                                 @if ($index % 2 == 0)
                                     <!-- LEFT CONTENT -->
                                     <div class="service-content-area">
-                                        <div class="service-icon">
-                                            <i class="tji-service-{{ $index + 1 }}"></i>
-                                        </div>
+                                        <h3 class="vision-title">Digital health</h3>
 
                                         <div class="service-content">
                                             <span class="no">
@@ -108,9 +106,7 @@
                                     </div>
 
                                     <div class="service-content-area">
-                                        <div class="service-icon">
-                                            <i class="tji-service-{{ $index + 1 }}"></i>
-                                        </div>
+                                        <h3 class="vision-title">Digital health</h3>
 
                                         <div class="service-content">
                                             <span class="no">
