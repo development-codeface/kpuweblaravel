@@ -464,6 +464,4 @@
             </div>
         </div>
     </section>
-    <!-- end: Blog Section -->
-    </main>
 @endsection
