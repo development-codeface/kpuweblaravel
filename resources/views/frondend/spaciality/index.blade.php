@@ -23,29 +23,29 @@
                         <p class="desc">{{ $banner->description }}
                         </p>
 
-<div class="btn-banner-area">
+                        <div class="btn-banner-area">
 
- <div class="btn-area wow fadeInUp" data-wow-delay=".8s">
-                            <a class="tj-primary-btn tag-port">
-                                <span class="btn-text"><i class="tji-arrow-right-long"></i> {{ $banner->text }}</span>
-                            </a>
-                        </div>
-<div class="h5-banner-content speciality-btn">
-                        <div class="slider-btn">
-                            <a class="tj-primary-btn" href="contact.html">
-                                <span class="btn-text"><span>Book Appointment</span></span>
-                            </a>
-                            {{-- <span class="btn-icon"><i class="tji-arrow-right-long"></i></span> --}}
-                        </div>
-                        <div class="slider-btn">
-                            <a class="tj-primary-btn" href="contact.html">
-                                <span class="btn-text"><span>Get Second Opinion</span></span>
-                            </a>
-                            {{-- <span class="btn-icon"><i class="tji-arrow-right-long"></i></span> --}}
-                        </div>
+                            <div class="btn-area wow fadeInUp" data-wow-delay=".8s">
+                                <a class="tj-primary-btn tag-port">
+                                    <span class="btn-text"><i class="tji-arrow-right-long"></i> {{ $banner->text }}</span>
+                                </a>
+                            </div>
+                            <div class="h5-banner-content speciality-btn">
+                                <div class="slider-btn">
+                                    <a class="tj-primary-btn" href="contact.html">
+                                        <span class="btn-text"><span>Book Appointment</span></span>
+                                    </a>
+                                    {{-- <span class="btn-icon"><i class="tji-arrow-right-long"></i></span> --}}
+                                </div>
+                                <div class="slider-btn">
+                                    <a class="tj-primary-btn" href="contact.html">
+                                        <span class="btn-text"><span>Get Second Opinion</span></span>
+                                    </a>
+                                    {{-- <span class="btn-icon"><i class="tji-arrow-right-long"></i></span> --}}
+                                </div>
 
-                    </div>
-</div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -281,7 +281,7 @@
                             <div class="team-content">
                                 <h4 class="title"><a href="team-details.html">{{ $value->name }}</a></h4>
                                 <span class="designation">{{ $value->designation }}</span>
-<span class="degree">MD,DA</span>
+                                <span class="degree">MD,DA</span>
 
                             </div>
                         </div>
@@ -417,64 +417,7 @@
         </div>
     </section>
     <!-- end: Service Section -->
-
-    <!-- start: Client Section -->
-    <section class="tj-client-section client-section-gap wow fadeInUp" data-wow-delay=".4s">
-        <div class="container-fluid client-container">
-            <div class="row">
-                <div class="col-12">
-<div class="container">
-
-  <div class="sec-heading-wrap style-8">
-                        <div class="heading-wrap-content">
-                            <div class="sec-heading style-3">
-
-                                <h2 class="sec-title "> Other Speciality</h2>
-                            </div>
-
-                        </div>
-                    </div>
-</div>
-                    <div class="swiper client-slider client-slider-1">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide client-item">
-                                <div class="client-logo">
-                                    <img src="assets/images/brands/brand-1.webp" alt="">
-                                </div>
-                            </div>
-                            <div class="swiper-slide client-item">
-                                <div class="client-logo">
-                                    <img src="assets/images/brands/brand-2.webp" alt="">
-                                </div>
-                            </div>
-                            <div class="swiper-slide client-item">
-                                <div class="client-logo">
-                                    <img src="assets/images/brands/brand-3.webp" alt="">
-                                </div>
-                            </div>
-                            <div class="swiper-slide client-item">
-                                <div class="client-logo">
-                                    <img src="assets/images/brands/brand-4.webp" alt="">
-                                </div>
-                            </div>
-                            <div class="swiper-slide client-item">
-                                <div class="client-logo">
-                                    <img src="assets/images/brands/brand-5.webp" alt="">
-                                </div>
-                            </div>
-                            <div class="swiper-slide client-item">
-                                <div class="client-logo">
-                                    <img src="assets/images/brands/brand-6.webp" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-     <!-- start: Project Section -->
+    <!-- start: Project Section -->
     <section class="tj-project-section-3 section-gap section-gap-x">
         <div class="container">
             <div class="row">
@@ -541,6 +484,60 @@
                                 @endforeach
                             </div>
                             <div class="swiper-pagination-area"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="tj-client-section client-section-gap wow fadeInUp" data-wow-delay=".4s">
+        <div class="container-fluid client-container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="container">
+
+                        <div class="sec-heading-wrap style-8">
+                            <div class="heading-wrap-content">
+                                <div class="sec-heading style-3">
+
+                                    <h2 class="sec-title "> Other Speciality</h2>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper client-slider client-slider-1">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide client-item">
+                                <div class="client-logo">
+                                    <img src="assets/images/brands/brand-1.webp" alt="">
+                                </div>
+                            </div>
+                            <div class="swiper-slide client-item">
+                                <div class="client-logo">
+                                    <img src="assets/images/brands/brand-2.webp" alt="">
+                                </div>
+                            </div>
+                            <div class="swiper-slide client-item">
+                                <div class="client-logo">
+                                    <img src="assets/images/brands/brand-3.webp" alt="">
+                                </div>
+                            </div>
+                            <div class="swiper-slide client-item">
+                                <div class="client-logo">
+                                    <img src="assets/images/brands/brand-4.webp" alt="">
+                                </div>
+                            </div>
+                            <div class="swiper-slide client-item">
+                                <div class="client-logo">
+                                    <img src="assets/images/brands/brand-5.webp" alt="">
+                                </div>
+                            </div>
+                            <div class="swiper-slide client-item">
+                                <div class="client-logo">
+                                    <img src="assets/images/brands/brand-6.webp" alt="">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

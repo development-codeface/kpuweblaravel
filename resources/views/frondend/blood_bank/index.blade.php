@@ -1,6 +1,6 @@
 @extends('frondend.app')
 @section('content')
-    
+
     <section class="tj-page-header section-gap-x insurence-page" data-bg-image="{{ asset($blood_banks->image ?? 'images/blood-bank-banner.jpg') }}">
         <div class="container">
             <div class="row">
@@ -93,7 +93,7 @@
         </div>
     </section>
 
-    @if ($facility->content->isNotEmpty())
+    {{-- @if ($facility->content->isNotEmpty())
         <!-- start: Project Section -->
         <section class="tj-project-section-3 section-gap section-gap-x">
             <div class="container">
@@ -165,6 +165,6 @@
                 </div>
             </div>
         </section>
-    @endif
-    
+    @endif --}}
+
 @endsection

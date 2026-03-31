@@ -116,38 +116,22 @@
                 <div class="col-xl-6 col-lg-6">
                     <div class="about-content-area h6-about-content  style-1 wow fadeInLeft" data-wow-delay=".2s">
                         <div class="sec-heading style-2 style-6">
-                            
+
                             <h2 class="sec-title title-anim">{{ $content->title }}</h2>
                             <p class="desc wow fadeInUp" data-wow-delay=".8s">
                                 {{ $content->description }}
                             </p>
                         </div>
                     </div>
-                     <div class="hspt-grid-contents">
-                        <div class="content-area-grid">
-                            <h4 class="grid-content-title">Our International Services</h4>
-                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
-                        </div>
-                        <div class="content-area-grid">
-                            <h4 class="grid-content-title">Our International Services</h4>
-                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
-                        </div>
-                        <div class="content-area-grid">
-                            <h4 class="grid-content-title">Our International Services</h4>
-                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
-                        </div>
-                        <div class="content-area-grid">
-                            <h4 class="grid-content-title">Our International Services</h4>
-                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
-                        </div>
-                        <div class="content-area-grid">
-                            <h4 class="grid-content-title">Our International Services</h4>
-                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
-                        </div>
-                        <div class="content-area-grid">
-                            <h4 class="grid-content-title">Our International Services</h4>
-                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
-                        </div>
+                    <div class="hspt-grid-contents">
+                        @foreach ($content->subContents as $subContent)
+                            <div class="content-area-grid">
+                                <h4 class="grid-content-title">{{ $subContent->heading }}</h4>
+                                <p class="desc">
+                                    {{ $subContent->description }}
+                                </p>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6">
@@ -207,7 +191,8 @@
                                         <div class="project-item">
 
                                             <div class="project-img">
-                                                <img src="{{ asset('images/facility/' . $value->image) }}" alt="">
+                                                <img src="{{ asset('images/facility/' . $value->image) }}"
+                                                    alt="">
 
                                                 <div class="project-content">
                                                     <span class="categories"><a

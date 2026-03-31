@@ -55,23 +55,29 @@
                 <div class="col-md-3">
                     <div class="list-group" id="aboutMenu" role="tablist">
 
-                        <a class="list-group-item list-group-item-action {{ old('active_tab','bannerSection') == 'bannerSection' ? 'active' : '' }}" data-bs-toggle="tab" href="#bannerSection"
-                            role="tab">
+                        <a class="list-group-item list-group-item-action {{ old('active_tab', 'bannerSection') == 'bannerSection' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#bannerSection" role="tab">
                             banner
+                        </a>
+
+                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'contentSection' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#contentSection" role="tab">
+                            service content
                         </a>
                     </div>
                 </div>
                 <div class="col-md-9">
                     <div class="tab-content">
                         <!-- ================= Banner Section ================= -->
-                        <div class="tab-pane fade {{ old('active_tab','bannerSection') == 'bannerSection' ? 'show active' : '' }}" id="bannerSection" role="tabpanel">
+                        <div class="tab-pane fade {{ old('active_tab', 'bannerSection') == 'bannerSection' ? 'show active' : '' }}"
+                            id="bannerSection" role="tabpanel">
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <h1 class="mb-3">Banner Section</h1>
                                     <hr>
                                     <form method="POST" action="{{ route('admin.hospital-international.banner.store') }}"
                                         enctype="multipart/form-data">
-                                           <input type="hidden" name="active_tab" value="bannerSection">
+                                        <input type="hidden" name="active_tab" value="bannerSection">
                                         <input type="hidden" name="pages_id" value="{{ $id }}">
                                         <input type="hidden" name="banner_id" value="{{ $banner->id ?? '' }}">
                                         @csrf
@@ -172,6 +178,185 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane fade {{ old('active_tab') == 'contentSection' ? 'show active' : '' }}"
+                            id="contentSection" role="tabpanel">
+                            <h1 class="mb-3">Content Section</h1>
+                            <hr>
+                            <form method="POST" action="{{ route('admin.hospital-international.content.store') }}"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="active_tab" value="contentSection">
+                                <input type="hidden" name="pages_id" value="{{ $id }}">
+                                <input type="hidden" name="content_id" value="{{ $content->id ?? '' }}">
+
+                                <!-- Title -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="required">Title</label>
+                                            <input type="text" name="title"
+                                                class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"
+                                                value="{{ old('title', $content->title ?? '') }}"
+                                                placeholder="Enter title">
+
+                                            @if ($errors->has('title'))
+                                                <div class="invalid-feedback">
+                                                    {{ $errors->first('title') }}
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Sub Title -->
+                                <div class="row">
+                                    <!-- LEFT -->
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="required" for="description">
+                                                {{ trans('cruds.icu.fields.description') }}
+                                            </label>
+
+                                            <textarea class="form-control {{ $errors->has('content_description') ? 'is-invalid' : '' }}"
+                                                name="content_description" id="content_description" rows="2">{{ old('content_description', $content->description ?? '') }}</textarea>
+
+                                            @if ($errors->has('content_description'))
+                                                <div class="invalid-feedback">
+                                                    {{ $errors->first('content_description') }}
+                                                </div>
+                                            @endif
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- Image Upload -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="required">Image</label>
+
+                                            <div class="image-box" onclick="document.getElementById('images').click();">
+                                                @if (isset($content) && $content->image)
+                                                    <img src="{{ asset($content->image) }}" id="image-Preview"
+                                                        style="width:100%; display:block;">
+                                                @else
+                                                    <div class="triangle-placeholder" id="triangle-Placeholder">
+                                                    </div>
+                                                    <img id="image-Preview" style="display:none;">
+                                                @endif
+                                            </div>
+                                            <input type="file" name="images" id="images" accept="image/*"
+                                                class="d-none {{ $errors->has('images') ? 'is-invalid' : '' }}"
+                                                onchange="previewcontentImage(this)">
+
+                                            @if ($errors->has('images'))
+                                                <div class="invalid-feedback d-block">
+                                                    {{ $errors->first('images') }}
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Dynamic Content Rows -->
+                                <div id="content-wrapper">
+
+                                    @php
+                                        $oldHeadings = old('heading');
+                                        $oldDescriptions = old('sub_description');
+                                        $oldIds = old('sub_content_id');
+                                        $dbContents =
+                                            isset($content) && $content->subContents
+                                                ? $content->subContents
+                                                : collect();
+                                    @endphp
+
+                                    @if (is_array($oldHeadings))
+                                        @foreach ($oldHeadings as $index => $value)
+                                            <div class="feature-row border p-3 mb-3 position-relative">
+
+                                                <input type="hidden" name="sub_content_id[]"
+                                                    value="{{ $oldIds[$index] ?? '' }}">
+
+                                                <div class="form-group">
+                                                    <label class="required">Heading</label>
+                                                    <input type="text" name="heading[]"
+                                                        value="{{ old('heading.' . $index) }}"
+                                                        class="form-control {{ $errors->has('heading.' . $index) ? 'is-invalid' : '' }}">
+
+                                                    @if ($errors->has('heading.' . $index))
+                                                        <div class="invalid-feedback">
+                                                            {{ $errors->first('heading.' . $index) }}
+                                                        </div>
+                                                    @endif
+                                                </div>
+
+                                                <div class="form-group mt-2">
+                                                    <label class="required">Description</label>
+                                                    <textarea name="sub_description[]" rows="3"
+                                                        class="form-control {{ $errors->has('sub_description.' . $index) ? 'is-invalid' : '' }}">{{ old('sub_description.' . $index) }}</textarea>
+
+                                                    @if ($errors->has('sub_description.' . $index))
+                                                        <div class="invalid-feedback">
+                                                            {{ $errors->first('sub_description.' . $index) }}
+                                                        </div>
+                                                    @endif
+                                                </div>
+
+                                            </div>
+                                        @endforeach
+                                    @elseif(isset($content) && $dbContents->count())
+                                        @foreach ($dbContents as $sub)
+                                            <div class="feature-row border p-3 mb-3">
+                                                <input type="hidden" name="sub_content_id[]"
+                                                    value="{{ $sub->id }}">
+
+                                                <div class="form-group">
+                                                    <label class="required">Heading</label>
+                                                    <input type="text" name="heading[]" value="{{ $sub->heading }}"
+                                                        class="form-control">
+                                                </div>
+
+                                                <div class="form-group mt-2">
+                                                    <label class="required">Description</label>
+                                                    <textarea name="sub_description[]" rows="3" class="form-control">{{ $sub->description }}</textarea>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <div class="feature-row border p-3 mb-3">
+                                            <input type="hidden" name="sub_content_id[]" value="">
+
+                                            <div class="form-group">
+                                                <label class="required">Heading</label>
+                                                <input type="text" name="heading[]" class="form-control">
+                                            </div>
+
+                                            <div class="form-group mt-2">
+                                                <label class="required">Description</label>
+                                                <textarea name="sub_description[]" rows="3" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                </div>
+
+                                <!-- Add Row Button -->
+                                <button type="button" id="addContentRow" class="btn btn-primary mb-3">
+                                    + Add Row
+                                </button>
+
+                                <!-- Submit -->
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success">
+                                        Save
+                                    </button>
+                                </div>
+
+                            </form>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -233,7 +418,7 @@
         </div>
         <div class="form-group mt-2">
             <label>Description</label>
-            <textarea class="form-control" name="description[]" rows="3"></textarea>
+            <textarea class="form-control" name="sub_description[]" rows="3"></textarea>
         </div>
         <button type="button"
                 class="btn btn-danger btn-sm remove-row">

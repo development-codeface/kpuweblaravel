@@ -78,7 +78,7 @@
             <div class="row">
                 <div class="col-xl-6 col-lg-6">
                     <div class="about-content-area hspt-intr h6-about-content style-1 wow fadeInLeft" data-wow-delay=".2s">
- <h2 class="sec-title  sec-header">Patients from around the world</h2>
+                        <h2 class="sec-title  sec-header">Patients from around the world</h2>
                         <div class="sec-heading style-2 style-6">
                             {{-- <span class="sub-title wow fadeInUp" data-wow-delay=".3s">Our Commitment</span> --}}
                             <h2 class="sec-title sub-text">{{ $content->title }}</h2>
@@ -88,30 +88,14 @@
                         </div>
                     </div>
                     <div class="hspt-grid-contents">
-                        <div class="content-area-grid">
-                            <h4 class="grid-content-title">Our International Services</h4>
-                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
-                        </div>
-                        <div class="content-area-grid">
-                            <h4 class="grid-content-title">Our International Services</h4>
-                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
-                        </div>
-                        <div class="content-area-grid">
-                            <h4 class="grid-content-title">Our International Services</h4>
-                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
-                        </div>
-                        <div class="content-area-grid">
-                            <h4 class="grid-content-title">Our International Services</h4>
-                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
-                        </div>
-                        <div class="content-area-grid">
-                            <h4 class="grid-content-title">Our International Services</h4>
-                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
-                        </div>
-                        <div class="content-area-grid">
-                            <h4 class="grid-content-title">Our International Services</h4>
-                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
-                        </div>
+                        @foreach ($content->subContents as $subContent)
+                            <div class="content-area-grid">
+                                <h4 class="grid-content-title">{{ $subContent->heading }}</h4>
+                                <p class="desc">
+                                    {{ $subContent->description }}
+                                </p>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6">
@@ -211,18 +195,18 @@
                 <div class="step-card">
                     <div class="step-number">
                         <div class="step-orde">
- <div class="number"> {{ $index + 1 }}</div>
-                        <div class="icon">📄</div>
+                            <div class="number"> {{ $index + 1 }}</div>
+                            <div class="icon">📄</div>
                         </div>
                         <div class="step-detai">
-                             <h3>{{ $content->heading }}</h3>
-                        <p>
-                            {{ $content->description }}
-                        </p>
+                            <h3>{{ $content->heading }}</h3>
+                            <p>
+                                {{ $content->description }}
+                            </p>
                         </div>
                     </div>
                     <div class="step-content">
-                        
+
                         @if ($content->subcontents->count())
                             <ul class="step-features">
                                 @foreach ($content->subcontents as $sub)
