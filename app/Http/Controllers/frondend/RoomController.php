@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\RoomsType;
 use App\Models\RoomBanner;
+use App\Models\Facility;
 
 class RoomController extends Controller
 {
@@ -14,6 +15,7 @@ class RoomController extends Controller
     {
         $edit_rooms = RoomsType::with('specRooms')->get();
         $edit_banner = RoomBanner::first();
-        return view('frondend.room.index',compact('edit_rooms','edit_banner'));
+        $facility = Facility::with('content')->first();
+        return view('frondend.room.index',compact('edit_rooms','edit_banner','facility'));
     }
 }

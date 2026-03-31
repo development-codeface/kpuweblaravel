@@ -10958,7 +10958,10 @@ section.tj-service-section.service-3.section-gap.stragetic-pillers
     transition: none;
 }
 .service-item .title a:hover {
-    color: #ffffff;
+    color: #124e68;
+}
+.service-item .title  {
+    color: #124e68;
 }
 .service-item .desc {
     margin-bottom: 0;
@@ -28797,7 +28800,7 @@ START: Service CSS
 }
 .h9-service-wrapper .service-item.style-5 .h9-service-nav {
     font-size: 59px;
-    color: var(--tj-color-common-white);
+    color:#124e68;
     font-weight: var(--tj-fw-sbold);
     position: absolute;
     inset-inline-end: 0;
@@ -33386,4 +33389,19 @@ h3.vision-title {
     color: white;
     letter-spacing: .8px;
     font-size: 40px;
+}
+
+section.h9-service.section-gap.section-gap-x.tj-sticky-panel-container-2.tj-progress-wrapper .service-item.style-5 .service-content-area {
+
+        width: 100%;
+}
+section.h9-service.section-gap.section-gap-x.tj-sticky-panel-container-2.tj-progress-wrapper .service-item.style-5 .service-img{
+
+        width: 100%;
+}
+section.h9-service.section-gap.section-gap-x.tj-sticky-panel-container-2.tj-progress-wrapper .service-item.style-5 .service-content .desc{
+    color: #124e68;
+}
+.service-content a{
+    letter-spacing: .6px;
 }

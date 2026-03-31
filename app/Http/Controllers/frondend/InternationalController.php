@@ -19,6 +19,7 @@ class InternationalController extends Controller
         $data['menu'] = Menu::with('contents')->get();
         $data['content'] = FeatureService::with('subContents')->first();
         $data['trip']    = MedicalTrip::with('contents.subcontents')->first();
+        
         return view('frondend.hospital-international.index', $data);
     }
 }

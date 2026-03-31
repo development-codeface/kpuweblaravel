@@ -18,6 +18,7 @@ class DirectorsController extends Controller
         $data['banner'] = DirectorBanner::first();
         $data['blogs_data'] = DirectorContent::with('directorBlog')->first();
         $data['contents'] = PharmacyPlansContent::get();
+        
         return view('frondend.directors.index',$data);
     }
 }

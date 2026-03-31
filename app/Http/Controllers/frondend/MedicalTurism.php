@@ -19,6 +19,7 @@ class MedicalTurism extends Controller
         $data['menu'] = Menu::with('contents')->get();
         $data['content'] = TurismContent::with('subContents')->first();
         $data['trip']    = MedicalTrip::with('contents.subcontents')->first();
+        
        
         return view('frondend.medical-turism.index', $data);
     }

@@ -22,6 +22,7 @@ class PharmacyController extends Controller
         $data['content'] = PharmacyContent::with('subContents')->first();
         // dd($data['content']);
         $data['banner'] = PharmacyBanner::get()->first();
+        
         return view('frondend.pharmacy.index', $data);
     }
 }

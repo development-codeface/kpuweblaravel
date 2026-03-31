@@ -264,7 +264,7 @@ Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [FrondendHomeController::class, 'index'])->name('home');
 Route::get('/doctors', [DoctorsController::class, 'index'])->name('doctors.index');
-Route::get('/doctors', [DoctorsController::class, 'search'])->name('doctor.search');
+Route::get('/doctor-search', [DoctorsController::class, 'search'])->name('doctor.search');
 Route::get('/about', [FrondendAboutController::class, 'index'])->name('about.index');
 Route::get('/career', [FrondendCareerController::class, 'index'])->name('career.index');
 Route::get('/pharmacy', [FrondendPharmacyController::class, 'index'])->name('pharmacy.index');

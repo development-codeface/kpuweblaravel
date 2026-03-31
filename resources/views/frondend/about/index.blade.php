@@ -49,7 +49,7 @@
             </div>
             <div class="row row-gap-4 rightSwipeWrap">
                 <div class="col-lg-4">
-                    <div class=" about-us h9-choose-box ">
+                    <div class=" about-us h9-choose-box wow fadeInUp" data-wow-delay=".5s">
                         <div class="choose-content">
                             <h4 class="titleBtn">{{ $blog->sub_heading }}</h4>
                             <h4 class="descAbout">{{ $blog->description }}</h4>

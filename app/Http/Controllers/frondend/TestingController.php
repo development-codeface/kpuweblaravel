@@ -17,6 +17,7 @@ class TestingController extends Controller
         $data['banner'] = TestingBanner::first();
         $data['menu'] = Menu::with('contents')->get();
         $data['content'] = FeatureService::with('subContents')->first();
+        
         return view('frondend.testing.index', $data);
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\HealthPakageBanner;
 use Illuminate\Support\Facades\DB;
 use App\Models\HealthPackageBlog;
+use App\Models\Facility;
 
 
 class HealthPackageController extends Controller
@@ -18,6 +19,7 @@ class HealthPackageController extends Controller
         $data['category'] = DB::table('category')->select('id', 'name')->get();
         $data['blog']     = HealthPackageBlog::all();
         $data['content']  = HealthPackagecontent::first();
+        $data['facility'] = Facility::with('content')->first();
         return view('frondend.package.index', $data);
     }
 }

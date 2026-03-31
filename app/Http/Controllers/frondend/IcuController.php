@@ -24,7 +24,6 @@ class IcuController extends Controller
             })
             ->first();
         $data['menu'] = Menu::with('contents')->get();
-
         return view('frondend.icu.index', $data);
     }
 }

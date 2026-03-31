@@ -382,7 +382,6 @@
                         </div>
                     </div>
                 @endforeach
-
             </div>
 
             <!-- Button -->
@@ -395,5 +394,7 @@
     </section>
 
     <!-- end: Blog Section -->
+
+
     </main>
 @endsection
