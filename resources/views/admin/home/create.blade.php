@@ -231,91 +231,133 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div id="feature-wrapper">
-                                                    @php
-                                                        $blogs = old('content_title')
-                                                            ? collect(old('content_title'))->map(function (
-                                                                $item,
-                                                                $index,
-                                                            ) {
-                                                                return (object) [
-                                                                    'title' => old('content_title')[$index],
-                                                                    'description' => old('content_description')[$index],
-                                                                    'image' => null,
-                                                                    'id' => old('sub_content_id')[$index] ?? null,
-                                                                ];
-                                                            })
-                                                            : $edit_content->subContent ?? collect([null]);
-                                                    @endphp
-                                                    @foreach ($blogs as $index => $blog)
-                                                        <div class="feature-row border p-3 mb-3">
-                                                            <input type="hidden" name="sub_content_id[]"
-                                                                value="{{ $blog->id ?? '' }}">
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label class="required">Title</label>
-                                                                        <input type="text" name="content_title[]"
-                                                                            value="{{ old('content_title.' . $index, $blog->title ?? '') }}"
-                                                                            class="form-control {{ $errors->has('content_title.' . $index) ? 'is-invalid' : '' }}">
+                                                @php
+                                                    $contentCards = $edit_content?->subContent ?? collect();
+                                                    $contentCard = $contentCards->first();
+                                                    $contentImage2 = $contentCard?->image_2 ?? optional($contentCards->get(1))->image;
+                                                    $contentImage3 = $contentCard?->image_3 ?? optional($contentCards->get(2))->image;
+                                                @endphp
+                                                <div class="border p-3 mb-3">
+                                                    <input type="hidden" name="sub_content_id"
+                                                        value="{{ old('sub_content_id', $contentCard?->id ?? '') }}">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label class="required">Title</label>
+                                                                <input type="text" name="content_title"
+                                                                    value="{{ old('content_title', $contentCard?->title ?? '') }}"
+                                                                    class="form-control {{ $errors->has('content_title') ? 'is-invalid' : '' }}">
 
-                                                                        @if ($errors->has('content_title.' . $index))
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $errors->first('content_title.' . $index) }}
-                                                                            </div>
-                                                                        @endif
+                                                                @if ($errors->has('content_title'))
+                                                                    <div class="invalid-feedback">
+                                                                        {{ $errors->first('content_title') }}
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label class="required">Description</label>
-                                                                        <textarea name="content_description[]"
-                                                                            class="form-control {{ $errors->has('content_description.' . $index) ? 'is-invalid' : '' }}" rows="4">{{ old('content_description.' . $index, $blog->description ?? '') }}</textarea>
-
-                                                                        @if ($errors->has('content_description.' . $index))
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $errors->first('content_description.' . $index) }}
-                                                                            </div>
-                                                                        @endif
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label class="required">Image</label>
-                                                                        <div class="image-box image-trigger"
-                                                                            style="cursor:pointer;">
-                                                                            @if (isset($blog) && $blog->image)
-                                                                                <img src="{{ asset($blog->image) }}"
-                                                                                    class="image-preview"
-                                                                                    style="width:200px; display:block;">
-                                                                            @else
-                                                                                <div class="triangle-placeholder"></div>
-                                                                                <img class="image-preview"
-                                                                                    style="display:none; width:200px;">
-                                                                            @endif
-                                                                        </div>
-                                                                        <input type="file" name="content_image[]"
-                                                                            accept="image/*"
-                                                                            class="d-none image-input {{ $errors->has('content_image.' . $index) ? 'is-invalid' : '' }}">
-                                                                        <button type="button"
-                                                                            class="btn btn-danger btn-sm remove-row mt-2">
-                                                                            Remove
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
+                                                                @endif
                                                             </div>
                                                         </div>
-                                                    @endforeach
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label class="required">Description</label>
+                                                                <textarea name="content_description"
+                                                                    class="form-control {{ $errors->has('content_description') ? 'is-invalid' : '' }}" rows="4">{{ old('content_description', $contentCard?->description ?? '') }}</textarea>
 
+                                                                @if ($errors->has('content_description'))
+                                                                    <div class="invalid-feedback">
+                                                                        {{ $errors->first('content_description') }}
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="required">Image 1</label>
+                                                                <div class="image-box"
+                                                                    onclick="document.getElementById('content_image').click();">
+                                                                    @if (!empty($contentCard?->image))
+                                                                        <img src="{{ asset($contentCard->image) }}"
+                                                                            id="contentImagePreview"
+                                                                            style="width:100%; display:block;">
+                                                                    @else
+                                                                        <div class="triangle-placeholder"
+                                                                            id="contentImagePlaceholder"></div>
+                                                                        <img id="contentImagePreview"
+                                                                            style="display:none;">
+                                                                    @endif
+                                                                </div>
+                                                                <input type="file" name="content_image"
+                                                                    id="content_image" accept="image/*"
+                                                                    class="d-none {{ $errors->has('content_image') ? 'is-invalid' : '' }}"
+                                                                    onchange="previewContentImage(this, 'contentImagePreview', 'contentImagePlaceholder')">
+
+                                                                @if ($errors->has('content_image'))
+                                                                    <div class="invalid-feedback d-block">
+                                                                        {{ $errors->first('content_image') }}
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Image 2</label>
+                                                                <div class="image-box"
+                                                                    onclick="document.getElementById('content_image_2').click();">
+                                                                    @if (!empty($contentImage2))
+                                                                        <img src="{{ asset($contentImage2) }}"
+                                                                            id="contentImagePreview2"
+                                                                            style="width:100%; display:block;">
+                                                                    @else
+                                                                        <div class="triangle-placeholder"
+                                                                            id="contentImagePlaceholder2"></div>
+                                                                        <img id="contentImagePreview2"
+                                                                            style="display:none;">
+                                                                    @endif
+                                                                </div>
+                                                                <input type="file" name="content_image_2"
+                                                                    id="content_image_2" accept="image/*"
+                                                                    class="d-none {{ $errors->has('content_image_2') ? 'is-invalid' : '' }}"
+                                                                    onchange="previewContentImage(this, 'contentImagePreview2', 'contentImagePlaceholder2')">
+
+                                                                @if ($errors->has('content_image_2'))
+                                                                    <div class="invalid-feedback d-block">
+                                                                        {{ $errors->first('content_image_2') }}
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Image 3</label>
+                                                                <div class="image-box"
+                                                                    onclick="document.getElementById('content_image_3').click();">
+                                                                    @if (!empty($contentImage3))
+                                                                        <img src="{{ asset($contentImage3) }}"
+                                                                            id="contentImagePreview3"
+                                                                            style="width:100%; display:block;">
+                                                                    @else
+                                                                        <div class="triangle-placeholder"
+                                                                            id="contentImagePlaceholder3"></div>
+                                                                        <img id="contentImagePreview3"
+                                                                            style="display:none;">
+                                                                    @endif
+                                                                </div>
+                                                                <input type="file" name="content_image_3"
+                                                                    id="content_image_3" accept="image/*"
+                                                                    class="d-none {{ $errors->has('content_image_3') ? 'is-invalid' : '' }}"
+                                                                    onchange="previewContentImage(this, 'contentImagePreview3', 'contentImagePlaceholder3')">
+
+                                                                @if ($errors->has('content_image_3'))
+                                                                    <div class="invalid-feedback d-block">
+                                                                        {{ $errors->first('content_image_3') }}
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-
-                                                <button type="button" id="addRow" class="btn btn-primary mb-3">
-                                                    + Add Row
-                                                </button>
 
                                                 <div class="form-group">
                                                     <button class=" btn btn-success min-w-200 " type="submit">
@@ -586,46 +628,25 @@
             }
         }
 
+        function previewContentImage(input, imageId, placeholderId) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
 
-        document.getElementById('addRow').addEventListener('click', function() {
+                reader.onload = function(e) {
+                    const img = document.getElementById(imageId);
+                    const triangle = document.getElementById(placeholderId);
 
-            let wrapper = document.getElementById('feature-wrapper');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
 
-            let html = `
-    <div class="feature-row border p-3 mb-3">
+                    if (triangle) {
+                        triangle.style.display = 'none';
+                    }
+                };
 
-        <input type="hidden" name="sub_content_id[]" value="">
-
-        <div class="form-group">
-            <label>Title</label>
-            <input type="text" name="content_title[]" class="form-control">
-        </div>
-
-        <div class="form-group mt-2">
-            <label>Description</label>
-            <textarea name="content_description[]" class="form-control" rows="4"></textarea>
-        </div>
-
-        <div class="form-group mt-2">
-            <label>Image</label>
-            <div class="image-box image-trigger" style="cursor:pointer;">
-                <div class="triangle-placeholder"></div>
-                <img class="image-preview" style="display:none; width:200px;">
-            </div>
-            <input type="file" name="content_image[]"
-                   accept="image/*"
-                   class="d-none image-input">
-        </div>
-
-        <button type="button"
-                class="btn btn-danger btn-sm remove-row mt-2">
-            Remove
-        </button>
-    </div>
-    `;
-
-            wrapper.insertAdjacentHTML('beforeend', html);
-        });
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 
         document.getElementById('addNewRow').addEventListener('click', function() {
 

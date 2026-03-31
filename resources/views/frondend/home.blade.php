@@ -91,6 +91,16 @@
     <!-- end: Choose Section -->
 
     <!-- start: About Section -->
+    @php
+        $contentCards = $edit_content?->subContent ?? collect();
+        $contentCard = $contentCards->first();
+        $homeContentImage1 = $contentCard?->image ?? 'images/doctor.jpg';
+        $homeContentImage2 =
+            $contentCard?->image_2 ?? (optional($contentCards->get(1))->image ?? 'images/doctors/doctor.jpg');
+        $homeContentImage3 =
+            $contentCard?->image_3 ?? (optional($contentCards->get(2))->image ?? 'images/doctors/doctor-2.jpg');
+        $homeContentOverlay = $contentCard?->title ?? 'Find quality care nearby and access it when you';
+    @endphp
     <section class="tj-about-section h7-about section-gap section-gap-x mt-10">
         <div class="container">
             <div class="row">
@@ -99,16 +109,16 @@
                         <div class="sec-heading style-3 text-left">
                             <div class="btn-area wow fadeInUp" data-wow-delay=".8s">
                                 <a class="tj-primary-btn tag-port">
-                                    <span class="btn-text">#Healthy Families First</span>
+                                    <span class="btn-text">#{{ $edit_content->button_text }}</span>
                                 </a>
                             </div>
                             <h2 class="sec-title">
-                                Find quality care nearby and access it when you
-                                <span class="blue-clr"> need</span> it
+                                {{ $edit_content->heading }}
+                                <span class="blue-clr">{{ $edit_content->highlight_word }}</span>
+                                it
                             </h2>
                             <p class="desc">
-                                We stay ahead of the leveraging cutting-edge
-                                technologies and strategies to keep.
+                              {{ $edit_content->sub_heading }}
                             </p>
                             <div class="btn-area wow fadeInUp" data-wow-delay=".8s">
                                 <a class="tj-primary-btn" href="contact.html">
@@ -124,18 +134,11 @@
                         <div class="grid-div">
                             <div class="col-12 col-md-6">
                                 <div class="countup-item img-sec style-2 wow fadeInUp" data-wow-delay=".3s">
-                                    <img src="{{ asset('images/doctor.jpg') }}" alt="">
-                                    <h4 class="count-text">Find quality care nearby and access it when you</h4>
+                                    <img src="{{ asset($homeContentImage1) }}" alt="">
+                                    <h4 class="count-text">{{ $homeContentOverlay }}</h4>
                                 </div>
                             </div>
 
-                            <div class="col-12 col-md-6">
-                                <div class="customers-box bg-img style-2 wow fadeInUp" data-wow-delay=".5s">
-                                    <img src="{{ asset('images/doctors/doctor.jpg') }}" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid-div">
                             <div class="col-12 col-md-6">
                                 <div class="customers-box style-2 wow fadeInUp" data-wow-delay=".5s">
                                     <div class="inline-content">
@@ -143,15 +146,20 @@
                                         <span class="count-plus">+</span>
                                     </div>
                                     <h6 class="customers-text wow fadeInLeft" data-wow-delay=".6s">
-
                                         Doctors <br> Find your Doctor
                                     </h6>
                                 </div>
                             </div>
+                        </div>
+                        <div class="grid-div">
                             <div class="col-12 col-md-6">
                                 <div class="countup-item style-2 wow fadeInUp" data-wow-delay=".6s">
-                                    <img src="{{ asset('images/doctors/doctor-2.jpg') }}" alt="">
-
+                                    <img src="{{ asset($homeContentImage2) }}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="customers-box bg-img style-2 wow fadeInUp" data-wow-delay=".5s">
+                                    <img src="{{ asset($homeContentImage3) }}" alt="">
                                 </div>
                             </div>
                         </div>
@@ -243,7 +251,7 @@
                         </div>
                         <div class="blog-content">
                             <div class="sec-heading style-3 text-left">
-                                <h2 class="sec-title">
+                                <h2 class="sec-title ">
                                     {{ $edit_section->heading }}
                                 </h2>
                                 <p class="desc">

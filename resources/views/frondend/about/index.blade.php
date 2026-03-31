@@ -1,8 +1,14 @@
 @extends('frondend.app')
 @section('content')
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
     <div class="top-space-15"></div>
 
-    <section class="tj-page-header section-gap-x" data-bg-image="{{ asset('assets/images/hero/banner.jpg') }}">
+    <section class="tj-page-header section-gap-x"
+        data-bg-image="{{ asset(optional($banner)->image ?: 'assets/images/hero/banner.jpg') }}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -20,18 +26,18 @@
         </div>
         <div class="booking-container banner-menu speciality">
             <div class="banner-menu-conta">
-                <a href="">Who we are</a>
-                <a href="">Our Values</a>
-                <a href="">Our Guiding Mission</a>
-                <a href="">Mile stones</a>
-                <a href="">Strategic Pillars</a>
+                <a href="#who-we-are">Who we are</a>
+                <a href="#our-values">Our Values</a>
+                <a href="#our-guiding-mission">Our Guiding Mission</a>
+                <a href="#mile-stone">Mile stones</a>
+                <a href="#strategic-pillars">Strategic Pillars</a>
             </div>
         </div>
         <!-- <div class="page-header-overlay" data-bg-image="assets/images/shape/pheader-overlay.webp"></div> -->
     </section>
 
     <!-- start: Choose Section -->
-    <section id="choose" class="tj-choose-section section-gap">
+    <section id="who-we-are" class="tj-choose-section section-gap">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -56,6 +62,8 @@
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="h5-strategy-item h5-strategy-item-3 wow fadeInUp" data-wow-delay=".5s">
+                        <img class="strategy-card-bg" src="{{ asset($blog->image) }}"
+                            alt="">
                         <p class="desc">{{ $blog->icon_description }}</p>
                         <div class="locations">
                             <a class="text-btn" href="contact.html">
@@ -140,7 +148,7 @@
 
     <!-- start: Choose Section -->
     @foreach ($about_feature as $feature)
-        <section id="choose" class="tj-choose-section h6-choose section-gap core-about">
+        <section @if ($loop->first) id="our-values" @endif class="tj-choose-section h6-choose section-gap core-about">
             <div class="container about-us-choose">
 
                 {{-- Section Heading --}}
@@ -196,7 +204,7 @@
 
     <!-- start: About Section -->
     @if ($sub_content)
-        <section class="h10-about section-gap">
+        <section class="h10-about section-gap" id="our-guiding-mission">
             <div class="container">
                 <div class="row flex-column-reverse flex-md-row">
 
@@ -246,7 +254,8 @@
 
     <!-- start: Service Section -->
     @if ($mid_content)
-        <section class="h9-service section-gap section-gap-x tj-sticky-panel-container-2 tj-progress-wrapper">
+        <section class="h9-service section-gap section-gap-x tj-sticky-panel-container-2 tj-progress-wrapper"
+            id="mile-stone">
             <div class="container">
                 <div class="row">
 
@@ -332,7 +341,7 @@
     <!-- end: Service Section -->
 
     <!-- start: Service Section -->
-    <section class="tj-service-section service-3 section-gap stragetic-pillers">
+    <section class="tj-service-section service-3 section-gap stragetic-pillers" id="strategic-pillars">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -369,6 +378,22 @@
             </div>
         </div>
     </section>
+    <script>
+        document.querySelectorAll('.banner-menu-conta a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const target = document.querySelector(this.getAttribute('href'));
+
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }
+            });
+        });
+    </script>
     <!-- start: Project Section -->
     <section class="tj-project-section-3 section-gap section-gap-x">
         <div class="container">

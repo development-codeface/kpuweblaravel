@@ -68,13 +68,11 @@ class HomeController extends Controller
             'content_btn_text' => 'required|string|max:255',
             'content_heading' => 'required|string|max:255',
             'content_sub_heading' => 'required|string|max:255',
-
-            'content_title' => 'nullable|array',
-            'content_title.*' => 'required|string|max:255',
-            'content_description' => 'nullable|array',
-            'content_description.*' => 'required|string',
-
-            'content_image.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'content_title' => 'required|string|max:255',
+            // 'content_description' => 'required|string',
+            'content_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'content_image_2' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'content_image_3' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
         // ✅ STORE OR UPDATE CONTENT
@@ -95,66 +93,57 @@ class HomeController extends Controller
             ]);
         }
 
-        $savedIds = [];
+        $subContent = null;
 
-        // ✅ MULTIPLE SUB CONTENT
-        foreach ($request->input('content_title', []) as $key => $title) {
-
-            $subId = $request->sub_content_id[$key] ?? null;
-
-            if ($subId) {
-                $subContent = SubContent::find($subId);
-            } else {
-                $subContent = new SubContent();
-            }
-
-            if (!$subContent) {
-                $subContent = new SubContent();
-            }
-
-            $imagePath = $subContent->image ?? null;
-
-            // ✅ IMAGE UPLOAD
-            if ($request->hasFile('content_image') && isset($request->file('content_image')[$key])) {
-
-                // delete old image
-                if ($subContent->image && file_exists(public_path($subContent->image))) {
-                    unlink(public_path($subContent->image));
-                }
-
-                $image = $request->file('content_image')[$key];
-                $imageName = time() . '_' . $key . '.' . $image->getClientOriginalExtension();
-
-                $destinationPath = public_path('images/content/subcontent');
-
-                if (!file_exists($destinationPath)) {
-                    mkdir($destinationPath, 0755, true);
-                }
-
-                $image->move($destinationPath, $imageName);
-                $imagePath = 'images/content/subcontent/' . $imageName;
-            }
-
-            // ✅ SAVE DATA
-            $subContent->contents_id = $content->id;
-            $subContent->title = $title;
-            $subContent->description = $request->content_description[$key] ?? null;
-            $subContent->image = $imagePath;
-            $subContent->save();
-
-            $savedIds[] = $subContent->id;
+        if ($request->sub_content_id) {
+            $subContent = SubContent::where('contents_id', $content->id)->find($request->sub_content_id);
         }
 
-        // ✅ DELETE REMOVED ROWS (IMPORTANT)
+        if (!$subContent) {
+            $subContent = SubContent::where('contents_id', $content->id)->orderBy('id')->first();
+        }
+
+        if (!$subContent) {
+            $subContent = new SubContent();
+        }
+
+        $legacySubContents = SubContent::where('contents_id', $content->id)
+            ->where('id', '!=', $subContent->id)
+            ->orderBy('id')
+            ->get()
+            ->values();
+
+        $subContent->contents_id = $content->id;
+        $subContent->title = $request->content_title;
+        $subContent->description = $request->content_description;
+        $subContent->image_2 = $subContent->image_2 ?: optional($legacySubContents->get(0))->image;
+        $subContent->image_3 = $subContent->image_3 ?: optional($legacySubContents->get(1))->image;
+        $subContent->image = $this->uploadHomeContentImage($request, 'content_image', $subContent->image);
+        $subContent->image_2 = $this->uploadHomeContentImage($request, 'content_image_2', $subContent->image_2);
+        $subContent->image_3 = $this->uploadHomeContentImage($request, 'content_image_3', $subContent->image_3);
+        $subContent->save();
+
+        $retainedImages = array_filter([
+            $subContent->image,
+            $subContent->image_2,
+            $subContent->image_3,
+        ]);
+
         $removedSubContents = SubContent::where('contents_id', $content->id)
-            ->when(!empty($savedIds), function ($query) use ($savedIds) {
-                $query->whereNotIn('id', $savedIds);
-            })
+            ->where('id', '!=', $subContent->id)
             ->get();
 
         foreach ($removedSubContents as $removedSubContent) {
-            if ($removedSubContent->image && file_exists(public_path($removedSubContent->image))) {
-                unlink(public_path($removedSubContent->image));
+            if (!in_array($removedSubContent->image, $retainedImages, true)) {
+                $this->deleteHomeContentImage($removedSubContent->image);
+            }
+
+            if (!in_array($removedSubContent->image_2, $retainedImages, true)) {
+                $this->deleteHomeContentImage($removedSubContent->image_2);
+            }
+
+            if (!in_array($removedSubContent->image_3, $retainedImages, true)) {
+                $this->deleteHomeContentImage($removedSubContent->image_3);
             }
 
             $removedSubContent->delete();
@@ -285,5 +274,33 @@ class HomeController extends Controller
         }
 
         return redirect()->route('admin.pages.index')->with('success', 'Section created successfully.');
+    }
+
+    private function uploadHomeContentImage(Request $request, string $field, ?string $currentPath = null): ?string
+    {
+        if (!$request->hasFile($field)) {
+            return $currentPath;
+        }
+
+        $this->deleteHomeContentImage($currentPath);
+
+        $image = $request->file($field);
+        $imageName = time() . '_' . $field . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+        $destinationPath = public_path('images/content/subcontent');
+
+        if (!file_exists($destinationPath)) {
+            mkdir($destinationPath, 0755, true);
+        }
+
+        $image->move($destinationPath, $imageName);
+
+        return 'images/content/subcontent/' . $imageName;
+    }
+
+    private function deleteHomeContentImage(?string $imagePath): void
+    {
+        if ($imagePath && file_exists(public_path($imagePath))) {
+            unlink(public_path($imagePath));
+        }
     }
 }
