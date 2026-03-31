@@ -12,6 +12,8 @@ class SubContent extends Model
         'contents_id',
         'title',
         'image',
+        'image_2',
+        'image_3',
         'description'
     ];
 }

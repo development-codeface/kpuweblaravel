@@ -47,8 +47,11 @@ class AboutController extends Controller
     public function bannerStore(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255', // Example validation rule
-            'button_text' => 'required|string|max:255', // Example validation rule
+            'title' => 'required|string|max:255',
+            'button_text' => 'required|string|max:255',
+            'image' => $request->banner_id
+                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048'
+                : 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
         if ($request->banner_id) {
@@ -57,11 +60,29 @@ class AboutController extends Controller
             $aboutBanner = new AboutBanner();
         }
 
-        $aboutBanner = new AboutBanner();
+        if ($request->hasFile('image')) {
+            if ($aboutBanner->image && file_exists(public_path($aboutBanner->image))) {
+                unlink(public_path($aboutBanner->image));
+            }
+
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('images/about/banner');
+
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            $image->move($destinationPath, $imageName);
+            $aboutBanner->image = 'images/about/banner/' . $imageName;
+        }
+
         $aboutBanner->pages_id = $request->input('about_id');
         $aboutBanner->title = $request->input('title');
         $aboutBanner->button_text = $request->input('button_text');
+        $aboutBanner->status = $aboutBanner->status ?? 'active';
         $aboutBanner->save();
+
         return redirect()->route('admin.pages.index')->with('success', 'About banner created successfully.');
     }
 

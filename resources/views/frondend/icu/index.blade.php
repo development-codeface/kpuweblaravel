@@ -117,41 +117,44 @@
     </section>
     <!-- end: Blog Section -->
 
-    <!-- start: Choose Section -->
-    <section id="choose" class="tj-choose-section h6-choose section-gap core-about">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="sec-heading style-2 style-6 text-center">
-                        <h2 class="sec-title title-anim">
-                            {{ $feature_data->title }}
-                        </h2>
-                        <p class="desc">
-                            {{ $feature_data->sub_title }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="row row-gap-4 rightSwipeWrap">
-                @foreach ($feature_data->featureContents as $value)
-                    <div class="col-xl-3 col-md-6">
-                        <div class="choose-box h6-choose-box right-swipe">
-                            <div class="choose-content">
-                                <div class="choose-icon">
-                                    <i class="{{ $value->image }}"></i>
-                                </div>
-                                <h4 class="title">{{ $value->name }}</h4>
-                                <p class="desc">
-                                    {{ $value->description }}
-                                </p>
-                            </div>
+    @if ($feature_data)
+        <!-- start: Choose Section -->
+        <section id="choose" class="tj-choose-section h6-choose section-gap core-about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="sec-heading style-2 style-6 text-center">
+                            <h2 class="sec-title title-anim">
+                                {{ $feature_data->title }}
+                            </h2>
+                            <p class="desc">
+                                {{ $feature_data->sub_title }}
+                            </p>
                         </div>
                     </div>
-                @endforeach
+                </div>
+                <div class="row row-gap-4 rightSwipeWrap">
+                    @foreach ($feature_data->featureContents as $value)
+                        <div class="col-xl-3 col-md-6">
+                            <div class="choose-box h6-choose-box right-swipe">
+                                <div class="choose-content">
+                                    <div class="choose-icon index-page">
+                                        <img src="{{ !empty($value->icon) ? asset($value->icon) : asset('images/kidney-icon.png') }}"
+                                            alt="Feature icon">
+                                    </div>
+                                    <h4 class="title">{{ $value->name }}</h4>
+                                    <p class="desc">
+                                        {{ $value->description }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
-        </div>
-    </section>
-    <!-- end: Choose Section -->
+        </section>
+        <!-- end: Choose Section -->
+    @endif
 
     <!-- start: Project Section -->
     <section class="tj-project-section-3 section-gap section-gap-x">

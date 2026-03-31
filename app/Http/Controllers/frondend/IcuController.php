@@ -3,15 +3,10 @@
 namespace App\Http\Controllers\frondend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Icu;
-use App\Models\Menu;
-use App\Models\IcuContent;
-use App\Models\IcuSubContent;
-use App\Models\IcuFeature;
-use App\Models\features;
 use App\Models\Facility;
-use App\Models\ServiceContent;
+use App\Models\Icu;
+use App\Models\IcuFeature;
+use App\Models\Menu;
 
 class IcuController extends Controller
 {
@@ -19,11 +14,18 @@ class IcuController extends Controller
 
     public function index()
     {
-        $data['facility'] = Facility::with('content')->first();
-        $data['feature_data'] = features::with('featureContents')->first();
         $data['banner'] = Icu::first();
+        $pageId = $data['banner']->pages_id ?? null;
+
+        $data['facility'] = Facility::with('content')->first();
+        $data['feature_data'] = IcuFeature::with('featureContents')
+            ->when($pageId, function ($query) use ($pageId) {
+                $query->where('pages_id', $pageId);
+            })
+            ->first();
         $data['menu'] = Menu::with('contents')->get();
-        
+
+
         return view('frondend.icu.index', $data);
     }
 }

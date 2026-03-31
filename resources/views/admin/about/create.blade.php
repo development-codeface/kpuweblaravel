@@ -561,7 +561,7 @@
                                         action="{{ route('admin.about.banner.store') }}"
                                         enctype="multipart/form-data">
                                         <input type="hidden" name="active_tab" value="bannerSection">
-                                        <input type="hidden" name="banner_id" value="{{ $edit_banner->id }}">
+                                        <input type="hidden" name="banner_id" value="{{ $edit_banner->id ?? '' }}">
                                         <input type="hidden" name="about_id" value="{{ $id }}">
                                         @csrf
 
@@ -601,6 +601,33 @@
                                                     @endif
                                                     <span
                                                         class="help-block">{{ trans('cruds.about.fields.name_helper') }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="required">Image</label>
+                                                    <div class="image-box"
+                                                        onclick="document.getElementById('banner_image').click();">
+                                                        @if (isset($edit_banner) && $edit_banner->image)
+                                                            <img src="{{ asset($edit_banner->image) }}"
+                                                                style="width:100%; display:block;">
+                                                        @else
+                                                            <div class="triangle-placeholder"></div>
+                                                            <img style="display:none;">
+                                                        @endif
+                                                    </div>
+                                                    <input type="file" name="image" id="banner_image"
+                                                        accept="image/*"
+                                                        class="d-none {{ $errors->has('image') ? 'is-invalid' : '' }}"
+                                                        onchange="previewImage(this)">
+
+                                                    @if ($errors->has('image'))
+                                                        <div class="invalid-feedback">
+                                                            {{ $errors->first('image') }}
+                                                        </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
