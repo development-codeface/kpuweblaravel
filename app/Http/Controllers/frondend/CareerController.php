@@ -14,6 +14,7 @@ class CareerController extends Controller
     {
        $data['career_content'] = CareerContent::latest()->paginate(6);
         $data['banner'] = CareerBanner::first();
+        
         return view('frondend.career.index',$data);
     }
 }

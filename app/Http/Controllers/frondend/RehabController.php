@@ -17,6 +17,7 @@ class RehabController extends Controller
         $data['banner'] = RehabBanner::first();
         $data['menu'] = Menu::with('contents')->get();
         $data['content'] = FeatureService::with('subContents')->first();
+        
         return view('frondend.rehab.index', $data);
     }
 }

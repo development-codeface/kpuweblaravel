@@ -14,6 +14,7 @@ class AmbulanceController extends Controller
     {
         $data['banner'] = AmbulanceBanner::first();
         $data['contents'] = AmbulanceContent::with('sub_content')->first();
+        
         return view('frondend.ambulance.index',$data);
     }
 }

@@ -17,6 +17,7 @@ class BloodBankController extends Controller
         $data['blood_banks'] = BloodBank::first();
         $data['blood_contents'] = BloodBankContent::with('sub_content')->first();
         $data['blood_groups'] = BloodGroup::where('status', 1)->get();
+        
         return view('frondend.blood_bank.index',$data);
     }
 }

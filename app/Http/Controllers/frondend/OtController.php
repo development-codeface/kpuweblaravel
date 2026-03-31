@@ -18,6 +18,7 @@ class OtController extends Controller
         $data['banner'] = OtBanner::first();
         $data['menu'] = Menu::with('contents')->get();
          $data['content'] = FeatureService::with('subContents')->first();
+         
         return view('frondend.hospital_ot.index', $data);
     }
 }

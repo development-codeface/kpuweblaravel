@@ -14,6 +14,7 @@ class RoomController extends Controller
     {
         $edit_rooms = RoomsType::with('specRooms')->get();
         $edit_banner = RoomBanner::first();
+        
         return view('frondend.room.index',compact('edit_rooms','edit_banner'));
     }
 }

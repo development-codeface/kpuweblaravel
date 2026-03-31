@@ -12,6 +12,7 @@ class DoctorsController extends Controller
     public function index()
     {
         $data['dcotor_data'] = Doctor::with('doctorDepartments.department')->where('status', 1)->get();
+        
         return view('frondend.doctors.index', $data);
     }
 

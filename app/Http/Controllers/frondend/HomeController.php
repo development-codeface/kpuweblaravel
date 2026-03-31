@@ -24,6 +24,7 @@ class HomeController extends Controller
         $data['edit_section'] = Section::with('subContent')->first();
         $data['blog'] = Blog::with('category')->get();
         $data['dcotor_data'] = Doctor::with('doctorDepartments.department')->where('status', 'active')->get();
+        
         return view('frondend.home', $data);
     }
 }

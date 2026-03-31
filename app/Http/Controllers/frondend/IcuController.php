@@ -23,6 +23,7 @@ class IcuController extends Controller
         $data['feature_data'] = features::with('featureContents')->first();
         $data['banner'] = Icu::first();
         $data['menu'] = Menu::with('contents')->get();
+        
         return view('frondend.icu.index', $data);
     }
 }

@@ -14,6 +14,7 @@ class InsuranceController extends Controller
     {
         $data['banner'] = InsuranceBanner::first();
         $data['contents'] = InsuranceContent::with('subContents')->first();
+        
         return view('frondend.insurance.index', $data);
     }
 }

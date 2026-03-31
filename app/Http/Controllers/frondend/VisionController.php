@@ -18,6 +18,7 @@ class VisionController extends Controller
         $edit_section = VisionSection::get();
         $edit_content = VisionContent::with('subContent')->first();
         $facility = Facility::with('content')->first();
+        
         return view('frondend.vision.index', compact('edit_banner', 'edit_section','edit_content','facility'));
     }
 }

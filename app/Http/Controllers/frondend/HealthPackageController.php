@@ -18,6 +18,7 @@ class HealthPackageController extends Controller
         $data['category'] = DB::table('category')->select('id', 'name')->get();
         $data['blog']     = HealthPackageBlog::all();
         $data['content']  = HealthPackagecontent::first();
+        
         return view('frondend.package.index', $data);
     }
 }

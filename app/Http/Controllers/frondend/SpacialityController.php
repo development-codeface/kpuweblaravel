@@ -19,6 +19,7 @@ class SpacialityController extends Controller
         $data['doctors'] = Doctor::get();
         $data['contents'] = SpacialityContent::with('subContents')->first();
         $data['blog']   = SpacialityBlog::get();
+        
         return view('frondend.spaciality.index',$data);
     }
 }

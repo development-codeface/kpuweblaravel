@@ -2,9 +2,9 @@
 @section('content')
     {{-- <div class="top-space-15"></div> --}}
     <!-- start: Banner Section -->
-    <section class="h5-banner-section section-gap-x">
+    <section class="h5-banner-section section-gap-x" data-bg-image="{{ asset($banner->image) }}">
         <div class="container">
-            <div class="banner-bg" data-bg-image="{{ asset($banner->image) }}">
+            <div class="banner-bg" >
             </div>
             <div class="h5-banner-area">
                 <div class="h5-banner-content">
@@ -456,5 +456,7 @@
     </section>
 
     <!-- end: Blog Section -->
+
+    
     </main>
 @endsection
