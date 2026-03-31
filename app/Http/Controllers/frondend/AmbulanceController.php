@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AmbulanceBanner;
 use App\Models\AmbulanceContent;
+use App\Models\Facility;
 
 class AmbulanceController extends Controller
 {
@@ -14,7 +15,7 @@ class AmbulanceController extends Controller
     {
         $data['banner'] = AmbulanceBanner::first();
         $data['contents'] = AmbulanceContent::with('sub_content')->first();
-        
+        $data['facility'] = Facility::with('content')->first();
         return view('frondend.ambulance.index',$data);
     }
 }

@@ -9,6 +9,7 @@ use App\Models\SpacialityBanner;
 use App\Models\SpacialityBlog;
 use App\Models\SpacialityContent;
 use Illuminate\Http\Request;
+use App\Models\Facility;
 
 class SpacialityController extends Controller
 {
@@ -19,7 +20,7 @@ class SpacialityController extends Controller
         $data['doctors'] = Doctor::get();
         $data['contents'] = SpacialityContent::with('subContents')->first();
         $data['blog']   = SpacialityBlog::get();
-        
+        $data['facility'] = Facility::with('content')->first();
         return view('frondend.spaciality.index',$data);
     }
 }
