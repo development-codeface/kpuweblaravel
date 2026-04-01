@@ -1,7 +1,8 @@
 @extends('frondend.app')
 @section('content')
 
-    <section class="tj-page-header section-gap-x insurence-page" data-bg-image="{{ asset($blood_banks->image ?? 'images/blood-bank-banner.jpg') }}">
+    <section class="tj-page-header section-gap-x insurence-page"
+        data-bg-image="{{ asset($blood_banks->image ?? 'images/blood-bank-banner.jpg') }}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -19,7 +20,6 @@
                 </div>
             </div>
         </div>
-
         <!-- <div class="page-header-overlay" data-bg-image="assets/images/shape/pheader-overlay.webp"></div> -->
     </section>
 
@@ -61,7 +61,7 @@
                         <div class="swiper client-slider client-slider-2 h6-client-slider">
                             <h2 class="sec-title">Blood Availability</h2>
                             <div class="blood-groups">
-                                @foreach($blood_groups as $group)
+                                @foreach ($blood_groups as $group)
                                     <div class="client-logo">
                                         <h1 class="banner-title">{{ $group->blood_group }}</h1>
                                         <p>{{ $group->status == 1 ? 'Available' : 'Not Available' }}</p>
@@ -93,7 +93,7 @@
         </div>
     </section>
 
-    {{-- @if ($facility->content->isNotEmpty())
+    @if ($facility->content->isNotEmpty())
         <!-- start: Project Section -->
         <section class="tj-project-section-3 section-gap section-gap-x">
             <div class="container">
@@ -165,6 +165,48 @@
                 </div>
             </div>
         </section>
-    @endif --}}
+    @endif
+    <!-- Swiper CSS -->
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    if (document.querySelector('.project-slider-2')) {
+
+        const projectSlider = new Swiper('.project-slider-2', {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            loop: true,
+
+            navigation: {
+                nextEl: '.slider-next',
+                prevEl: '.slider-prev',
+            },
+
+            pagination: {
+                el: '.swiper-pagination-area',
+                clickable: true,
+            },
+
+            breakpoints: {
+                0: {
+                    slidesPerView: 1
+                },
+                768: {
+                    slidesPerView: 2
+                },
+                1024: {
+                    slidesPerView: 3
+                }
+            }
+        });
+
+        // 🔥 Fix for collapsed layout (IMPORTANT)
+        setTimeout(() => {
+            projectSlider.update();
+        }, 500);
+    }
+
+});
+</script>
 @endsection

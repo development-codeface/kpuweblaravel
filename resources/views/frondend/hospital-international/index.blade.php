@@ -116,21 +116,15 @@
 
     <div class="container inquiry-section">
         <div class="left-section">
-            <h1>How We Can Help</h1>
+            <h1>{{ $section->title }}</h1>
             <p class="subtitle">
-                Our international patient services team provides end-to-end
-                support for your medical journey.
+                {{ $section->sub_title }}
             </p>
 
             <ul class="services-list">
-                <li>Medical opinion and treatment cost estimate</li>
-                <li>Visa invitation letter for medical visa</li>
-                <li>Airport pickup and drop services</li>
-                <li>Accommodation arrangements</li>
-                <li>Language interpreter assistance</li>
-                <li>Insurance and billing support</li>
-                <li>Follow-up coordination</li>
-                <li>Medical records management</li>
+                @foreach($section->subContents as $sub)
+                    <li>{{ $sub->text }}</li>
+                @endforeach
             </ul>
         </div>
 

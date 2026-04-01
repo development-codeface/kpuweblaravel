@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\InterContent;
 use Illuminate\Http\Request;
 use App\Models\Internationalbanner;
 use App\Models\InterService;
 use App\Models\InterSubService;
+use App\Models\InterSubContent;
+
 
 class InternationalController extends Controller
 {
@@ -26,6 +29,7 @@ class InternationalController extends Controller
         $data['id'] = $id;
         $data['banner'] = Internationalbanner::where('pages_id', $id)->first();
         $data['content'] = InterService::with('subContents')->where('pages_id', $id)->first();
+        $data['section'] = InterContent::with('subContents')->where('pages_id', $id)->first();
         return view('admin.hospital-international.create', $data);
     }
 
@@ -172,6 +176,63 @@ class InternationalController extends Controller
                 ]);
             }
         }
+
+        return redirect()->route('admin.pages.index')
+            ->with('success', 'saved successfully.');
+    }
+
+    public function SectionStore(Request $request)
+    {
+        // ✅ Validation
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'sub_title' => 'required|string|max:255',
+            'text.*' => 'required|string|max:255',
+        ]);
+
+        // ✅ Create or Update Main Content
+        $content = InterContent::updateOrCreate(
+            ['id' => $request->content_id], // if exists → update
+            [
+                'pages_id' => $request->pages_id,
+                'title' => $request->title,
+                'sub_title' => $request->sub_title,
+            ]
+        );
+
+        // ✅ Track existing IDs (for delete check)
+        $existingIds = [];
+
+        if ($request->text) {
+            foreach ($request->text as $index => $text) {
+
+                $subId = $request->sub_contents_id[$index] ?? null;
+
+                if ($subId) {
+                    // ✅ Update existing
+                    $sub = InterSubContent::where('id', $subId)->first();
+                    if ($sub) {
+                        $sub->update([
+                            'text' => $text
+                        ]);
+                        $existingIds[] = $subId;
+                    }
+                } else {
+                    // ✅ Create new
+                    $new = InterSubContent::create([
+                        'inter_contents_id' => $content->id,
+                        'text' => $text
+                    ]);
+                    $existingIds[] = $new->id;
+                }
+            }
+        }
+
+        // ✅ Delete removed rows
+        // InterSubContent::where('inter_contents_id', $content->id)
+        //     ->whereNotIn('id', $existingIds)
+        //     ->delete();
+
 
         return redirect()->route('admin.pages.index')
             ->with('success', 'saved successfully.');
