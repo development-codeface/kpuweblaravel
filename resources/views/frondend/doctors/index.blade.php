@@ -38,7 +38,7 @@
                                         </div>
                                     </div>
                                 </form>
-                                {{-- <a href="{{ route('doctor.search') }}" class="tj-primary-btn"><span class="btn-text"><span>Reload</span></span></a> --}}
+                                <a href="{{ route('doctor.search') }}" class="tj-primary-btn"><span class="btn-text"><span>Reload</span></span></a>
                             </div>
                         </div>
                     </div>

@@ -130,7 +130,7 @@
                 </div>
 
                 <div class="col-12 col-xl-6">
-                    <div class="row h7-about-counter-wrapper 2-sectio-grid">
+                    <div class="row h7-about-counter-wrapper two-section-grid">
                         <div class="grid-div">
                             <div class="col-12 col-md-6">
                                 <div class="countup-item img-sec style-2 wow fadeInUp" data-wow-delay=".3s">

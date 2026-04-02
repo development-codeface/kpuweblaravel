@@ -31579,7 +31579,7 @@ START: Blog CSS
     margin-top: 50px;
 }
 
-.row.h7-about-counter-wrapper.\32 -sectio-grid {
+.row.h7-about-counter-wrapper.two-section-grid {
     display: flex;
 }
 .grid-div {
@@ -33033,7 +33033,7 @@ h2.sec-title.pharmacy {
         width: 100% !important;
     }
 
-    .row.h7-about-counter-wrapper.\32 -sectio-grid {
+    .row.h7-about-counter-wrapper.two-section-grid {
     display: flex;
         gap: 22px;
     flex-direction: column;
@@ -33106,7 +33106,7 @@ section.tj-team-section.section-separator .service-item.style-6{
 }
 
 @media (max-width: 1200px) {
-    .row.h7-about-counter-wrapper.\32 -sectio-grid{
+    .row.h7-about-counter-wrapper.two-section-grid{
     margin-right: 0px;
     margin-left: 0px;
     margin-top: 60px;
@@ -33404,4 +33404,20 @@ section.h9-service.section-gap.section-gap-x.tj-sticky-panel-container-2.tj-prog
 }
 .service-content a{
     letter-spacing: .6px;
+}
+
+section#our-values {
+    padding-top: 0px;
+}
+section#strategic-pillars {
+    padding-top: 0px;
+}
+section.tj-client-section.client-section-gap.wow.fadeInUp {
+    padding-top: 0px;
+}
+section.tj-page-header.section-gap-x.spacialiy-banner {
+    background-color: #00495e;
+}
+section.tj-project-section-3.section-gap.section-gap-x.doctors-find {
+    padding-top: 120px;
 }
