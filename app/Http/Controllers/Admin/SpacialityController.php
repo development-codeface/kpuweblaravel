@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\SpacialityBanner;
 use App\Models\SpacialityBlog;
 use App\Models\SpacialityContent;
+use App\Models\SpacialityFeature;
+use App\Models\SpacialityFeatureContent;
 use App\Models\SpacialitySubContent;
 
 class SpacialityController extends Controller
@@ -28,6 +30,7 @@ class SpacialityController extends Controller
         $data['banner'] = SpacialityBanner::where('pages_id', $id)->first();
         $data['content'] = SpacialityContent::where('pages_id', $id)->with('subContents')->first();
         $data['blog']    = SpacialityBlog::where('pages_id', $id)->get();
+        $data['feature'] = SpacialityFeature::where('pages_id', $id)->with('featureContents')->first();
         return view('admin.spaciality.create', $data);
     }
 
@@ -220,6 +223,86 @@ class SpacialityController extends Controller
         return redirect()->route('admin.pages.index')
             ->with('success', 'Spaciality saved successfully.');
     }
+
+    public function featureStore(Request $request)
+    {
+        $request->validate([
+            'feature_title' => 'required|string|max:255',
+            'feature_sub_title' => 'required|string|max:255',
+            'feature_icon' => 'nullable|array',
+            'feature_icon.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'existing_feature_icon' => 'nullable|array',
+            'existing_feature_icon.*' => 'nullable|string|max:255',
+            'content_id' => 'nullable|array',
+            'content_id.*' => 'nullable|integer',
+            'names' => 'required|array|min:1',
+            'names.*' => 'required|string|max:255',
+            'feature_description' => 'required|array|min:1',
+            'feature_description.*' => 'required|string',
+        ], [
+            'feature_icon.*.uploaded' => 'The icon image failed to upload. Please choose an image smaller than 2MB.',
+        ]);
+
+        $feature = SpacialityFeature::updateOrCreate(
+            ['id' => $request->feature_id],
+            [
+                'pages_id' => $request->pages_id,
+                'title' => $request->feature_title,
+                'sub_title' => $request->feature_sub_title,
+            ]
+        );
+
+        $savedContentIds = [];
+        $contentIds = $request->input('content_id', []);
+        $existingIcons = $request->input('existing_feature_icon', []);
+        $featureDescriptions = $request->input('feature_description', []);
+        $uploadedFeatureIcons = $request->file('feature_icon', []);
+
+        foreach ($request->input('names', []) as $key => $name) {
+            $contentId = $contentIds[$key] ?? null;
+            $featureContent = $contentId ? SpacialityFeatureContent::find($contentId) : new SpacialityFeatureContent();
+
+            if (!$featureContent) {
+                $featureContent = new SpacialityFeatureContent();
+            }
+
+            $iconPath = $existingIcons[$key] ?? $featureContent->icon ?? null;
+            $uploadedIcon = $uploadedFeatureIcons[$key] ?? null;
+
+            if ($uploadedIcon) {
+                $this->deleteFeatureIconIfExists($featureContent->icon ?? null);
+                $iconPath = $this->uploadFeatureIcon($uploadedIcon, $key);
+            }
+
+            if (!$iconPath) {
+                return back()
+                    ->withErrors(['feature_icon.' . $key => 'The icon image field is required.'])
+                    ->withInput();
+            }
+
+            $featureContent->spaciality_feature_id = $feature->id;
+            $featureContent->icon = $iconPath;
+            $featureContent->name = $name;
+            $featureContent->description = $featureDescriptions[$key] ?? '';
+            $featureContent->save();
+
+            $savedContentIds[] = $featureContent->id;
+        }
+
+        $removedContents = SpacialityFeatureContent::where('spaciality_feature_id', $feature->id)
+            ->when(!empty($savedContentIds), function ($query) use ($savedContentIds) {
+                $query->whereNotIn('id', $savedContentIds);
+            })
+            ->get();
+
+        foreach ($removedContents as $removedContent) {
+            $this->deleteFeatureIconIfExists($removedContent->icon);
+            $removedContent->delete();
+        }
+
+        return redirect()->route('admin.pages.index')
+            ->with('success', 'Spaciality core values saved successfully.');
+    }
     /**
      * Display the specified resource.
      */
@@ -250,5 +333,26 @@ class SpacialityController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    private function uploadFeatureIcon($icon, int $key): string
+    {
+        $imageName = time() . '_' . $key . '.' . $icon->getClientOriginalExtension();
+        $destinationPath = public_path('images/spaciality/feature-icons');
+
+        if (!file_exists($destinationPath)) {
+            mkdir($destinationPath, 0755, true);
+        }
+
+        $icon->move($destinationPath, $imageName);
+
+        return 'images/spaciality/feature-icons/' . $imageName;
+    }
+
+    private function deleteFeatureIconIfExists(?string $imagePath): void
+    {
+        if ($imagePath && file_exists(public_path($imagePath))) {
+            unlink(public_path($imagePath));
+        }
     }
 }

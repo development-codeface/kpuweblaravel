@@ -265,9 +265,9 @@
                                             @foreach ($rows as $index => $row)
                                                 <div class="feature-row p-3 mb-3">
                                                     <input type="hidden" name="content_id[]"
-                                                        value="{{ $row->id }}">
+                                                        value="{{ $row->id ?? ''}}">
                                                     <input type="hidden" name="existing_feature_icon[]"
-                                                        value="{{ $row->icon }}">
+                                                        value="{{ $row->icon ?? ''}}">
 
                                                     <div class="row">
                                                         <div class="col-md-6">
@@ -300,7 +300,7 @@
                                                             <div class="form-group">
                                                                 <label class="required">Name</label>
                                                                 <input type="text" name="name[]"
-                                                                    value="{{ $row->name }}"
+                                                                    value="{{ $row->name ?? ''}}"
                                                                     class="form-control {{ $errors->has('name.' . $index) ? 'is-invalid' : '' }}">
                                                                 @if ($errors->has('name.' . $index))
                                                                     <div class="invalid-feedback">
@@ -317,7 +317,7 @@
                                                                 <label>Description</label>
                                                                 <textarea name="feature_description[]"
                                                                     class="form-control {{ $errors->has('feature_description.' . $index) ? 'is-invalid' : '' }}"
-                                                                    rows="2">{{ $row->description }}</textarea>
+                                                                    rows="2">{{ $row->description ?? '' }}</textarea>
                                                                 @if ($errors->has('feature_description.' . $index))
                                                                     <div class="invalid-feedback">
                                                                         {{ $errors->first('feature_description.' . $index) }}

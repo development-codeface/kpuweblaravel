@@ -101,6 +101,7 @@ Route::group([
     Route::post('banners/store', [HomeController::class, 'store'])->name('banners.store');
     Route::post('content/store', [HomeController::class, 'contentStore'])->name('content.store');
     Route::post('section/store', [HomeController::class, 'sectionStore'])->name('section.store');
+    Route::post('features/store', [HomeController::class, 'storeFeatureSection'])->name('features.store');
 
     Route::get('slider', [SliderController::class, 'index'])->name('slider.index');
     Route::get('slider/create', [SliderController::class, 'create'])->name('slider.create');
@@ -213,6 +214,7 @@ Route::group([
     Route::post('spaciality/store', [SpacialityController::class, 'store'])->name('spaciality.store');
     Route::post('spaciality/content/store', [SpacialityController::class, 'contentStore'])->name('spaciality.content.store');
     Route::post('spaciality/blog/store', [SpacialityController::class, 'blogStore'])->name('spaciality.blog.store');
+    Route::post('spaciality/feature/store', [SpacialityController::class, 'featureStore'])->name('spaciality.feature.store');
 
     Route::get('service/create/{id}', [ServiceController::class, 'create'])->name('service.create');
     Route::post('service/menu/store', [ServiceController::class, 'menuStore'])->name('service.menu.store');

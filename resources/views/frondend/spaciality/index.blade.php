@@ -224,25 +224,27 @@
     <!-- end: Product Section -->
 
     <!-- start: Choose Section -->
+    @if ($feature)
     <section id="our-values" class="tj-choose-section section-gap">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="sec-heading style-3 text-left">
-                        <h2 class="sec-title title-anim">{{ $feature->title }}</h2>
-                        <p class="desc">{{ $feature->sub_title }}
+                        <h2 class="sec-title title-anim">{{ $feature->title ?? '' }}</h2>
+                        <p class="desc">{{ $feature->sub_title ?? '' }}
                         </p>
 
                     </div>
                 </div>
             </div>
             <div class="row row-gap-4 rightSwipeWrap">
-                @foreach ($feature->featureContents as $content)
+                @foreach (($feature->featureContents ?? collect()) as $content)
                     <div class="col-lg-4">
                         <div class="choose-box right-swipe">
                             <div class="choose-content">
                                 <div class="choose-icon">
-                                    <i class="{{ $content->icon }}"></i>
+                                    <img src="{{ !empty($content->icon) ? asset($content->icon) : asset('images/kidney-icon.png') }}"
+                                        alt="{{ $content->name }}">
                                 </div>
                                 <h4 class="title">{{ $content->name }}</h4>
                                 <p class="desc">{{ $content->description }}</p>
@@ -254,6 +256,7 @@
             </div>
         </div>
     </section>
+    @endif
     <!-- end: Choose Section -->
 
     <!-- start: Team Section -->

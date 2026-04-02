@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\banner;
 use App\Models\Content;
+use App\Models\FeatureContent;
 use App\Models\Section;
 use App\Models\SubContent;
 use App\Models\SubSection;
+use App\Models\features;
 
 class HomeController extends Controller
 {
@@ -16,9 +18,10 @@ class HomeController extends Controller
     public function create($id)
     {
         $edit_content = Content::where('pages_id', $id)->with('subContent')->first();
+        $features = features::where('pages_id', $id)->with('featureContents')->first();
         $edit_banner = banner::where('pages_id', $id)->first();
         $edit_section = Section::where('pages_id', $id)->with('subContent')->first();
-        return view('admin.home.create', compact('id', 'edit_banner', 'edit_content', 'edit_section'));
+        return view('admin.home.create', compact('id', 'edit_banner', 'edit_content', 'edit_section','features'));
     }
 
     public function store(Request $request)
@@ -276,6 +279,85 @@ class HomeController extends Controller
         return redirect()->route('admin.pages.index')->with('success', 'Section created successfully.');
     }
 
+    public function storeFeatureSection(Request $request)
+    {
+        $request->validate([
+            'feature_title' => 'required|string|max:255',
+            'feature_sub_title' => 'required|string|max:255',
+            'feature_icon' => 'nullable|array',
+            'feature_icon.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'existing_feature_icon' => 'nullable|array',
+            'existing_feature_icon.*' => 'nullable|string|max:255',
+            'content_id' => 'nullable|array',
+            'content_id.*' => 'nullable|integer',
+            'names' => 'required|array|min:1',
+            'names.*' => 'required|string|max:255',
+            'feature_description' => 'required|array|min:1',
+            'feature_description.*' => 'required|string',
+        ], [
+            'feature_icon.*.uploaded' => 'The icon image failed to upload. Please choose an image smaller than 2MB.',
+        ]);
+
+        $feature = features::updateOrCreate(
+            ['id' => $request->feature_id],
+            [
+                'pages_id' => $request->pages_id,
+                'title' => $request->feature_title,
+                'sub_title' => $request->feature_sub_title,
+            ]
+        );
+
+        $savedContentIds = [];
+        $contentIds = $request->input('content_id', []);
+        $existingIcons = $request->input('existing_feature_icon', []);
+        $featureDescriptions = $request->input('feature_description', []);
+        $uploadedFeatureIcons = $request->file('feature_icon', []);
+
+        foreach ($request->input('names', []) as $key => $name) {
+            $contentId = $contentIds[$key] ?? null;
+            $featureContent = $contentId ? FeatureContent::find($contentId) : new FeatureContent();
+
+            if (!$featureContent) {
+                $featureContent = new FeatureContent();
+            }
+
+            $iconPath = $existingIcons[$key] ?? $featureContent->icon ?? null;
+            $uploadedIcon = $uploadedFeatureIcons[$key] ?? null;
+
+            if ($uploadedIcon) {
+                $this->deleteImageIfExists($featureContent->icon ?? null);
+                $iconPath = $this->uploadFeatureIcon($uploadedIcon, $key);
+            }
+
+            if (!$iconPath) {
+                return back()
+                    ->withErrors(['feature_icon.' . $key => 'The icon image field is required.'])
+                    ->withInput();
+            }
+
+            $featureContent->feature_id = $feature->id;
+            $featureContent->icon = $iconPath;
+            $featureContent->name = $name;
+            $featureContent->description = $featureDescriptions[$key] ?? '';
+            $featureContent->save();
+
+            $savedContentIds[] = $featureContent->id;
+        }
+
+        $removedContents = FeatureContent::where('feature_id', $feature->id)
+            ->when(!empty($savedContentIds), function ($query) use ($savedContentIds) {
+                $query->whereNotIn('id', $savedContentIds);
+            })
+            ->get();
+
+        foreach ($removedContents as $removedContent) {
+            $this->deleteImageIfExists($removedContent->icon);
+            $removedContent->delete();
+        }
+
+        return redirect()->route('admin.pages.index')->with('success', 'Home core values saved successfully.');
+    }
+
     private function uploadHomeContentImage(Request $request, string $field, ?string $currentPath = null): ?string
     {
         if (!$request->hasFile($field)) {
@@ -298,6 +380,27 @@ class HomeController extends Controller
     }
 
     private function deleteHomeContentImage(?string $imagePath): void
+    {
+        if ($imagePath && file_exists(public_path($imagePath))) {
+            unlink(public_path($imagePath));
+        }
+    }
+
+    private function uploadFeatureIcon($icon, int $key): string
+    {
+        $imageName = time() . '_' . $key . '.' . $icon->getClientOriginalExtension();
+        $destinationPath = public_path('images/feature-icons');
+
+        if (!file_exists($destinationPath)) {
+            mkdir($destinationPath, 0755, true);
+        }
+
+        $icon->move($destinationPath, $imageName);
+
+        return 'images/feature-icons/' . $imageName;
+    }
+
+    private function deleteImageIfExists(?string $imagePath): void
     {
         if ($imagePath && file_exists(public_path($imagePath))) {
             unlink(public_path($imagePath));
