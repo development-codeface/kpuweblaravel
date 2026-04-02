@@ -609,9 +609,9 @@
         <div class="blog-row border p-3 mb-3">
             <input type="hidden" name="medical[${blogIndex}][content_id]" value="">
 
-            <div class="form-group">
-                <label>Title</label>
-                <input type="text" name="medical[${blogIndex}][title]" class="form-control">
+            <div class="form-group mt-2">
+                <label>Heading</label>
+                <input type="text" name="medical[${blogIndex}][heading]" class="form-control">
             </div>
 
             <div class="form-group mt-2">
@@ -620,10 +620,10 @@
             </div>
 
             <div class="form-group mt-3">
+                <label>Texts</label>
                 <div class="extra-text-wrapper">
-                     <input type="hidden" name="medical[${blogIndex}][texts][0][sub_content_id]" value="">
                     <div class="input-group mb-2">
-                        <label>Text</label>
+                        <input type="hidden" name="medical[${blogIndex}][texts][0][sub_content_id]" value="">
                         <input type="text" name="medical[${blogIndex}][texts][0][text]" class="form-control">
                         <button type="button" class="btn btn-danger remove-text">X</button>
                     </div>

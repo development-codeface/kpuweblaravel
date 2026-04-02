@@ -69,6 +69,10 @@
                             data-bs-toggle="tab" href="#medicalSection" role="tab">
                             Medical content
                         </a>
+                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'medicalTripSection' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#medicalTripSection" role="tab">
+                            Medical Trip
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -483,6 +487,135 @@
                             </form>
 
                         </div>
+                        <div class="tab-pane fade {{ old('active_tab') == 'medicalTripSection' ? 'show active' : '' }}"
+                            id="medicalTripSection" role="tabpanel">
+                            <h1 class="mb-3">Medical Trip Section</h1>
+                            <hr>
+                            <form method="POST" action="{{ route('admin.hospital-international.medical.store') }}">
+                                @csrf
+                                <input type="hidden" name="active_tab" value="medicalTripSection">
+                                <input name="medical_id" value="{{ $medical->id ?? '' }}" type="hidden">
+                                <input type="hidden" name="pages_id" value="{{ $id }}">
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="required">Title</label>
+                                            <input type="text" name="title"
+                                                class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"
+                                                value="{{ old('title', $medical->title ?? '') }}"
+                                                placeholder="Enter title">
+
+                                            @if ($errors->has('title'))
+                                                <div class="invalid-feedback">
+                                                    {{ $errors->first('title') }}
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="required">Sub Title</label>
+                                            <input type="text" name="sub_title"
+                                                class="form-control {{ $errors->has('sub_title') ? 'is-invalid' : '' }}"
+                                                value="{{ old('sub_title', $medical->sub_title ?? '') }}"
+                                                placeholder="Enter sub title">
+
+                                            @if ($errors->has('sub_title'))
+                                                <div class="invalid-feedback">
+                                                    {{ $errors->first('sub_title') }}
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="international-medical-wrapper">
+                                    @php
+                                        $medicalData = old(
+                                            'medical',
+                                            isset($medical) ? $medical->contents->toArray() : [[]],
+                                        );
+                                    @endphp
+
+                                    @foreach ($medicalData as $index => $item)
+                                        <div class="medical-trip-row border p-3 mb-3">
+                                            <input type="hidden" name="medical[{{ $index }}][content_id]"
+                                                value="{{ $item['id'] ?? '' }}">
+
+                                            <div class="form-group mt-2">
+                                                <label>Heading</label>
+                                                <input type="text" name="medical[{{ $index }}][heading]"
+                                                    value="{{ old("medical.$index.heading", $item['heading'] ?? '') }}"
+                                                    class="form-control @error("medical.$index.heading") is-invalid @enderror">
+
+                                                @error("medical.$index.heading")
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
+                                            <div class="form-group mt-2">
+                                                <label>Description</label>
+                                                <textarea name="medical[{{ $index }}][description]"
+                                                    class="form-control @error("medical.$index.description") is-invalid @enderror">{{ old("medical.$index.description", $item['description'] ?? '') }}</textarea>
+
+                                                @error("medical.$index.description")
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
+                                            <div class="form-group mt-3">
+                                                <label>Texts</label>
+
+                                                <div class="international-extra-text-wrapper">
+                                                    @php
+                                                        $texts = old(
+                                                            "medical.$index.texts",
+                                                            $item['subcontents'] ?? [['id' => '', 'text' => '']],
+                                                        );
+                                                    @endphp
+
+                                                    @foreach ($texts as $tIndex => $textItem)
+                                                        <div class="input-group mb-2">
+                                                            <input type="hidden"
+                                                                name="medical[{{ $index }}][texts][{{ $tIndex }}][sub_content_id]"
+                                                                value="{{ $textItem['id'] ?? '' }}">
+
+                                                            <input type="text"
+                                                                name="medical[{{ $index }}][texts][{{ $tIndex }}][text]"
+                                                                value="{{ $textItem['text'] ?? '' }}"
+                                                                class="form-control @error("medical.$index.texts.$tIndex.text") is-invalid @enderror">
+
+                                                            @error("medical.$index.texts.$tIndex.text")
+                                                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+
+                                                <button type="button"
+                                                    class="btn btn-info btn-sm add-international-extra-text mt-2">
+                                                    + Add Text
+                                                </button>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                                <button type="button" id="addInternationalMedicalRow" class="btn btn-primary mb-3">
+                                    + Add Row
+                                </button>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success">
+                                        Save
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -568,6 +701,67 @@
     `;
 
             wrapper.insertAdjacentHTML('beforeend', html);
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            let medicalIndex = document.querySelectorAll('#international-medical-wrapper .medical-trip-row').length;
+            const addInternationalMedicalRowButton = document.getElementById("addInternationalMedicalRow");
+
+            if (!addInternationalMedicalRowButton) {
+                return;
+            }
+
+            addInternationalMedicalRowButton.addEventListener("click", function() {
+                let wrapper = document.getElementById("international-medical-wrapper");
+
+                let row = `
+        <div class="medical-trip-row border p-3 mb-3">
+            <input type="hidden" name="medical[${medicalIndex}][content_id]" value="">
+
+            <div class="form-group mt-2">
+                <label>Heading</label>
+                <input type="text" name="medical[${medicalIndex}][heading]" class="form-control">
+            </div>
+
+            <div class="form-group mt-2">
+                <label>Description</label>
+                <textarea name="medical[${medicalIndex}][description]" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group mt-3">
+                <label>Texts</label>
+                <div class="international-extra-text-wrapper">
+                    <div class="input-group mb-2">
+                        <input type="hidden" name="medical[${medicalIndex}][texts][0][sub_content_id]" value="">
+                        <input type="text" name="medical[${medicalIndex}][texts][0][text]" class="form-control">
+                    </div>
+                </div>
+                <button type="button" class="btn btn-info btn-sm add-international-extra-text mt-2">
+                    + Add Text
+                </button>
+            </div>
+        </div>`;
+
+                wrapper.insertAdjacentHTML("beforeend", row);
+                medicalIndex++;
+            });
+
+            document.addEventListener("click", function(e) {
+                if (e.target.classList.contains("add-international-extra-text")) {
+                    let row = e.target.closest(".medical-trip-row");
+                    let wrapper = row.querySelector(".international-extra-text-wrapper");
+                    let indexMatch = row.querySelector('input[name*="[content_id]"]').name.match(/medical\[(\d+)\]/);
+                    let index = indexMatch ? indexMatch[1] : 0;
+                    let textIndex = wrapper.querySelectorAll(".input-group").length;
+
+                    wrapper.insertAdjacentHTML("beforeend", `
+                <div class="input-group mb-2">
+                    <input type="hidden" name="medical[${index}][texts][${textIndex}][sub_content_id]" value="">
+                    <input type="text" name="medical[${index}][texts][${textIndex}][text]" class="form-control">
+                </div>
+            `);
+                }
+            });
         });
 
         // ✅ Open file picker (works for dynamic rows)

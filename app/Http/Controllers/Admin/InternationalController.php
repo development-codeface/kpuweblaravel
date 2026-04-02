@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\InterContent;
 use Illuminate\Http\Request;
+use App\Models\InterMedicalTrip;
+use App\Models\InterMedicalTripContent;
+use App\Models\InterMedicalTripSubContent;
 use App\Models\Internationalbanner;
 use App\Models\InterService;
 use App\Models\InterSubService;
@@ -30,6 +33,7 @@ class InternationalController extends Controller
         $data['banner'] = Internationalbanner::where('pages_id', $id)->first();
         $data['content'] = InterService::with('subContents')->where('pages_id', $id)->first();
         $data['section'] = InterContent::with('subContents')->where('pages_id', $id)->first();
+        $data['medical'] = InterMedicalTrip::with('contents.subcontents')->where('pages_id', $id)->first();
         return view('admin.hospital-international.create', $data);
     }
 
@@ -236,6 +240,52 @@ class InternationalController extends Controller
 
         return redirect()->route('admin.pages.index')
             ->with('success', 'saved successfully.');
+    }
+
+    public function medicalStore(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'sub_title' => 'required',
+            'medical.*.heading' => 'required',
+            'medical.*.description' => 'required',
+            'medical.*.texts.*.text' => 'required',
+        ]);
+
+        $main = InterMedicalTrip::updateOrCreate(
+            ['id' => $request->medical_id],
+            [
+                'pages_id' => $request->pages_id,
+                'title' => $request->title,
+                'sub_title' => $request->sub_title,
+            ]
+        );
+
+        foreach ($request->medical as $medicalItem) {
+            $medical = InterMedicalTripContent::updateOrCreate(
+                ['id' => $medicalItem['content_id'] ?? null],
+                [
+                    'inter_medical_trips_id' => $main->id,
+                    'heading' => $medicalItem['heading'],
+                    'description' => $medicalItem['description'],
+                ]
+            );
+
+            if (isset($medicalItem['texts'])) {
+                foreach ($medicalItem['texts'] as $textItem) {
+                    InterMedicalTripSubContent::updateOrCreate(
+                        ['id' => $textItem['sub_content_id'] ?? null],
+                        [
+                            'inter_medical_trip_contents_id' => $medical->id,
+                            'text' => $textItem['text'],
+                        ]
+                    );
+                }
+            }
+        }
+
+        return redirect()->route('admin.pages.index')
+            ->with('success', 'Hospital International medical trip saved successfully.');
     }
 
     /**

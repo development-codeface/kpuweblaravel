@@ -176,6 +176,7 @@
         </div>
     </div>
 
+    @if ($trip)
     <div class="container medical-iner">
         <div class="header">
             <h1>{{ $trip->title }}</h1>
@@ -230,6 +231,7 @@
             </div>
         </div>
     </div>
+    @endif
     <!-- start: Project Section -->
     <section class="tj-project-section-3 section-gap section-gap-x">
         <div class="container">
