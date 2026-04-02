@@ -78,7 +78,7 @@
             <div class="row">
                 <div class="col-xl-6 col-lg-6">
                     <div class="about-content-area hspt-intr h6-about-content style-1 wow fadeInLeft" data-wow-delay=".2s">
- <h2 class="sec-title  sec-header">Patients from around the world</h2>
+                        <h2 class="sec-title  sec-header">Patients from around the world</h2>
                         <div class="sec-heading style-2 style-6">
                             {{-- <span class="sub-title wow fadeInUp" data-wow-delay=".3s">Our Commitment</span> --}}
                             <h2 class="sec-title sub-text">{{ $content->title }}</h2>
@@ -88,30 +88,14 @@
                         </div>
                     </div>
                     <div class="hspt-grid-contents">
-                        <div class="content-area-grid">
-                            <h4 class="grid-content-title">Our International Services</h4>
-                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
-                        </div>
-                        <div class="content-area-grid">
-                            <h4 class="grid-content-title">Our International Services</h4>
-                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
-                        </div>
-                        <div class="content-area-grid">
-                            <h4 class="grid-content-title">Our International Services</h4>
-                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
-                        </div>
-                        <div class="content-area-grid">
-                            <h4 class="grid-content-title">Our International Services</h4>
-                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
-                        </div>
-                        <div class="content-area-grid">
-                            <h4 class="grid-content-title">Our International Services</h4>
-                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
-                        </div>
-                        <div class="content-area-grid">
-                            <h4 class="grid-content-title">Our International Services</h4>
-                            <p class="desc">We provide comprehensive medical services to patients from around the world, </p>
-                        </div>
+                        @foreach ($content->subContents as $subContent)
+                            <div class="content-area-grid">
+                                <h4 class="grid-content-title">{{ $subContent->heading }}</h4>
+                                <p class="desc">
+                                    {{ $subContent->description }}
+                                </p>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6">
@@ -132,21 +116,15 @@
 
     <div class="container inquiry-section">
         <div class="left-section">
-            <h1>How We Can Help</h1>
+            <h1>{{ $section->title }}</h1>
             <p class="subtitle">
-                Our international patient services team provides end-to-end
-                support for your medical journey.
+                {{ $section->sub_title }}
             </p>
 
             <ul class="services-list">
-                <li>Medical opinion and treatment cost estimate</li>
-                <li>Visa invitation letter for medical visa</li>
-                <li>Airport pickup and drop services</li>
-                <li>Accommodation arrangements</li>
-                <li>Language interpreter assistance</li>
-                <li>Insurance and billing support</li>
-                <li>Follow-up coordination</li>
-                <li>Medical records management</li>
+                @foreach($section->subContents as $sub)
+                    <li>{{ $sub->text }}</li>
+                @endforeach
             </ul>
         </div>
 
@@ -211,18 +189,18 @@
                 <div class="step-card">
                     <div class="step-number">
                         <div class="step-orde">
- <div class="number"> {{ $index + 1 }}</div>
-                        <div class="icon">📄</div>
+                            <div class="number"> {{ $index + 1 }}</div>
+                            <div class="icon">📄</div>
                         </div>
                         <div class="step-detai">
-                             <h3>{{ $content->heading }}</h3>
-                        <p>
-                            {{ $content->description }}
-                        </p>
+                            <h3>{{ $content->heading }}</h3>
+                            <p>
+                                {{ $content->description }}
+                            </p>
                         </div>
                     </div>
                     <div class="step-content">
-                        
+
                         @if ($content->subcontents->count())
                             <ul class="step-features">
                                 @foreach ($content->subcontents as $sub)

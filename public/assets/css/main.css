@@ -8406,7 +8406,7 @@ START: Heading CSS
     font-weight: 400;
 }
 .sec-heading .sec-title span {
-    color: var(--tj-color-theme-primary);
+    color: #015b75;
 }
 .sec-heading .sub-title {
     display: -webkit-inline-box;

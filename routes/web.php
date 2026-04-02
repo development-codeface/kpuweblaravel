@@ -227,6 +227,7 @@ Route::group([
 
     Route::get('hospital-testing/create/{id}', [TestingController::class, 'create'])->name('hospital-testing.create');
     Route::post('hospital-testing/banner/store', [TestingController::class, 'store'])->name('hospital-testing.banner.store');
+    Route::post('hospital-testing/content/store', [TestingController::class, 'contentStore'])->name('hospital-testing.content.store');
 
     Route::get('medical-turism/create/{id}', [MedicalTurism::class, 'create'])->name('medical-turism.create');
     Route::post('medical-turism/banner/store', [MedicalTurism::class, 'store'])->name('medical-turism.banner.store');
@@ -235,6 +236,8 @@ Route::group([
 
     Route::get('hospital-international/create/{id}', [InternationalController::class, 'create'])->name('hospital-international.create');
     Route::post('hospital-international/banner/store', [InternationalController::class, 'store'])->name('hospital-international.banner.store');
+    Route::post('hospital-international/content/store', [InternationalController::class, 'contentStore'])->name('hospital-international.content.store');
+    Route::post('hospital-international/section/store', [InternationalController::class, 'SectionStore'])->name('hospital-international.section.store');
 
     Route::get('our-vision/create/{id}', [VisionController::class, 'create'])->name('our-vision.create');
     Route::post('our-vision/store', [VisionController::class, 'store'])->name('our-vision.store');

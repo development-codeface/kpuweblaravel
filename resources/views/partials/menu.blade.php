@@ -59,11 +59,11 @@
                             Menus
                         </a>
                     </li>
-                    <li class="nav-item {{ request()->routeIs('admin.feature.*') ? 'active' : '' }}">
+                    {{-- <li class="nav-item {{ request()->routeIs('admin.feature.*') ? 'active' : '' }}">
                         <a href="{{ route('admin.feature.index') }}" class="nav-link ">
                             Fucture
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </li>
             <li class="nav-item">

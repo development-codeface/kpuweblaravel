@@ -8,6 +8,7 @@ use App\Models\Facility;
 use App\Models\Menu;
 use App\Models\FeatureService;
 use App\Models\TestingBanner;
+use App\Models\TestingService;
 
 class TestingController extends Controller
 {
@@ -16,8 +17,7 @@ class TestingController extends Controller
         $data['facility'] = Facility::with('content')->first();
         $data['banner'] = TestingBanner::first();
         $data['menu'] = Menu::with('contents')->get();
-        $data['content'] = FeatureService::with('subContents')->first();
-        
+        $data['content'] = TestingService::with('subContents')->first();
         return view('frondend.testing.index', $data);
     }
 }

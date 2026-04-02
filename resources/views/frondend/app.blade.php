@@ -3,8 +3,8 @@
 
 <head>
     @php
-        $seoTitle = optional($currentSeo)->title ?: (optional($currentSeoPage)->title ? $currentSeoPage->title . ' | ' . config('app.name') : config('app.name'));
-        $seoDescription = optional($currentSeo)->description;
+        $seoTitle = optional($currentSeo)->title ?: (optional($currentSeoPage)->title ? $currentSeoPage->title . ' | ' . 'KPU Hospital' : 'KPU Hospital');
+        $seoDescription = optional($currentSeo)->description ?? 'KPU Hospital - Quality healthcare services';
         $seoAuthor = optional($currentSeo)->author;
         $seoRobots = optional($currentSeo)->robots ?: 'index,follow';
         $seoCanonical = optional($currentSeo)->canonical_url ?: url()->current();
@@ -15,7 +15,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ $seoTitle }}</title>
-    <meta name="description" content="{{ $seoDescription }}">
+    <meta name="description" content="{{ $seoDescription}}">
     <meta name="author" content="{{ $seoAuthor }}">
     <meta name="robots" content="{{ $seoRobots }}">
     <link rel="canonical" href="{{ $seoCanonical }}">
