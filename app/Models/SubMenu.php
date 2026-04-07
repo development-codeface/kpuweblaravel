@@ -11,6 +11,7 @@ class SubMenu extends Model
     protected $fillable = [
         'name',
         'menu_items_id',
-        'url'
+        'url',
+        'sort_order',
     ];
 }

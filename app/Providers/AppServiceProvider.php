@@ -44,7 +44,8 @@ class AppServiceProvider extends ServiceProvider
                 'health_packages.index' => 'health-packages',
                 'icu.index' => 'icu',
                 'second_opinion.index' => 'second-opinion',
-                'spaciality.index' => 'spaciality',
+                'spaciality.index' => ['specialities', 'speciality', 'spaciality'],
+                'Specialities.index' => ['specialities', 'speciality', 'spaciality'],
                 'rehab.index' => 'rehabilitation',
                 'hospital-ot.index' => 'hospital-ot',
                 'hospital-testing.index' => 'hospital-testing',
@@ -56,7 +57,8 @@ class AppServiceProvider extends ServiceProvider
 
             $currentPage = null;
             if (isset($pageSlugMap[$routeName])) {
-                $currentPage = pages::with('seo')->where('slug', $pageSlugMap[$routeName])->first();
+                $pageSlugs = (array) $pageSlugMap[$routeName];
+                $currentPage = pages::with('seo')->whereIn('slug', $pageSlugs)->first();
             }
 
             $menus = MenuLocations::with('menuItems.submenus')

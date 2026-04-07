@@ -18,7 +18,9 @@ class MenuLocations extends Model
     // ✅ Level 1
     public function menuItems()
     {
-        return $this->hasMany(MenuItem::class, 'menu_locations_id');
+        return $this->hasMany(MenuItem::class, 'menu_locations_id')
+            ->orderBy('sort_order')
+            ->orderBy('id');
     }
 
     // ✅ Single function to get full tree

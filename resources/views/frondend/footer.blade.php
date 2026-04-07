@@ -41,7 +41,7 @@
                                     </div>
                                     </div>
 
-                                    
+
                                 </div>
                             </form>
                         </div>
@@ -50,7 +50,7 @@
             </div>
                       </div>
                   </div>
-       
+
                   <div class="footer-bottom">
 
                   <div class="col-xl-3 col-lg-4 col-md-6">
@@ -123,7 +123,7 @@
                               <li><a href="{{ route('rehab.index') }}">Rehabilitation</a></li>
                               <li><a href="{{ route('career.index') }}">Careers</a></li>
                               <li><a href="{{ route('second_opinion.index') }}">Second Opinion</a></li>
-                              <li><a href="{{ route('spaciality.index') }}">Speciality</a></li>
+                              <li><a href="{{ route('Specialities.index') }}">Speciality</a></li>
                           </ul>
                       </div>
                   </div>

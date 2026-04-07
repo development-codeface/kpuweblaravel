@@ -12,11 +12,14 @@ class MenuItem extends Model
     protected $fillable = [
         'name',
         'menu_locations_id',
-        'url'
+        'url',
+        'sort_order',
     ];
 
      public function submenus()
     {
-        return $this->hasMany(SubMenu::class, 'menu_items_id');
+        return $this->hasMany(SubMenu::class, 'menu_items_id')
+            ->orderBy('sort_order')
+            ->orderBy('id');
     }
 }

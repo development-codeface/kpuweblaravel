@@ -210,11 +210,11 @@ Route::group([
     Route::post('facility/update/{id}', [FacilityController::class, 'update'])->name('facility.update');
     Route::delete('facility/destroy/{id}', [FacilityController::class, 'update'])->name('facility.destroy');
 
-    Route::get('spaciality/create/{id}', [SpacialityController::class, 'create'])->name('spaciality.create');
-    Route::post('spaciality/store', [SpacialityController::class, 'store'])->name('spaciality.store');
-    Route::post('spaciality/content/store', [SpacialityController::class, 'contentStore'])->name('spaciality.content.store');
-    Route::post('spaciality/blog/store', [SpacialityController::class, 'blogStore'])->name('spaciality.blog.store');
-    Route::post('spaciality/feature/store', [SpacialityController::class, 'featureStore'])->name('spaciality.feature.store');
+    Route::get('Specialities/create/{id}', [SpacialityController::class, 'create'])->name('Specialities.create');
+    Route::post('Specialities/store', [SpacialityController::class, 'store'])->name('Specialities.store');
+    Route::post('Specialities/content/store', [SpacialityController::class, 'contentStore'])->name('Specialities.content.store');
+    Route::post('Specialities/blog/store', [SpacialityController::class, 'blogStore'])->name('Specialities.blog.store');
+    Route::post('Specialities/feature/store', [SpacialityController::class, 'featureStore'])->name('Specialities.feature.store');
 
     Route::get('service/create/{id}', [ServiceController::class, 'create'])->name('service.create');
     Route::post('service/menu/store', [ServiceController::class, 'menuStore'])->name('service.menu.store');
@@ -285,7 +285,7 @@ Route::get('get-doctors/{department}', [FrondendSecondOpinionController::class, 
 Route::get('/get-doctor-details/{id}', [FrondendSecondOpinionController::class, 'getDoctorDetails']);
 // Route::get('/get-doctors-list', [FrondendSecondOpinionController::class, 'dotors']);
 
-Route::get('/spaciality', [FrondendSpacialityController::class, 'index'])->name('spaciality.index');
+Route::get('/Specialities', [FrondendSpacialityController::class, 'index'])->name('Specialities.index');
 Route::get('/rehab', [FrondendRehabController::class, 'index'])->name('rehab.index');
 Route::get('/hospital-ot', [FrondendOtController::class, 'index'])->name('hospital-ot.index');
 Route::get('/hospital-testing', [FrondendTestingController::class, 'index'])->name('hospital-testing.index');

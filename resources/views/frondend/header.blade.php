@@ -6,28 +6,27 @@
                 <div class="header-wrapper ">
                     {{-- <div class="container"> --}}
                     <!-- site logo -->
-                          <div class="site_logo">
-                        <a class="logo" href="/home"><img src="assets/images/logos/kpu-logo1.png"
-                                alt="" /></a>
+                    <div class="site_logo">
+                        <a class="logo" href="/home"><img src="assets/images/logos/kpu-logo1.png" alt="" /></a>
                     </div>
                     <!-- navigation -->
                     <div class="menu-area d-none d-lg-inline-flex align-items-center">
-   <div class="header-top-content">
-                                           
-                                            <div class="header-info">
-                                                @if (isset($menus['header-menu']))
-                                                    @foreach ($menus['header-menu']->menuItems as $menu)
-                                                        <div class="info-item">
-                                                            <a href="{{ $menu->url }}">{{ $menu->name }}</a>
-                                                        </div>
-                                                    @endforeach
-                                                @endif
+                        <div class="header-top-content">
 
-                                            </div>
-                                             <p class="topbar-text">
-                                                Emergency <a href="tel:8089091313">808-909-1313</a>
-                                            </p>
+                            <div class="header-info">
+                                @if (isset($menus['header-menu']))
+                                    @foreach ($menus['header-menu']->menuItems as $menu)
+                                        <div class="info-item">
+                                            <a href="{{ $menu->url }}">{{ $menu->name }}</a>
                                         </div>
+                                    @endforeach
+                                @endif
+
+                            </div>
+                            <p class="topbar-text">
+                                Emergency <a href="tel:8089091313">808-909-1313</a>
+                            </p>
+                        </div>
                         <nav id="mobile-menu" class="mainmenu">
                             <ul>
                                 @if (isset($menus['main-menu']))
@@ -75,7 +74,7 @@
                         <span></span>
                         <span></span>
                     </div>
-                {{-- </div> --}}
+                    {{-- </div> --}}
                 </div>
             </div>
         </div>
