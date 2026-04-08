@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 @section('content')
+    @php
+        $activeTab = old('active_tab', session('active_tab', 'bannerSection'));
+    @endphp
     <style>
         .image-box {
             width: 180px;
@@ -69,6 +72,18 @@
         </div>
 
         <div class="card-body">
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            @endif
+
+            @if (!empty($department))
+                <div class="alert alert-info">
+                    Editing speciality CMS for <strong>{{ $department->name }}</strong>.
+                </div>
+            @endif
             {{-- <div class="container-fluid"> --}}
             <div class="row">
 
@@ -76,20 +91,20 @@
                 <div class="col-md-3">
                     <div class="list-group" id="aboutMenu" role="tablist">
 
-                        <a class="list-group-item list-group-item-action {{ old('active_tab', 'bannerSection') == 'bannerSection' ? 'active' : '' }}"
+                        <a class="list-group-item list-group-item-action {{ $activeTab == 'bannerSection' ? 'active' : '' }}"
                             data-bs-toggle="tab" href="#bannerSection" role="tab">
                             Specialities banner
                         </a>
 
-                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'contentSection' ? 'active' : '' }}"
+                        <a class="list-group-item list-group-item-action {{ $activeTab == 'contentSection' ? 'active' : '' }}"
                             data-bs-toggle="tab" href="#contentSection" role="tab">
                             Specialities content
                         </a>
-                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'blogSection' ? 'active' : '' }}"
+                        <a class="list-group-item list-group-item-action {{ $activeTab == 'blogSection' ? 'active' : '' }}"
                             data-bs-toggle="tab" href="#blogSection" role="tab">
                             Specialities Blog
                         </a>
-                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'featureSection' ? 'active' : '' }}"
+                        <a class="list-group-item list-group-item-action {{ $activeTab == 'featureSection' ? 'active' : '' }}"
                             data-bs-toggle="tab" href="#featureSection" role="tab">
                             Specialities Core Values
                         </a>
@@ -98,7 +113,7 @@
                 <div class="col-md-9">
                     <div class="tab-content">
                         <!-- ================= Banner Section ================= -->
-                        <div class="tab-pane fade {{ old('active_tab', 'bannerSection') == 'bannerSection' ? 'show active' : '' }}"
+                        <div class="tab-pane fade {{ $activeTab == 'bannerSection' ? 'show active' : '' }}"
                             id="bannerSection" role="tabpanel">
                             <div class="row mt-4">
                                 <div class="col-md-12">
@@ -107,7 +122,9 @@
                                     <form method="POST" action="{{ route('admin.Specialities.store') }}"
                                         enctype="multipart/form-data">
                                         <input type="hidden" name="active_tab" value="bannerSection">
-                                        <input type="hidden" name="pages_id" value="{{ $id }}">
+                                        <input type="hidden" name="pages_id" value="{{ old('pages_id', $id) }}">
+                                        <input type="hidden" name="department_id"
+                                            value="{{ old('department_id', $departmentId ?? '') }}">
                                         <input type="hidden" name="banner_id" value="{{ $banner->id ?? '' }}">
                                         @csrf
 
@@ -192,20 +209,17 @@
                                                 <div class="form-group">
                                                     <label class="required">Image</label>
                                                     <div class="image-box"
-                                                        onclick="document.getElementById('image').click();">
-
-                                                        @if (isset($banner) && $banner->image)
-                                                            <img src="{{ asset($banner->image) }}" id="imagePreview"
-                                                                style="width:100%; display:block;">
-                                                        @else
-                                                            <div class="triangle-placeholder" id="trianglePlaceholder">
-                                                            </div>
-                                                            <img id="imagePreview" style="display:none;">
-                                                        @endif
+                                                        onclick="document.getElementById('bannerImageInput').click();">
+                                                        <div class="triangle-placeholder" id="bannerImagePlaceholder"
+                                                            style="{{ !empty($banner->image) ? 'display:none;' : '' }}">
+                                                        </div>
+                                                        <img src="{{ !empty($banner->image) ? asset($banner->image) : '' }}"
+                                                            id="bannerImagePreview"
+                                                            style="width:100%; display:{{ !empty($banner->image) ? 'block' : 'none' }};">
                                                     </div>
-                                                    <input type="file" name="image" id="image" accept="image/*"
+                                                    <input type="file" name="image" id="bannerImageInput" accept="image/*"
                                                         class="d-none {{ $errors->has('image') ? 'is-invalid' : '' }}"
-                                                        onchange="previewImage(this)">
+                                                        onchange="previewBannerImage(this)">
 
                                                     @if ($errors->has('image'))
                                                         <div class="invalid-feedback">
@@ -224,14 +238,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade {{ old('active_tab') == 'contentSection' ? 'show active' : '' }}"
+                        <div class="tab-pane fade {{ $activeTab == 'contentSection' ? 'show active' : '' }}"
                             id="contentSection" role="tabpanel">
 
                             <form method="POST" action="{{ route('admin.Specialities.content.store') }}"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="active_tab" value="contentSection">
-                                <input type="hidden" name="pages_id" value="{{ $id }}">
+                                <input type="hidden" name="pages_id" value="{{ old('pages_id', $id) }}">
+                                <input type="hidden" name="department_id"
+                                    value="{{ old('department_id', $departmentId ?? '') }}">
                                 <input type="hidden" name="content_id" value="{{ $content->id ?? '' }}">
 
                                 <!-- Title -->
@@ -279,23 +295,20 @@
                                             <label class="required">Image</label>
 
                                             <div class="image-box text-center p-3 border" style="cursor:pointer;"
-                                                onclick="document.getElementById('imageInput').click();">
-
-                                                @if (isset($content) && $content->image)
-                                                    <img src="{{ asset($content->image) }}" id="imagePreview"
-                                                        style="max-width:100%;">
-                                                @else
-                                                    <div id="placeholder">
-                                                        <i class="fas fa-image fa-3x text-muted"></i>
-                                                        <p class="text-muted">Click to upload image</p>
-                                                    </div>
-                                                    <img id="imagePreview" style="display:none; max-width:100%;">
-                                                @endif
+                                                onclick="document.getElementById('contentImageInput').click();">
+                                                <div id="contentImagePlaceholder"
+                                                    style="{{ !empty($content->image) ? 'display:none;' : '' }}">
+                                                    <i class="fas fa-image fa-3x text-muted"></i>
+                                                    <p class="text-muted">Click to upload image</p>
+                                                </div>
+                                                <img src="{{ !empty($content->image) ? asset($content->image) : '' }}"
+                                                    id="contentImagePreview"
+                                                    style="display:{{ !empty($content->image) ? 'block' : 'none' }}; max-width:100%;">
                                             </div>
 
-                                            <input type="file" name="images" id="imageInput"
+                                            <input type="file" name="images" id="contentImageInput"
                                                 class="d-none {{ $errors->has('images') ? 'is-invalid' : '' }}"
-                                                accept="image/*" onchange="previewImage(this)">
+                                                accept="image/*" onchange="previewContentImage(this)">
 
                                             @if ($errors->has('images'))
                                                 <div class="invalid-feedback d-block">
@@ -404,13 +417,15 @@
                             </form>
 
                         </div>
-                        <div class="tab-pane fade {{ old('active_tab') == 'blogSection' ? 'show active' : '' }}"
+                        <div class="tab-pane fade {{ $activeTab == 'blogSection' ? 'show active' : '' }}"
                             id="blogSection" role="tabpanel">
 
                             <form method="POST" action="{{ route('admin.Specialities.blog.store') }}">
                                 @csrf
                                 <input type="hidden" name="active_tab" value="blogSection">
-                                <input type="hidden" name="pages_id" value="{{ $id }}">
+                                <input type="hidden" name="pages_id" value="{{ old('pages_id', $id) }}">
+                                <input type="hidden" name="department_id"
+                                    value="{{ old('department_id', $departmentId ?? '') }}">
 
                                 <div id="blog-wrapper">
 
@@ -551,7 +566,7 @@
                             </form>
 
                         </div>
-                        <div class="tab-pane fade {{ old('active_tab') == 'featureSection' ? 'show active' : '' }}"
+                        <div class="tab-pane fade {{ $activeTab == 'featureSection' ? 'show active' : '' }}"
                             id="featureSection" role="tabpanel">
 
                             <div class="row mt-4">
@@ -564,7 +579,9 @@
                                         enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" name="active_tab" value="featureSection">
-                                        <input type="hidden" name="pages_id" value="{{ $id }}">
+                                        <input type="hidden" name="pages_id" value="{{ old('pages_id', $id) }}">
+                                        <input type="hidden" name="department_id"
+                                            value="{{ old('department_id', $departmentId ?? '') }}">
                                         <input type="hidden" name="feature_id" value="{{ $feature->id ?? '' }}">
 
                                         <div class="row">
@@ -724,44 +741,46 @@
     </div>
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
     <script>
-        ClassicEditor
-            .create(document.querySelector('#editor'))
-            .catch(error => {
-                console.error(error);
-            });
+        const editorElement = document.querySelector('#editor');
 
-        function previewImage(input) {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-
-                reader.onload = function(e) {
-                    const img = document.getElementById('imagePreview');
-                    const triangle = document.getElementById('trianglePlaceholder');
-
-                    img.src = e.target.result;
-                    img.style.display = 'block';
-                    triangle.style.display = 'none';
-                };
-
-                reader.readAsDataURL(input.files[0]);
-            }
+        if (typeof ClassicEditor !== 'undefined' && editorElement) {
+            ClassicEditor
+                .create(editorElement)
+                .catch(error => {
+                    console.error(error);
+                });
         }
 
-        function previewcontentImage(input) {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
+        function previewScopedImage(input, previewId, placeholderId) {
+            if (!input.files || !input.files[0]) {
+                return;
+            }
 
-                reader.onload = function(e) {
-                    const img = document.getElementById('image-Preview');
-                    const triangle = document.getElementById('triangle-Placeholder');
+            const reader = new FileReader();
 
+            reader.onload = function(e) {
+                const img = document.getElementById(previewId);
+                const placeholder = document.getElementById(placeholderId);
+
+                if (img) {
                     img.src = e.target.result;
                     img.style.display = 'block';
-                    triangle.style.display = 'none';
-                };
+                }
 
-                reader.readAsDataURL(input.files[0]);
-            }
+                if (placeholder) {
+                    placeholder.style.display = 'none';
+                }
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+
+        function previewBannerImage(input) {
+            previewScopedImage(input, 'bannerImagePreview', 'bannerImagePlaceholder');
+        }
+
+        function previewContentImage(input) {
+            previewScopedImage(input, 'contentImagePreview', 'contentImagePlaceholder');
         }
 
         function previewSpacialityFeatureImage(input) {

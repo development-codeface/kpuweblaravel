@@ -10,6 +10,7 @@ class SpacialityBlog extends Model
 
     protected $fillable = [
         'pages_id',
+        'department_id',
         'icon',
         'title',
         'description'

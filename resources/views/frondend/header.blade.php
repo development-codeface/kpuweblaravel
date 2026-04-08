@@ -31,6 +31,10 @@
                             <ul>
                                 @if (isset($menus['main-menu']))
                                     @foreach ($menus['main-menu']->menuItems as $menu)
+                                        @php
+                                            $menuUrl = trim((string) ($menu->url ?? ''), '/');
+                                            $isSpecialityMenu = in_array($menuUrl, ['Specialities', 'specialities', 'speciality', 'spaciality'], true);
+                                        @endphp
                                         @if ($menu->submenus->count() > 0)
                                             <li class="has-dropdown">
                                                 <a href="{{ $menu->url ?? '#' }}">
@@ -39,8 +43,15 @@
 
                                                 <ul class="sub-menu">
                                                     @foreach ($menu->submenus as $sub)
+                                                        @php
+                                                            $subUrl = $sub->url ?? '#';
+
+                                                            if ($isSpecialityMenu && !empty($departmentSpecialityUrls[$sub->name])) {
+                                                                $subUrl = $departmentSpecialityUrls[$sub->name];
+                                                            }
+                                                        @endphp
                                                         <li>
-                                                            <a href="{{ $sub->url ?? '#' }}">
+                                                            <a href="{{ $subUrl }}">
                                                                 {{ $sub->name }}
                                                             </a>
                                                         </li>

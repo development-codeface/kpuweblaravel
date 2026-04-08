@@ -13,7 +13,7 @@ class PagesController extends Controller
 
     public function index()
     {
-        $data['pages'] = pages::all();
+        $data['pages'] = pages::get();
         return view('admin.pages.index', $data);
     }
 

@@ -26,12 +26,12 @@
                     <div class="col-lg-12">
                         <div class="tj_search_wrapper dr">
                             <div class="search_form">
-                                <form action="{{ route('doctor.search') }}" method="GET">
+                                <form action="{{ route('doctor.search') }}" method="GET" id="doctorSearchForm">
                                     <div class="search_input dr-banner-flr">
                                         <div class="search-box dr-search">
-                                            <input class="search-form-input" type="text" name="q"
+                                            <input class="search-form-input" type="text" name="q" id="doctorSearchInput"
                                                 value="{{ request('q') }}" placeholder="Search doctor or department"
-                                                required />
+                                                autocomplete="off" />
                                             <button type="submit">
                                                 <i class="tji-search"></i>
                                             </button>
@@ -59,7 +59,16 @@
             </div>
             <div class="row leftSwipeWrap selact-dr-card">
                 @foreach ($dcotor_data as $doctor)
-                    <div class="col-lg-3 col-sm-6 doctor-card">
+                    @php
+                        $departmentNames = $doctor->doctorDepartments
+                            ->map(function ($departmentRow) {
+                                return optional($departmentRow->department)->name;
+                            })
+                            ->filter()
+                            ->implode(' ');
+                    @endphp
+                    <div class="col-lg-3 col-sm-6 doctor-card"
+                        data-search="{{ strtolower(trim($doctor->name . ' ' . $departmentNames)) }}">
                         <div class="team-item left-swipe">
                             <div class="team-img">
                                 <div class="team-img-inner">
@@ -95,6 +104,11 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="col-12 d-none" id="doctorSearchEmptyState">
+                    <div class="text-center pt-4">
+                        <h5 class="mb-0">No doctors found for your search.</h5>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -171,4 +185,51 @@
             </div>
         </div>
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchForm = document.getElementById('doctorSearchForm');
+            const searchInput = document.getElementById('doctorSearchInput');
+            const doctorCards = Array.from(document.querySelectorAll('.doctor-card'));
+            const emptyState = document.getElementById('doctorSearchEmptyState');
+
+            if (!searchInput || !doctorCards.length) {
+                return;
+            }
+
+            const normalizeValue = function(value) {
+                return value.toLowerCase().replace(/\s+/g, ' ').trim();
+            };
+
+            const filterDoctors = function() {
+                const searchTerm = normalizeValue(searchInput.value);
+                let visibleCards = 0;
+
+                doctorCards.forEach(function(card) {
+                    const searchableText = normalizeValue(card.dataset.search || '');
+                    const isMatch = searchTerm === '' || searchableText.includes(searchTerm);
+
+                    card.classList.toggle('d-none', !isMatch);
+
+                    if (isMatch) {
+                        visibleCards++;
+                    }
+                });
+
+                if (emptyState) {
+                    emptyState.classList.toggle('d-none', visibleCards !== 0);
+                }
+            };
+
+            if (searchForm) {
+                searchForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    filterDoctors();
+                });
+            }
+
+            searchInput.addEventListener('input', filterDoctors);
+            filterDoctors();
+        });
+    </script>
 @endsection

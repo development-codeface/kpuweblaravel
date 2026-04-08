@@ -10,6 +10,7 @@ class SpacialityBanner extends Model
 
     protected $fillable = [
         'pages_id',
+        'department_id',
         'title',
         'button_text',
         'description',

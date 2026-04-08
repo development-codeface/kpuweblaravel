@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Department;
+use App\Models\pages;
 
 class DepartmentController extends Controller
 {
@@ -14,6 +15,8 @@ class DepartmentController extends Controller
     public function index()
     {
         $data['departments'] = Department::all();
+        $data['specialityPageId'] = pages::whereIn('slug', ['spaciality', 'speciality', 'specialities'])->value('id');
+
         return view('admin.department.index', $data);
     }
 

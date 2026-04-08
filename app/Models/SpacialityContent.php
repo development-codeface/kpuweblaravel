@@ -11,6 +11,7 @@ class SpacialityContent extends Model
 
     protected $fillable = [
         'pages_id',
+        'department_id',
         'title',
         'sub_title',
         'image',

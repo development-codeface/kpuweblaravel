@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Department;
 use App\Models\SpacialityBanner;
 use App\Models\SpacialityBlog;
 use App\Models\SpacialityContent;
@@ -24,13 +25,18 @@ class SpacialityController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create($id)
+    public function create(Request $request, $id)
     {
+        $departmentId = $request->integer('department_id') ?: null;
+
         $data['id'] = $id;
-        $data['banner'] = SpacialityBanner::where('pages_id', $id)->first();
-        $data['content'] = SpacialityContent::where('pages_id', $id)->with('subContents')->first();
-        $data['blog']    = SpacialityBlog::where('pages_id', $id)->get();
-        $data['feature'] = SpacialityFeature::where('pages_id', $id)->with('featureContents')->first();
+        $data['departmentId'] = $departmentId;
+        $data['department'] = $departmentId ? Department::findOrFail($departmentId) : null;
+        $data['banner'] = $this->getSpacialityRecord(SpacialityBanner::class, $id, $departmentId);
+        $data['content'] = $this->getSpacialityRecord(SpacialityContent::class, $id, $departmentId, ['subContents']);
+        $data['blog'] = $this->getSpacialityRecords(SpacialityBlog::class, $id, $departmentId);
+        $data['feature'] = $this->getSpacialityRecord(SpacialityFeature::class, $id, $departmentId, ['featureContents']);
+
         return view('admin.spaciality.create', $data);
     }
 
@@ -39,8 +45,11 @@ class SpacialityController extends Controller
      */
     public function store(Request $request)
     {
+        $departmentId = $this->resolveDepartmentId($request);
 
         $request->validate([
+            'pages_id'            => 'required|integer|exists:pages,id',
+            'department_id'       => 'nullable|integer|exists:departments,id',
             'title'              => 'required|string|max:255',
             'button_text'        => 'required|string|max:255',
             'text'               => 'required|string',
@@ -76,19 +85,23 @@ class SpacialityController extends Controller
 
         // Common Fields
         $banner->pages_id    = $request->pages_id;
+        $banner->department_id = $departmentId;
         $banner->title       = $request->title;
         $banner->button_text = $request->button_text;
         $banner->text        = $request->text;
         $banner->description = $request->banner_description;
         $banner->save();
 
-        return redirect()->route('admin.pages.index')
-            ->with('success', 'Spaciality saved successfully.');
+        return $this->redirectToBuilder($request, 'Spaciality saved successfully.');
     }
 
     public function contentStore(Request $request)
     {
+        $departmentId = $this->resolveDepartmentId($request);
+
         $request->validate([
+            'pages_id' => 'required|integer|exists:pages,id',
+            'department_id' => 'nullable|integer|exists:departments,id',
             'title' => 'required|string|max:255',
             'sub_title' => 'required|string|max:255',
 
@@ -111,6 +124,7 @@ class SpacialityController extends Controller
 
             $content->update([
                 'pages_id'  => $request->pages_id,
+                'department_id' => $departmentId,
                 'title'     => $request->title,
                 'sub_title' => $request->sub_title,
             ]);
@@ -118,6 +132,7 @@ class SpacialityController extends Controller
 
             $content = SpacialityContent::create([
                 'pages_id'  => $request->pages_id,
+                'department_id' => $departmentId,
                 'title'     => $request->title,
                 'sub_title' => $request->sub_title,
             ]);
@@ -183,13 +198,16 @@ class SpacialityController extends Controller
             }
         }
 
-        return redirect()->route('admin.pages.index')
-            ->with('success', 'Spaciality saved successfully.');
+        return $this->redirectToBuilder($request, 'Spaciality saved successfully.');
     }
 
     public function blogStore(Request $request)
     {
+        $departmentId = $this->resolveDepartmentId($request);
+
         $request->validate([
+            'pages_id' => 'required|integer|exists:pages,id',
+            'department_id' => 'nullable|integer|exists:departments,id',
             'icon.*'        => 'required',
             'blog_title.*'       => 'required',
             'blog_description.*' => 'required',
@@ -204,6 +222,7 @@ class SpacialityController extends Controller
 
                 $blog->update([
                     'pages_id'   => $request->pages_id,
+                    'department_id' => $departmentId,
                     'icon'       => $request->icon[$key],
                     'title'      => $request->blog_title[$key],
                     'description' => $request->blog_description[$key],
@@ -213,6 +232,7 @@ class SpacialityController extends Controller
                 // 🟢 CREATE
                 SpacialityBlog::create([
                     'pages_id'   => $request->pages_id,
+                    'department_id' => $departmentId,
                     'icon'       => $request->icon[$key],
                     'title'      => $request->blog_title[$key],
                     'description' => $request->blog_description[$key],
@@ -220,13 +240,16 @@ class SpacialityController extends Controller
             }
         }
 
-        return redirect()->route('admin.pages.index')
-            ->with('success', 'Spaciality saved successfully.');
+        return $this->redirectToBuilder($request, 'Spaciality saved successfully.');
     }
 
     public function featureStore(Request $request)
     {
+        $departmentId = $this->resolveDepartmentId($request);
+
         $request->validate([
+            'pages_id' => 'required|integer|exists:pages,id',
+            'department_id' => 'nullable|integer|exists:departments,id',
             'feature_title' => 'required|string|max:255',
             'feature_sub_title' => 'required|string|max:255',
             'feature_icon' => 'nullable|array',
@@ -247,6 +270,7 @@ class SpacialityController extends Controller
             ['id' => $request->feature_id],
             [
                 'pages_id' => $request->pages_id,
+                'department_id' => $departmentId,
                 'title' => $request->feature_title,
                 'sub_title' => $request->feature_sub_title,
             ]
@@ -300,8 +324,7 @@ class SpacialityController extends Controller
             $removedContent->delete();
         }
 
-        return redirect()->route('admin.pages.index')
-            ->with('success', 'Spaciality core values saved successfully.');
+        return $this->redirectToBuilder($request, 'Spaciality core values saved successfully.');
     }
     /**
      * Display the specified resource.
@@ -333,6 +356,67 @@ class SpacialityController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    private function getSpacialityRecord(string $modelClass, int $pageId, ?int $departmentId = null, array $with = [])
+    {
+        $query = $modelClass::query();
+
+        if (!empty($with)) {
+            $query->with($with);
+        }
+
+        $query->where('pages_id', $pageId);
+
+        if ($departmentId) {
+            return $query->where('department_id', $departmentId)->first();
+        }
+
+        return $query->where(function ($departmentQuery) {
+            $departmentQuery->whereNull('department_id')
+                ->orWhere('department_id', 0);
+        })->first();
+    }
+
+    private function getSpacialityRecords(string $modelClass, int $pageId, ?int $departmentId = null, array $with = [])
+    {
+        $query = $modelClass::query();
+
+        if (!empty($with)) {
+            $query->with($with);
+        }
+
+        $query->where('pages_id', $pageId);
+
+        if ($departmentId) {
+            return $query->where('department_id', $departmentId)->get();
+        }
+
+        return $query->where(function ($departmentQuery) {
+            $departmentQuery->whereNull('department_id')
+                ->orWhere('department_id', 0);
+        })->get();
+    }
+
+    private function redirectToBuilder(Request $request, string $message)
+    {
+        $routeParameters = ['id' => $request->pages_id];
+
+        $departmentId = $this->resolveDepartmentId($request);
+
+        if ($departmentId) {
+            $routeParameters['department_id'] = $departmentId;
+        }
+
+        return redirect()
+            ->route('admin.Specialities.create', $routeParameters)
+            ->with('success', $message)
+            ->with('active_tab', $request->input('active_tab', 'bannerSection'));
+    }
+
+    private function resolveDepartmentId(Request $request): ?int
+    {
+        return $request->filled('department_id') ? (int) $request->department_id : null;
     }
 
     private function uploadFeatureIcon($icon, int $key): string

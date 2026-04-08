@@ -53,6 +53,18 @@
                                 <td>{{ $department->description }}</td>
                                 <td>
                                     <div class="action-buttons">
+                                        @if (!empty($specialityPageId))
+                                            <a class="btn btn-xs btn-primary"
+                                                href="{{ route('admin.Specialities.create', ['id' => $specialityPageId, 'department_id' => $department->id]) }}"
+                                                title="Edit speciality CMS">
+                                                <i class="fi fi-br-pencil"></i>
+                                            </a>
+                                        @else
+                                            <button type="button" class="btn btn-xs btn-secondary" disabled
+                                                title="Create the speciality page in CMS first">
+                                                <i class="fi fi-br-pencil"></i>
+                                            </button>
+                                        @endif
 
                                         {{-- @can('user_edit') --}}
                                         <a class="btn btn-xs btn-info" href="{{ route('admin.department.edit',$department->id) }}">

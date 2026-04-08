@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
+use App\Models\Department;
 use App\Models\MenuLocations;
 use App\Models\pages;
 
@@ -66,9 +67,15 @@ class AppServiceProvider extends ServiceProvider
                 ->get()
                 ->keyBy('slug'); // 🔥 use first, not get
 
+            $departmentSpecialityUrls = Department::query()
+                ->pluck('id', 'name')
+                ->map(fn($departmentId) => route('Specialities.index', ['department_id' => $departmentId], false))
+                ->all();
+
             $view->with('menus', $menus);
             $view->with('currentSeoPage', $currentPage);
             $view->with('currentSeo', optional($currentPage)->seo);
+            $view->with('departmentSpecialityUrls', $departmentSpecialityUrls);
         });
     }
 }
