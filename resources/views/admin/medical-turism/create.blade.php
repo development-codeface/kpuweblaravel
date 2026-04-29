@@ -344,7 +344,7 @@
 
                         </div>
                         <div class="tab-pane fade {{ old('active_tab') == 'blogSection' ? 'show active' : '' }}" id="blogSection" role="tabpanel">
-                            <h1 class="mb-3">content Section</h1>
+                            <h1 class="mb-3">Medical Trip Section</h1>
                             <hr>
                             <form method="POST" action="{{ route('admin.medical-turism.medical.store') }}">
                                 @csrf

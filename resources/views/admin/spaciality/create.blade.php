@@ -40,6 +40,27 @@
         .col-md-3 {
             align-self: flex-start;
         }
+
+        .spaciality-feature-row {
+            border: 1px solid #d9d9d9;
+            border-radius: 8px;
+            background: #fbfbfb;
+        }
+
+        .spaciality-feature-row .image-box {
+            width: 100%;
+            max-width: 220px;
+            height: 200px;
+        }
+
+        .section-title {
+            margin-bottom: 0.35rem;
+        }
+
+        .section-copy {
+            margin-bottom: 1.5rem;
+            color: #6c757d;
+        }
     </style>
     <div class="card">
         <div class="card-header">
@@ -67,6 +88,10 @@
                         <a class="list-group-item list-group-item-action {{ old('active_tab') == 'blogSection' ? 'active' : '' }}"
                             data-bs-toggle="tab" href="#blogSection" role="tab">
                             spaciality Blog
+                        </a>
+                        <a class="list-group-item list-group-item-action {{ old('active_tab') == 'featureSection' ? 'active' : '' }}"
+                            data-bs-toggle="tab" href="#featureSection" role="tab">
+                            Core Values
                         </a>
                     </div>
                 </div>
@@ -526,6 +551,171 @@
                             </form>
 
                         </div>
+                        <div class="tab-pane fade {{ old('active_tab') == 'featureSection' ? 'show active' : '' }}"
+                            id="featureSection" role="tabpanel">
+
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <h1 class="section-title">Core Values</h1>
+                                    <p class="section-copy">This matches the Home core values form with repeatable icon,
+                                        name, and description rows.</p>
+
+                                    <form method="POST" action="{{ route('admin.spaciality.feature.store') }}"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="active_tab" value="featureSection">
+                                        <input type="hidden" name="pages_id" value="{{ $id }}">
+                                        <input type="hidden" name="feature_id" value="{{ $feature->id ?? '' }}">
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="required">Title</label>
+                                                    <input type="text" name="feature_title"
+                                                        value="{{ old('feature_title', $feature->title ?? '') }}"
+                                                        class="form-control {{ $errors->has('feature_title') ? 'is-invalid' : '' }}"
+                                                        placeholder="Enter title">
+                                                    @if ($errors->has('feature_title'))
+                                                        <div class="invalid-feedback">
+                                                            {{ $errors->first('feature_title') }}
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="required">Sub Title</label>
+                                                    <input type="text" name="feature_sub_title"
+                                                        value="{{ old('feature_sub_title', $feature->sub_title ?? '') }}"
+                                                        class="form-control {{ $errors->has('feature_sub_title') ? 'is-invalid' : '' }}"
+                                                        placeholder="Enter sub title">
+                                                    @if ($errors->has('feature_sub_title'))
+                                                        <div class="invalid-feedback">
+                                                            {{ $errors->first('feature_sub_title') }}
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="spaciality-feature-wrapper">
+                                            @php
+                                                $oldNames = old('names', []);
+                                                $oldContentIds = old('content_id', []);
+                                                $oldDescriptions = old('feature_description', []);
+                                                $existingIcons = old('existing_feature_icon', []);
+
+                                                if (is_array($oldNames) && count($oldNames)) {
+                                                    $featureRows = collect($oldNames)->map(function ($name, $index) use ($existingIcons, $oldContentIds, $oldDescriptions) {
+                                                        return (object) [
+                                                            'id' => $oldContentIds[$index] ?? null,
+                                                            'icon' => $existingIcons[$index] ?? '',
+                                                            'name' => $name ?? '',
+                                                            'description' => $oldDescriptions[$index] ?? '',
+                                                        ];
+                                                    });
+                                                } else {
+                                                    $featureRows =
+                                                        isset($feature) && $feature->featureContents->count()
+                                                            ? $feature->featureContents
+                                                            : collect([
+                                                                (object) [
+                                                                    'id' => null,
+                                                                    'icon' => '',
+                                                                    'name' => '',
+                                                                    'description' => '',
+                                                                ],
+                                                            ]);
+                                                }
+                                            @endphp
+
+                                            @foreach ($featureRows as $index => $row)
+                                                <div class="spaciality-feature-row p-3 mb-3">
+                                                    <input type="hidden" name="content_id[]"
+                                                        value="{{ $row->id ?? '' }}">
+                                                    <input type="hidden" name="existing_feature_icon[]"
+                                                        value="{{ $row->icon ?? '' }}">
+
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="required">Icon</label>
+                                                                <div class="image-box spaciality-feature-image-trigger">
+                                                                    @if (!empty($row->icon))
+                                                                        <img src="{{ asset($row->icon) }}"
+                                                                            class="image-preview"
+                                                                            style="display:block;">
+                                                                    @else
+                                                                        <div class="triangle-placeholder"></div>
+                                                                        <img class="image-preview"
+                                                                            style="display:none;">
+                                                                    @endif
+                                                                </div>
+                                                                <input type="file" name="feature_icon[]"
+                                                                    accept="image/*"
+                                                                    class="d-none spaciality-feature-image-input {{ $errors->has('feature_icon.' . $index) ? 'is-invalid' : '' }}">
+                                                                @if ($errors->has('feature_icon.' . $index))
+                                                                    <div class="invalid-feedback d-block">
+                                                                        {{ $errors->first('feature_icon.' . $index) }}
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="required">Name</label>
+                                                                <input type="text" name="names[]"
+                                                                    value="{{ $row->name ?? '' }}"
+                                                                    class="form-control {{ $errors->has('names.' . $index) ? 'is-invalid' : '' }}">
+                                                                @if ($errors->has('names.' . $index))
+                                                                    <div class="invalid-feedback">
+                                                                        {{ $errors->first('names.' . $index) }}
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mt-2">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Description</label>
+                                                                <textarea name="feature_description[]"
+                                                                    class="form-control {{ $errors->has('feature_description.' . $index) ? 'is-invalid' : '' }}"
+                                                                    rows="2">{{ $row->description ?? '' }}</textarea>
+                                                                @if ($errors->has('feature_description.' . $index))
+                                                                    <div class="invalid-feedback">
+                                                                        {{ $errors->first('feature_description.' . $index) }}
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <button type="button"
+                                                        class="btn btn-danger btn-sm spaciality-feature-remove-row">
+                                                        Remove
+                                                    </button>
+                                                </div>
+                                            @endforeach
+                                        </div>
+
+                                        <button type="button" id="addSpacialityFeatureRow"
+                                            class="btn btn-primary mb-3">
+                                            + Add Row
+                                        </button>
+
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-success min-w-200">
+                                                Save
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -572,6 +762,36 @@
 
                 reader.readAsDataURL(input.files[0]);
             }
+        }
+
+        function previewSpacialityFeatureImage(input) {
+            if (!input.files || !input.files[0]) {
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                const row = input.closest('.spaciality-feature-row');
+
+                if (!row) {
+                    return;
+                }
+
+                const preview = row.querySelector('.image-preview');
+                const placeholder = row.querySelector('.triangle-placeholder');
+
+                if (preview) {
+                    preview.src = event.target.result;
+                    preview.style.display = 'block';
+                }
+
+                if (placeholder) {
+                    placeholder.style.display = 'none';
+                }
+            };
+
+            reader.readAsDataURL(input.files[0]);
         }
 
 
@@ -634,10 +854,78 @@
             wrapper.insertAdjacentHTML('beforeend', html);
         });
 
+        document.getElementById('addSpacialityFeatureRow').addEventListener('click', function() {
+            let wrapper = document.getElementById('spaciality-feature-wrapper');
+
+            let html = `
+    <div class="spaciality-feature-row p-3 mb-3">
+        <input type="hidden" name="content_id[]" value="">
+        <input type="hidden" name="existing_feature_icon[]" value="">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="required">Icon</label>
+                    <div class="image-box spaciality-feature-image-trigger">
+                        <div class="triangle-placeholder"></div>
+                        <img class="image-preview" style="display:none;">
+                    </div>
+                    <input type="file" name="feature_icon[]" accept="image/*"
+                        class="d-none spaciality-feature-image-input">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="required">Name</label>
+                    <input type="text" name="names[]" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="feature_description[]" rows="2" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-danger btn-sm spaciality-feature-remove-row">
+            Remove
+        </button>
+    </div>
+    `;
+
+            wrapper.insertAdjacentHTML('beforeend', html);
+        });
+
 
         document.addEventListener('click', function(e) {
+            if (e.target.closest('.spaciality-feature-image-trigger')) {
+                let row = e.target.closest('.spaciality-feature-row');
+                let input = row ? row.querySelector('.spaciality-feature-image-input') : null;
+
+                if (input) {
+                    input.click();
+                }
+
+                return;
+            }
+
             if (e.target.classList.contains('remove-row')) {
                 e.target.closest('.feature-row').remove();
+            }
+
+            if (e.target.classList.contains('spaciality-feature-remove-row')) {
+                e.target.closest('.spaciality-feature-row').remove();
+            }
+        });
+
+        document.addEventListener('change', function(e) {
+            if (e.target.classList.contains('spaciality-feature-image-input')) {
+                previewSpacialityFeatureImage(e.target);
             }
         });
     </script>

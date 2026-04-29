@@ -1,0 +1,250 @@
+resources\views\frondend\ambulance\index.blade.php:74:                                    <img src="{{ $contents->image }}" alt="" />
+resources\views\frondend\ambulance\index.blade.php:86:                                        <i class="tji-phone-3"></i>
+resources\views\frondend\ambulance\index.blade.php:100:                                                <input type="text" name="cfName" />
+resources\views\frondend\ambulance\index.blade.php:107:                                                <input type="tel" name="cfPhone" />
+resources\views\frondend\ambulance\index.blade.php:144:                                                <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
+resources\views\frondend\ambulance\index.blade.php:163:                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
+resources\views\frondend\ambulance\index.blade.php:175:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\ambulance\index.blade.php:176:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\ambulance\index.blade.php:181:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\ambulance\index.blade.php:182:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\ambulance\index.blade.php:202:                                                <img src="{{ asset('images/facility/' . $value->image) }}"
+resources\views\frondend\ambulance\index.blade.php:213:                                                            <i class="tji-arrow-right-big"></i>
+resources\views\frondend\about\index.blade.php:58:                                <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
+resources\views\frondend\about\index.blade.php:65:                        <img class="strategy-card-bg" src="{{ asset($blog->image) }}"
+resources\views\frondend\about\index.blade.php:71:                                <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
+resources\views\frondend\about\index.blade.php:80:                                <i class="{{ $blog->icon }}"></i>
+resources\views\frondend\about\index.blade.php:100:                            <img src="{{ $content->logo_image }}" alt="">
+resources\views\frondend\about\index.blade.php:160:                                {{ $feature->title }}
+resources\views\frondend\about\index.blade.php:180:                                        <i class="{{ $content->icon }}"></i>
+resources\views\frondend\about\index.blade.php:304:                                            <i class="{{ $item->icon }}"></i>
+resources\views\frondend\about\index.blade.php:320:                                            <i class="tji-arrow-right-long"></i>
+resources\views\frondend\about\index.blade.php:326:                                        <img src="{{ asset($item->image) }}" alt="">
+resources\views\frondend\about\index.blade.php:362:                                            <i class="{{ $sectionData->icon }}"></i>
+resources\views\frondend\about\index.blade.php:403:                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
+resources\views\frondend\about\index.blade.php:415:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\about\index.blade.php:416:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\about\index.blade.php:421:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\about\index.blade.php:422:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\about\index.blade.php:442:                                                <img src="{{ asset('images/facility/' . $value->image) }}"
+resources\views\frondend\about\index.blade.php:453:                                                            <i class="tji-arrow-right-big"></i>
+resources\views\frondend\blood_bank\index.blade.php:33:                            <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i class="tji-box"></i>
+resources\views\frondend\blood_bank\index.blade.php:78:                                <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i class="tji-box"></i>OUR
+resources\views\frondend\blood_bank\index.blade.php:85:                                        <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
+resources\views\frondend\blood_bank\index.blade.php:103:                            <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
+resources\views\frondend\blood_bank\index.blade.php:115:                                            <i class="tji-arrow-left"></i>
+resources\views\frondend\blood_bank\index.blade.php:116:                                            <i class="tji-arrow-left"></i>
+resources\views\frondend\blood_bank\index.blade.php:121:                                            <i class="tji-arrow-right"></i>
+resources\views\frondend\blood_bank\index.blade.php:122:                                            <i class="tji-arrow-right"></i>
+resources\views\frondend\blood_bank\index.blade.php:141:                                                    <img src="{{ asset('images/facility/' . $value->image) }}"
+resources\views\frondend\blood_bank\index.blade.php:152:                                                                <i class="tji-arrow-right-big"></i>
+resources\views\frondend\app.blade.php:66:                            <img src="{{ asset('assets/images/logos/kpu-logo1.png') }}" alt="Logo" />
+resources\views\frondend\app.blade.php:71:                            <i class="fa-thin fa-times"></i>
+resources\views\frondend\icu\index.blade.php:102:                                        <img src="assets/images/service/service-details.webp" alt="Images" />
+resources\views\frondend\icu\index.blade.php:142:                                        <img src="{{ !empty($value->icon) ? asset($value->icon) : asset('images/kidney-icon.png') }}"
+resources\views\frondend\icu\index.blade.php:165:                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
+resources\views\frondend\icu\index.blade.php:177:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\icu\index.blade.php:178:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\icu\index.blade.php:183:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\icu\index.blade.php:184:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\icu\index.blade.php:204:                                                <img src="{{ asset('images/facility/' . $value->image) }}"
+resources\views\frondend\icu\index.blade.php:215:                                                            <i class="tji-arrow-right-big"></i>
+resources\views\frondend\vision\index.blade.php:33:                                    <i class="{{ $value->icon }}"></i>
+resources\views\frondend\vision\index.blade.php:65:                            <i class="tji-box"></i>
+resources\views\frondend\vision\index.blade.php:100:                                        <img src="{{ asset($item->image) }}" alt="">
+resources\views\frondend\vision\index.blade.php:105:                                        <img src="{{ asset($item->image) }}" alt="">
+resources\views\frondend\vision\index.blade.php:140:                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
+resources\views\frondend\vision\index.blade.php:152:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\vision\index.blade.php:153:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\vision\index.blade.php:158:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\vision\index.blade.php:159:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\vision\index.blade.php:178:                                                <img src="{{ asset('images/facility/' . $value->image) }}"
+resources\views\frondend\vision\index.blade.php:190:                                                            <i class="tji-arrow-right-big"></i>
+resources\views\frondend\testing\index.blade.php:95:                                        <img src="assets/images/service/service-details.webp" alt="Images" />
+resources\views\frondend\testing\index.blade.php:139:                            <img data-speed=".8" src="{{ $content->image }}" alt="" />
+resources\views\frondend\testing\index.blade.php:156:                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
+resources\views\frondend\testing\index.blade.php:168:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\testing\index.blade.php:169:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\testing\index.blade.php:174:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\testing\index.blade.php:175:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\testing\index.blade.php:195:                                                <img src="{{ asset('images/facility/' . $value->image) }}"
+resources\views\frondend\testing\index.blade.php:206:                                                            <i class="tji-arrow-right-big"></i>
+resources\views\frondend\hospital_ot\index.blade.php:96:                                        <img src="assets/images/service/service-details.webp" alt="Images" />
+resources\views\frondend\hospital_ot\index.blade.php:140:                            <img data-speed=".8" src="{{ $content->image }}" alt="" />
+resources\views\frondend\hospital_ot\index.blade.php:155:                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
+resources\views\frondend\hospital_ot\index.blade.php:167:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\hospital_ot\index.blade.php:168:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\hospital_ot\index.blade.php:173:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\hospital_ot\index.blade.php:174:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\hospital_ot\index.blade.php:194:                                                <img src="{{ asset('images/facility/' . $value->image) }}"
+resources\views\frondend\hospital_ot\index.blade.php:205:                                                            <i class="tji-arrow-right-big"></i>
+resources\views\frondend\hospital-international\index.blade.php:57:                                        <img src="assets/images/service/service-details.webp" alt="Images" />
+resources\views\frondend\hospital-international\index.blade.php:104:                            <img data-speed=".8" src="{{ $content->image }}" alt="" />
+resources\views\frondend\hospital-international\index.blade.php:112:            <img src="assets/images/shape/shape-blur.svg" alt="" />
+resources\views\frondend\hospital-international\index.blade.php:137:                        <input type="text" id="fullname" placeholder="Your name" />
+resources\views\frondend\hospital-international\index.blade.php:141:                        <input type="text" id="country" placeholder="Your country" />
+resources\views\frondend\hospital-international\index.blade.php:148:                        <input type="email" id="email" placeholder="Your email" />
+resources\views\frondend\hospital-international\index.blade.php:152:                        <input type="tel" id="phone" placeholder="+1 234 567 8900" />
+resources\views\frondend\hospital-international\index.blade.php:158:                    <input type="text" id="condition" placeholder="e.g., Cardiac surgery, Cancer treatment" />
+resources\views\frondend\hospital-international\index.blade.php:169:                        <input type="file" multiple accept=".pdf,.jpg,.jpeg,.png" />
+resources\views\frondend\hospital-international\index.blade.php:239:                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
+resources\views\frondend\hospital-international\index.blade.php:251:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\hospital-international\index.blade.php:252:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\hospital-international\index.blade.php:257:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\hospital-international\index.blade.php:258:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\hospital-international\index.blade.php:278:                                                <img src="{{ asset('images/facility/' . $value->image) }}"
+resources\views\frondend\hospital-international\index.blade.php:289:                                                            <i class="tji-arrow-right-big"></i>
+resources\views\frondend\spaciality\index.blade.php:30:                                    <span class="btn-text"><i class="tji-arrow-right-long"></i> {{ $banner->text }}</span>
+resources\views\frondend\spaciality\index.blade.php:38:                                    {{-- <span class="btn-icon"><i class="tji-arrow-right-long"></i></span> --}}
+resources\views\frondend\spaciality\index.blade.php:44:                                    {{-- <span class="btn-icon"><i class="tji-arrow-right-long"></i></span> --}}
+resources\views\frondend\spaciality\index.blade.php:232:                        <h2 class="sec-title title-anim">{{ $feature->title }}</h2>
+resources\views\frondend\spaciality\index.blade.php:245:                                    <i class="{{ $content->icon }}"></i>
+resources\views\frondend\spaciality\index.blade.php:265:                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i class="tji-box"></i> Meet Our
+resources\views\frondend\spaciality\index.blade.php:277:                                    <img src="{{ $value->image }}" alt="">
+resources\views\frondend\spaciality\index.blade.php:311:                            <img src="{{ asset($contents->image) }}" alt="">
+resources\views\frondend\spaciality\index.blade.php:381:                                                <i class="{{ $item->icon }}"></i>
+resources\views\frondend\spaciality\index.blade.php:401:                                                        <i class="tji-arrow-right-long"></i>
+resources\views\frondend\spaciality\index.blade.php:426:                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
+resources\views\frondend\spaciality\index.blade.php:438:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\spaciality\index.blade.php:439:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\spaciality\index.blade.php:444:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\spaciality\index.blade.php:445:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\spaciality\index.blade.php:465:                                                <img src="{{ asset('images/facility/' . $value->image) }}"
+resources\views\frondend\spaciality\index.blade.php:476:                                                            <i class="tji-arrow-right-big"></i>
+resources\views\frondend\spaciality\index.blade.php:513:                                    <img src="assets/images/brands/brand-1.webp" alt="">
+resources\views\frondend\spaciality\index.blade.php:518:                                    <img src="assets/images/brands/brand-2.webp" alt="">
+resources\views\frondend\spaciality\index.blade.php:523:                                    <img src="assets/images/brands/brand-3.webp" alt="">
+resources\views\frondend\spaciality\index.blade.php:528:                                    <img src="assets/images/brands/brand-4.webp" alt="">
+resources\views\frondend\spaciality\index.blade.php:533:                                    <img src="assets/images/brands/brand-5.webp" alt="">
+resources\views\frondend\spaciality\index.blade.php:538:                                    <img src="assets/images/brands/brand-6.webp" alt="">
+resources\views\frondend\home.blade.php:65:                                        <i class="tji-arrow-right-long"></i>
+resources\views\frondend\home.blade.php:68:                                        <img src="{{ !empty($content->icon) ? asset($content->icon) : asset('images/kidney-icon.png') }}"
+resources\views\frondend\home.blade.php:137:                                    <img src="{{ asset($homeContentImage1) }}" alt="">
+resources\views\frondend\home.blade.php:159:                                    <img src="{{ asset($homeContentImage2) }}" alt="">
+resources\views\frondend\home.blade.php:164:                                    <img src="{{ asset($homeContentImage3) }}" alt="">
+resources\views\frondend\home.blade.php:196:                                <img src="{{ $data->image }}" alt="" />
+resources\views\frondend\home.blade.php:229:                                            <img src="{{ asset($item->image) }}" alt="slider-image" />
+resources\views\frondend\home.blade.php:252:                            <a href=""><img src="{{ asset($edit_section->image) }}" alt="" /></a>
+resources\views\frondend\home.blade.php:324:                                <img src="{{ asset($sectionSlides->first()->image) }}" alt="">
+resources\views\frondend\home.blade.php:359:                                    <i class="tji-box"></i>
+resources\views\frondend\home.blade.php:369:                                    <img src="{{ asset($item->image) }}" alt="blog-image" />
+resources\views\frondend\home.blade.php:400:                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
+resources\views\frondend\home.blade.php:412:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\home.blade.php:413:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\home.blade.php:418:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\home.blade.php:419:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\home.blade.php:439:                                                <img src="{{ asset('images/facility/' . $value->image) }}"
+resources\views\frondend\home.blade.php:450:                                                            <i class="tji-arrow-right-big"></i>
+resources\views\frondend\header.blade.php:10:                        <a class="logo" href="/home"><img src="assets/images/logos/kpu-logo1.png"
+resources\views\frondend\form.blade.php:16:                                            <input type="text" name="cfName" />
+resources\views\frondend\form.blade.php:23:                                            <input type="tel" name="cfPhone" />
+resources\views\frondend\footer.blade.php:9:                                  <img src="assets/images/logos/kpu-logo1.png" alt="Logos" />
+resources\views\frondend\footer.blade.php:27:                                            <input type="text" name="cfName" />
+resources\views\frondend\footer.blade.php:34:                                            <input type="tel" name="cfPhone" />
+resources\views\frondend\footer.blade.php:143:                                      <a href="https://www.facebook.com/" target="_blank"><i
+resources\views\frondend\footer.blade.php:147:                                      <a href="https://www.instagram.com/" target="_blank"><i
+resources\views\frondend\footer.blade.php:151:                                      <a href="https://x.com/" target="_blank"><i
+resources\views\frondend\footer.blade.php:155:                                      <a href="https://www.linkedin.com/" target="_blank"><i
+resources\views\frondend\second_opinion\index.blade.php:118:                                    <img src="{{ asset($doctor->image) }}" alt="" />
+resources\views\frondend\second_opinion\index.blade.php:138:                                <!-- <a class="mail-at" href="mailto:info@bexon.com"><i class="tji-at"></i></a> -->
+resources\views\frondend\second_opinion\index.blade.php:154:                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
+resources\views\frondend\second_opinion\index.blade.php:166:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\second_opinion\index.blade.php:167:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\second_opinion\index.blade.php:172:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\second_opinion\index.blade.php:173:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\second_opinion\index.blade.php:192:                                                <img src="{{ asset('images/facility/' . $value->image) }}"
+resources\views\frondend\second_opinion\index.blade.php:204:                                                            <i class="tji-arrow-right-big"></i>
+resources\views\frondend\second_opinion\index.blade.php:339:        //                         <img src="${doctor.image}" alt="${doctor.name}" />
+resources\views\frondend\room\index.blade.php:424:                        <img
+resources\views\frondend\room\index.blade.php:472:                <input type="text" placeholder="Enter your full name" />
+resources\views\frondend\room\index.blade.php:476:                <input type="tel" placeholder="+91 00000 00000" />
+resources\views\frondend\room\index.blade.php:480:                <input type="date" id="dateInput" />
+resources\views\frondend\room\index.blade.php:516:                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
+resources\views\frondend\room\index.blade.php:528:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\room\index.blade.php:529:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\room\index.blade.php:534:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\room\index.blade.php:535:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\room\index.blade.php:555:                                                <img src="{{ asset('images/facility/' . $value->image) }}"
+resources\views\frondend\room\index.blade.php:566:                                                            <i class="tji-arrow-right-big"></i>
+resources\views\frondend\doctors\index.blade.php:32:                                            <input class="search-form-input" type="text" name="q"
+resources\views\frondend\doctors\index.blade.php:36:                                                <i class="tji-search"></i>
+resources\views\frondend\doctors\index.blade.php:55:                              <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i class="tji-box"></i> Meet Our Team</span>
+resources\views\frondend\doctors\index.blade.php:66:                                    <img src="{{ $doctor->image }}" alt="" />
+resources\views\frondend\doctors\index.blade.php:93:                                <!-- <a class="mail-at" href="mailto:info@bexon.com"><i class="tji-at"></i></a> -->
+resources\views\frondend\doctors\index.blade.php:107:                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
+resources\views\frondend\doctors\index.blade.php:119:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\doctors\index.blade.php:120:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\doctors\index.blade.php:125:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\doctors\index.blade.php:126:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\doctors\index.blade.php:146:                                                <img src="{{ asset('images/facility/' . $value->image) }}"
+resources\views\frondend\doctors\index.blade.php:157:                                                            <i class="tji-arrow-right-big"></i>
+resources\views\frondend\rehab\index.blade.php:59:                                        <img src="assets/images/service/service-details.webp" alt="Images" />
+resources\views\frondend\rehab\index.blade.php:119:                            <img data-speed=".8" src="{{  $content->image  }}" alt="" />
+resources\views\frondend\rehab\index.blade.php:136:                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
+resources\views\frondend\rehab\index.blade.php:148:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\rehab\index.blade.php:149:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\rehab\index.blade.php:154:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\rehab\index.blade.php:155:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\rehab\index.blade.php:175:                                                <img src="{{ asset('images/facility/' . $value->image) }}" alt="">
+resources\views\frondend\rehab\index.blade.php:185:                                                            <i class="tji-arrow-right-big"></i>
+resources\views\frondend\directors\index.blade.php:41:                                <a href="blog-details.html"><img src="{{ asset($blog->image) }}" alt=""></a>
+resources\views\frondend\directors\index.blade.php:57:                                    <span class="btn-icon"><i class="fa-brands fa-linkedin-in"></i></span>
+resources\views\frondend\directors\index.blade.php:61:                                    <span class="btn-icon"><i class="fa-brands fa-email-in"></i></span>
+resources\views\frondend\directors\index.blade.php:100:                                                                <i class="tji-list"></i>
+resources\views\frondend\directors\index.blade.php:120:                                                                <i class="tji-list"></i>
+resources\views\frondend\directors\index.blade.php:148:                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i class="tji-box"></i>
+resources\views\frondend\directors\index.blade.php:157:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\directors\index.blade.php:158:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\directors\index.blade.php:163:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\directors\index.blade.php:164:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\directors\index.blade.php:184:                                                <img src="{{ asset('images/facility/'.$value->image) }}" alt="">
+resources\views\frondend\directors\index.blade.php:192:                                                            <i class="tji-arrow-right-big"></i>
+resources\views\frondend\pharmacy\index.blade.php:76:                                                <i class="{{ $sub_content->icon }}"></i>
+resources\views\frondend\pharmacy\index.blade.php:122:                                                            <i class="tji-list"></i>
+resources\views\frondend\pharmacy\index.blade.php:132:                                                            <i class="tji-list"></i>
+resources\views\frondend\pharmacy\index.blade.php:162:                                                                        <p class="desc"><i class="tji-service-1"></i>
+resources\views\frondend\pharmacy\index.blade.php:201:                            style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;"><i
+resources\views\frondend\pharmacy\index.blade.php:215:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\pharmacy\index.blade.php:216:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\pharmacy\index.blade.php:222:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\pharmacy\index.blade.php:223:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\pharmacy\index.blade.php:243:                                                <img src="{{ asset('images/facility/' . $value->image) }}" alt="">
+resources\views\frondend\pharmacy\index.blade.php:254:                                                            <i class="tji-arrow-right-big"></i>
+resources\views\frondend\career\index.blade.php:34:                                <i class="{{ $career->icon }}"></i>
+resources\views\frondend\career\index.blade.php:61:                                    <i class="tji-location"></i>
+resources\views\frondend\career\index.blade.php:70:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\career\index.blade.php:71:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\career\index.blade.php:93:                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
+resources\views\frondend\career\index.blade.php:105:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\career\index.blade.php:106:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\career\index.blade.php:111:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\career\index.blade.php:112:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\career\index.blade.php:132:                                                <img src="{{ asset('images/facility/' . $value->image) }}"
+resources\views\frondend\career\index.blade.php:143:                                                            <i class="tji-arrow-right-big"></i>
+resources\views\frondend\package\index.blade.php:33:                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i class="tji-box"></i>Latest
+resources\views\frondend\package\index.blade.php:57:                                    <a href="blog-details.html"><img src="{{ asset($item->image) }}" alt="" /></a>
+resources\views\frondend\package\index.blade.php:91:                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
+resources\views\frondend\package\index.blade.php:103:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\package\index.blade.php:104:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\package\index.blade.php:109:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\package\index.blade.php:110:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\package\index.blade.php:130:                                                <img src="{{ asset('images/facility/' . $value->image) }}"
+resources\views\frondend\package\index.blade.php:141:                                                            <i class="tji-arrow-right-big"></i>
+resources\views\frondend\insurance\index.blade.php:57:                                    <img src="{{ $content->icon }}" alt="">
+resources\views\frondend\insurance\index.blade.php:58:                                    {{-- <i class="{{ $content->icon }}"></i> --}}
+resources\views\frondend\insurance\index.blade.php:74:                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
+resources\views\frondend\insurance\index.blade.php:86:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\insurance\index.blade.php:87:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\insurance\index.blade.php:92:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\insurance\index.blade.php:93:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\insurance\index.blade.php:113:                                                <img src="{{ asset('images/facility/' . $value->image) }}"
+resources\views\frondend\insurance\index.blade.php:124:                                                            <i class="tji-arrow-right-big"></i>
+resources\views\frondend\medical-turism\index.blade.php:57:                                        <img src="assets/images/service/service-details.webp" alt="Images" />
+resources\views\frondend\medical-turism\index.blade.php:88:                        <i class="{{ $values->icon }}"></i>
+resources\views\frondend\medical-turism\index.blade.php:161:                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
+resources\views\frondend\medical-turism\index.blade.php:173:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\medical-turism\index.blade.php:174:                                        <i class="tji-arrow-left"></i>
+resources\views\frondend\medical-turism\index.blade.php:179:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\medical-turism\index.blade.php:180:                                        <i class="tji-arrow-right"></i>
+resources\views\frondend\medical-turism\index.blade.php:200:                                                <img src="{{ asset('images/facility/' . $value->image) }}"
+resources\views\frondend\medical-turism\index.blade.php:211:                                                            <i class="tji-arrow-right-big"></i>
