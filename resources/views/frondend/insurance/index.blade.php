@@ -1,6 +1,6 @@
 @extends('frondend.app')
 @section('content')
-    <div class="top-space-15"></div>
+
 
     <section class="tj-page-header section-gap-x insurence-page" data-bg-image="{{ asset($banner->image) }}">
         <div class="container">

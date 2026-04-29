@@ -24,11 +24,7 @@ class IcuController extends Controller
             })
             ->first();
         $data['menu'] = Menu::with('contents')->get();
-<<<<<<<<< Temporary merge branch 1
 
-=========
-
->>>>>>>>> Temporary merge branch 2
         return view('frondend.icu.index', $data);
     }
 }

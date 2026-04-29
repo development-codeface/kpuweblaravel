@@ -5,7 +5,7 @@
             scroll-behavior: smooth;
         }
     </style>
-    <div class="top-space-15"></div>
+
 
 
     <section class="tj-page-header section-gap-x spacialiy-banner">

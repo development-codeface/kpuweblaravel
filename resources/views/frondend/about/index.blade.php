@@ -5,7 +5,7 @@
             scroll-behavior: smooth;
         }
     </style>
-    <div class="top-space-15"></div>
+
 
     <section class="tj-page-header section-gap-x"
         data-bg-image="{{ asset(optional($banner)->image ?: 'assets/images/hero/banner.jpg') }}">
@@ -26,18 +26,18 @@
         </div>
         <div class="booking-container banner-menu speciality">
             <div class="banner-menu-conta">
-                <a href="#who-we-are">Who we are</a>
-                <a href="#our-values">Our Values</a>
-                <a href="#our-guiding-mission">Our Guiding Mission</a>
-                <a href="#mile-stone">Mile stones</a>
-                <a href="#strategic-pillars">Strategic Pillars</a>
+                <a href="#who-we-are-about">Who we are</a>
+                <a href="#our-values-about">Our Values</a>
+                <a href="#our-guiding-mission-about">Our Guiding Mission</a>
+                <a href="#mile-stone-about">Mile stones</a>
+                <a href="#strategic-pillars-about">Strategic Pillars</a>
             </div>
         </div>
         <!-- <div class="page-header-overlay" data-bg-image="assets/images/shape/pheader-overlay.webp"></div> -->
     </section>
 
     <!-- start: Choose Section -->
-    <section id="who-we-are" class="tj-choose-section section-gap">
+    <section id="who-we-are-about" class="tj-choose-section section-gap">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -148,7 +148,7 @@
 
     <!-- start: Choose Section -->
     @foreach ($about_feature as $feature)
-        <section @if ($loop->first) id="our-values" @endif class="tj-choose-section h6-choose section-gap core-about">
+        <section @if ($loop->first) id="our-values-about" @endif class="tj-choose-section h6-choose section-gap core-about">
             <div class="container about-us-choose">
 
                 {{-- Section Heading --}}
@@ -204,7 +204,7 @@
 
     <!-- start: About Section -->
     @if ($sub_content)
-        <section class="h10-about section-gap" id="our-guiding-mission">
+        <section class="h10-about section-gap" id="our-guiding-mission-about">
             <div class="container">
                 <div class="row flex-column-reverse flex-md-row">
 
@@ -255,7 +255,7 @@
     <!-- start: Service Section -->
     @if ($mid_content)
         <section class="h9-service section-gap section-gap-x tj-sticky-panel-container-2 tj-progress-wrapper"
-            id="mile-stone">
+            id="mile-stone-about">
             <div class="container">
                 <div class="row">
 
@@ -341,7 +341,7 @@
     <!-- end: Service Section -->
 
     <!-- start: Service Section -->
-    <section class="tj-service-section service-3 section-gap stragetic-pillers" id="strategic-pillars">
+    <section class="tj-service-section service-3 section-gap stragetic-pillers" id="strategic-pillars-about">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">

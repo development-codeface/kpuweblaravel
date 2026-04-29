@@ -10,7 +10,7 @@
             /* adjust based on navbar height */
         }
     </style>
-    <div class="top-space-15"></div>
+
     <section class="tj-page-header section-gap-x hospital-icu" data-bg-image="{{ asset($banner->image) }}">
         <div class="container">
             <div class="row">

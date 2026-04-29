@@ -1,13 +1,13 @@
 @extends('frondend.app')
 @section('content')
-    
 
-    <section class="tj-page-header section-gap-x" data-bg-image="{{ asset($edit_banner->image) }}">
+
+    <section class="tj-page-header section-gap-x wow fadeInUp" data-wow-delay=".3s" data-bg-image="{{ asset($edit_banner->image) }}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="h5-banner-content">
-                        <div class="btn-area wow fadeInUp" data-wow-delay=".8s">
+                        <div class="btn-area" >
                             <a class="tj-primary-btn tag-port">
                                 <span class="btn-text">{{ $edit_banner->button_text }}</span>
                             </a>
@@ -22,7 +22,7 @@
     </section>
 
     <!-- start: Faq Section -->
-    <section class="tj-faq-section section-gap ">
+    <section class="tj-faq-section section-gap wow fadeInUp" data-wow-delay=".3s">
         <div class="container">
             <div class="row justify-content-between">
                 @foreach ($edit_section as $key => $value)
@@ -54,7 +54,7 @@
     <!-- end: Faq Section -->
 
     <!-- start: Service Section -->
-    <section class="tj-service-section-5 section-gap">
+    <section class="tj-service-section-5 section-gap wow fadeInUp" data-wow-delay=".3s">
         <div class="container">
 
             <!-- TITLE -->
@@ -132,12 +132,12 @@
     <!-- end: Service Section -->
 
     <!-- start: Project Section -->
-     <section class="tj-project-section-3 section-gap section-gap-x">
+     <section class="tj-project-section-3 section-gap section-gap-x wow fadeInUp" data-wow-delay=".3s">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="sec-heading-wrap">
-                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
+                        <span class="sub-title "><i
                                 class="tji-box"></i>{{ $facility->title }}
                         </span>
                         <div class="heading-wrap-content">
@@ -146,7 +146,7 @@
                                     {{ $facility->sub_title }}
                                 </h2>
                             </div>
-                            <div class="slider-navigation d-none d-md-inline-flex wow fadeInUp" data-wow-delay=".5s">
+                            <div class="slider-navigation d-none d-md-inline-flex ">
                                 <div class="slider-prev">
                                     <span class="anim-icon">
                                         <i class="tji-arrow-left"></i>
@@ -168,7 +168,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="project-wrapper wow fadeInUp" data-wow-delay=".4s">
+                    <div class="project-wrapper ">
                         <div class="swiper project-slider-2">
                             <div class="swiper-wrapper">
                                 @foreach ($facility->content as $value)

@@ -1,7 +1,5 @@
 @extends('frondend.app')
 @section('content')
-    <div class="top-space-15"></div>
-
 
     <section class="tj-page-header section-gap-x" style="background-image: url('{{ asset($banner->image) }}');">
 
@@ -86,7 +84,7 @@
                 </div>
             </div>
 
-          
+
 
         </section>
     @endif
@@ -180,7 +178,7 @@
                                         </div>
                                     </div>
                                 </div>
-                              
+
                             </div>
                         </div>
                     </div>

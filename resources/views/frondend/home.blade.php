@@ -2,13 +2,13 @@
 @section('content')
     {{-- <div class="top-space-15"></div> --}}
     <!-- start: Banner Section -->
-    <section class="h5-banner-section section-gap-x" data-bg-image="{{ asset($banner->image) }}">
+    <section class="h5-banner-section section-gap-x wow fadeInUp" data-wow-delay=".3s" data-bg-image="{{ asset($banner->image) }}">
         <div class="container">
-            <div class="banner-bg">
+            <div class="banner-bg" >
             </div>
             <div class="h5-banner-area">
                 <div class="h5-banner-content">
-                    <div class="btn-area wow fadeInUp" data-wow-delay=".8s">
+                    <div class="btn-area ">
                         <a class="tj-primary-btn tag-port">
                             <span class="btn-text">#Healthy Families First</span>
                         </a>
@@ -19,18 +19,18 @@
                 </div>
             </div>
 
-            <div class="booking-container">
-                <div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
+            <div class="booking-container wow fadeInUp" data-wow-delay=".4s">
+                <div class="btn-area scroled-ab ">
                     <a class="tj-primary-btn" href="">
                         <span class="btn-text"><span>Book Appointment</span></span>
                     </a>
                 </div>
-                <div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
+                <div class="btn-area scroled-ab ">
                     <a class="tj-primary-btn" href="">
                         <span class="btn-text"><span>Find Speciality</span></span>
                     </a>
                 </div>
-                <div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
+                <div class="btn-area scroled-ab ">
                     <a class="tj-primary-btn" href="">
                         <span class="btn-text"><span>Book Health Checkup</span></span>
                     </a>
@@ -41,7 +41,7 @@
     <!-- end: Banner Section -->
 
     <!-- start: Choose Section -->
-    <section id="choose" class="tj-choose-section section-gap">
+    <section id="choose" class="tj-choose-section section-gap wow fadeInUp" data-wow-delay=".4s">
         <div class="container">
             @foreach ($features as $feature)
                 <div class="row">
@@ -80,7 +80,7 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
+                <div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".4s">
                     <a class="tj-primary-btn" href="">
                         <span class="btn-text"><span>Get Started Now</span></span>
                     </a>
@@ -101,13 +101,13 @@
             $contentCard?->image_3 ?? (optional($contentCards->get(2))->image ?? 'images/doctors/doctor-2.jpg');
         $homeContentOverlay = $contentCard?->title ?? 'Find quality care nearby and access it when you';
     @endphp
-    <section class="tj-about-section h7-about section-gap section-gap-x mt-10">
+    <section class="tj-about-section h7-about section-gap section-gap-x mt-10 wow fadeInUp" data-wow-delay=".4s">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-xl-6">
                     <div class="h7-about-banner wow fadeInUp" data-wow-delay=".2s">
                         <div class="sec-heading style-3 text-left">
-                            <div class="btn-area wow fadeInUp" data-wow-delay=".8s">
+                            <div class="btn-area wow fadeInUp" data-wow-delay=".3s">
                                 <a class="tj-primary-btn tag-port">
                                     <span class="btn-text">#{{ $edit_content->button_text }}</span>
                                 </a>
@@ -120,7 +120,7 @@
                             <p class="desc">
                                 {{ $edit_content->sub_heading }}
                             </p>
-                            <div class="btn-area wow fadeInUp" data-wow-delay=".8s">
+                            <div class="btn-area wow fadeInUp" data-wow-delay=".4s">
                                 <a class="tj-primary-btn" href="contact.html">
                                     <span class="btn-text"><span>About KPU Hospital</span></span>
                                 </a>
@@ -138,30 +138,32 @@
                                     <h4 class="count-text">{{ $homeContentOverlay }}</h4>
                                 </div>
                             </div>
+<div class="col-12 col-md-6">
+                                <div class="customers-box bg-img style-2 wow fadeInUp" data-wow-delay=".5s">
+                                    <img src="{{ asset($homeContentImage3) }}" alt="">
+                                </div>
+                            </div>
 
-                            <div class="col-12 col-md-6">
-                                <div class="customers-box style-2 wow fadeInUp" data-wow-delay=".5s">
+                        </div>
+                        <div class="grid-div second-abt">
+
+
+<div class="col-12 col-md-6">
+                                <div class="customers-box style-2 wow fadeInUp" data-wow-delay=".4s">
                                     <div class="inline-content">
                                         <span class="odometer countup-number" data-count="{{ $display_count }}">
                                             {{ $display_count }}
                                         </span>
                                         <span class="count-plus">+</span>
                                     </div>
-                                    <h6 class="customers-text wow fadeInLeft" data-wow-delay=".6s">
+                                    <h6 class="customers-text wow fadeInLeft" data-wow-delay=".5s">
                                         Doctors <br> Find your Doctor
                                     </h6>
                                 </div>
                             </div>
-                        </div>
-                        <div class="grid-div">
-                            <div class="col-12 col-md-6">
+<div class="col-12 col-md-6">
                                 <div class="countup-item style-2 wow fadeInUp" data-wow-delay=".6s">
                                     <img src="{{ asset($homeContentImage2) }}" alt="">
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <div class="customers-box bg-img style-2 wow fadeInUp" data-wow-delay=".5s">
-                                    <img src="{{ asset($homeContentImage3) }}" alt="">
                                 </div>
                             </div>
                         </div>
@@ -173,7 +175,7 @@
     <!-- end: About Section -->
 
     <!-- start: Team Section -->
-    <section class="tj-team-section section-separator">
+    <section class="tj-team-section section-separator wow fadeInUp" data-wow-delay=".5s">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -214,11 +216,11 @@
     <!-- end: Team Section -->
 
     <!-- start: Testimonial Section -->
-    <section class="h5-testimonial section-gap section-gap-x">
+    <section class="h5-testimonial section-gap section-gap-x wow fadeInUp" data-wow-delay=".5s">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="testimonial-wrapper h5-testimonial-wrapper wow fadeInUp" data-wow-delay=".5s">
+                    <div class="testimonial-wrapper h5-testimonial-wrapper ">
                         <div class="swiper swiper-container h5-testimonial-slider">
 
                             <div class="swiper-wrapper">
@@ -243,7 +245,7 @@
     <!-- end: Testimonial Section -->
 
     <!-- start: Testimonial Section -->
-    <section class="tj-testimonial-section-2 section-gap">
+    <section class="tj-testimonial-section-2 section-gap wow fadeInUp" data-wow-delay=".5s">
         <div class="container">
             <div class="row row-gap-3">
                 <div class="col-lg-6 test-vers">
@@ -287,7 +289,7 @@
                     @endphp
 
                     {{-- @if ($sectionSlides->count() > 1) --}}
-                    <div class="swiper swiper-container h5-testimonial-slider">
+                    <div class="swiper swiper-container h5-testimonial-slider wow fadeInUp" data-wow-delay=".5s">
                         <div class="swiper-wrapper">
 
                             @foreach ($sectionSlides as $slide)
@@ -328,7 +330,7 @@
                 </div>
             </div>
 
-            <div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
+            <div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".5s">
                 <a class="tj-primary-btn" href="contact.html">
                     <span class="btn-text"><span>Get Started Now</span></span>
                 </a>
@@ -337,7 +339,7 @@
     </section>
     <!-- end: Testimonial Section -->
     <!-- start: Blog Section -->
-    <section class="tj-blog-section section-gap">
+    <section class="tj-blog-section section-gap wow fadeInUp" data-wow-delay=".5s">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -351,7 +353,7 @@
 
                 @foreach ($blog as $item)
                     <div class="col-lg-4 col-sm-6">
-                        <div class="blog-item wow fadeInUp" data-wow-delay=".4s">
+                        <div class="blog-item wow fadeInUp" data-wow-delay=".5s">
 
                             <!-- Category -->
                             <div class="blog-meta">
@@ -385,7 +387,7 @@
             </div>
 
             <!-- Button -->
-            <div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".8s">
+            <div class="btn-area scroled-ab wow fadeInUp" data-wow-delay=".5s">
                 <a class="tj-primary-btn" href="">
                     <span class="btn-text"><span>Get Started Now</span></span>
                 </a>
@@ -397,12 +399,12 @@
 
 
     </main>
-    <section class="tj-project-section-3 section-gap section-gap-x">
+    <section class="tj-project-section-3 section-gap section-gap-x wow fadeInUp" data-wow-delay=".5s">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="sec-heading-wrap">
-                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i
+                        <span class="sub-title wow fadeInUp" data-wow-delay=".5s"><i
                                 class="tji-box"></i>{{ $facility->title }}
                         </span>
                         <div class="heading-wrap-content">

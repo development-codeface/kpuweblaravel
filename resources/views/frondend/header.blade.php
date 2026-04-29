@@ -1,4 +1,4 @@
-<header class="header-area header-1 header-absolute section-gap-x">
+<header class="header-area header-1 header-absolute section-gap-x wow fadeInUp" data-wow-delay=".3s">
     <div class="container-fluid">
         <div class="row">
 
@@ -13,7 +13,10 @@
                     <!-- navigation -->
                     <div class="menu-area d-none d-lg-inline-flex align-items-center">
    <div class="header-top-content">
-                                           
+ <p class="topbar-text">
+                                                Emergency <a href="tel:8089091313">808-909-1313</a>
+                                            </p>
+
                                             <div class="header-info">
                                                 @if (isset($menus['header-menu']))
                                                     @foreach ($menus['header-menu']->menuItems as $menu)
@@ -24,9 +27,7 @@
                                                 @endif
 
                                             </div>
-                                             <p class="topbar-text">
-                                                Emergency <a href="tel:8089091313">808-909-1313</a>
-                                            </p>
+
                                         </div>
                         <nav id="mobile-menu" class="mainmenu">
                             <ul>

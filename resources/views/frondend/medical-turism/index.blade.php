@@ -1,6 +1,6 @@
 @extends('frondend.app')
 @section('content')
-    <div class="top-space-15"></div>
+
     <section class="tj-page-header section-gap-x insurence-page" data-bg-image="{{ asset($banner->image) }}">
         <div class="container">
             <div class="row">
@@ -121,7 +121,7 @@
                         </div>
                     </div>
                     <div class="step-content">
-                        
+
                         @if ($content->subcontents->count())
                             <ul class="step-features">
                                 @foreach ($content->subcontents as $sub)
@@ -226,7 +226,7 @@
         </div>
     </section>
 
-    
+
     <script>
         document.querySelectorAll('.scroll-link').forEach(link => {
             link.addEventListener('click', function(e) {

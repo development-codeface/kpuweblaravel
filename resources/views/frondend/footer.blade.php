@@ -1,4 +1,4 @@
-  <footer class="tj-footer-section footer-1 section-gap-x">
+  <footer class="tj-footer-section footer-1 section-gap-x wow fadeInUp" data-wow-delay=".3s">
       <div class="footer-main-area">
           <div class="container">
               <div class="row justify-content-between">
@@ -41,7 +41,7 @@
                                     </div>
                                     </div>
 
-                                    
+
                                 </div>
                             </form>
                         </div>
@@ -50,7 +50,7 @@
             </div>
                       </div>
                   </div>
-       
+
                   <div class="footer-bottom">
 
                   <div class="col-xl-3 col-lg-4 col-md-6">
