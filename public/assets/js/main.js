@@ -569,7 +569,7 @@ Progressbar js
 	if ($(".h5-testimonial-slider").length > 0) {
 		var swiper = new Swiper(".h5-testimonial-slider", {
 			slidesPerView: 1.2,
-			spaceBetween: 20,
+			spaceBetween: 0,
 			centeredSlides: true,
 			loop: true,
 			speed: 1500,
@@ -586,7 +586,7 @@ Progressbar js
 				992: {
 					centeredSlides: false,
 					slidesPerView: 2,
-					spaceBetween: 30,
+					spaceBetween: 0,
 				},
 			},
 		});

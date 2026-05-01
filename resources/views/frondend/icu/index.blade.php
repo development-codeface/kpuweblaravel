@@ -74,22 +74,7 @@
     <section class="tj-blog-section section-gap slidebar-stickiy-container">
         <div class="container">
             <div class="row row-gap-5">
-                <div class="col-lg-4">
-                    <div class="tj-main-sidebar slidebar-stickiy">
-                        <div class="tj-sidebar-widget service-categories wow fadeInUp" data-wow-delay=".1s">
-                            <h4 class="widget-title">More services</h4>
-                            <ul>
-                                @foreach ($menu as $menuItem)
-                                    <li>
-                                        <a href="#menu-{{ $menuItem->id }}" class="scroll-link">
-                                            {{ $menuItem->name }}
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="col-lg-8">
                     <div class="post-details-wrapper">
                         @foreach ($menu as $menuItems)
@@ -110,6 +95,22 @@
                                 </div>
                             @endforeach
                         @endforeach
+                    </div>
+                </div>
+ <div class="col-lg-4">
+                    <div class="tj-main-sidebar slidebar-stickiy">
+                        <div class="tj-sidebar-widget service-categories wow fadeInUp" data-wow-delay=".1s">
+                            <h4 class="widget-title">More services</h4>
+                            <ul>
+                                @foreach ($menu as $menuItem)
+                                    <li>
+                                        <a href="#menu-{{ $menuItem->id }}" class="scroll-link">
+                                            {{ $menuItem->name }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

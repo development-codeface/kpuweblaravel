@@ -190,26 +190,28 @@
                     </div>
                 </div>
             </div>
-            <div class="row leftSwipeWrap">
-                @foreach ($dcotor_data as $data)
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="service-item style-6">
-                            <div class="service-image">
-                                <img src="{{ $data->image }}" alt="" />
-                            </div>
-                            <div class="service-content">
-
-                                <div class="team-content desc">
-                                    <h4 class="title">
-                                        <a href="team-details.html">{{ $data->name }}</a>
-                                    </h4>
-                                    <span class="designation">{{ $data->designation }}</span>
-                                    <span class="degree">MD,DA</span>
+            <div class="swiper swiper-container home-doctor-slider">
+                <div class="swiper-wrapper">
+                    @foreach ($dcotor_data as $data)
+                        <div class="swiper-slide">
+                            <div class="service-item style-6">
+                                <div class="service-image">
+                                    <img src="{{ $data->image }}" alt="" />
+                                </div>
+                                <div class="service-content">
+                                    <div class="team-content desc">
+                                        <h4 class="title">
+                                            <a href="team-details.html">{{ $data->name }}</a>
+                                        </h4>
+                                        <span class="designation">{{ $data->designation }}</span>
+                                        <span class="degree">MD,DA</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
+                <div class="swiper-pagination-area"></div>
             </div>
         </div>
     </section>
@@ -220,11 +222,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="testimonial-wrapper h5-testimonial-wrapper ">
+                    <div class="testimonial-wrapper h5-testimonial-wrapper">
                         <div class="swiper swiper-container h5-testimonial-slider">
-
                             <div class="swiper-wrapper">
-
                                 @foreach ($slider as $item)
                                     <div class="swiper-slide">
                                         <div class="testimonial-item">
@@ -232,9 +232,7 @@
                                         </div>
                                     </div>
                                 @endforeach
-
                             </div>
-
                             <div class="swiper-pagination-area"></div>
                         </div>
                     </div>
@@ -243,6 +241,7 @@
         </div>
     </section>
     <!-- end: Testimonial Section -->
+
 
     <!-- start: Testimonial Section -->
     <section class="tj-testimonial-section-2 section-gap wow fadeInUp" data-wow-delay=".5s">
@@ -289,12 +288,12 @@
                     @endphp
 
                     {{-- @if ($sectionSlides->count() > 1) --}}
-                    <div class="swiper swiper-container h5-testimonial-slider wow fadeInUp" data-wow-delay=".5s">
-                        <div class="swiper-wrapper">
+                    <div class="swiper swiper-container  h5-testimonial-slider wow fadeInUp" data-wow-delay=".5s">
+                        <div class="swiper-wrapper ">
 
                             @foreach ($sectionSlides as $slide)
-                                <div class="swiper-slide">
-                                    <div class="testimonial-item">
+                                <div class="swiper-slide ">
+                                    <div class="testimonial-item content-written">
                                         <div class="h5-testimonial-author-wrapper">
                                             <div class="testimonial-author">
                                                 <div class="author-inner">
@@ -396,79 +395,27 @@
     </section>
 
     <!-- end: Blog Section -->
-
-
     </main>
-    <section class="tj-project-section-3 section-gap section-gap-x wow fadeInUp" data-wow-delay=".5s">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="sec-heading-wrap">
-                        <span class="sub-title wow fadeInUp" data-wow-delay=".5s"><i
-                                class="tji-box"></i>{{ $facility->title }}
-                        </span>
-                        <div class="heading-wrap-content">
-                            <div class="sec-heading style-3">
-                                <h2 class="sec-title title-anim">
-                                    {{ $facility->sub_title }}
-                                </h2>
-                            </div>
-                            <div class="slider-navigation d-none d-md-inline-flex wow fadeInUp" data-wow-delay=".5s">
-                                <div class="slider-prev">
-                                    <span class="anim-icon">
-                                        <i class="tji-arrow-left"></i>
-                                        <i class="tji-arrow-left"></i>
-                                    </span>
-                                </div>
-                                <div class="slider-next">
-                                    <span class="anim-icon">
-                                        <i class="tji-arrow-right"></i>
-                                        <i class="tji-arrow-right"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="project-wrapper wow fadeInUp" data-wow-delay=".4s">
-                        <div class="swiper project-slider-2">
-                            <div class="swiper-wrapper">
-                                @foreach ($facility->content as $value)
-                                    <div class="swiper-slide">
-                                        <div class="project-item">
 
-                                            <div class="project-img">
-                                                <img src="{{ asset('images/facility/' . $value->image) }}"
-                                                    alt="">
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (document.querySelector('.home-doctor-slider')) {
+            new Swiper('.home-doctor-slider', {
+                slidesPerView: 4,
+                spaceBetween: 24,
+                loop: true,
+                speed: 1500,
+                autoplay: { delay: 3000, disableOnInteraction: false },
+                pagination: { el: '.home-doctor-slider .swiper-pagination-area', clickable: true },
+                breakpoints: {
+                    0:    { slidesPerView: 1, spaceBetween: 15 },
+                    576:  { slidesPerView: 2, spaceBetween: 15 },
+                    992:  { slidesPerView: 3, spaceBetween: 20 },
+                    1200: { slidesPerView: 4, spaceBetween: 24 },
+                }
+            });
+        }
+    });
+</script>
 
-                                                <div class="project-content">
-                                                    <span class="categories"><a
-                                                            href="portfolio-details-2.html">{{ $value->button_text }}</a></span>
-                                                    <div class="project-text">
-                                                        <h4 class="title"><a
-                                                                href="portfolio-details-2.html">{{ $value->heading }}</a>
-                                                        </h4>
-                                                        <a class="project-btn" href="portfolio-details-2.html">
-                                                            <i class="tji-arrow-right-big"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <div class="swiper-pagination-area"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 @endsection

@@ -1365,9 +1365,9 @@ nav#mobile-menu {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-column-gap: 18px;
+    /* -webkit-column-gap: 18px;
     -moz-column-gap: 18px;
-    column-gap: 18px;
+    column-gap: 18px; */
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
 }
@@ -11990,16 +11990,14 @@ START: Project CSS
     transition: all 0.3s ease-in-out 0s;
 }
 .project-item .project-img::before {
-    content: "";
-    background: var(--tj-color-theme-dark);
     position: absolute;
-    width: 100%;
+    content: "";
+    bottom: 0px;
+    left: 0px;
     height: 100%;
-    bottom: 0;
-    inset-inline-start: 0;
-    opacity: 0.16;
-    pointer-events: none;
-    z-index: 2;
+    width: 100%;
+    background: linear-gradient(359deg, rgb(52 188 254) 0%, rgb(116 225 241 / 15%) 61%, rgb(240 244 255 / 0%) 100%);
+    z-index: 1;
 }
 .project-item .project-content {
     position: relative;
@@ -12278,7 +12276,7 @@ START: Project CSS
     display: inline;
 }
 .project-slider-2 .project-item .title a:hover {
-    color: var(--tj-color-theme-primary);
+    color: #ffffff;
 }
 .project-slider-2 .project-item .categories a {
     background-color: #0093be;
@@ -13894,6 +13892,10 @@ START: CTA CSS
     justify-content: center;
     border-radius: 0px;
 }
+.cta-area .cta-content .contact-form .form-input input{
+  padding: 8px !important;
+  border:none !important;
+}
 input[type="text"] {
     border: none !important;
 }
@@ -13913,7 +13915,7 @@ input[type="text"] {
     padding: 0px;
     display: flex;
     border: 1px solid black;
-    margin-right: 15px;
+    /* margin-right: 15px; */
     flex: 0 0 auto;
     border-radius: 30px;
     width: max-content;
@@ -14506,12 +14508,12 @@ START: Contact CSS
 }
 
 .contact-form {
-    background-color: var(--tj-color-common-white);
+    background-color: aliceblue;
     -webkit-margin-start: 0;
     margin-inline-start: 0;
     -webkit-margin-end: 0px;
     margin-inline-end: 0px;
-    padding: 60px 50px;
+    padding: 40px 30px;
     border-radius: 12px;
 }
 .contact-form .title {
@@ -14524,7 +14526,7 @@ START: Contact CSS
     }
 }
 .contact-form .form-input {
-    margin-bottom: 27px;
+    margin-bottom: 7px;
     position: relative;
 }
 .contact-form .form-input textarea,
@@ -14535,9 +14537,9 @@ START: Contact CSS
 .contact-form .form-input input[type="email"] {
     background-color: transparent;
     color: var(--tj-color-text-body-3);
-    padding: 8px 0;
+    padding: 8px 15px !important;
     border: 0;
-    /* border-bottom: 1px dashed var(--tj-color-border-1); */
+    border: 1px solid var(--tj-color-border-1) !important;
 }
 .contact-form .form-input textarea::-webkit-input-placeholder,
 .contact-form .form-input select::-webkit-input-placeholder,
@@ -14642,7 +14644,7 @@ START: Contact CSS
     font-size: 16px;
     color: var(--tj-color-text-body-3);
     position: absolute;
-
+    margin: 10px 17px !important;
     inset-inline-start: 0;
     pointer-events: none;
     -webkit-transition: all 0.2s linear;
@@ -17839,6 +17841,7 @@ blockquote cite::before {
 }
 .widget-feature-item .feature-box .feature-content {
     padding: 30px 28px 30px;
+    background-color: aliceblue;
 }
 .widget-feature-item .feature-box .feature-content .title {
     font-size: 74px;
@@ -17990,9 +17993,9 @@ blockquote cite::before {
     -moz-column-gap: 15px;
     column-gap: 15px;
     row-gap: 15px;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
+    /* -webkit-box-align: center; */
+    -ms-flex-align: normal;
+    align-items: normal;
     margin-bottom: 50px;
 }
 
@@ -33195,7 +33198,7 @@ section.tj-team-section.section-separator .service-item.style-6{
 }
 
 section.h5-testimonial.section-gap.section-gap-x .swiper-backface-hidden .swiper-slide {
-    width: 600px !important;
+    width: 648px !important;
     margin-right: 0px !important;
 }
 .h5-testimonial-wrapper .testimonial-item img{
@@ -33420,4 +33423,7 @@ section.tj-page-header.section-gap-x.spacialiy-banner {
 }
 section.tj-project-section-3.section-gap.section-gap-x.doctors-find {
     padding-top: 120px;
+}
+.testimonial-item.content-written {
+  margin-right:20px;
 }

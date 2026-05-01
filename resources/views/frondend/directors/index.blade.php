@@ -54,11 +54,11 @@
                                 </div>
 <div class="social-links">
  <a class="text-btn" href="service-details.html">
-                                    <span class="btn-icon"><i class="fa-brands fa-linkedin-in"></i></span>
-<p>Linked in</p>
+
+<p>phone</p>
                                 </a>
  <a class="text-btn" href="service-details.html">
-                                    <span class="btn-icon"><i class="fa-brands fa-email-in"></i></span>
+
 <p>E mail</p>
                                 </a>
 </div>
